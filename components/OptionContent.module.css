@@ -1,9 +1,36 @@
 .optionContentWrapper {
     width: 100%;
-    height: 100%;
-    position: relative;
-    overflow: hidden;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3000;
+    overflow-y: auto;
+    overflow-x: hidden;
     background: transparent;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Decorative Elements */
+.butterflyDecor {
+    position: absolute;
+    top: 140px;
+    left: 30px;
+    width: 58px;
+    height: auto;
+    z-index: 50;
+    opacity: 0.9;
+}
+
+.flowerDecor {
+    position: absolute;
+    top: 320px;
+    left: 30px;
+    width: 100px;
+    height: auto;
+    z-index: 50;
+    opacity: 0.9;
 }
 
 /* Sticky Header */
@@ -20,6 +47,8 @@
     align-items: center;
     /* Center alignment */
     gap: 30px;
+    flex-shrink: 0;
+    max-height: 200px;
 }
 
 .headerContent {
@@ -110,13 +139,16 @@
 /* Horizontal Scroll Container */
 .horizontalScrollContainer {
     width: 100%;
-    height: calc(100% - 200px);
-    /* Adjust for larger header */
+    /* flex: 1; Removed to allow growth */
+    flex-grow: 1;
+    flex-shrink: 0;
     overflow-x: auto;
-    overflow-y: hidden;
+    /* overflow-y: hidden; Removed */
     scrollbar-width: none;
     -ms-overflow-style: none;
     padding: 40px 0;
+    box-sizing: border-box;
+    /* min-height: 0; Removed */
 }
 
 .horizontalScrollContainer::-webkit-scrollbar {
@@ -145,6 +177,16 @@
     /* Fixed width */
 }
 
+/* First card positioned higher */
+.contentCard:nth-child(1) {
+    margin-top: -10px;
+}
+
+/* Second card at normal position */
+.contentCard:nth-child(2) {
+    margin-top: 0;
+}
+
 .floatingText {
     font-family: 'DM Sans', sans-serif;
     font-size: 20px;
@@ -156,8 +198,8 @@
     /* Space for line */
     border-left: 2px solid rgba(26, 77, 58, 0.3);
     /* Stronger stem line */
-    padding-bottom: 40px;
-    /* Space before card */
+    padding-bottom: 20px;
+    /* Reduced space before card */
     position: relative;
     margin-top: 20px;
 }
@@ -173,11 +215,25 @@
 }
 
 .flower {
-    background: #E91E63;
-    /* Pink */
+    background: #FFD700;
+    /* Yellow diamond */
     clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-    /* Diamond/Flower shape */
-    transform: rotate(45deg);
+    /* Diamond shape */
+    transform: rotate(0deg);
+    position: relative;
+}
+
+.flower::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background: #E91E63;
+    /* Pink dot */
+    border-radius: 50%;
 }
 
 .circle {
@@ -187,21 +243,23 @@
 }
 
 .bar {
-    width: 8px;
-    /* Thinner */
-    height: 40px;
-    /* Taller */
-    background: linear-gradient(to bottom, #CDDC39, #4CAF50);
-    border-radius: 4px;
-    left: -5px;
+    width: 12px;
+    /* Thicker */
+    height: 120px;
+    /* Much taller */
+    background: linear-gradient(to bottom, #FFD700 0%, #CDDC39 50%, #8BC34A 100%);
+    /* Yellow to lime green gradient */
+    border-radius: 6px;
+    left: -8px;
     /* Adjust centering */
 }
 
 .textCard {
     width: 100%;
     min-height: 200px;
-    background: #2a9d8f;
-    /* Teal color matching reference */
+    background: rgba(42, 157, 143, 0.85);
+    /* Teal color matching reference with slight transparency */
+    backdrop-filter: blur(10px);
     border-radius: 16px;
     border: none;
     padding: 30px;
@@ -209,7 +267,7 @@
     flex-direction: column;
     gap: 12px;
     color: white;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .cardTitle {
@@ -254,8 +312,9 @@
 .statCard {
     width: 100%;
     min-height: 200px;
-    background: #2a9d8f;
-    /* Teal color */
+    background: rgba(42, 157, 143, 0.7);
+    /* Teal color with transparency */
+    backdrop-filter: blur(10px);
     border-radius: 16px;
     padding: 30px;
     display: flex;
@@ -263,6 +322,8 @@
     align-items: flex-start;
     color: white;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-top: -20px;
+    /* Pull up closer to connect with the line above */
 }
 
 .statLabel {
@@ -270,7 +331,7 @@
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 1.5px;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.7);
     text-transform: uppercase;
     margin-bottom: 20px;
 }
@@ -282,20 +343,21 @@
 }
 
 .statIcon {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     /* Polygon shape in image, stick to circle or change to clip-path */
     background: rgba(255, 255, 255, 0.3);
 }
 
 .statIcon.active {
-    background: #FFD700;
+    background: #FFB84D;
+    /* Orange/yellow color from reference */
 }
 
 .statNumber {
     font-family: 'DM Sans', sans-serif;
-    font-size: 32px;
+    font-size: 18px;
     font-weight: 700;
     color: white;
     margin: 0 0 12px 0;
@@ -305,41 +367,69 @@
     font-family: 'DM Sans', sans-serif;
     font-size: 15px;
     line-height: 1.5;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.95);
     margin: 0;
 }
 
 /* Toolkit Card */
 .toolkitCard {
-    width: 400px;
-    height: 500px;
+    width: 380px;
+    height: 520px;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .toolkitImageWrapper {
     width: 100%;
     height: 100%;
     position: relative;
-    border-radius: 24px;
-    overflow: hidden;
-    transform: rotate(-5deg);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .toolkitImage {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
 }
 
 .toolkitOverlay {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 30px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) rotate(6deg);
+    width: 300px;
+    padding: 25px;
     color: white;
+    z-index: 3;
+    text-align: left;
+}
+
+.toolkitContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(6deg);
+    width: 85%;
+    height: 60%;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.networkImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .toolkitLabel {
@@ -371,20 +461,29 @@
 .downloadButton,
 .viewButton {
     font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
-    padding: 8px 16px;
+    padding: 10px 18px;
     border-radius: 8px;
     border: none;
     cursor: pointer;
-    margin-right: 8px;
     transition: all 0.2s;
+}
+
+.toolkitButtons {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
 }
 
 .downloadButton {
     background: transparent;
     color: white;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-left: 0;
 }
 
 .viewButton {

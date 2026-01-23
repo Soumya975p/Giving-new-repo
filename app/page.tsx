@@ -775,6 +775,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight, ArrowLeft } from 'lucide-react'
 import styles from './page.module.css'
 import OptionContent from '../components/OptionContent'
+import Chapter3OptionB from '../components/Chapter3OptionB'
 
 interface Chapter {
   id: number
@@ -1071,11 +1072,11 @@ export default function Home() {
 
                       {/* Chapter 1 Specific Layout */}
                       {chapter.id === 1 ? (
-                        selectedOption ? (
+                        selectedOption === 'A' ? (
                           <OptionContent
                             chapterTitle="CHAPTER I: NETWORK EXPANSION"
-                            chapterSubtitle="Understanding your existing network"
-                            backgroundColor="linear-gradient(135deg, #34d399 0%, #059669 100%)"
+                            chapterSubtitle="Before seeking support, understand who's already in your circle. This chapter helps you map your existing network so fundraising starts with relationships, not cold outreach."
+                            backgroundColor="linear-gradient(180deg, #63C76B 0%, #17BABD 100%)"
                             onBack={() => setSelectedOption(null)}
 
                             contentCards={[
@@ -1086,25 +1087,76 @@ export default function Home() {
                                 decorationType: 'flower',
                                 label: 'DID YOU KNOW?',
                                 title: 'It costs 10x more',
-                                content: 'To acquire a new donor than continuing a relationship with someone who already believes in our work.'
+                                content: 'To acquire a new donor than continuing a relationship with someone who already believes in your work.'
                               },
                               {
                                 id: 2,
-                                type: 'stat',
+                                type: 'text',
                                 floatingText: "Instead, if you tapped into your existing network you will reach the people that care about the cause. The appeal feels more personal, more trusted.",
                                 decorationType: 'circle',
-                                label: 'UDARTA:EG STUDY SHOWS',
+                                label: '',
+                                title: '',
+                                content: '',
+                                // Nested stat box below the floating text
+                                showStatBelow: true,
+                                statLabel: 'UDARTA:EG STUDY SHOWS',
                                 stat: '60% of nonprofits',
                                 statDescription: 'find outreach through existing networks to be their most effective way of reaching new supporters'
                               },
                               {
                                 id: 3,
-                                type: 'toolkit',
-                                floatingText: "We've made a toolkit to simplify mapping your network.",
+                                type: 'text',
+                                floatingText: "We've make a template to simplify mapping your network",
                                 decorationType: 'bar',
-                                toolkitTitle: 'Network Mapping Exercise',
-                                toolkitDescription: 'A comprehensive guide to mapping your existing network and identifying warm introduction paths.',
-                                toolkitImage: '/assets/toolkit-placeholder.jpg'
+                                label: '',
+                                title: '',
+                                content: ''
+                              },
+                              {
+                                id: 4,
+                                type: 'toolkit',
+                                floatingText: "",
+                                decorationType: undefined,
+                                toolkitTitle: 'Network Mapping',
+                                toolkitDescription: 'A simple way to identify and activate people already connected to your cause',
+                                toolkitImage: '/assets/toolkit_card.svg'
+                              }
+                            ]}
+                          />
+                        ) : selectedOption === 'B' ? (
+                          <OptionContent
+                            chapterTitle="CHAPTER I: NETWORK EXPANSION"
+                            chapterSubtitle="Before seeking support, understand who's already in your circle. This chapter helps you map your existing network so fundraising starts with relationships, not cold outreach."
+                            backgroundColor="linear-gradient(180deg, #63C76B 0%, #17BABD 100%)"
+                            onBack={() => setSelectedOption(null)}
+
+                            contentCards={[
+                              {
+                                id: 1,
+                                type: 'text',
+                                floatingText: "Yes! You will reach the people that care about the cause. The appeal feels more personal, more trusted.",
+                                decorationType: 'flower',
+                                label: 'UDARTA:EG STUDY SHOWS',
+                                title: '60% of nonprofits',
+                                content: 'find outreach through existing networks to be their most effective way of reaching new supporters'
+                              },
+                              {
+                                id: 2,
+                                type: 'text',
+                                floatingText: "We've make a template to simplify mapping your network",
+                                decorationType: 'bar',
+                                label: '',
+                                title: '',
+                                content: ''
+                              },
+                              {
+                                id: 3,
+                                type: 'toolkit',
+                                floatingText: "",
+                                decorationType: undefined,
+                                toolkitTitle: 'Network Mapping',
+                                toolkitDescription: 'A simple way to identify and activate people already connected to your cause',
+                                toolkitImage: '/assets/toolkit_card.svg'
                               }
                             ]}
                           />
@@ -1231,8 +1283,82 @@ export default function Home() {
                         )
                       ) : chapter.id === 2 ? (
                         // Chapter 2 Specific Layout
-                        selectedOption ? (
-                          <div className={styles.tempContent}>Option Content Placeholder for Ch 2</div>
+                        selectedOption === 'A' ? (
+                          <OptionContent
+                            chapterTitle="CHAPTER II: FIRST DONATION"
+                            chapterSubtitle="A first donation is more than a transaction. This chapter focuses on how timely acknowledgment and simple follow-up can turn a first gift into the beginning of a relationship."
+                            backgroundColor="linear-gradient(225deg, #1BD5E4, #0FB8C5, #D349AE)"
+                            onBack={() => setSelectedOption(null)}
+                            contentCards={[
+                              {
+                                id: 1,
+                                type: 'text',
+                                floatingText: "You thank Nidhi within two days. She receives an 80G receipt and a clear message of appreciation.",
+                                decorationType: 'circle',
+                                label: '',
+                                title: '',
+                                content: '',
+                                // Nested stat box
+                                showStatBelow: true,
+                                statLabel: 'UDARTA:EG STUDY SHOWS',
+                                stat: 'Acknowledging donations leads to a 20.3 percentage point increase in funds raised from everyday givers.',
+                                statDescription: '',
+                                statBoxTransparent: true,
+                                showStatIcons: false
+                              },
+                              {
+                                id: 2,
+                                type: 'text',
+                                floatingText: (
+                                  <>
+                                    You didn&apos;t just raise funds.<br />
+                                    You began a relationship!
+                                    <br /><br />
+                                    We created a database template<br />
+                                    to help nonprofits to record,<br />
+                                    remember, and build continuity<br />
+                                    from the first gift.
+                                  </>
+                                ),
+                                decorationType: 'bar',
+                                label: '',
+                                title: '',
+                                content: '',
+                                transparentBackground: true
+                              },
+                              {
+                                id: 3,
+                                type: 'toolkit',
+                                floatingText: "",
+                                decorationType: undefined,
+                                toolkitLabel: 'TOOLKIT #1',
+                                toolkitTitle: 'Donor Database',
+                                toolkitDescription: 'How to record, remember, and build continuity from the first gift.',
+                                toolkitImage: '/assets/toolkit_card.svg',
+                                toolkitInnerImage: '/assets/chapter_2_toolkit.svg'
+                              }
+                            ]}
+                          />
+                        ) : selectedOption === 'B' ? (
+                          <OptionContent
+                            chapterTitle="CHAPTER II: FIRST DONATION"
+                            chapterSubtitle="A first donation is more than a transaction. This chapter focuses on how timely acknowledgment and simple follow-up can turn a first gift into the beginning of a relationship."
+                            backgroundColor="linear-gradient(225deg, #1BD5E4, #0FB8C5, #D349AE)"
+                            onBack={() => setSelectedOption(null)}
+                            flowerDecorImage="/assets/chapter_2_option_A.svg"
+                            firstCardOffset="140px"
+                            contentCards={[
+                              {
+                                id: 1,
+                                type: 'text',
+                                floatingText: "You accepted the donation but didn't follow up.",
+                                decorationType: 'circle',
+                                label: '',
+                                title: '',
+                                content: 'Without engagement, the donor relationship ends here.'
+                              }
+                            ]}
+                          />
                         ) : (
                           // Chapter 2 Default View
                           <div className={styles.chapter1Wrapper} style={{ justifyContent: 'flex-start' }}>
@@ -1357,8 +1483,10 @@ export default function Home() {
                         )
                       ) : chapter.id === 3 ? (
                         // Chapter 3 Specific Layout
-                        selectedOption ? (
-                          <div className={styles.tempContent}>Option Content Placeholder for Ch 3</div>
+                        selectedOption === 'B' ? (
+                          <Chapter3OptionB onBack={() => setSelectedOption(null)} />
+                        ) : selectedOption === 'A' ? (
+                          <div className={styles.tempContent}>Option A Content Placeholder for Ch 3</div>
                         ) : (
                           // Chapter 3 Default View
                           <div className={styles.chapter1Wrapper} style={{ justifyContent: 'flex-start' }}>
@@ -1482,6 +1610,73 @@ export default function Home() {
                           </div>
                         )
 
+                      ) : chapter.id === 3 ? (
+                        // Chapter 3 Specific Layout
+                        selectedOption === 'A' ? (
+                          <OptionContent
+                            chapterTitle="CHAPTER III: THE NURTURING"
+                            chapterSubtitle="Scenario 3 Placeholder"
+                            backgroundColor="linear-gradient(225deg, #1BD5E4, #0FB8C5, #D349AE)" // Using consistent background
+                            onBack={() => setSelectedOption(null)}
+                            contentCards={[]} // Empty content as requested
+                          />
+                        ) : selectedOption === 'B' ? (
+                          <div className={styles.tempContent}>Option B Content Placeholder for Ch 3</div>
+                        ) : (
+                          // Chapter 3 Default View (Scenario Selection)
+                          <div className={styles.chapter1Wrapper} style={{ justifyContent: 'flex-start' }}>
+                            <div className={styles.chapter1Header} style={{ marginBottom: '40px' }}>
+                              <h4 className={styles.ch1Label}>CHAPTER III: THE NURTURING</h4>
+                              <h1 className={styles.ch1Title}>
+                                Scenario Description Placeholder<br />
+                                (Please provide text)
+                              </h1>
+                              <p className={styles.ch1Instruction}>Select one of the two options to reveal the right way</p>
+                            </div>
+
+                            <div className={styles.scenarioContainer}>
+                              {/* Option A */}
+                              <motion.div
+                                className={styles.optionColumnLeft}
+                                initial="rest"
+                                whileHover="hover"
+                                animate="rest"
+                                onClick={() => setSelectedOption('A')}
+                                style={{ cursor: 'pointer' }}
+                              >
+                                <span className={styles.optionLabel} style={{ color: '#ffffff' }}>OPTION A</span>
+                                <p className={styles.optionDesc}>Option A Description</p>
+                                <motion.div variants={ctaVariants} style={{ marginTop: '24px', display: 'flex', alignItems: 'center', gap: '12px', color: '#ffffff', fontWeight: 500 }}>
+                                  <motion.div variants={arrowVariants}><ArrowRight style={{ width: '20px', height: '20px' }} /></motion.div>
+                                  <span style={{ textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '12px' }}>Choose Option</span>
+                                </motion.div>
+                              </motion.div>
+
+                              {/* Center Card */}
+                              <div className={styles.centerCard}>
+                                {/* Placeholder image or re-use card svg */}
+                                <div style={{ width: '100%', height: '100%', background: 'rgba(255,255,255,0.1)', borderRadius: '20px' }}></div>
+                              </div>
+
+                              {/* Option B */}
+                              <motion.div
+                                className={styles.optionColumnRight}
+                                initial="rest"
+                                whileHover="hover"
+                                animate="rest"
+                                onClick={() => setSelectedOption('B')}
+                                style={{ cursor: 'pointer' }}
+                              >
+                                <span className={styles.optionLabel} style={{ color: '#ffffff' }}>OPTION B</span>
+                                <p className={styles.optionDesc}>Option B Description</p>
+                                <motion.div variants={ctaVariants} style={{ marginTop: '24px', display: 'flex', alignItems: 'center', gap: '12px', color: '#ffffff', fontWeight: 500, flexDirection: 'row-reverse' }}>
+                                  <motion.div variants={arrowLeftVariants}><ArrowLeft style={{ width: '20px', height: '20px' }} /></motion.div>
+                                  <span style={{ textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '12px' }}>Choose Option</span>
+                                </motion.div>
+                              </motion.div>
+                            </div>
+                          </div>
+                        )
                       ) : chapter.id === 4 ? (
                         // Chapter 4 Specific Layout
                         selectedOption ? (
@@ -1651,35 +1846,96 @@ export default function Home() {
             </div>
           </div>
           <div className={styles.bonusRight}>
-            <div className={styles.bonusCard}>
-              <div className={styles.bonusCardInner}>
-                <h3 className={styles.bonusCardTitle}>Stewardship is a<br />team effort</h3>
-                <p className={styles.bonusCardText}>
-                  A guide to help cross-functional<br />
-                  teams collaborate to create better<br />
-                  donor stewardship. The<br />
-                  Fundraising Field Guide by<br />
-                  Udarta.
-                </p>
-                <div className={styles.bonusCardPattern}>
-                  <div className={styles.patternCircle} style={{ background: '#4dd4d4', top: '20%', left: '30%' }}></div>
-                  <div className={styles.patternCircle} style={{ background: '#ff8da1', top: '40%', left: '50%' }}></div>
-                  <div className={styles.patternCircle} style={{ background: '#b8e986', top: '60%', left: '35%' }}></div>
-                  <div className={styles.patternTriangle}></div>
-                </div>
-                <div className={styles.bonusCardDimensions}>307.57 x 456.7</div>
-              </div>
-            </div>
+            <img
+              src="/assets/Bonus Chapter - Flip.svg"
+              alt="Stewardship is a team effort"
+              className={styles.bonusCardImage}
+            />
             <div className={styles.bonusDotsPattern}>
-              <div className={styles.bonusDotCircle} style={{ background: '#4dd4d4', top: '10%', left: '20%' }}></div>
-              <div className={styles.bonusDotCircle} style={{ background: '#b8e986', top: '30%', right: '15%' }}></div>
-              <div className={styles.bonusDotCircle} style={{ background: '#ff8da1', bottom: '20%', left: '10%' }}></div>
-              <div className={styles.bonusDotCircle} style={{ background: '#4dd4d4', bottom: '10%', right: '25%' }}></div>
-              <div className={styles.bonusDotCircle} style={{ background: '#b8e986', top: '50%', right: '5%' }}></div>
+              <img
+                src="/assets/Group 326.svg"
+                alt=""
+                className={styles.bonusDotsImage}
+              />
             </div>
           </div>
         </div>
       </section >
+
+      {/* Download Section */}
+      <section className={styles.downloadSection}>
+        <div className={styles.downloadContent}>
+          {/* Left decorative plant */}
+          <div className={styles.leftPlant}>
+            <div className={styles.plantStem}></div>
+            <div className={styles.plantFlower}>
+              <div className={styles.flowerPetal}></div>
+              <div className={styles.flowerPetal}></div>
+              <div className={styles.flowerPetal}></div>
+              <div className={styles.flowerPetal}></div>
+            </div>
+            <div className={styles.plantDots}>
+              <div className={styles.plantDot}></div>
+              <div className={styles.plantDot}></div>
+              <div className={styles.plantDot}></div>
+            </div>
+          </div>
+
+          {/* Center Card */}
+          <div className={styles.downloadCard}>
+            <div className={styles.downloadIcons}>
+              <div className={styles.iconShape} style={{ background: '#e91e8c' }}></div>
+              <div className={styles.iconShape} style={{ background: '#4dd4d4' }}></div>
+              <div className={styles.iconShape} style={{ background: '#0d4d4d' }}></div>
+              <div className={styles.iconShape} style={{ background: '#4dd4d4' }}></div>
+            </div>
+            <h2 className={styles.downloadTitle}>Download the complete fundraising set</h2>
+            <p className={styles.downloadDescription}>
+              All the tools in one place to start building a structured, relationship-led approach<br />
+              to engaging everyday givers – at your own pace, and with the resources that fit<br />
+              your organisation best.
+            </p>
+            <div className={styles.downloadButtons}>
+              <button className={styles.downloadAllBtn}>
+                <span>✦</span>
+                <span>Download all</span>
+              </button>
+              <button className={styles.viewAllBtn}>
+                <span>View all</span>
+                <span>→</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Right decorative plant */}
+          <div className={styles.rightPlant}>
+            <div className={styles.plantStem}></div>
+            <div className={styles.plantCircles}>
+              <div className={styles.plantCircle}></div>
+              <div className={styles.plantCircle}></div>
+              <div className={styles.plantCircle}></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom decorative dots */}
+        <div className={styles.bottomDots}>
+          {[...Array(80)].map((_, i) => (
+            <div
+              key={i}
+              className={styles.bottomDot}
+              style={{
+                left: `${(i * 1.5) % 100}%`,
+                bottom: `${Math.random() * 60}px`,
+                background: i % 3 === 0 ? '#b8e986' : i % 3 === 1 ? '#4dd4d4' : '#0d4d4d',
+                opacity: Math.random() * 0.6 + 0.3,
+                width: `${Math.random() * 8 + 4}px`,
+                height: `${Math.random() * 8 + 4}px`
+              }}
+            ></div>
+          ))}
+        </div>
+      </section>
 
       {/* Footer Section */}
       < footer className={styles.footerSection} >
