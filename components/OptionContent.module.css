@@ -5,8 +5,7 @@
     top: 0;
     left: 0;
     z-index: 3000;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
     background: transparent;
     display: flex;
     flex-direction: column;
@@ -142,11 +141,14 @@
     /* flex: 1; Removed to allow growth */
     flex-grow: 1;
     flex-shrink: 0;
+    flex-shrink: 0;
     overflow-x: auto;
-    /* overflow-y: hidden; Removed */
+    overflow-y: hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    padding: 40px 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
     box-sizing: border-box;
     /* min-height: 0; Removed */
 }
@@ -157,11 +159,10 @@
 
 .scrollContent {
     display: flex;
-    align-items: flex-start;
-    gap: 80px;
-    /* Wider gap */
-    padding: 0 100px;
-    /* More padding */
+    align-items: center;
+    gap: 40px;
+    padding: 0 30px;
+    /* Reduced to 30px for minimal margin */
     min-width: min-content;
 }
 
@@ -173,18 +174,18 @@
     flex-direction: column;
     /* Stack text and card vertically */
     gap: 30px;
-    width: 400px;
-    /* Fixed width */
+    width: 480px;
+    /* Increased width */
 }
 
 /* First card positioned higher */
 .contentCard:nth-child(1) {
-    margin-top: -10px;
+    margin-top: -60px;
 }
 
 /* Second card at normal position */
 .contentCard:nth-child(2) {
-    margin-top: 0;
+    margin-top: -40px;
 }
 
 .floatingText {
@@ -256,13 +257,13 @@
 
 .textCard {
     width: 100%;
-    min-height: 200px;
+    min-height: 220px;
     background: rgba(42, 157, 143, 0.85);
     /* Teal color matching reference with slight transparency */
     backdrop-filter: blur(10px);
     border-radius: 16px;
     border: none;
-    padding: 30px;
+    padding: 35px;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -311,12 +312,12 @@
 /* Stat Card */
 .statCard {
     width: 100%;
-    min-height: 200px;
+    min-height: 220px;
     background: rgba(42, 157, 143, 0.7);
     /* Teal color with transparency */
     backdrop-filter: blur(10px);
     border-radius: 16px;
-    padding: 30px;
+    padding: 35px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -373,8 +374,8 @@
 
 /* Toolkit Card */
 .toolkitCard {
-    width: 380px;
-    height: 520px;
+    width: 450px;
+    height: 560px;
     position: relative;
     display: flex;
     align-items: center;

@@ -56,6 +56,15 @@ export default function Chapter3OptionB({ onBack }: Chapter3OptionBProps) {
                         </div>
                     </div>
 
+                    {/* Green Stick Decoration 1 */}
+                    <div className={styles.greenStickWrapper}>
+                        <img
+                            src="/assets/chapter_3_middlestick.svg"
+                            alt=""
+                            className={styles.greenStick}
+                        />
+                    </div>
+
                     {/* Card 3 - Why This Works + Toolkit Intro */}
                     <div className={styles.contentCard}>
                         <div className={styles.yellowBar}></div>
@@ -80,6 +89,15 @@ export default function Chapter3OptionB({ onBack }: Chapter3OptionBProps) {
                                 communications calendar
                             </p>
                         </div>
+                    </div>
+
+                    {/* Green Stick Decoration 2 */}
+                    <div className={styles.greenStickWrapper}>
+                        <img
+                            src="/assets/chapter_3_middlestick.svg"
+                            alt=""
+                            className={styles.greenStick}
+                        />
                     </div>
 
                     {/* Toolkit Card 1 - The Storytelling Bank */}

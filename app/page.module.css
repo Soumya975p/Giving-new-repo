@@ -3604,8 +3604,8 @@
   flex-direction: column;
   align-items: center;
   /* Centered vertically roughly or with padding */
-  padding-top: 60px;
-  /* Further reduced from 80px */
+  padding-top: 20px;
+  /* Reduced from 60px to move everything up */
   position: relative;
   box-sizing: border-box;
   justify-content: flex-start;
@@ -3663,19 +3663,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  /* Reduced from 40px */
+  gap: 15px;
+  /* Reduced from 20px */
   width: 100%;
-  max-width: 1000px;
-  /* Ensure it wraps effectively if too small */
+  max-width: 1250px;
+  /* Increased from 1100px */
+  margin-top: 20px;
+  /* Positive margin to prevent overlapping */
 }
 
 /* Side Options */
 .optionColumnLeft,
 .optionColumnRight {
   flex: 1;
-  max-width: 240px;
-  /* Slightly tighter */
+  max-width: 360px;
+  /* Increased from 280px */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -3683,7 +3685,8 @@
 }
 
 .optionColumnRight {
-  align-items: flex-start;
+  align-items: flex-end;
+  text-align: right;
   /* Image shows left aligned text for both options mostly */
 }
 
@@ -3705,15 +3708,13 @@
   font-weight: 400;
   line-height: 1.3;
   color: #1a4d3a;
-  text-align: left;
+  text-align: inherit;
 }
 
 /* Center Card - Dark */
 .centerCard {
-  width: 280px;
-  /* Reduced from 320px */
+  width: 340px;
   height: 400px;
-  /* Reduced from 460px */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3725,7 +3726,7 @@
   /* Ensure no background interferes */
   padding: 0;
   border-radius: 0;
-  transition: transform 0.1s ease-out;
+  transition: transform 0.8s ease-out;
   transform-style: preserve-3d;
 }
 
@@ -3883,4 +3884,316 @@
   font-weight: 700;
   box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
   color: #103035;
+}
+
+/* =========================================
+   FOOTER SECTION STYLES
+   ========================================= */
+
+.footerSection {
+  width: 100%;
+  background: #041A1D;
+  padding: 80px 60px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.footerContent {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 80px;
+}
+
+/* Left Column - Logo & Description */
+.footerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.footerLogo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 5px;
+}
+
+.footerLogoIcon {
+  font-size: 32px;
+}
+
+.footerLogoText {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 1.5px;
+  line-height: 1.3;
+}
+
+.footerLogoSubtext {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0 0 15px 0;
+}
+
+.footerDescription {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 0 30px 0;
+}
+
+.footerMap {
+  width: 120px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.mapIcon {
+  font-size: 40px;
+  opacity: 0.6;
+}
+
+.footerLocation {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+/* Middle Column - Navigation & Resources */
+.footerMiddle {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.footerNav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footerNavTitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #0FB8C5;
+  margin: 0 0 5px 0;
+}
+
+.footerNavLink {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.footerNavLink:hover {
+  color: #0FB8C5;
+}
+
+.footerResources {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footerSectionTitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #0FB8C5;
+  margin: 0 0 5px 0;
+}
+
+.footerLink {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.footerLink:hover {
+  color: #0FB8C5;
+}
+
+.footerSubLink {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+  padding-left: 15px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.footerSubLink:hover {
+  color: #0FB8C5;
+}
+
+/* Right Column - Contact & Address */
+.footerRight {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.footerContact {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footerEmail {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  word-break: break-word;
+}
+
+.footerAddress {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footerAddressText {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+/* Get Involved Section - Full Width */
+.getInvolved {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.getInvolvedTitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #0FB8C5;
+  margin: 0 0 25px 0;
+}
+
+.getInvolvedForm {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.getInvolvedText {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 15px 0;
+}
+
+.getInvolvedEmail {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.formInput {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #0FB8C5;
+  color: #0FB8C5;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  padding: 4px 8px;
+  outline: none;
+  min-width: 150px;
+  transition: border-color 0.3s ease;
+}
+
+.formInput::placeholder {
+  color: #0FB8C5;
+  opacity: 0.8;
+}
+
+.formInput:focus {
+  border-bottom-color: #93CD4D;
+}
+
+.subscribeButton {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 30px;
+  color: #ffffff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.subscribeButton:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: #0FB8C5;
+}
+
+.subscribeArrow {
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: #0FB8C5;
+  border-radius: 50%;
+  color: #0d4d4d;
+}
+
+/* Decorative Dots */
+.footerDots {
+  position: absolute;
+  bottom: 20px;
+  right: 60px;
+  width: 100px;
+  height: 100px;
+  opacity: 0.3;
+  pointer-events: none;
 }

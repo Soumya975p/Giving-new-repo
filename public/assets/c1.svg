@@ -1,0 +1,47 @@
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_n_2254_11)">
+<g clip-path="url(#paint0_angular_2254_11_clip_path)" data-figma-skip-parse="true"><g transform="matrix(0 0.12 -0.12 0 120 120)"><foreignObject x="-1048.85" y="-1048.85" width="2097.7" height="2097.7"><div xmlns="http://www.w3.org/1999/xhtml" style="background:conic-gradient(from 90deg,rgba(15, 184, 197, 1) 0deg,rgba(18, 54, 59, 1) 360deg);height:100%;width:100%;opacity:1"></div></foreignObject></g></g><rect x="120" width="169.706" height="169.706" transform="rotate(45 120 0)" data-figma-gradient-fill="{&#34;type&#34;:&#34;GRADIENT_ANGULAR&#34;,&#34;stops&#34;:[{&#34;color&#34;:{&#34;r&#34;:0.058823529630899429,&#34;g&#34;:0.72156864404678345,&#34;b&#34;:0.77254903316497803,&#34;a&#34;:1.0},&#34;position&#34;:0.0},{&#34;color&#34;:{&#34;r&#34;:0.070588238537311554,&#34;g&#34;:0.21176470816135406,&#34;b&#34;:0.23137255012989044,&#34;a&#34;:1.0},&#34;position&#34;:1.0}],&#34;stopsVar&#34;:[{&#34;color&#34;:{&#34;r&#34;:0.058823529630899429,&#34;g&#34;:0.72156864404678345,&#34;b&#34;:0.77254903316497803,&#34;a&#34;:1.0},&#34;position&#34;:0.0},{&#34;color&#34;:{&#34;r&#34;:0.070588238537311554,&#34;g&#34;:0.21176470816135406,&#34;b&#34;:0.23137255012989044,&#34;a&#34;:1.0},&#34;position&#34;:1.0}],&#34;transform&#34;:{&#34;m00&#34;:0.0,&#34;m01&#34;:-239.99998474121094,&#34;m02&#34;:240.0,&#34;m10&#34;:239.99998474121094,&#34;m11&#34;:0.0,&#34;m12&#34;:1.7410431610187516e-05},&#34;opacity&#34;:1.0,&#34;blendMode&#34;:&#34;NORMAL&#34;,&#34;visible&#34;:true}"/>
+</g>
+<g filter="url(#filter1_n_2254_11)">
+<rect x="138" y="102" width="36" height="36" transform="rotate(90 138 102)" fill="url(#paint1_radial_2254_11)"/>
+<rect x="138" y="102" width="36" height="36" transform="rotate(90 138 102)" fill="black" fill-opacity="0.07"/>
+</g>
+<defs>
+<filter id="filter0_n_2254_11" x="0" y="0" width="240" height="240" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feTurbulence type="fractalNoise" baseFrequency="2 2" stitchTiles="stitch" numOctaves="3" result="noise" seed="2949" />
+<feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise" />
+<feComponentTransfer in="alphaNoise" result="coloredNoise1">
+<feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "/>
+</feComponentTransfer>
+<feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
+<feFlood flood-color="rgba(0, 0, 0, 0.25)" result="color1Flood" />
+<feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1" />
+<feMerge result="effect1_noise_2254_11">
+<feMergeNode in="shape" />
+<feMergeNode in="color1" />
+</feMerge>
+</filter>
+<clipPath id="paint0_angular_2254_11_clip_path"><rect x="120" width="169.706" height="169.706" transform="rotate(45 120 0)"/></clipPath><filter id="filter1_n_2254_11" x="102" y="102" width="36" height="36" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feTurbulence type="fractalNoise" baseFrequency="5 5" stitchTiles="stitch" numOctaves="3" result="noise" seed="9621" />
+<feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise" />
+<feComponentTransfer in="alphaNoise" result="coloredNoise1">
+<feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "/>
+</feComponentTransfer>
+<feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
+<feFlood flood-color="rgba(84, 119, 193, 0.4)" result="color1Flood" />
+<feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1" />
+<feMerge result="effect1_noise_2254_11">
+<feMergeNode in="shape" />
+<feMergeNode in="color1" />
+</feMerge>
+</filter>
+<radialGradient id="paint1_radial_2254_11" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(174 102) rotate(135.352) scale(57.6303 41.9664)">
+<stop stop-color="#FF8A37"/>
+<stop offset="1" stop-color="#EC41FF"/>
+</radialGradient>
+</defs>
+</svg>

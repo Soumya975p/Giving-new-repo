@@ -33,6 +33,7 @@ interface OptionContentProps {
     chapterSubtitle: string;
     contentCards: ContentCard[];
     onBack: () => void;
+    onNext?: () => void; // Optional callback for next chapter
     backgroundColor?: string;
     flowerDecorImage?: string;
     firstCardOffset?: string;
@@ -43,6 +44,7 @@ export default function OptionContent({
     chapterSubtitle,
     contentCards,
     onBack,
+    onNext,
     backgroundColor = 'linear-gradient(180deg, #63C76B 0%, #17BABD 100%)',
     flowerDecorImage = '/assets/chapter_1/flower_left_optionA.svg',
     firstCardOffset = '0px'
@@ -181,12 +183,14 @@ export default function OptionContent({
                     ))}
 
                     {/* Next Chapter Button */}
-                    <div className={styles.nextChapterCard}>
-                        <button className={styles.nextChapterButton}>
-                            <span>Next chapter</span>
-                            <span className={styles.nextArrow}>→</span>
-                        </button>
-                    </div>
+                    {onNext && (
+                        <div className={styles.nextChapterCard}>
+                            <button className={styles.nextChapterButton} onClick={onNext}>
+                                <span>Next chapter</span>
+                                <span className={styles.nextArrow}>→</span>
+                            </button>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

@@ -21,6 +21,32 @@
     --tab-offset-x: 0px;
 }
 
+/* CLICK OVERLAY - INVISIBLE INTERACTION LAYER */
+.clickOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    z-index: 200;
+    /* Higher than visual tabs (active tab is ~10-100) */
+    pointer-events: none;
+    /* Let the container handle pointer events? No, children need pointer-events */
+}
+
+.clickZone {
+    flex: 1;
+    height: 100%;
+    cursor: pointer;
+    background: transparent;
+    /* background: rgba(255, 0, 0, 0.2);  DEBUG: Uncomment to see click zones */
+    pointer-events: auto;
+    /* Enable clicks on these zones */
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
 /* Individual Tab */
 .tab {
     position: absolute;
@@ -119,6 +145,19 @@
 
 .activeTab .tabLabel {
     font-weight: 700;
+    color: black;
+}
+
+/* Custom alignment for Active Tabs (New "Open" SVGs have different dimensions) */
+.tab.activeTab .tabImage {
+    height: 95%;
+    transform: translateY(10px);
+}
+
+/* Chapter 3 Open SVG retains original 106px height, so revert/adjust for it specifically */
+.tab:nth-child(3).activeTab .tabImage {
+    height: 125%;
+    transform: translateY(0);
 }
 
 

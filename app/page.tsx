@@ -799,7 +799,7 @@ const chapters: Chapter[] = [
     contentImage: '/assets/1.png',
     gradient: 'linear-gradient(90deg, #0FB8C5 0%, #93CD4D 100%)',
     tabGradient: 'linear-gradient(135deg, #1eb59a 0%, #16a085 100%)',
-    gridImage: '/assets/c1.png'
+    gridImage: '/assets/c1.svg'
   },
   {
     id: 2,
@@ -809,7 +809,7 @@ const chapters: Chapter[] = [
     contentImage: '/assets/2.png',
     gradient: 'linear-gradient(45deg, #D349AE 0%, #0FB8C5 50%, #1BD5E4 100%)',
     tabGradient: 'linear-gradient(135deg, #4dd4d4 0%, #3ababa 100%)',
-    gridImage: '/assets/c2.png'
+    gridImage: '/assets/c2.svg'
   },
   {
     id: 3,
@@ -819,7 +819,7 @@ const chapters: Chapter[] = [
     contentImage: '/assets/3.png',
     gradient: 'linear-gradient(135deg, #13D9E8 0%, #FFCD86 100%)',
     tabGradient: 'linear-gradient(180deg, #0FB8C5 0%, #13D9E8 100%)',
-    gridImage: '/assets/c3.png'
+    gridImage: '/assets/c3.svg'
   },
   {
     id: 4,
@@ -829,17 +829,7 @@ const chapters: Chapter[] = [
     contentImage: '/assets/4.png',
     gradient: 'linear-gradient(180deg, #FFEF3D 0%, #DCD647 20%, #C9CD33 40%, #8DA806 60%, #86A401 80%, #315900 100%)',
     tabGradient: 'linear-gradient(180deg, #315900 0%, #B0D313 100%)',
-    gridImage: '/assets/c4.png'
-  },
-  {
-    id: 5,
-    title: 'V. Bonus Chapter',
-    subtitle: 'Stewardship is a Team Effort',
-    tabImage: '/assets/chapter_bonus_tab.svg',
-    contentImage: '/assets/Bonus Chapter - Flip.svg',
-    gradient: 'linear-gradient(135deg, #2DB1AE 0%, #1D7A78 100%)',
-    tabGradient: 'linear-gradient(135deg, #2DB1AE 0%, #1D7A78 100%)',
-    gridImage: '/assets/Bonus Chapter - Flip.svg'
+    gridImage: '/assets/c4.svg'
   }
 ]
 
@@ -894,6 +884,7 @@ export default function Home() {
   const scrollAccumulatorRef = useRef(0)
   const scrollTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined)
   const scrollContainerRefs = useRef<(HTMLDivElement | null)[]>([])
+  const bonusSectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     activeChapterRef.current = activeChapter
@@ -904,7 +895,22 @@ export default function Home() {
       newScrollContainer.scrollLeft = 0
     }
     setScrollProgress(0)
+
+    // Reset selected option after chapter transition animation completes
+    // Delay to avoid visual flash during transition
+    const resetTimeout = setTimeout(() => {
+      setSelectedOption(null)
+    }, 100) // Small delay to let transition start
+
+    return () => clearTimeout(resetTimeout)
   }, [activeChapter])
+
+  // Navigate to next chapter
+  const handleNextChapter = () => {
+    if (activeChapter < chapters.length) {
+      setActiveChapter(activeChapter + 1)
+    }
+  }
 
   // Handle horizontal scroll animation based on scroll position
   useEffect(() => {
@@ -934,11 +940,6 @@ export default function Home() {
     }
   }, [activeChapter])
 
-  const handleNextChapter = () => {
-    if (activeChapter < chapters.length) {
-      setActiveChapter(activeChapter + 1)
-    }
-  }
 
 
 
@@ -1090,6 +1091,7 @@ export default function Home() {
                             chapterSubtitle="Before seeking support, understand who's already in your circle. This chapter helps you map your existing network so fundraising starts with relationships, not cold outreach."
                             backgroundColor="linear-gradient(180deg, #63C76B 0%, #17BABD 100%)"
                             onBack={() => setSelectedOption(null)}
+                            onNext={handleNextChapter}
 
                             contentCards={[
                               {
@@ -1141,6 +1143,7 @@ export default function Home() {
                             chapterSubtitle="Before seeking support, understand who's already in your circle. This chapter helps you map your existing network so fundraising starts with relationships, not cold outreach."
                             backgroundColor="linear-gradient(180deg, #63C76B 0%, #17BABD 100%)"
                             onBack={() => setSelectedOption(null)}
+                            onNext={handleNextChapter}
 
                             contentCards={[
                               {
@@ -1193,13 +1196,18 @@ export default function Home() {
                                 whileHover="hover"
                                 animate="rest"
                                 onClick={() => setSelectedOption('A')}
-                                onMouseEnter={() => {
-                                  const card = document.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) card.style.transform = 'perspective(1000px) rotateX(-15deg)';
+                                onMouseEnter={(e) => {
+                                  const parent = e.currentTarget.parentElement;
+                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
+                                  if (card) {
+                                    card.style.transformOrigin = 'bottom left';
+                                    card.style.transform = 'rotate(-15deg)';
+                                  }
                                 }}
-                                onMouseLeave={() => {
-                                  const card = document.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) card.style.transform = 'perspective(1000px) rotateX(0deg)';
+                                onMouseLeave={(e) => {
+                                  const parent = e.currentTarget.parentElement;
+                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
+                                  if (card) card.style.transform = 'rotate(0deg)';
                                 }}
                                 style={{ cursor: 'pointer' }}
                               >
@@ -1249,13 +1257,18 @@ export default function Home() {
                                 whileHover="hover"
                                 animate="rest"
                                 onClick={() => setSelectedOption('B')}
-                                onMouseEnter={() => {
-                                  const card = document.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) card.style.transform = 'perspective(1000px) rotateX(15deg)';
+                                onMouseEnter={(e) => {
+                                  const parent = e.currentTarget.parentElement;
+                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
+                                  if (card) {
+                                    card.style.transformOrigin = 'bottom right';
+                                    card.style.transform = 'rotate(15deg)';
+                                  }
                                 }}
-                                onMouseLeave={() => {
-                                  const card = document.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) card.style.transform = 'perspective(1000px) rotateX(0deg)';
+                                onMouseLeave={(e) => {
+                                  const parent = e.currentTarget.parentElement;
+                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
+                                  if (card) card.style.transform = 'rotate(0deg)';
                                 }}
                                 style={{ cursor: 'pointer' }}
                               >
@@ -1303,6 +1316,7 @@ export default function Home() {
                             chapterSubtitle="A first donation is more than a transaction. This chapter focuses on how timely acknowledgment and simple follow-up can turn a first gift into the beginning of a relationship."
                             backgroundColor="linear-gradient(225deg, #1BD5E4, #0FB8C5, #D349AE)"
                             onBack={() => setSelectedOption(null)}
+                            onNext={handleNextChapter}
                             contentCards={[
                               {
                                 id: 1,
@@ -1359,6 +1373,7 @@ export default function Home() {
                             chapterSubtitle="A first donation is more than a transaction. This chapter focuses on how timely acknowledgment and simple follow-up can turn a first gift into the beginning of a relationship."
                             backgroundColor="linear-gradient(225deg, #1BD5E4, #0FB8C5, #D349AE)"
                             onBack={() => setSelectedOption(null)}
+                            onNext={handleNextChapter}
                             flowerDecorImage="/assets/chapter_2_option_A.svg"
                             firstCardOffset="140px"
                             contentCards={[
@@ -1395,13 +1410,18 @@ export default function Home() {
                                 whileHover="hover"
                                 animate="rest"
                                 onClick={() => setSelectedOption('A')}
-                                onMouseEnter={() => {
-                                  const card = document.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) card.style.transform = 'perspective(1000px) rotateX(-15deg)';
+                                onMouseEnter={(e) => {
+                                  const parent = e.currentTarget.parentElement;
+                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
+                                  if (card) {
+                                    card.style.transformOrigin = 'bottom left';
+                                    card.style.transform = 'rotate(-15deg)';
+                                  }
                                 }}
-                                onMouseLeave={() => {
-                                  const card = document.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) card.style.transform = 'perspective(1000px) rotateX(0deg)';
+                                onMouseLeave={(e) => {
+                                  const parent = e.currentTarget.parentElement;
+                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
+                                  if (card) card.style.transform = 'rotate(0deg)';
                                 }}
                                 style={{ cursor: 'pointer' }}
                               >
@@ -1452,13 +1472,18 @@ export default function Home() {
                                 whileHover="hover"
                                 animate="rest"
                                 onClick={() => setSelectedOption('B')}
-                                onMouseEnter={() => {
-                                  const card = document.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) card.style.transform = 'perspective(1000px) rotateX(15deg)';
+                                onMouseEnter={(e) => {
+                                  const parent = e.currentTarget.parentElement;
+                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
+                                  if (card) {
+                                    card.style.transformOrigin = 'bottom right';
+                                    card.style.transform = 'rotate(15deg)';
+                                  }
                                 }}
-                                onMouseLeave={() => {
-                                  const card = document.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) card.style.transform = 'perspective(1000px) rotateX(0deg)';
+                                onMouseLeave={(e) => {
+                                  const parent = e.currentTarget.parentElement;
+                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
+                                  if (card) card.style.transform = 'rotate(0deg)';
                                 }}
                                 style={{ cursor: 'pointer' }}
                               >
@@ -1523,13 +1548,18 @@ export default function Home() {
                                 whileHover="hover"
                                 animate="rest"
                                 onClick={() => setSelectedOption('A')}
-                                onMouseEnter={() => {
-                                  const card = document.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) card.style.transform = 'perspective(1000px) rotateX(-15deg)';
+                                onMouseEnter={(e) => {
+                                  const parent = e.currentTarget.parentElement;
+                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
+                                  if (card) {
+                                    card.style.transformOrigin = 'bottom left';
+                                    card.style.transform = 'rotate(-15deg)';
+                                  }
                                 }}
-                                onMouseLeave={() => {
-                                  const card = document.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) card.style.transform = 'perspective(1000px) rotateX(0deg)';
+                                onMouseLeave={(e) => {
+                                  const parent = e.currentTarget.parentElement;
+                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
+                                  if (card) card.style.transform = 'rotate(0deg)';
                                 }}
                                 style={{ cursor: 'pointer' }}
                               >
@@ -1578,13 +1608,18 @@ export default function Home() {
                                 whileHover="hover"
                                 animate="rest"
                                 onClick={() => setSelectedOption('B')}
-                                onMouseEnter={() => {
-                                  const card = document.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) card.style.transform = 'perspective(1000px) rotateX(15deg)';
+                                onMouseEnter={(e) => {
+                                  const parent = e.currentTarget.parentElement;
+                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
+                                  if (card) {
+                                    card.style.transformOrigin = 'bottom right';
+                                    card.style.transform = 'rotate(15deg)';
+                                  }
                                 }}
-                                onMouseLeave={() => {
-                                  const card = document.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) card.style.transform = 'perspective(1000px) rotateX(0deg)';
+                                onMouseLeave={(e) => {
+                                  const parent = e.currentTarget.parentElement;
+                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
+                                  if (card) card.style.transform = 'rotate(0deg)';
                                 }}
                                 style={{ cursor: 'pointer' }}
                               >
@@ -1632,6 +1667,7 @@ export default function Home() {
                             chapterSubtitle="Scenario 3 Placeholder"
                             backgroundColor="linear-gradient(225deg, #1BD5E4, #0FB8C5, #D349AE)" // Using consistent background
                             onBack={() => setSelectedOption(null)}
+                            onNext={handleNextChapter}
                             contentCards={[]} // Empty content as requested
                           />
                         ) : selectedOption === 'B' ? (
@@ -1716,13 +1752,18 @@ export default function Home() {
                                 whileHover="hover"
                                 animate="rest"
                                 onClick={() => setSelectedOption('A')}
-                                onMouseEnter={() => {
-                                  const card = document.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) card.style.transform = 'perspective(1000px) rotateX(-15deg)';
+                                onMouseEnter={(e) => {
+                                  const parent = e.currentTarget.parentElement;
+                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
+                                  if (card) {
+                                    card.style.transformOrigin = 'bottom left';
+                                    card.style.transform = 'rotate(-15deg)';
+                                  }
                                 }}
-                                onMouseLeave={() => {
-                                  const card = document.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) card.style.transform = 'perspective(1000px) rotateX(0deg)';
+                                onMouseLeave={(e) => {
+                                  const parent = e.currentTarget.parentElement;
+                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
+                                  if (card) card.style.transform = 'rotate(0deg)';
                                 }}
                                 style={{ cursor: 'pointer' }}
                               >
@@ -1772,13 +1813,18 @@ export default function Home() {
                                 whileHover="hover"
                                 animate="rest"
                                 onClick={() => setSelectedOption('B')}
-                                onMouseEnter={() => {
-                                  const card = document.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) card.style.transform = 'perspective(1000px) rotateX(15deg)';
+                                onMouseEnter={(e) => {
+                                  const parent = e.currentTarget.parentElement;
+                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
+                                  if (card) {
+                                    card.style.transformOrigin = 'bottom right';
+                                    card.style.transform = 'rotate(15deg)';
+                                  }
                                 }}
-                                onMouseLeave={() => {
-                                  const card = document.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) card.style.transform = 'perspective(1000px) rotateX(0deg)';
+                                onMouseLeave={(e) => {
+                                  const parent = e.currentTarget.parentElement;
+                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
+                                  if (card) card.style.transform = 'rotate(0deg)';
                                 }}
                                 style={{ cursor: 'pointer' }}
                               >
@@ -1881,16 +1927,23 @@ export default function Home() {
           )
         })}
 
-        {/* Tabs Section - Inside chapters section */}
+        {/* TabsSection Updated with Bonus Logic */}
         <TabsSection
           activeChapter={activeChapter}
-          onTabClick={(chapterId) => setActiveChapter(chapterId)}
+          onTabClick={(chapterId) => {
+            setActiveChapter(chapterId)
+            if (chapterId === 5) {
+              bonusSectionRef.current?.scrollIntoView({ behavior: 'smooth' })
+            } else {
+              chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' })
+            }
+          }}
         />
 
       </section >
 
       {/* Bonus Chapter Section */}
-      < section className={styles.bonusSection} >
+      <section className={styles.bonusSection} ref={bonusSectionRef}>
         <div className={styles.bonusContent}>
           <div className={styles.bonusLeft}>
             <div className={styles.bonusDiamond}></div>
@@ -2014,8 +2067,7 @@ export default function Home() {
             <p className={styles.footerDescription}>
               Giving Together Foundation (GTF) is an<br />
               independent, India-led nonprofit committed to<br />
-              building the infrastructure for everyday<br />
-              generosity.
+              building the infrastructure for everyday generosity.
             </p>
             <div className={styles.footerMap}>
               <span className={styles.mapIcon}>ðŸ—ºï¸</span>
@@ -2026,15 +2078,16 @@ export default function Home() {
           {/* Middle Column - Navigation */}
           <div className={styles.footerMiddle}>
             <div className={styles.footerNav}>
-              <p className={styles.footerNavLink}>Home</p>
+              <p className={styles.footerNavTitle}>HOME</p>
+              <p className={styles.footerNavLink}>Who is this for?</p>
+              <p className={styles.footerNavLink}>Tools and toolkits</p>
             </div>
             <div className={styles.footerResources}>
               <p className={styles.footerSectionTitle}>REPORTS & RESOURCES</p>
               <p className={styles.footerLink}>UDARTA:EG Field Guide</p>
-              <p className={styles.footerSubLink}>Introduction</p>
               <p className={styles.footerSubLink}>Fundraising</p>
               <p className={styles.footerSubLink}>Volunteer Engagement</p>
-              <p className={styles.footerLink}>UDARTA:EG Report</p>
+              <p className={styles.footerLink}>UDARTA:EG Report →</p>
               <p className={styles.footerLink}>Donor Motivation</p>
             </div>
           </div>
@@ -2060,9 +2113,9 @@ export default function Home() {
           <p className={styles.getInvolvedTitle}>GET INVOLVED</p>
           <div className={styles.getInvolvedForm}>
             <span>Hi, I'm </span>
-            <input type="text" placeholder="your name" className={styles.formInput} />
+            <input type="text" placeholder="Merlyn Fernandes" className={styles.formInput} />
             <span>, I'm from </span>
-            <input type="text" placeholder="name of your organisation" className={styles.formInput} />
+            <input type="text" placeholder="Giving Together Foundation" className={styles.formInput} />
             <span>.</span>
           </div>
           <p className={styles.getInvolvedText}>
@@ -2070,7 +2123,7 @@ export default function Home() {
           </p>
           <div className={styles.getInvolvedEmail}>
             <span>I'm available on </span>
-            <input type="email" placeholder="your email address" className={styles.formInput} />
+            <input type="email" placeholder="m.fernandes@email.com" className={styles.formInput} />
             <span> if you need to reach out to me for updates & details.</span>
           </div>
           <button className={styles.subscribeButton}>
