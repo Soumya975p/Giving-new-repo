@@ -305,9 +305,9 @@
 /* Chapters Section - Transform-based stacking */
 .chaptersSection {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; Removed to allow scrolling if content overflows */
 }
 
 /* Each chapter container - absolutely positioned, stacked */
@@ -316,7 +316,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   will-change: transform;
   transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -348,7 +348,7 @@
   height: 100%;
   border-radius: 24px 24px 0 0;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   box-shadow:
     0 -20px 60px rgba(0, 0, 0, 0.4),
     0 -5px 20px rgba(0, 0, 0, 0.2);
@@ -412,7 +412,7 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* Bottom Bar - 4 Equal Sections */
@@ -2083,10 +2083,10 @@
 /* Chapters Section - Transform-based stacking */
 .chaptersSection {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   position: sticky;
   top: 0;
-  overflow: hidden;
+  /* overflow: hidden; Removed */
   z-index: 50;
   /* Ensure it floats over hero content if needed, waiting for scroll */
 }
@@ -2097,7 +2097,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   will-change: transform;
   transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -2178,11 +2178,13 @@
   top: 0;
   left: 0;
   right: 0;
+  width: 100%;
   height: 50px;
   z-index: 2000;
   background: transparent;
   pointer-events: none;
   opacity: 0.85;
+  display: flex;
 }
 
 .topBar>* {
@@ -2216,8 +2218,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  position: absolute;
-  top: 0;
+  position: relative;
   cursor: pointer;
   transition: opacity 0.2s ease;
 }
@@ -3598,7 +3599,7 @@
 /* Chapter 1 Specific Layout */
 .chapter1Wrapper {
   width: 100%;
-  height: 100%;
+  height: 108%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -3784,12 +3785,12 @@
 
 /* Fixed Bottom Navigation */
 .bottomNavContainer {
-  position: absolute;
-  /* absolute to chaptersSection or Fixed to viewport? "placed as in the image" */
+  position: fixed;
+  /* Fixed to viewport to stay visible */
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 200;
+  z-index: 10000;
   display: flex;
   flex-direction: column;
   align-items: center;

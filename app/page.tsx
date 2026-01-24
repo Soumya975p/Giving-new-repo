@@ -776,6 +776,8 @@ import { ArrowRight, ArrowLeft } from 'lucide-react'
 import styles from './page.module.css'
 import OptionContent from '../components/OptionContent'
 import Chapter3OptionB from '../components/Chapter3OptionB'
+import TabsSection from '../components/TabsSection'
+
 
 interface Chapter {
   id: number
@@ -828,6 +830,16 @@ const chapters: Chapter[] = [
     gradient: 'linear-gradient(180deg, #FFEF3D 0%, #DCD647 20%, #C9CD33 40%, #8DA806 60%, #86A401 80%, #315900 100%)',
     tabGradient: 'linear-gradient(180deg, #315900 0%, #B0D313 100%)',
     gridImage: '/assets/c4.png'
+  },
+  {
+    id: 5,
+    title: 'V. Bonus Chapter',
+    subtitle: 'Stewardship is a Team Effort',
+    tabImage: '/assets/chapter_bonus_tab.svg',
+    contentImage: '/assets/Bonus Chapter - Flip.svg',
+    gradient: 'linear-gradient(135deg, #2DB1AE 0%, #1D7A78 100%)',
+    tabGradient: 'linear-gradient(135deg, #2DB1AE 0%, #1D7A78 100%)',
+    gridImage: '/assets/Bonus Chapter - Flip.svg'
   }
 ]
 
@@ -1279,6 +1291,8 @@ export default function Home() {
                                 </motion.div>
                               </motion.div>
                             </div>
+
+                            {/* Tabs Section Removed from here */}
                           </div>
                         )
                       ) : chapter.id === 2 ? (
@@ -1801,6 +1815,51 @@ export default function Home() {
                             </div>
                           </div>
                         )
+                      ) : chapter.id === 5 ? (
+                        // Chapter 5 Bonus Chapter Layout
+                        <div className={styles.chapter1Wrapper} style={{ justifyContent: 'center', alignItems: 'center' }}>
+                          <div className={styles.bonusChapterContent}>
+                            <h4 className={styles.ch1Label} style={{ textAlign: 'center', color: '#ffffff' }}>V. BONUS CHAPTER</h4>
+                            <h1 className={styles.ch1Title} style={{ textAlign: 'center', color: '#ffffff', marginBottom: '40px' }}>
+                              Stewardship is a Team Effort
+                            </h1>
+                            <p className={styles.ch1Instruction} style={{ textAlign: 'center', color: 'rgba(255, 255, 255, 0.9)', marginBottom: '60px', maxWidth: '800px' }}>
+                              As supporters move across stages, effective coordination between programme,
+                              communications, and fundraising teams enhances consistency, continuity, and trust.
+                            </p>
+
+                            {/* Bonus Card Image */}
+                            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '40px' }}>
+                              <img
+                                src="/assets/Bonus Chapter - Flip.svg"
+                                alt="Stewardship is a team effort"
+                                style={{ maxWidth: '400px', width: '100%', height: 'auto' }}
+                              />
+                            </div>
+
+                            <div className={styles.bonusCallout} style={{
+                              background: 'rgba(255, 255, 255, 0.15)',
+                              padding: '20px 30px',
+                              borderRadius: '12px',
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '15px',
+                              maxWidth: '600px',
+                              margin: '0 auto'
+                            }}>
+                              <span style={{
+                                width: '12px',
+                                height: '12px',
+                                borderRadius: '50%',
+                                background: '#93CD4D',
+                                flexShrink: 0
+                              }}></span>
+                              <span style={{ color: '#ffffff', fontSize: '16px' }}>
+                                Check the toolkit to learn how to build this alignment.
+                              </span>
+                            </div>
+                          </div>
+                        </div>
                       ) : (
                         // Default Layout for other chapters
                         <div className={styles.contentArea}>
@@ -1822,6 +1881,11 @@ export default function Home() {
           )
         })}
 
+        {/* Tabs Section - Inside chapters section */}
+        <TabsSection
+          activeChapter={activeChapter}
+          onTabClick={(chapterId) => setActiveChapter(chapterId)}
+        />
 
       </section >
 
