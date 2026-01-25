@@ -2083,7 +2083,7 @@
 /* Chapters Section - Transform-based stacking */
 .chaptersSection {
   width: 100%;
-  min-height: 130vh;
+  min-height: 100vh;
   position: sticky;
   top: 0;
   /* overflow: hidden; Removed */
@@ -2097,7 +2097,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   will-change: transform;
   transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -2129,7 +2129,7 @@
   height: 100%;
   border-radius: 24px 24px 0 0;
   position: relative;
-  overflow: visible;
+  overflow: hidden;
   /* box-shadow:
     0 -20px 60px rgba(0, 0, 0, 0.4),
     0 -5px 20px rgba(0, 0, 0, 0.2); */
@@ -2147,7 +2147,7 @@
   display: flex;
   flex-direction: row;
   overflow-x: auto;
-  overflow-y: visible;
+  overflow-y: hidden;
   scrollbar-width: none;
   /* Firefox */
   -ms-overflow-style: none;
@@ -3599,23 +3599,22 @@
 /* Chapter 1 Specific Layout */
 .chapter1Wrapper {
   width: 100%;
-  min-height: 100%;
+  height: 108%;
   display: flex;
   flex-direction: column;
   align-items: center;
   /* Centered vertically roughly or with padding */
-  padding-top: 100px;
+  padding-top: 20px;
   /* Reduced from 60px to move everything up */
   position: relative;
   box-sizing: border-box;
   justify-content: flex-start;
   /* Ensure content starts from top but allows centering via auto margins if needed */
-  overflow: hidden;
 }
 
 .chapter1Header {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   /* Reduced from 40px */
   position: relative;
   z-index: 10;
@@ -3628,28 +3627,27 @@
   font-size: 16px;
   /* Slightly smaller */
   font-weight: 700;
-  line-height: 140%;
   letter-spacing: 0.1em;
   color: #1a4d3a;
   text-transform: uppercase;
   text-align: center;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   /* Reduced from 12px */
   opacity: 0.6;
 }
 
 .ch1Title {
   font-family: 'DM Sans', sans-serif;
-  font-size: 24px;
-  /* Reduced from 28px to save significant space */
+  font-size: 32px;
+  /* Reduced from 32px to save significant space */
   font-weight: 500;
   line-height: 130%;
   letter-spacing: -0.03em;
   color: #1a4d3a;
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 10px;
   /* Reduced from 20px */
-  max-width: 1000px;
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -3668,321 +3666,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 40px;
+  gap: 15px;
   /* Reduced from 20px */
   width: 100%;
   max-width: 1250px;
   /* Increased from 1100px */
   margin-top: 20px;
   /* Positive margin to prevent overlapping */
-  position: relative;
-}
-
-/* Hover Decorations for Chapter 1 Option A */
-.hoverFlowerLeftmost {
-  position: absolute;
-  bottom: -225px;
-  left: -45px;
-  width: 125px;
-  height: 400px;
-  pointer-events: none;
-  z-index: 5;
-  transform: translateX(-100px);
-}
-
-.hoverFlowerMiddle {
-  position: absolute;
-  bottom: -150px;
-  left: 90px;
-  width: 60px;
-  height: auto;
-  pointer-events: none;
-  z-index: 6;
-}
-
-.hoverFlowerRightmost {
-  position: absolute;
-  bottom: -100px;
-  left: 180px;
-  width: 50px;
-  height: auto;
-  pointer-events: none;
-  z-index: 7;
-}
-
-.hoverPetal {
-  position: absolute;
-  top: -60px;
-  left: -100px;
-  width: 250px;
-  height: auto;
-  pointer-events: none;
-  z-index: 8;
-}
-
-.hoverFly {
-  position: absolute;
-  top: -20px;
-  left: 25%;
-  width: 50px;
-  height: auto;
-  pointer-events: none;
-  z-index: 9;
-}
-
-/* Hover Decorations for Chapter 1 Option B (Right Side) */
-.hoverRightFlowerTop {
-  position: absolute;
-  top: 250px;
-  right: -30px;
-  width: 200px;
-  height: auto;
-  pointer-events: none;
-  z-index: 5;
-}
-
-.hoverRightFlowerBottom {
-  position: absolute;
-  bottom: -20px;
-  right: 150px;
-  width: 150px;
-  height: auto;
-  pointer-events: none;
-  z-index: 6;
-}
-
-.hoverRightFly {
-  position: absolute;
-  top: -20px;
-  right: 50px;
-  width: 50px;
-  height: auto;
-  pointer-events: none;
-  z-index: 7;
-}
-
-/* Chapter 2 Hover Decorations - Option A (Left Side) */
-.ch2HoverLamp {
-  position: absolute;
-  bottom: -60px;
-  left: -70px;
-  width: 150px;
-  height: auto;
-  pointer-events: none;
-  z-index: 5;
-}
-
-.ch2HoverFly {
-  position: absolute;
-  top: 0;
-  left: 300px;
-  width: 50px;
-  height: auto;
-  pointer-events: none;
-  z-index: 6;
-}
-
-.ch2HoverEmptyBubble {
-  position: absolute;
-  top: -120px;
-  left: 45px;
-  width: 60px;
-  height: auto;
-  pointer-events: none;
-  z-index: 4;
-}
-
-.ch2HoverFilledBubble {
-  position: absolute;
-  top: -70px;
-  left: 100px;
-  width: 60px;
-  height: auto;
-  pointer-events: none;
-  z-index: 5;
-}
-
-.ch2HoverImageLeft {
-  position: absolute;
-  bottom: -120px;
-  left: 10px;
-  width: 80px;
-  height: auto;
-  pointer-events: none;
-  z-index: 6;
-}
-
-.ch2HoverImageRight {
-  position: absolute;
-  bottom: -70px;
-  left: 100px;
-  width: 80px;
-  height: auto;
-  pointer-events: none;
-  z-index: 5;
-}
-
-.ch2HoverEmptyBubble2 {
-  position: absolute;
-  top: 255px;
-  left: 30%;
-  width: 50px;
-  height: auto;
-  pointer-events: none;
-  z-index: 4;
-}
-
-.ch2HoverFilledBubble2 {
-  position: absolute;
-  top: 210px;
-  left: 32%;
-  width: 50px;
-  height: auto;
-  pointer-events: none;
-  z-index: 5;
-}
-
-/* Chapter 2 Hover Decorations - Option B (Right Side) */
-.ch2RightFly {
-  position: absolute;
-  top: 70%;
-  right: 350px;
-  width: 50px;
-  height: auto;
-  pointer-events: none;
-  z-index: 6;
-}
-
-.ch2RightImage {
-  position: absolute;
-  top: 50px;
-  right: -30px;
-  width: 80px;
-  height: auto;
-  pointer-events: none;
-  z-index: 5;
-}
-
-.ch2RightFlowerPetal1 {
-  position: absolute;
-  top: 0px;
-  right: 30px;
-  width: 70px;
-  height: auto;
-  pointer-events: none;
-  z-index: 6;
-}
-
-.ch2RightFlowerPetal2 {
-  position: absolute;
-  top: 220px;
-  right: -55px;
-  width: 15px;
-  height: auto;
-  pointer-events: none;
-  z-index: 6;
-}
-
-.ch2RightFlowerPetal3 {
-  position: absolute;
-  top: 240px;
-  right: -38px;
-  width: 15px;
-  height: auto;
-  pointer-events: none;
-  z-index: 6;
-}
-
-.ch2RightFlower1 {
-  position: absolute;
-  bottom: -100px;
-  right: -20px;
-  width: 110px;
-  height: auto;
-  pointer-events: none;
-  z-index: 7;
-}
-
-.ch2RightHalfBottom {
-  position: absolute;
-  top: -22px;
-  right: 250px;
-  width: 50px;
-  height: auto;
-  pointer-events: none;
-  z-index: 5;
-}
-
-.ch2RightHalfTop {
-  position: absolute;
-  top: -50px;
-  right: 250px;
-  width: 50px;
-  height: auto;
-  pointer-events: none;
-  z-index: 5;
-}
-
-.ch2RightStick {
-  position: absolute;
-  bottom: -110px;
-  right: -40px;
-  width: 80px;
-  height: auto;
-  pointer-events: none;
-  z-index: 4;
-}
-
-/* Chapter 3 Hover Decorations - Option B (Right Side) */
-.ch3RightFly {
-  position: absolute;
-  top: -80px;
-  right: 350px;
-  width: 50px;
-  height: auto;
-  pointer-events: none;
-  z-index: 6;
-}
-
-.ch3RightFlower {
-  position: absolute;
-  bottom: -10px;
-  right: -65px;
-  width: 70px;
-  height: auto;
-  pointer-events: none;
-  z-index: 7;
-  transform: translateY(120px);
-}
-
-.ch3DiamondBottom {
-  position: absolute;
-  bottom: -40px;
-  right: -60px;
-  width: 200px;
-  height: auto;
-  pointer-events: none;
-  z-index: 5;
-}
-
-.ch3TopSection {
-  position: absolute;
-  top: -90px;
-  right: -120px;
-  width: 250px;
-  height: auto;
-  pointer-events: none;
-  z-index: 6;
-}
-
-.ch3LeftFlower {
-  position: absolute;
-  bottom: -120px;
-  right: 60px;
-  width: 70px;
-  height: auto;
-  pointer-events: none;
-  z-index: 7;
 }
 
 /* Side Options */
@@ -4007,7 +3697,6 @@
   font-family: 'DM Sans', sans-serif;
   font-size: 13px;
   font-weight: 600;
-  line-height: 140%;
   letter-spacing: 0.1em;
   color: #1a4d3a;
   opacity: 0.6;
@@ -4017,7 +3706,7 @@
 
 .optionDesc {
   font-family: 'DM Sans', sans-serif;
-  font-size: 24px;
+  font-size: 28px;
   /* Reduced from 24px */
   font-weight: 500;
   line-height: 110%;
@@ -4027,10 +3716,9 @@
 }
 
 /* Center Card - Dark */
-/* Center Card - Dark */
 .centerCard {
-  width: 320px;
-  height: 380px;
+  width: 340px;
+  height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;

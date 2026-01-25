@@ -771,7 +771,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, ArrowLeft } from 'lucide-react'
 import styles from './page.module.css'
 import OptionContent from '../components/OptionContent'
@@ -817,7 +817,8 @@ const chapters: Chapter[] = [
     subtitle: 'Nurturing relationships',
     tabImage: '/assets/Tab 3.png',
     contentImage: '/assets/3.png',
-    gradient: 'linear-gradient(135deg, #13D9E8 0%, #FFCD86 100%)',
+    // gradient: 'linear-gradient(180deg, #0FB8C5 0%, #13D9E8 100%)',
+    gradient: 'radial-gradient(circle at bottom right, #FFCD86 10% , #13D9E8 )',
     tabGradient: 'linear-gradient(180deg, #0FB8C5 0%, #13D9E8 100%)',
     gridImage: '/assets/c3.svg'
   },
@@ -877,6 +878,11 @@ export default function Home() {
   const [activeChapter, setActiveChapter] = useState(1)
   const [scrollProgress, setScrollProgress] = useState(0)
   const [selectedOption, setSelectedOption] = useState<'A' | 'B' | null>(null)
+  const [isOptionAHovered, setIsOptionAHovered] = useState(false)
+  const [isOptionBHovered, setIsOptionBHovered] = useState(false)
+  const [isCh2OptionAHovered, setIsCh2OptionAHovered] = useState(false)
+  const [isCh2OptionBHovered, setIsCh2OptionBHovered] = useState(false)
+  const [isCh3OptionBHovered, setIsCh3OptionBHovered] = useState(false)
   const chapterRefs = useRef<(HTMLDivElement | null)[]>([])
   const activeChapterRef = useRef(activeChapter) // To track active chapter without dependency issues
   const chaptersSectionRef = useRef<HTMLDivElement>(null)
@@ -1197,6 +1203,7 @@ export default function Home() {
                                 animate="rest"
                                 onClick={() => setSelectedOption('A')}
                                 onMouseEnter={(e) => {
+                                  setIsOptionAHovered(true);
                                   const parent = e.currentTarget.parentElement;
                                   const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
                                   if (card) {
@@ -1205,6 +1212,7 @@ export default function Home() {
                                   }
                                 }}
                                 onMouseLeave={(e) => {
+                                  setIsOptionAHovered(false);
                                   const parent = e.currentTarget.parentElement;
                                   const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
                                   if (card) card.style.transform = 'rotate(0deg)';
@@ -1250,6 +1258,64 @@ export default function Home() {
                                 />
                               </div>
 
+                              {/* Hover Decorations for Option A */}
+                              <AnimatePresence>
+                                {isOptionAHovered && (
+                                  <>
+                                    <motion.img
+                                      key="flower-leftmost"
+                                      src="/assets/chapter_1/hover_left_flower_leftmost_ch1.svg"
+                                      alt=""
+                                      className={styles.hoverFlowerLeftmost}
+                                      initial={{ opacity: 0, y: 20 }}
+                                      animate={{ opacity: 1, y: 0 }}
+                                      exit={{ opacity: 0, y: 20 }}
+                                      transition={{ duration: 0.4 }}
+                                    />
+                                    <motion.img
+                                      key="flower-middle"
+                                      src="/assets/chapter_1/hover_left_flower_middle_ch1.svg"
+                                      alt=""
+                                      className={styles.hoverFlowerMiddle}
+                                      initial={{ opacity: 0, y: 15 }}
+                                      animate={{ opacity: 1, y: 0 }}
+                                      exit={{ opacity: 0, y: 15 }}
+                                      transition={{ duration: 0.4, delay: 0.1 }}
+                                    />
+                                    <motion.img
+                                      key="flower-rightmost"
+                                      src="/assets/chapter_1/hover_left_flower_rightmost_ch1.svg"
+                                      alt=""
+                                      className={styles.hoverFlowerRightmost}
+                                      initial={{ opacity: 0, scale: 0.8 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      exit={{ opacity: 0, scale: 0.8 }}
+                                      transition={{ duration: 0.3, delay: 0.15 }}
+                                    />
+                                    <motion.img
+                                      key="petal"
+                                      src="/assets/chapter_1/hover_left_petal_chapter1.svg"
+                                      alt=""
+                                      className={styles.hoverPetal}
+                                      initial={{ opacity: 0, rotate: -20, y: -10 }}
+                                      animate={{ opacity: 1, rotate: 0, y: 0 }}
+                                      exit={{ opacity: 0, rotate: -20, y: -10 }}
+                                      transition={{ duration: 0.4, delay: 0.05 }}
+                                    />
+                                    <motion.img
+                                      key="fly"
+                                      src="/assets/chapter_1/fly_left_optionA.svg"
+                                      alt=""
+                                      className={styles.hoverFly}
+                                      initial={{ opacity: 0, x: -20 }}
+                                      animate={{ opacity: 1, x: 0 }}
+                                      exit={{ opacity: 0, x: -20 }}
+                                      transition={{ duration: 0.5, delay: 0.2 }}
+                                    />
+                                  </>
+                                )}
+                              </AnimatePresence>
+
                               {/* Option B */}
                               <motion.div
                                 className={styles.optionColumnRight}
@@ -1258,6 +1324,7 @@ export default function Home() {
                                 animate="rest"
                                 onClick={() => setSelectedOption('B')}
                                 onMouseEnter={(e) => {
+                                  setIsOptionBHovered(true);
                                   const parent = e.currentTarget.parentElement;
                                   const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
                                   if (card) {
@@ -1266,6 +1333,7 @@ export default function Home() {
                                   }
                                 }}
                                 onMouseLeave={(e) => {
+                                  setIsOptionBHovered(false);
                                   const parent = e.currentTarget.parentElement;
                                   const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
                                   if (card) card.style.transform = 'rotate(0deg)';
@@ -1303,6 +1371,44 @@ export default function Home() {
                                   }}>Choose Option</span>
                                 </motion.div>
                               </motion.div>
+
+                              {/* Option B Hover Decorations */}
+                              <AnimatePresence>
+                                {isOptionBHovered && (
+                                  <>
+                                    <motion.img
+                                      key="right-flower-top"
+                                      src="/assets/chapter_1/hover_right_flower_1_top_ch1.svg"
+                                      alt=""
+                                      className={styles.hoverRightFlowerTop}
+                                      initial={{ opacity: 0, x: 20 }}
+                                      animate={{ opacity: 1, x: 0 }}
+                                      exit={{ opacity: 0, x: 20 }}
+                                      transition={{ duration: 0.4 }}
+                                    />
+                                    <motion.img
+                                      key="right-flower-bottom"
+                                      src="/assets/chapter_1/hover_right_flower_2_right_ch1.svg"
+                                      alt=""
+                                      className={styles.hoverRightFlowerBottom}
+                                      initial={{ opacity: 0, y: 20 }}
+                                      animate={{ opacity: 1, y: 0 }}
+                                      exit={{ opacity: 0, y: 20 }}
+                                      transition={{ duration: 0.4, delay: 0.1 }}
+                                    />
+                                    <motion.img
+                                      key="right-fly"
+                                      src="/assets/chapter_1/fly_left_optionA.svg"
+                                      alt=""
+                                      className={styles.hoverRightFly}
+                                      initial={{ opacity: 0, x: 20 }}
+                                      animate={{ opacity: 1, x: 0 }}
+                                      exit={{ opacity: 0, x: 20 }}
+                                      transition={{ duration: 0.5, delay: 0.15 }}
+                                    />
+                                  </>
+                                )}
+                              </AnimatePresence>
                             </div>
 
                             {/* Tabs Section Removed from here */}
@@ -1411,6 +1517,7 @@ export default function Home() {
                                 animate="rest"
                                 onClick={() => setSelectedOption('A')}
                                 onMouseEnter={(e) => {
+                                  setIsCh2OptionAHovered(true);
                                   const parent = e.currentTarget.parentElement;
                                   const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
                                   if (card) {
@@ -1419,6 +1526,7 @@ export default function Home() {
                                   }
                                 }}
                                 onMouseLeave={(e) => {
+                                  setIsCh2OptionAHovered(false);
                                   const parent = e.currentTarget.parentElement;
                                   const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
                                   if (card) card.style.transform = 'rotate(0deg)';
@@ -1473,6 +1581,7 @@ export default function Home() {
                                 animate="rest"
                                 onClick={() => setSelectedOption('B')}
                                 onMouseEnter={(e) => {
+                                  setIsCh2OptionBHovered(true);
                                   const parent = e.currentTarget.parentElement;
                                   const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
                                   if (card) {
@@ -1481,6 +1590,7 @@ export default function Home() {
                                   }
                                 }}
                                 onMouseLeave={(e) => {
+                                  setIsCh2OptionBHovered(false);
                                   const parent = e.currentTarget.parentElement;
                                   const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
                                   if (card) card.style.transform = 'rotate(0deg)';
@@ -1517,6 +1627,182 @@ export default function Home() {
                                   }}>Choose Option</span>
                                 </motion.div>
                               </motion.div>
+
+                              {/* Chapter 2 Option A Hover Decorations */}
+                              <AnimatePresence>
+                                {isCh2OptionAHovered && (
+                                  <>
+                                    <motion.img
+                                      key="ch2-lamp"
+                                      src="/assets/chapter2/hover_left_lamp_ch2.svg"
+                                      alt=""
+                                      className={styles.ch2HoverLamp}
+                                      initial={{ opacity: 0, y: 20 }}
+                                      animate={{ opacity: 1, y: 0 }}
+                                      exit={{ opacity: 0, y: 20 }}
+                                      transition={{ duration: 0.4 }}
+                                    />
+                                    <motion.img
+                                      key="ch2-fly"
+                                      src="/assets/chapter2/hover_fly_left.svg"
+                                      alt=""
+                                      className={styles.ch2HoverFly}
+                                      initial={{ opacity: 0, x: -20 }}
+                                      animate={{ opacity: 1, x: 0 }}
+                                      exit={{ opacity: 0, x: -20 }}
+                                      transition={{ duration: 0.5, delay: 0.1 }}
+                                    />
+                                    <motion.img
+                                      key="ch2-empty-bubble"
+                                      src="/assets/chapter2/empty_bubble.svg"
+                                      alt=""
+                                      className={styles.ch2HoverEmptyBubble}
+                                      initial={{ opacity: 0, scale: 0.8 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      exit={{ opacity: 0, scale: 0.8 }}
+                                      transition={{ duration: 0.3, delay: 0.15 }}
+                                    />
+                                    <motion.img
+                                      key="ch2-filled-bubble"
+                                      src="/assets/chapter2/filled_bubble.svg"
+                                      alt=""
+                                      className={styles.ch2HoverFilledBubble}
+                                      initial={{ opacity: 0, scale: 0.8 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      exit={{ opacity: 0, scale: 0.8 }}
+                                      transition={{ duration: 0.3, delay: 0.2 }}
+                                    />
+                                    <motion.img
+                                      key="ch2-image-left"
+                                      src="/assets/chapter2/hover_image_left_ch2.svg"
+                                      alt=""
+                                      className={styles.ch2HoverImageLeft}
+                                      initial={{ opacity: 0, y: 20 }}
+                                      animate={{ opacity: 1, y: 0 }}
+                                      exit={{ opacity: 0, y: 20 }}
+                                      transition={{ duration: 0.4, delay: 0.05 }}
+                                    />
+                                    <motion.img
+                                      key="ch2-image-right"
+                                      src="/assets/chapter2/hover_image_right_ch2.svg"
+                                      alt=""
+                                      className={styles.ch2HoverImageRight}
+                                      initial={{ opacity: 0, y: 20 }}
+                                      animate={{ opacity: 1, y: 0 }}
+                                      exit={{ opacity: 0, y: 20 }}
+                                      transition={{ duration: 0.4, delay: 0.1 }}
+                                    />
+                                    <motion.img
+                                      key="ch2-empty-bubble-2"
+                                      src="/assets/chapter2/empty_bubble.svg"
+                                      alt=""
+                                      className={styles.ch2HoverEmptyBubble2}
+                                      initial={{ opacity: 0, scale: 0.8 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      exit={{ opacity: 0, scale: 0.8 }}
+                                      transition={{ duration: 0.3, delay: 0.25 }}
+                                    />
+                                    <motion.img
+                                      key="ch2-filled-bubble-2"
+                                      src="/assets/chapter2/filled_bubble.svg"
+                                      alt=""
+                                      className={styles.ch2HoverFilledBubble2}
+                                      initial={{ opacity: 0, scale: 0.8 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      exit={{ opacity: 0, scale: 0.8 }}
+                                      transition={{ duration: 0.3, delay: 0.3 }}
+                                    />
+                                  </>
+                                )}
+                              </AnimatePresence>
+
+                              {/* Chapter 2 Option B Hover Decorations */}
+                              <AnimatePresence>
+                                {isCh2OptionBHovered && (
+                                  <>
+                                    <motion.img
+                                      key="ch2b-fly"
+                                      src="/assets/chapter2/hover_fly_right_ch2.svg"
+                                      alt=""
+                                      className={styles.ch2RightFly}
+                                      initial={{ opacity: 0, x: 20 }}
+                                      animate={{ opacity: 1, x: 0 }}
+                                      exit={{ opacity: 0, x: 20 }}
+                                      transition={{ duration: 0.5, delay: 0.1 }}
+                                    />
+                                    <motion.img
+                                      key="ch2b-petal1"
+                                      src="/assets/chapter2/hover_right_flower_petal1_ch2.svg"
+                                      alt=""
+                                      className={styles.ch2RightFlowerPetal1}
+                                      initial={{ opacity: 0, y: -20 }}
+                                      animate={{ opacity: 1, y: 0 }}
+                                      exit={{ opacity: 0, y: -20 }}
+                                      transition={{ duration: 0.4 }}
+                                    />
+                                    <motion.img
+                                      key="ch2b-petal2"
+                                      src="/assets/chapter2/hover_right_flower_petal2_ch2.svg"
+                                      alt=""
+                                      className={styles.ch2RightFlowerPetal2}
+                                      initial={{ opacity: 0, scale: 0.8 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      exit={{ opacity: 0, scale: 0.8 }}
+                                      transition={{ duration: 0.3, delay: 0.15 }}
+                                    />
+                                    <motion.img
+                                      key="ch2b-petal3"
+                                      src="/assets/chapter2/hover_right_flower_petal3_ch2.svg"
+                                      alt=""
+                                      className={styles.ch2RightFlowerPetal3}
+                                      initial={{ opacity: 0, scale: 0.8 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      exit={{ opacity: 0, scale: 0.8 }}
+                                      transition={{ duration: 0.3, delay: 0.2 }}
+                                    />
+                                    <motion.img
+                                      key="ch2b-flower1"
+                                      src="/assets/chapter2/hover_right_flower1_ch2.svg"
+                                      alt=""
+                                      className={styles.ch2RightFlower1}
+                                      initial={{ opacity: 0, y: 20 }}
+                                      animate={{ opacity: 1, y: 0 }}
+                                      exit={{ opacity: 0, y: 20 }}
+                                      transition={{ duration: 0.4, delay: 0.05 }}
+                                    />
+                                    <motion.img
+                                      key="ch2b-halfbottom"
+                                      src="/assets/chapter2/hover_right_halfbottom_ch2.svg"
+                                      alt=""
+                                      className={styles.ch2RightHalfBottom}
+                                      initial={{ opacity: 0, y: -10 }}
+                                      animate={{ opacity: 1, y: 0 }}
+                                      exit={{ opacity: 0, y: -10 }}
+                                      transition={{ duration: 0.3, delay: 0.1 }}
+                                    />
+                                    <motion.img
+                                      key="ch2b-halftop"
+                                      src="/assets/chapter2/hover_right_halftop_ch2.svg"
+                                      alt=""
+                                      className={styles.ch2RightHalfTop}
+                                      initial={{ opacity: 0, y: -15 }}
+                                      animate={{ opacity: 1, y: 0 }}
+                                      exit={{ opacity: 0, y: -15 }}
+                                      transition={{ duration: 0.3, delay: 0.15 }}
+                                    />
+                                    <motion.img
+                                      key="ch2b-stick"
+                                      src="/assets/chapter2/hover_right_stick_ch2.svg"
+                                      alt=""
+                                      className={styles.ch2RightStick}
+                                      initial={{ opacity: 0, y: 20 }}
+                                      animate={{ opacity: 1, y: 0 }}
+                                      exit={{ opacity: 0, y: 20 }}
+                                      transition={{ duration: 0.4, delay: 0.1 }}
+                                    />
+                                  </>
+                                )}
+                              </AnimatePresence>
                             </div>
                           </div>
                         )
@@ -1609,6 +1895,7 @@ export default function Home() {
                                 animate="rest"
                                 onClick={() => setSelectedOption('B')}
                                 onMouseEnter={(e) => {
+                                  setIsCh3OptionBHovered(true);
                                   const parent = e.currentTarget.parentElement;
                                   const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
                                   if (card) {
@@ -1617,6 +1904,7 @@ export default function Home() {
                                   }
                                 }}
                                 onMouseLeave={(e) => {
+                                  setIsCh3OptionBHovered(false);
                                   const parent = e.currentTarget.parentElement;
                                   const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
                                   if (card) card.style.transform = 'rotate(0deg)';
@@ -1655,6 +1943,64 @@ export default function Home() {
                                   }}>Choose Option</span>
                                 </motion.div>
                               </motion.div>
+
+                              {/* Chapter 3 Option B Hover Decorations */}
+                              <AnimatePresence>
+                                {isCh3OptionBHovered && (
+                                  <>
+                                    <motion.img
+                                      key="ch3b-fly"
+                                      src="/assets/chapter3/hover_fly_ch3.svg"
+                                      alt=""
+                                      className={styles.ch3RightFly}
+                                      initial={{ opacity: 0, x: 20 }}
+                                      animate={{ opacity: 1, x: 0 }}
+                                      exit={{ opacity: 0, x: 20 }}
+                                      transition={{ duration: 0.5, delay: 0.1 }}
+                                    />
+                                    <motion.img
+                                      key="ch3b-right-flower"
+                                      src="/assets/chapter3/hover_right_flower_ch3.svg"
+                                      alt=""
+                                      className={styles.ch3RightFlower}
+                                      initial={{ opacity: 0, y: 20 }}
+                                      animate={{ opacity: 1, y: 0 }}
+                                      exit={{ opacity: 0, y: 20 }}
+                                      transition={{ duration: 0.4, delay: 0.05 }}
+                                    />
+                                    <motion.img
+                                      key="ch3b-diamond"
+                                      src="/assets/chapter3/hover_diamond_bottom_ch3.svg"
+                                      alt=""
+                                      className={styles.ch3DiamondBottom}
+                                      initial={{ opacity: 0, scale: 0.8 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      exit={{ opacity: 0, scale: 0.8 }}
+                                      transition={{ duration: 0.3, delay: 0.15 }}
+                                    />
+                                    <motion.img
+                                      key="ch3b-topsection"
+                                      src="/assets/chapter3/hover_topsection_ch3.svg"
+                                      alt=""
+                                      className={styles.ch3TopSection}
+                                      initial={{ opacity: 0, y: -20 }}
+                                      animate={{ opacity: 1, y: 0 }}
+                                      exit={{ opacity: 0, y: -20 }}
+                                      transition={{ duration: 0.4 }}
+                                    />
+                                    <motion.img
+                                      key="ch3b-left-flower"
+                                      src="/assets/chapter3/hover_left_flower_ch3.svg"
+                                      alt=""
+                                      className={styles.ch3LeftFlower}
+                                      initial={{ opacity: 0, y: 20 }}
+                                      animate={{ opacity: 1, y: 0 }}
+                                      exit={{ opacity: 0, y: 20 }}
+                                      transition={{ duration: 0.4, delay: 0.1 }}
+                                    />
+                                  </>
+                                )}
+                              </AnimatePresence>
                             </div>
                           </div>
                         )
