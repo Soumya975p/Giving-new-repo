@@ -1,774 +1,4 @@
-﻿// 'use client'
-
-// import { useState, useEffect, useRef } from 'react'
-// import styles from './page.module.css'
-
-// interface Chapter {
-//   id: number
-//   title: string
-//   subtitle: string
-//   tabImage: string
-//   contentImage: string
-//   gradient: string
-//   tabGradient: string
-//   gridImage: string
-// }
-
-// const chapters: Chapter[] = [
-//   {
-//     id: 1,
-//     title: 'I. Tilling the Soil',
-//     subtitle: 'Network Expansion',
-//     tabImage: '/assets/Tab 1.png',
-//     contentImage: '/assets/1.png',
-//     gradient: 'linear-gradient(135deg, #1eb59a 0%, #6fdc8c 50%, #a8e583 100%)',
-//     tabGradient: 'linear-gradient(135deg, #1eb59a 0%, #16a085 100%)',
-//     gridImage: '/assets/c1.png'
-//   },
-//   {
-//     id: 2,
-//     title: 'II. The Planting',
-//     subtitle: 'Building Connections',
-//     tabImage: '/assets/Tab 2.png',
-//     contentImage: '/assets/2.png',
-//     gradient: 'linear-gradient(135deg, #4dd4d4 0%, #5de8d5 50%, #3ababa 100%)',
-//     tabGradient: 'linear-gradient(135deg, #4dd4d4 0%, #3ababa 100%)',
-//     gridImage: '/assets/c2.png'
-//   },
-//   {
-//     id: 3,
-//     title: 'III. The Nurturing',
-//     subtitle: 'Stewarding Donors',
-//     tabImage: '/assets/Tab 3.png',
-//     contentImage: '/assets/3.png',
-//     gradient: 'linear-gradient(180deg, #0FB8C5 0%, #13D9E8 50%, #FFCD86 100%)',
-//     tabGradient: 'linear-gradient(180deg, #0FB8C5 0%, #13D9E8 100%)',
-//     gridImage: '/assets/c3.png'
-//   },
-//   {
-//     id: 4,
-//     title: 'IV. Growth',
-//     subtitle: 'Donors to Champions',
-//     tabImage: '/assets/Tab 4.png',
-//     contentImage: '/assets/4.png',
-//     gradient: 'linear-gradient(180deg, #315900 0%, #86A401 25%, #C9CD33 50%, #DCD647 75%, #FFEF3D 100%)',
-//     tabGradient: 'linear-gradient(180deg, #315900 0%, #B0D313 100%)',
-//     gridImage: '/assets/c4.png'
-//   }
-// ]
-
-// export default function Home() {
-//   const [activeChapter, setActiveChapter] = useState(1)
-//   const [scrollProgress, setScrollProgress] = useState(0)
-//   const chapterRefs = useRef<(HTMLDivElement | null)[]>([])
-//   const activeChapterRef = useRef(activeChapter) // To track active chapter without dependency issues
-//   const chaptersSectionRef = useRef<HTMLDivElement>(null)
-//   const isScrollingRef = useRef(false)
-//   const scrollAccumulatorRef = useRef(0)
-//   const scrollTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined)
-//   const scrollContainerRefs = useRef<(HTMLDivElement | null)[]>([])
-
-//   useEffect(() => {
-//     activeChapterRef.current = activeChapter
-
-//     // Reset scroll position to left when chapter changes
-//     const newScrollContainer = scrollContainerRefs.current[activeChapter - 1]
-//     if (newScrollContainer) {
-//       newScrollContainer.scrollLeft = 0
-//     }
-//     setScrollProgress(0)
-//   }, [activeChapter])
-
-//   // Handle horizontal scroll animation based on scroll position
-//   useEffect(() => {
-//     const handleContentScroll = () => {
-//       const currentScrollContainer = scrollContainerRefs.current[activeChapter - 1]
-//       if (!currentScrollContainer) return
-
-//       const scrollLeft = currentScrollContainer.scrollLeft
-//       const maxScroll = currentScrollContainer.scrollWidth - currentScrollContainer.clientWidth
-
-//       if (maxScroll > 0) {
-//         const progress = scrollLeft / maxScroll
-//         setScrollProgress(progress)
-//       } else {
-//         setScrollProgress(0)
-//       }
-//     }
-
-//     const currentScrollContainer = scrollContainerRefs.current[activeChapter - 1]
-//     if (currentScrollContainer) {
-//       currentScrollContainer.addEventListener('scroll', handleContentScroll)
-//       handleContentScroll() // Initial check
-
-//       return () => {
-//         currentScrollContainer.removeEventListener('scroll', handleContentScroll)
-//       }
-//     }
-//   }, [activeChapter])
-
-//   const handleNextChapter = () => {
-//     if (activeChapter < chapters.length) {
-//       setActiveChapter(activeChapter + 1)
-//     }
-//   }
-
-//   // Handle wheel events for chapter transitions
-//   useEffect(() => {
-//     const handleWheel = (e: WheelEvent) => {
-//       const chaptersSection = chaptersSectionRef.current
-//       if (!chaptersSection) return
-
-//       const sectionRect = chaptersSection.getBoundingClientRect()
-//       // Check if section is significantly visible (relaxed buffer to catch fast scrolls)
-//       const inChaptersSection = sectionRect.top <= 100 && sectionRect.bottom >= 100
-
-//       if (inChaptersSection) {
-//         const scrollDirection = e.deltaY > 0 ? 'down' : 'up'
-//         const currentChapter = activeChapterRef.current
-//         const currentScrollContainer = scrollContainerRefs.current[currentChapter - 1]
-
-//         // Check horizontal scroll capability
-//         let isHorizontallyScrolling = false
-//         if (currentScrollContainer) {
-//           // Check if we can scroll more to the right?
-//           // Use a small buffer (e.g. 5px) for float comparisons
-//           const maxScrollLeft = currentScrollContainer.scrollWidth - currentScrollContainer.clientWidth
-//           const canScrollRight = currentScrollContainer.scrollLeft < maxScrollLeft - 5
-//           const canScrollLeft = currentScrollContainer.scrollLeft > 5
-
-//           if (scrollDirection === 'down' && canScrollRight) {
-//             e.preventDefault()
-//             currentScrollContainer.scrollLeft += e.deltaY
-//             isHorizontallyScrolling = true
-
-//             // Reset chapter scroll accumulator because we are scrolling content
-//             scrollAccumulatorRef.current = 0
-//             return // Exit, don't change chapter
-//           }
-
-//           if (scrollDirection === 'up' && canScrollLeft) {
-//             e.preventDefault()
-//             currentScrollContainer.scrollLeft += e.deltaY
-//             isHorizontallyScrolling = true
-//             return
-//           }
-//         }
-
-//         // Change chapter based on scroll direction
-//         if (!isScrollingRef.current && !isHorizontallyScrolling) {
-//           // Scrolling down moves to next chapter
-//           if (scrollDirection === 'down' && currentChapter < chapters.length) {
-//             e.preventDefault()
-
-//             // Snap to section to ensure clean view
-//             chaptersSection.scrollIntoView({ behavior: 'smooth' })
-
-//             isScrollingRef.current = true
-//             scrollAccumulatorRef.current = 0
-
-//             // Immediately set next chapter
-//             const nextChapter = currentChapter + 1
-//             setActiveChapter(nextChapter)
-
-//             // Reset scroll position for new chapter
-//             setTimeout(() => {
-//               const newScrollContainer = scrollContainerRefs.current[nextChapter - 1]
-//               if (newScrollContainer) {
-//                 newScrollContainer.scrollLeft = 0
-//               }
-//             }, 0)
-
-//             if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current)
-//             scrollTimeoutRef.current = setTimeout(() => {
-//               isScrollingRef.current = false
-//             }, 800)
-//           }
-//           // Scrolling up moves to previous chapter
-//           else if (scrollDirection === 'up' && currentChapter > 1) {
-//             e.preventDefault()
-
-//             // Snap to section to ensure clean view
-//             chaptersSection.scrollIntoView({ behavior: 'smooth' })
-
-//             isScrollingRef.current = true
-//             scrollAccumulatorRef.current = 0
-
-//             // Immediately set previous chapter
-//             const prevChapter = currentChapter - 1
-//             setActiveChapter(prevChapter)
-
-//             // Reset scroll position for new chapter
-//             setTimeout(() => {
-//               const newScrollContainer = scrollContainerRefs.current[prevChapter - 1]
-//               if (newScrollContainer) {
-//                 newScrollContainer.scrollLeft = 0
-//               }
-//             }, 0)
-
-//             if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current)
-//             scrollTimeoutRef.current = setTimeout(() => {
-//               isScrollingRef.current = false
-//             }, 800)
-//           }
-//           else {
-//             // Reset accumulator if at boundaries
-//             scrollAccumulatorRef.current = 0
-//           }
-//         } else {
-//           // Block extra scrolls during transition
-//           e.preventDefault()
-//         }
-//       }
-//     }
-
-//     window.addEventListener('wheel', handleWheel, { passive: false })
-//     return () => {
-//       window.removeEventListener('wheel', handleWheel)
-//       if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current)
-//     }
-//   }, [chapters.length])
-
-//   return (
-//     <div className={styles.pageWrapper}>
-//       {/* Hero Section */}
-//       <section className={styles.heroSection}>
-//         {/* Header */}
-//         <header className={styles.heroHeader}>
-//           <div className={styles.logoArea}>
-//             <span className={styles.logoIcon}>🌱</span>
-//             <span className={styles.logoText}>GIVING<br />TOGETHER</span>
-//           </div>
-//           <div className={styles.headerRight}>
-//             <span className={styles.fieldGuide}>◆ FUNDRAISING FIELD GUIDE</span>
-//             <span className={styles.menuDots}>⋮</span>
-//           </div>
-//         </header>
-
-//         {/* Hero Content */}
-//         <div className={styles.heroContent}>
-//           <div className={styles.heroLeft}>
-//             <h1 className={styles.heroTitle}>
-//               <span className={styles.titleLine1}>Donor</span>
-//               <span className={styles.titleLine2}>Gardening</span>
-//             </h1>
-//           </div>
-
-
-
-//           <div className={styles.heroRight}>
-//             <h2 className={styles.heroSubtitle}>From Donation to Relationship</h2>
-//             <p className={styles.heroDescription}>
-//               Most nonprofits spend significant time and resources finding new donors. Yet research shows that acquiring a new donor costs <span className={styles.emphasis}>nearly ten times more</span> than continuing a relationship with someone who already believes in your work.
-//             </p>
-//             <p className={styles.heroDescription}>
-//               Drawing on insights from the UDARTA:EG study of 300+ <span className={styles.emphasis}>Indian nonprofits</span>, this guide offers toolkits to shift donor engagement from reactive to retention-focused.
-//             </p>
-//             <button className={styles.startButton}>
-//               <span>Start Journey</span>
-//               <span className={styles.buttonArrow}>→</span>
-//             </button>
-//           </div>
-//         </div>
-
-//         <img
-//           src="/assets/hero background.svg"
-//           alt="Donor Gardening Tree"
-//           className={styles.heroBackgroundSvg}
-//         />
-
-//         {/* Decorative dots pattern */}
-//         <div className={styles.dotsPattern}></div>
-
-//         {/* Bottom Section */}
-//         <div className={styles.heroBottom}>
-//           <p className={styles.cultivationLabel}>CULTIVATION IN ACTION</p>
-//           <h2 className={styles.heroBottomTitle}>
-//             A <span className={styles.highlight}>step by step guide</span><br />
-//             to donor engagement through<br />
-//             the journey of <span className={styles.highlight}>Nidhi</span>, our perennial<br />
-//             supporter.
-//           </h2>
-//           <p className={styles.heroBottomDesc}>
-//             Follow Nidhi's journey across four chapters to see how everyday giving can grow from a one-time transaction<br />
-//             into a lasting relationship. Each chapter blends real-world moments with practical tools to help nonprofits guide<br />
-//             donors naturally. Your donors may be at different stages of this journey—explore the chapters in any order that<br />
-//             serves you best.
-//           </p>
-
-//           <div className={styles.chapterSelectionWrapper}>
-//             <div className={styles.heroDividerLine}></div>
-//             <p className={styles.selectChapter}>Select a chapter to begin</p>
-
-//             <div className={styles.chapterGrid}>
-//               {chapters.map((chapter) => (
-//                 <div
-//                   key={chapter.id}
-//                   className={styles.gridColumn}
-//                   onClick={() => {
-//                     setActiveChapter(chapter.id)
-//                     chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' })
-//                   }}
-//                 >
-//                   <h4 className={styles.gridLabel}>
-//                     CHAPTER {chapter.id === 1 ? 'I' : chapter.id === 2 ? 'II' : chapter.id === 3 ? 'III' : 'IV'}: {chapter.id === 1 ? 'TILLING THE SOIL' : chapter.id === 2 ? 'THE PLANTING' : chapter.id === 3 ? 'THE NURTURING' : 'GROWTH'}
-//                   </h4>
-//                   <h3 className={styles.gridTitle}>
-//                     {chapter.id === 1 ? chapter.subtitle : chapter.id === 2 ? 'First Donation' : chapter.id === 3 ? 'Stewarding Donors' : 'Donors to Champions'}
-//                   </h3>
-//                   <img
-//                     src={chapter.gridImage}
-//                     alt={chapter.subtitle}
-//                     className={styles.gridImage}
-//                   />
-//                 </div>
-//               ))}
-//             </div>
-//           </div>
-//         </div>
-//       </section >
-
-//       {/* Chapters Section - Transform-based stacking */}
-//       < section className={styles.chaptersSection} ref={chaptersSectionRef} >
-//         {
-//           chapters.map((chapter, index) => {
-//             const isActive = activeChapter === chapter.id
-//             const isPast = activeChapter > chapter.id
-//             const isFuture = activeChapter < chapter.id
-
-//             return (
-//               <div
-//                 key={chapter.id}
-//                 ref={(el) => { chapterRefs.current[index] = el }}
-//                 className={`${styles.chapterContainer} ${isActive ? styles.chapterActive : ''
-//                   } ${isPast ? styles.chapterPast : ''
-//                   } ${isFuture ? styles.chapterFuture : ''
-//                   }`}
-//                 style={{
-//                   zIndex: chapter.id * 10,
-//                   transform: isFuture ? 'translateY(100%)' : 'translateY(0)',
-//                   transition: 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)'
-//                 }}
-//               >
-//                 <div
-//                   className={styles.chapterPanel}
-//                   style={{
-//                     background: chapter.gradient,
-//                     clipPath: chapter.id === 1
-//                       ? 'polygon(3% 0%, 22% 0%, 25% 50px, 100% 50px, 100% 100%, 0% 100%, 0% 50px)'
-//                       : chapter.id === 2
-//                         ? 'polygon(28% 0%, 47% 0%, 50% 50px, 100% 50px, 100% 100%, 0% 100%, 0% 50px, 25% 50px)'
-//                         : chapter.id === 3
-//                           ? 'polygon(53% 0%, 72% 0%, 75% 50px, 100% 50px, 100% 100%, 0% 100%, 0% 50px, 50% 50px)'
-//                           : chapter.id === 4
-//                             ? 'polygon(78% 0%, 97% 0%, 100% 50px, 100% 100%, 0% 100%, 0% 50px, 75% 50px)'
-//                             : undefined
-//                   }}
-//                 >
-//                   {/* Tab Section */}
-//                   <div className={styles.tabSection}>
-//                     <div className={styles.tabContainer}>
-//                       {chapter.id === 1 && (
-//                         <button type="button" className={styles.chapterTab} style={{ left: '0%', width: '25%', background: 'transparent', border: 'none', padding: 0 }} onClick={() => setActiveChapter(1)}>
-//                           <img src="/assets/Tab ch1.png" alt="Chapter 1" className={styles.tabImage} />
-//                           <span className={styles.tabText}>I. Tilling the Soil</span>
-//                         </button>
-//                       )}
-//                       {chapter.id === 2 && (
-//                         <button type="button" className={styles.chapterTab} style={{ left: '25%', width: '25%', background: 'transparent', border: 'none', padding: 0 }} onClick={() => setActiveChapter(2)}>
-//                           <img src="/assets/Tab ch2.png" alt="Chapter 2" className={styles.tabImage} />
-//                           <span className={styles.tabText}>II. The Planting</span>
-//                         </button>
-//                       )}
-//                       {chapter.id === 3 && (
-//                         <button type="button" className={styles.chapterTab} style={{ left: '50%', width: '25%', background: 'transparent', border: 'none', padding: 0 }} onClick={() => setActiveChapter(3)}>
-//                           <img src="/assets/Tab ch3.png" alt="Chapter 3" className={styles.tabImage} />
-//                           <span className={styles.tabText}>III. The Nurturing</span>
-//                         </button>
-//                       )}
-//                       {chapter.id === 4 && (
-//                         <button type="button" className={styles.chapterTab} style={{ left: '75%', width: '25%', background: 'transparent', border: 'none', padding: 0 }} onClick={() => setActiveChapter(4)}>
-//                           <img src="/assets/Tab ch4.png" alt="Chapter 4" className={styles.tabImage} />
-//                           <span className={styles.tabText}>IV. Growth</span>
-//                         </button>
-//                       )}
-//                     </div>
-//                   </div>
-
-//                   {/* Content Section */}
-//                   <div className={styles.contentSection}>
-//                     <div
-//                       className={styles.chapterContentSticky}
-//                       ref={(el) => { scrollContainerRefs.current[index] = el }}
-//                     >
-//                       <div
-//                         className={styles.scrollContainer}
-//                         style={{
-//                           transform: isActive ? `translateX(${-100 + (scrollProgress * 100)}px)` : 'translateX(0)',
-//                           transition: isActive ? 'none' : 'transform 0.3s ease'
-//                         }}
-//                       >
-//                         {/* Chapter Header */}
-//                         <div className={styles.chapterHeader}>
-//                           <p className={styles.chapterLabel}>
-//                             CHAPTER {chapter.id === 1 ? 'I' : chapter.id === 2 ? 'II' : chapter.id === 3 ? 'III' : 'IV'}: {chapter.id === 1 ? 'TILLING THE SOIL' : chapter.id === 2 ? 'THE PLANTING' : chapter.id === 3 ? 'THE NURTURING' : 'GROWTH'}
-//                           </p>
-//                           <h1 className={styles.chapterTitle}>
-//                             {chapter.id === 1 ? chapter.subtitle : chapter.id === 2 ? 'First Donation' : chapter.id === 3 ? 'Stewarding Donors' : 'Donors to Champions'}
-//                           </h1>
-//                           <p className={styles.chapterDescription}>
-//                             Before you ask for support, it helps to understand who is already around you.<br />
-//                             This chapter focuses on mapping your existing network so your fundraising begins<br />
-//                             with relationships, not cold outreach.
-//                           </p>
-//                         </div>
-
-//                         {/* Main Content Area */}
-//                         {chapter.id === 1 ? (
-//                           <div className={styles.contentArea}>
-//                             {/* Chapter 1 Content - Keep existing */}
-//                             <div className={styles.leftColumn}>
-//                               <div className={styles.flowchartItem}>
-//                                 <div className={styles.diamondShape}></div>
-//                                 <div className={styles.connectLine}></div>
-//                               </div>
-//                               <div className={styles.flowchartItem}>
-//                                 <div className={styles.diamondShape}></div>
-//                                 <div className={styles.connectLine}></div>
-//                                 <div className={styles.flowText}>
-//                                   You may reach many people,<br />
-//                                   but responses are scattered. Most<br />
-//                                   donations are small, one-time, and<br />
-//                                   disconnected.
-//                                 </div>
-//                               </div>
-//                               <div className={styles.flowchartItem}>
-//                                 <div className={styles.diamondShape}></div>
-//                               </div>
-
-//                               <div className={styles.didYouKnowCard}>
-//                                 <p className={styles.smallLabel}>DID YOU KNOW?</p>
-//                                 <h3 className={styles.cardHeading}>It costs 10x more</h3>
-//                                 <p className={styles.cardDescription}>
-//                                   To acquire a new donor than continuing<br />
-//                                   a relationship with someone who already<br />
-//                                   believes in your work.
-//                                 </p>
-//                               </div>
-//                             </div>
-
-//                             <div className={styles.rightColumn}>
-//                               <div className={styles.lightbulbSection}>
-//                                 <div className={styles.lightbulbIcon}>ðŸ’¡</div>
-//                                 <div className={styles.lightbulbText}>
-//                                   Instead if you tapped into your<br />
-//                                   existing network you will reach the<br />
-//                                   people that care about the cause.<br />
-//                                   The appeal feels more personal,<br />
-//                                   more trusted.
-//                                 </div>
-//                               </div>
-
-//                               <div className={styles.statsBox}>
-//                                 <p className={styles.smallLabel}>UGARTA EG STUDY SHOWS</p>
-//                                 <div className={styles.emojiRow}>ðŸŸ  ðŸŸ  ðŸŸ  ðŸ”¶</div>
-//                                 <h3 className={styles.statsHeading}>60% of nonprofits</h3>
-//                                 <p className={styles.statsDescription}>
-//                                   find outreach through existing networks to<br />
-//                                   be their most effective way of reaching new<br />
-//                                   supporters.
-//                                 </p>
-//                               </div>
-//                             </div>
-
-//                             <div className={styles.verticalLine}></div>
-
-//                             <div className={styles.additionalContent}>
-//                               <p className={styles.additionalText}>
-//                                 We have ma...<br />
-//                                 simplify r...
-//                               </p>
-//                             </div>
-//                           </div>
-//                         ) : chapter.id === 2 ? (
-//                           <div className={styles.contentArea}>\n                        {/* Chapter 2 - Scenario Layout */}
-//                             <div className={styles.optionCard}>
-//                               <div className={styles.optionBadge}>OPTION A</div>
-//                               <p className={styles.optionText}>
-//                                 Record her details in your<br />
-//                                 database and acknowledge<br />
-//                                 her support
-//                               </p>
-//                             </div>
-
-//                             <div className={styles.scenarioCard}>
-//                               <p className={styles.scenarioLabel}>SCENARIO 2</p>
-//                               <p className={styles.scenarioText}>
-//                                 You reach out to Nidhi,<br />
-//                                 someone you identified through<br />
-//                                 your existing network. She<br />
-//                                 becomes a first-time donor by<br />
-//                                 contributing â‚¹2,500 via your<br />
-//                                 crowdfunding campaign. What<br />
-//                                 do you do next?
-//                               </p>
-//                               <div className={styles.scenarioDecoration}>
-//                                 <div className={styles.decorativeSemicircle}></div>
-//                                 <div className={styles.decorativeDiamond}></div>
-//                               </div>
-//                             </div>
-
-//                             <div className={styles.optionCard}>
-//                               <div className={styles.optionBadge}>OPTION B</div>
-//                               <p className={styles.optionText}>
-//                                 No thank you or follow-ups.<br />
-//                                 Accept the donation and<br />
-//                                 move on.
-//                               </p>
-//                             </div>
-//                           </div>
-//                         ) : chapter.id === 3 ? (
-//                           <div className={styles.contentArea}>
-//                             {/* Chapter 3 - Scenario Layout */}
-//                             <div className={styles.optionCard}>
-//                               <div className={styles.optionBadge}>OPTION A</div>
-//                               <p className={styles.optionText}>
-//                                 Reach out only when you<br />
-//                                 need funds again
-//                               </p>
-//                             </div>
-
-//                             <div className={styles.scenarioCard}>
-//                               <p className={styles.scenarioLabel}>SCENARIO 3</p>
-//                               <p className={styles.scenarioText}>
-//                                 Nidhi has already<br />
-//                                 donated once. Two<br />
-//                                 months have passed.<br />
-//                                 What do you do next?
-//                               </p>
-//                               <div className={styles.scenarioDecoration}>
-//                                 <div className={styles.decorativeCircles}>
-//                                   <div className={styles.decorativeCircle}></div>
-//                                   <div className={styles.decorativeCircle}></div>
-//                                   <div className={styles.decorativeCircle}></div>
-//                                 </div>
-//                                 <div className={styles.decorativeDiamond}></div>
-//                               </div>
-//                             </div>
-
-//                             <div className={styles.optionCard}>
-//                               <div className={styles.optionBadge}>OPTION B</div>
-//                               <p className={styles.optionText}>
-//                                 Share impact and invite her<br />
-//                                 to engage: Updates, events,<br />
-//                                 conversations - without<br />
-//                                 asking for money
-//                               </p>
-//                             </div>
-//                           </div>
-//                         ) : chapter.id === 4 ? (
-//                           <div className={styles.contentArea}>
-//                             {/* Chapter 4 - Scenario Layout */}
-//                             <div className={styles.optionCard}>
-//                               <div className={styles.optionBadge}>OPTION A</div>
-//                               <p className={styles.optionText}>
-//                                 Treat Nidhi like any other<br />
-//                                 donor and send a<br />
-//                                 standard appeal
-//                               </p>
-//                             </div>
-
-//                             <div className={styles.scenarioCard}>
-//                               <p className={styles.scenarioLabel}>SCENARIO 4</p>
-//                               <p className={styles.scenarioText}>
-//                                 A year has passed. Nidhi<br />
-//                                 has stayed engaged and<br />
-//                                 informed. Your annual<br />
-//                                 crowdfunding campaign<br />
-//                                 is live. What do you do?
-//                               </p>
-//                               <div className={styles.scenarioDecoration}>
-//                                 <div className={styles.decorativeCirclesGrid}>
-//                                   <div className={styles.decorativeCircle}></div>
-//                                   <div className={styles.decorativeCircle}></div>
-//                                   <div className={styles.decorativeCircle}></div>
-//                                   <div className={styles.decorativeCircle}></div>
-//                                   <div className={styles.decorativeCircle}></div>
-//                                   <div className={styles.decorativeCircle}></div>
-//                                 </div>
-//                                 <div className={styles.decorativeDiamond}></div>
-//                               </div>
-//                             </div>
-
-//                             <div className={styles.optionCard}>
-//                               <div className={styles.optionBadge}>OPTION B</div>
-//                               <p className={styles.optionText}>
-//                                 Invite her to give again - and<br />
-//                                 share the cause with her<br />
-//                                 network
-//                               </p>
-//                             </div>
-//                           </div>
-//                         ) : null}
-//                       </div>
-
-//                       {/* Next Chapter Button */}
-//                       {chapter.id < chapters.length && (
-//                         <button
-//                           className={styles.nextButton}
-//                           onClick={handleNextChapter}
-//                         >
-//                           <span>Next Chapter</span>
-//                           <span className={styles.arrow}>â†’</span>
-//                         </button>
-//                       )}
-//                     </div>
-//                   </div>
-//                 </div>
-//               </div>
-//             )
-//           })
-//         }
-//       </section >
-
-//       {/* Bonus Chapter Section */}
-//       < section className={styles.bonusSection} >
-//         <div className={styles.bonusContent}>
-//           <div className={styles.bonusLeft}>
-//             <div className={styles.bonusDiamond}></div>
-//             <p className={styles.bonusLabel}>BONUS CHAPTER</p>
-//             <h2 className={styles.bonusTitle}>
-//               No single team <span className={styles.bonusTitleHighlight}>owns</span><br />
-//               the donor experience
-//             </h2>
-//             <p className={styles.bonusText}>
-//               As supporters move across stages, effective coordination between<br />
-//               programme, communications, and fundraising teams enhances consistency,<br />
-//               continuity, and trust.
-//             </p>
-//             <div className={styles.bonusCallout}>
-//               <span className={styles.bonusDot}></span>
-//               <span className={styles.bonusCalloutText}>Check the toolkit to learn how to build this alignment.</span>
-//             </div>
-//           </div>
-//           <div className={styles.bonusRight}>
-//             <div className={styles.bonusCard}>
-//               <div className={styles.bonusCardInner}>
-//                 <h3 className={styles.bonusCardTitle}>Stewardship is a<br />team effort</h3>
-//                 <p className={styles.bonusCardText}>
-//                   A guide to help cross-functional<br />
-//                   teams collaborate to create better<br />
-//                   donor stewardship. The<br />
-//                   Fundraising Field Guide by<br />
-//                   Udarta.
-//                 </p>
-//                 <div className={styles.bonusCardPattern}>
-//                   <div className={styles.patternCircle} style={{ background: '#4dd4d4', top: '20%', left: '30%' }}></div>
-//                   <div className={styles.patternCircle} style={{ background: '#ff8da1', top: '40%', left: '50%' }}></div>
-//                   <div className={styles.patternCircle} style={{ background: '#b8e986', top: '60%', left: '35%' }}></div>
-//                   <div className={styles.patternTriangle}></div>
-//                 </div>
-//                 <div className={styles.bonusCardDimensions}>307.57 x 456.7</div>
-//               </div>
-//             </div>
-//             <div className={styles.bonusDotsPattern}>
-//               <div className={styles.bonusDotCircle} style={{ background: '#4dd4d4', top: '10%', left: '20%' }}></div>
-//               <div className={styles.bonusDotCircle} style={{ background: '#b8e986', top: '30%', right: '15%' }}></div>
-//               <div className={styles.bonusDotCircle} style={{ background: '#ff8da1', bottom: '20%', left: '10%' }}></div>
-//               <div className={styles.bonusDotCircle} style={{ background: '#4dd4d4', bottom: '10%', right: '25%' }}></div>
-//               <div className={styles.bonusDotCircle} style={{ background: '#b8e986', top: '50%', right: '5%' }}></div>
-//             </div>
-//           </div>
-//         </div>
-//       </section >
-
-//       {/* Footer Section */}
-//       < footer className={styles.footerSection} >
-//         <div className={styles.footerContent}>
-//           {/* Left Column - Logo & Description */}
-//           <div className={styles.footerLeft}>
-//             <div className={styles.footerLogo}>
-//               <span className={styles.footerLogoIcon}>ðŸŒ±</span>
-//               <span className={styles.footerLogoText}>GIVING<br />TOGETHER</span>
-//             </div>
-//             <p className={styles.footerLogoSubtext}>FOUNDATION</p>
-//             <p className={styles.footerDescription}>
-//               Giving Together Foundation (GTF) is an<br />
-//               independent, India-led nonprofit committed to<br />
-//               building the infrastructure for everyday<br />
-//               generosity.
-//             </p>
-//             <div className={styles.footerMap}>
-//               <span className={styles.mapIcon}>ðŸ—ºï¸</span>
-//             </div>
-//             <p className={styles.footerLocation}>Based in India, working nationwide</p>
-//           </div>
-
-//           {/* Middle Column - Navigation */}
-//           <div className={styles.footerMiddle}>
-//             <div className={styles.footerNav}>
-//               <p className={styles.footerNavLink}>Home</p>
-//             </div>
-//             <div className={styles.footerResources}>
-//               <p className={styles.footerSectionTitle}>REPORTS & RESOURCES</p>
-//               <p className={styles.footerLink}>UDARTA:EG Field Guide</p>
-//               <p className={styles.footerSubLink}>Introduction</p>
-//               <p className={styles.footerSubLink}>Fundraising</p>
-//               <p className={styles.footerSubLink}>Volunteer Engagement</p>
-//               <p className={styles.footerLink}>UDARTA:EG Report</p>
-//               <p className={styles.footerLink}>Donor Motivation</p>
-//             </div>
-//           </div>
-
-//           {/* Right Column - Contact */}
-//           <div className={styles.footerRight}>
-//             <div className={styles.footerContact}>
-//               <p className={styles.footerSectionTitle}>EMAIL CONTACT</p>
-//               <p className={styles.footerEmail}>partnerships@givingtogetherfoundation.org</p>
-//             </div>
-//             <div className={styles.footerAddress}>
-//               <p className={styles.footerSectionTitle}>ADDRESS</p>
-//               <p className={styles.footerAddressText}>
-//                 A-89, Ground Floor, Shastri Nagar, North West<br />
-//                 Delhi, Delhi 110052, India
-//               </p>
-//             </div>
-//           </div>
-//         </div>
-
-//         {/* Get Involved Section */}
-//         <div className={styles.getInvolved}>
-//           <p className={styles.getInvolvedTitle}>GET INVOLVED</p>
-//           <div className={styles.getInvolvedForm}>
-//             <span>Hi, I'm </span>
-//             <input type="text" placeholder="your name" className={styles.formInput} />
-//             <span>, I'm from </span>
-//             <input type="text" placeholder="name of your organisation" className={styles.formInput} />
-//             <span>.</span>
-//           </div>
-//           <p className={styles.getInvolvedText}>
-//             I'd love to be a part of Giving Together Foundation's initiatives.
-//           </p>
-//           <div className={styles.getInvolvedEmail}>
-//             <span>I'm available on </span>
-//             <input type="email" placeholder="your email address" className={styles.formInput} />
-//             <span> if you need to reach out to me for updates & details.</span>
-//           </div>
-//           <button className={styles.subscribeButton}>
-//             Subscribe <span className={styles.subscribeArrow}>â†’</span>
-//           </button>
-//         </div>
-
-//         {/* Decorative Dots */}
-//         <div className={styles.footerDots}></div>
-//       </footer >
-//     </div >
-//   )
-// }
-
-
-
-'use client';
+﻿'use client';
 
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -890,7 +120,12 @@ export default function Home() {
   const scrollAccumulatorRef = useRef(0)
   const scrollTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined)
   const scrollContainerRefs = useRef<(HTMLDivElement | null)[]>([])
-  const bonusSectionRef = useRef<HTMLElement>(null)
+  // Scroll Reference for Bonus Section
+  const bonusSectionRef = useRef<HTMLDivElement>(null);
+
+  // State for Custom Grid Cursor
+  const [gridCursorPos, setGridCursorPos] = useState({ x: 0, y: 0 });
+  const [showGridCursor, setShowGridCursor] = useState(false);
 
   useEffect(() => {
     activeChapterRef.current = activeChapter
@@ -956,8 +191,7 @@ export default function Home() {
         {/* Header */}
         <header className={styles.heroHeader}>
           <div className={styles.logoArea}>
-            <span className={styles.logoIcon}>🌱</span>
-            <span className={styles.logoText}>GIVING<br />TOGETHER</span>
+            <img src="/assets/logo_name.svg" alt="Giving Together Foundation" className={styles.logoImage} />
           </div>
           <div className={styles.headerRight}>
             <span className={styles.fieldGuide}>◆ FUNDRAISING FIELD GUIDE</span>
@@ -1020,7 +254,32 @@ export default function Home() {
             <div className={styles.heroDividerLine}></div>
             <p className={styles.selectChapter}>Select a chapter to begin</p>
 
-            <div className={styles.chapterGrid}>
+            <div
+              className={styles.chapterGrid}
+              style={{ cursor: 'none' }}
+              onMouseEnter={() => setShowGridCursor(true)}
+              onMouseLeave={() => setShowGridCursor(false)}
+              onMouseMove={(e) => {
+                setGridCursorPos({ x: e.clientX, y: e.clientY });
+              }}
+            >
+              {/* Custom Cursor Element */}
+              {showGridCursor && (
+                <img
+                  src="/assets/grid_hover.svg"
+                  alt=""
+                  style={{
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    transform: `translate(${gridCursorPos.x - 90}px, ${gridCursorPos.y - 28}px)`, // Centered
+                    pointerEvents: 'none',
+                    zIndex: 9999,
+                    width: '181px',
+                    height: '57px',
+                  }}
+                />
+              )}
               {chapters.map((chapter) => (
                 <div
                   key={chapter.id}
@@ -1806,12 +1065,38 @@ export default function Home() {
                             </div>
                           </div>
                         )
+
                       ) : chapter.id === 3 ? (
                         // Chapter 3 Specific Layout
-                        selectedOption === 'B' ? (
+                        selectedOption === 'A' ? (
+                          <div className={styles.ch3OptionAWrapper}>
+                            {/* Top Navigation */}
+                            <div className={styles.ch3NavContainer}>
+                              <button className={styles.ch3NavButton}>↑ Back to all chapters</button>
+                              <div className={styles.ch3NavDivider}>|</div>
+                              <button className={styles.ch3NavButton}>View all toolkits</button>
+                            </div>
+
+                            {/* Main Content */}
+                            <div className={styles.ch3OptionAContent}>
+                              <h4 className={styles.ch3OptionALabel}>CHAPTER III: STEWARDING DONORS</h4>
+                              <h1 className={styles.ch3OptionATitle}>
+                                Staying connected after the first gift builds trust. This chapter focuses<br />
+                                on how consistent, non-ask engagement helps donors feel involved<br />
+                                and valued.
+                              </h1>
+
+                              {/* Back to Scenario Button - Centered */}
+                              <button
+                                className={styles.ch3CenteredBackBtn}
+                                onClick={() => setSelectedOption(null)}
+                              >
+                                ← Back to scenario
+                              </button>
+                            </div>
+                          </div>
+                        ) : selectedOption === 'B' ? (
                           <Chapter3OptionB onBack={() => setSelectedOption(null)} />
-                        ) : selectedOption === 'A' ? (
-                          <div className={styles.tempContent}>Option A Content Placeholder for Ch 3</div>
                         ) : (
                           // Chapter 3 Default View
                           <div className={styles.chapter1Wrapper} style={{ justifyContent: 'flex-start' }}>
@@ -2004,79 +1289,197 @@ export default function Home() {
                             </div>
                           </div>
                         )
-
-                      ) : chapter.id === 3 ? (
-                        // Chapter 3 Specific Layout
-                        selectedOption === 'A' ? (
-                          <OptionContent
-                            chapterTitle="CHAPTER III: THE NURTURING"
-                            chapterSubtitle="Scenario 3 Placeholder"
-                            backgroundColor="linear-gradient(225deg, #1BD5E4, #0FB8C5, #D349AE)" // Using consistent background
-                            onBack={() => setSelectedOption(null)}
-                            onNext={handleNextChapter}
-                            contentCards={[]} // Empty content as requested
-                          />
-                        ) : selectedOption === 'B' ? (
-                          <div className={styles.tempContent}>Option B Content Placeholder for Ch 3</div>
-                        ) : (
-                          // Chapter 3 Default View (Scenario Selection)
-                          <div className={styles.chapter1Wrapper} style={{ justifyContent: 'flex-start' }}>
-                            <div className={styles.chapter1Header} style={{ marginBottom: '40px' }}>
-                              <h4 className={styles.ch1Label}>CHAPTER III: THE NURTURING</h4>
-                              <h1 className={styles.ch1Title}>
-                                Scenario Description Placeholder<br />
-                                (Please provide text)
-                              </h1>
-                              <p className={styles.ch1Instruction}>Select one of the two options to reveal the right way</p>
-                            </div>
-
-                            <div className={styles.scenarioContainer}>
-                              {/* Option A */}
-                              <motion.div
-                                className={styles.optionColumnLeft}
-                                initial="rest"
-                                whileHover="hover"
-                                animate="rest"
-                                onClick={() => setSelectedOption('A')}
-                                style={{ cursor: 'pointer' }}
-                              >
-                                <span className={styles.optionLabel} style={{ color: '#ffffff' }}>OPTION A</span>
-                                <p className={styles.optionDesc}>Option A Description</p>
-                                <motion.div variants={ctaVariants} style={{ marginTop: '24px', display: 'flex', alignItems: 'center', gap: '12px', color: '#ffffff', fontWeight: 500 }}>
-                                  <motion.div variants={arrowVariants}><ArrowRight style={{ width: '20px', height: '20px' }} /></motion.div>
-                                  <span style={{ textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '12px' }}>Choose Option</span>
-                                </motion.div>
-                              </motion.div>
-
-                              {/* Center Card */}
-                              <div className={styles.centerCard}>
-                                {/* Placeholder image or re-use card svg */}
-                                <div style={{ width: '100%', height: '100%', background: 'rgba(255,255,255,0.1)', borderRadius: '20px' }}></div>
-                              </div>
-
-                              {/* Option B */}
-                              <motion.div
-                                className={styles.optionColumnRight}
-                                initial="rest"
-                                whileHover="hover"
-                                animate="rest"
-                                onClick={() => setSelectedOption('B')}
-                                style={{ cursor: 'pointer' }}
-                              >
-                                <span className={styles.optionLabel} style={{ color: '#ffffff' }}>OPTION B</span>
-                                <p className={styles.optionDesc}>Option B Description</p>
-                                <motion.div variants={ctaVariants} style={{ marginTop: '24px', display: 'flex', alignItems: 'center', gap: '12px', color: '#ffffff', fontWeight: 500, flexDirection: 'row-reverse' }}>
-                                  <motion.div variants={arrowLeftVariants}><ArrowLeft style={{ width: '20px', height: '20px' }} /></motion.div>
-                                  <span style={{ textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '12px' }}>Choose Option</span>
-                                </motion.div>
-                              </motion.div>
-                            </div>
-                          </div>
-                        )
                       ) : chapter.id === 4 ? (
                         // Chapter 4 Specific Layout
-                        selectedOption ? (
-                          <div className={styles.tempContent}>Option Content Placeholder for Ch 4</div>
+                        selectedOption === 'A' ? (
+                          // Chapter 4 Option A - Horizontally Scrollable Content
+                          <div className={styles.ch4OptionAWrapper}>
+                            {/* Back to Scenario Button */}
+                            <button
+                              className={styles.backToScenarioBtn}
+                              onClick={() => setSelectedOption(null)}
+                            >
+                              ← Back to scenario
+                            </button>
+
+                            {/* Horizontally Scrollable Container */}
+                            <div className={styles.ch4ScrollContainer}>
+                              {/* Section 1: You've unlocked growth! */}
+                              <div className={styles.ch4Section1}>
+                                {/* Balloon decorations */}
+                                <div className={styles.ch4BalloonDecor}>
+                                  <div className={styles.ch4BalloonLarge}></div>
+                                  <div className={styles.ch4BalloonSmall}></div>
+                                  <div className={styles.ch4BalloonLine}></div>
+                                </div>
+
+                                <div className={styles.ch4GrowthContent}>
+                                  <h2 className={styles.ch4GrowthTitle}>You've unlocked growth!</h2>
+                                  <p className={styles.ch4GrowthDesc}>
+                                    Nidhi increases her contribution to ₹4,000 and<br />
+                                    shares the campaign with her network. A friend<br />
+                                    donates ₹2,000 based on her recommendation.
+                                  </p>
+                                </div>
+
+                                {/* Circle decorations */}
+                                <div className={styles.ch4CircleDecor1}></div>
+                                <div className={styles.ch4CircleDecor2}></div>
+                              </div>
+
+                              {/* Vertical Divider Bar */}
+                              <div className={styles.ch4VerticalBar}></div>
+
+                              {/* Section 2: WHAT CHANGES INTERNALLY */}
+                              <div className={styles.ch4Section2}>
+                                {/* Decorative bars */}
+                                <div className={styles.ch4DecorBars}>
+                                  <div className={styles.ch4DecorBar1}></div>
+                                  <div className={styles.ch4DecorBar2}></div>
+                                  <div className={styles.ch4DecorBar3}></div>
+                                </div>
+
+                                <div className={styles.ch4ChangesContent}>
+                                  <p className={styles.ch4SectionLabel}>WHAT CHANGES INTERNALLY</p>
+                                  <h3 className={styles.ch4ChangesTitle}>
+                                    Nidhi moves into a High Potential<br />
+                                    donor segment.
+                                  </h3>
+
+                                  <div className={styles.ch4BulletList}>
+                                    <div className={styles.ch4BulletItem}>
+                                      <span className={styles.ch4BulletDot} style={{ background: 'linear-gradient(180deg, #0FB8C5, #1BD5E4)' }}></span>
+                                      <p>Her repeat donation improves<br />retention metrics</p>
+                                    </div>
+                                    <div className={styles.ch4BulletItem}>
+                                      <span className={styles.ch4BulletDot} style={{ background: 'linear-gradient(180deg, #93CD4D, #B8E986)' }}></span>
+                                      <p>Network referrals expand reach without<br />cold outreach</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* Section 3: WHY THIS WORKS */}
+                              <div className={styles.ch4Section3}>
+                                {/* Decorative diamond/arrow */}
+                                <div className={styles.ch4DiamondDecor}>
+                                  <img src="/assets/chapter4/decorative_arrows.svg" alt="" className={styles.ch4Arrows} />
+                                </div>
+
+                                <div className={styles.ch4WhyContent}>
+                                  <p className={styles.ch4SectionLabel}>WHY THIS WORKS</p>
+                                  <h3 className={styles.ch4WhyTitle}>
+                                    Donors who feel valued don't<br />
+                                    just give more – they bring<br />
+                                    others with them.
+                                  </h3>
+
+                                  <div className={styles.ch4ToolkitIntro}>
+                                    <span className={styles.ch4YellowDiamond}></span>
+                                    <p>
+                                      We have two toolkits to help<br />
+                                      you track donor engagement<br />
+                                      and how to grow your network
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* Section 4: Toolkit Cards */}
+                              <div className={styles.ch4ToolkitSection}>
+                                {/* Toolkit Card 1 */}
+                                <div className={styles.ch4ToolkitCard}>
+                                  <img
+                                    src="/assets/toolkit_6.svg"
+                                    alt="Toolkit #6"
+                                    className={styles.ch4ToolkitImage}
+                                  />
+                                  <div className={styles.ch4ToolkitContent}>
+                                    <p className={styles.ch4ToolkitLabel}>TOOLKIT #6</p>
+                                    <h4 className={styles.ch4ToolkitTitle}>Donor Engagement<br />Dashboard</h4>
+                                    <p className={styles.ch4ToolkitDesc}>
+                                      A one stop shop to show you how well your<br />
+                                      organisation is retaining and engaging its<br />
+                                      everyday givers.
+                                    </p>
+                                    <div className={styles.ch4ToolkitActions}>
+                                      <button className={styles.ch4DownloadBtn}>
+                                        Download <span>↓</span>
+                                      </button>
+                                      <button className={styles.ch4ViewBtn}>
+                                        View toolkit →
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                {/* Toolkit Card 2 */}
+                                <div className={styles.ch4ToolkitCard}>
+                                  <img
+                                    src="/assets/toolkit_7.svg"
+                                    alt="Toolkit #7"
+                                    className={styles.ch4ToolkitImage}
+                                  />
+                                  <div className={styles.ch4ToolkitContent}>
+                                    <p className={styles.ch4ToolkitLabel}>TOOLKIT #7</p>
+                                    <h4 className={styles.ch4ToolkitTitle}>Supporter-Led<br />Fundraising</h4>
+                                    <p className={styles.ch4ToolkitDesc}>
+                                      A powerful toolkit to grow your network by<br />
+                                      creating champions for your cause.
+                                    </p>
+                                    <div className={styles.ch4ToolkitActions}>
+                                      <button className={styles.ch4DownloadBtn}>
+                                        Download <span>↓</span>
+                                      </button>
+                                      <button className={styles.ch4ViewBtn}>
+                                        View toolkit →
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* Decorative circles on right edge */}
+                              <div className={styles.ch4RightDecor}>
+                                <div className={styles.ch4DecorCircle1}></div>
+                                <div className={styles.ch4DecorCircle2}></div>
+                                <div className={styles.ch4DecorDiamond}></div>
+                              </div>
+                            </div>
+
+                            {/* Next Chapter Button */}
+                            <button className={styles.ch4NextChapterBtn} onClick={handleNextChapter}>
+                              <span className={styles.ch4NextDiamond}>◆</span>
+                              Next chapter
+                            </button>
+                          </div>
+                        ) : selectedOption === 'B' ? (
+                          <div className={styles.ch4OptionBWrapper}>
+                            {/* Top Navigation */}
+                            <div className={styles.ch4NavContainer}>
+                              <button className={styles.ch4NavButton}>↑ Back to all chapters</button>
+                              <div className={styles.ch4NavDivider}>|</div>
+                              <button className={styles.ch4NavButton}>View all toolkits</button>
+                            </div>
+
+                            {/* Main Content */}
+                            <div className={styles.ch4OptionBContent}>
+                              <h4 className={styles.ch4OptionBLabel}>CHAPTER IV: DONORS TO CHAMPIONS</h4>
+                              <h1 className={styles.ch4OptionBTitle}>
+                                When relationships are nurtured well, supporters deepen<br />
+                                their involvement. This chapter explores how donors grow<br />
+                                into champions.
+                              </h1>
+
+                              {/* Back to Scenario Button - Centered */}
+                              <button
+                                className={styles.ch4CenteredBackBtn}
+                                onClick={() => setSelectedOption(null)}
+                              >
+                                ← Back to scenario
+                              </button>
+                            </div>
+                          </div>
                         ) : (
                           // Chapter 4 Default View
                           <div className={styles.chapter1Wrapper} style={{ justifyContent: 'flex-start' }}>
@@ -2327,6 +1730,13 @@ export default function Home() {
 
       {/* Download Section */}
       <section className={styles.downloadSection}>
+        {/* Background Image */}
+        <img
+          src="/assets/download_background.svg"
+          alt=""
+          className={styles.downloadBackgroundImage}
+        />
+
         <div className={styles.downloadContent}>
           {/* Left decorative plant */}
           <div className={styles.leftPlant}>
@@ -2347,10 +1757,11 @@ export default function Home() {
           {/* Center Card */}
           <div className={styles.downloadCard}>
             <div className={styles.downloadIcons}>
-              <div className={styles.iconShape} style={{ background: '#e91e8c' }}></div>
-              <div className={styles.iconShape} style={{ background: '#4dd4d4' }}></div>
-              <div className={styles.iconShape} style={{ background: '#0d4d4d' }}></div>
-              <div className={styles.iconShape} style={{ background: '#4dd4d4' }}></div>
+              <img
+                src="/assets/icons_download.svg"
+                alt="Download Icons"
+                className={styles.downloadIconsImage}
+              />
             </div>
             <h2 className={styles.downloadTitle}>Download the complete fundraising set</h2>
             <p className={styles.downloadDescription}>
@@ -2381,105 +1792,191 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Bottom decorative dots */}
-        <div className={styles.bottomDots}>
-          {[...Array(80)].map((_, i) => (
-            <div
-              key={i}
-              className={styles.bottomDot}
-              style={{
-                left: `${(i * 1.5) % 100}%`,
-                bottom: `${Math.random() * 60}px`,
-                background: i % 3 === 0 ? '#b8e986' : i % 3 === 1 ? '#4dd4d4' : '#0d4d4d',
-                opacity: Math.random() * 0.6 + 0.3,
-                width: `${Math.random() * 8 + 4}px`,
-                height: `${Math.random() * 8 + 4}px`
-              }}
-            ></div>
-          ))}
-        </div>
       </section>
 
-      {/* Footer Section */}
-      < footer className={styles.footerSection} >
-        <div className={styles.footerContent}>
-          {/* Left Column - Logo & Description */}
-          <div className={styles.footerLeft}>
-            <div className={styles.footerLogo}>
-              <span className={styles.footerLogoIcon}>ðŸŒ±</span>
-              <span className={styles.footerLogoText}>GIVING<br />TOGETHER</span>
+      {/* Explore Grid Section */}
+      <div className={styles.exploreSection}>
+        <div className={styles.exploreHeader}>
+          <span className={styles.exploreLabel}>FOLLOW ALONG</span>
+          <h2 className={styles.exploreTitle}>Explore the other sections</h2>
+        </div>
+
+        <div className={styles.folderContainer}>
+
+          {/* Folder Card 1 */}
+          <div className={styles.folderCard}>
+            <div className={styles.folderContent}>
+              <span className={styles.folderLabel}>UDARTA:EG FIELD GUIDE</span>
+              <h3 className={styles.folderTitle}>Introduction</h3>
             </div>
-            <p className={styles.footerLogoSubtext}>FOUNDATION</p>
+            {/* SVG Outline for Folder Shape */}
+            <svg className={styles.folderSvg} viewBox="0 0 600 420" preserveAspectRatio="none" style={{ overflow: 'visible' }}>
+              <defs>
+                <linearGradient id="chapter1Gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#63C76B" />
+                  <stop offset="100%" stopColor="#17BABD" />
+                </linearGradient>
+              </defs>
+              {/* Back/Peeking Folder Outline */}
+              <path
+                d="M20 30 C20 20 30 10 40 10 L410 10 C420 10 430 15 435 20 L455 50 C460 55 470 55 475 55 L560 55 C570 55 580 65 580 75 L580 390 C580 400 570 410 560 410 L40 410 C30 410 20 400 20 390 Z"
+                fill="none"
+                stroke="#2a6f5f"
+                strokeWidth="2"
+                opacity="0.4"
+                transform="translate(10, 5) rotate(1, 300, 200)"
+              />
+              {/* Main Folder Outline */}
+              <path
+                className={styles.folderFrontPath}
+                d="M10 20 C10 10 20 0 30 0 L400 0 C410 0 420 5 425 10 L445 40 C450 45 460 45 465 45 L550 45 C560 45 570 55 570 65 L570 380 C570 390 560 400 550 400 L30 400 C20 400 10 390 10 380 Z"
+                fill="none"
+                stroke="#2a6f5f"
+                strokeWidth="2"
+              />
+            </svg>
+          </div>
+
+          {/* Folder Card 2 */}
+          <div className={styles.folderCard}>
+            <div className={styles.folderContent}>
+              <span className={styles.folderLabel}>UDARTA:EG FIELD GUIDE ON</span>
+              <h3 className={styles.folderTitle}>Volunteer Engagement</h3>
+            </div>
+            <svg className={styles.folderSvg} viewBox="0 0 600 420" preserveAspectRatio="none" style={{ overflow: 'visible' }}>
+              <defs>
+                <linearGradient id="chapter1Gradient2" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#63C76B" />
+                  <stop offset="100%" stopColor="#17BABD" />
+                </linearGradient>
+              </defs>
+              {/* Back/Peeking Folder Outline */}
+              <path
+                d="M20 30 C20 20 30 10 40 10 L410 10 C420 10 430 15 435 20 L455 50 C460 55 470 55 475 55 L560 55 C570 55 580 65 580 75 L580 390 C580 400 570 410 560 410 L40 410 C30 410 20 400 20 390 Z"
+                fill="none"
+                stroke="#2a6f5f"
+                strokeWidth="2"
+                opacity="0.4"
+                transform="translate(10, 5) rotate(1, 300, 200)"
+              />
+              {/* Main Folder Outline */}
+              <path
+                className={styles.folderFrontPath}
+                d="M10 20 C10 10 20 0 30 0 L400 0 C410 0 420 5 425 10 L445 40 C450 45 460 45 465 45 L550 45 C560 45 570 55 570 65 L570 380 C570 390 560 400 550 400 L30 400 C20 400 10 390 10 380 Z"
+                fill="none"
+                stroke="#2a6f5f"
+                strokeWidth="2"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer Section */}
+      {/* Footer Section */}
+      <footer className={styles.footerSection}>
+        <div className={styles.footerContainer}>
+
+          {/* LEFT COLUMN: Brand & Info */}
+          <div className={styles.footerLeftColumn}>
+            <div className={styles.footerLogo}>
+              <img src="/assets/logo_name.svg" alt="Giving Together Foundation" className={styles.footerLogoImage} />
+            </div>
+
             <p className={styles.footerDescription}>
               Giving Together Foundation (GTF) is an<br />
               independent, India-led nonprofit committed to<br />
               building the infrastructure for everyday generosity.
             </p>
-            <div className={styles.footerMap}>
-              <span className={styles.mapIcon}>ðŸ—ºï¸</span>
-            </div>
-            <p className={styles.footerLocation}>Based in India, working nationwide</p>
-          </div>
 
-          {/* Middle Column - Navigation */}
-          <div className={styles.footerMiddle}>
-            <div className={styles.footerNav}>
-              <p className={styles.footerNavTitle}>HOME</p>
-              <p className={styles.footerNavLink}>Who is this for?</p>
-              <p className={styles.footerNavLink}>Tools and toolkits</p>
-            </div>
-            <div className={styles.footerResources}>
-              <p className={styles.footerSectionTitle}>REPORTS & RESOURCES</p>
-              <p className={styles.footerLink}>UDARTA:EG Field Guide</p>
-              <p className={styles.footerSubLink}>Fundraising</p>
-              <p className={styles.footerSubLink}>Volunteer Engagement</p>
-              <p className={styles.footerLink}>UDARTA:EG Report →</p>
-              <p className={styles.footerLink}>Donor Motivation</p>
+            <div className={styles.footerMapContainer}>
+              {/* India Map Image */}
+              <img
+                src="/assets/based_in_india.svg"
+                alt="Based in India Map"
+                className={styles.footerMapImage}
+              />
+              <p className={styles.footerLocationText}>Based in India, working nationwide</p>
             </div>
           </div>
 
-          {/* Right Column - Contact */}
-          <div className={styles.footerRight}>
-            <div className={styles.footerContact}>
-              <p className={styles.footerSectionTitle}>EMAIL CONTACT</p>
-              <p className={styles.footerEmail}>partnerships@givingtogetherfoundation.org</p>
+          {/* RIGHT COLUMN: Content */}
+          <div className={styles.footerRightColumn}>
+
+            {/* ROW 1: Get Involved Form */}
+            <div className={styles.getInvolvedRow}>
+              <p className={styles.getInvolvedLabel}>GET INVOLVED</p>
+              <div className={styles.getInvolvedForm}>
+                <div className={styles.formLine}>
+                  Hi, I'm <input type="text" placeholder="Merlyn Fernandes" className={styles.inlineInput} />, I'm from <input type="text" placeholder="Giving Together Foundation" className={styles.inlineInput} />.
+                </div>
+                <div className={styles.formLine}>
+                  I'd love to be a part of Giving Together Foundation's initiatives.
+                </div>
+                <div className={styles.formLine}>
+                  I'm available on <input type="email" placeholder="m.fernandes@email.com" className={styles.inlineInput} /> if you need to reach out to me for updates & details.
+                </div>
+              </div>
+              <button className={styles.subscribeBtn}>
+                Subscribe <span className={styles.btnArrow}>→</span>
+              </button>
             </div>
-            <div className={styles.footerAddress}>
-              <p className={styles.footerSectionTitle}>ADDRESS</p>
-              <p className={styles.footerAddressText}>
-                A-89, Ground Floor, Shastri Nagar, North West<br />
-                Delhi, Delhi 110052, India
-              </p>
+
+            {/* ROW 2: Navigation Grid */}
+            <div className={styles.footerLinksGrid}>
+              {/* Col 1: Home */}
+              <div className={styles.footerGridCol} style={{ borderLeft: '2px solid #0FB8C5' }}>
+                <p className={styles.footerColTitle}>HOME</p>
+                <ul className={styles.footerLinkList}>
+                  <li><a href="#">Who is this for?</a></li>
+                  <li><a href="#">Tools and toolkits</a></li>
+                </ul>
+              </div>
+
+              {/* Col 2: Reports */}
+              <div className={styles.footerGridCol} style={{ borderLeft: '2px solid #0FB8C5' }}>
+                <p className={styles.footerColTitle}>REPORTS & RESOURCES</p>
+                <ul className={styles.footerLinkList}>
+                  <li><a href="#">UDARTA:EG Field Guide</a></li>
+                  <li className={styles.indentedItem}><a href="#">Fundraising</a></li>
+                  <li className={styles.indentedItem}><a href="#">Volunteer Engagement</a></li>
+                  <li className={styles.arrowItem}><a href="#">UDARTA:EG Report ↗</a></li>
+                  <li><a href="#">Donor Motivation</a></li>
+                </ul>
+              </div>
+
+              {/* Col 3: Email */}
+              <div className={styles.footerGridCol}>
+                <p className={styles.footerColTitle}>EMAIL CONTACT</p>
+                <a href="mailto:partnerships@givingtogetherfoundation.org" className={styles.contactLink}>
+                  partnerships@givingtogetherfoundation.org
+                </a>
+
+                {/* Address placed below email in same visual column area usually, or separate */}
+                <div className={styles.addressBlock}>
+                  <p className={styles.footerColTitle} style={{ marginTop: '40px' }}>ADDRESS</p>
+                  <p className={styles.addressText}>
+                    A-89, Ground Floor, Shastri Nagar, North West<br />
+                    Delhi, Delhi 110052, India
+                  </p>
+                </div>
+              </div>
             </div>
+
           </div>
+
         </div>
+        {/* Decorative Circles */}
+        <div className={styles.footerDecorCircle1}></div>
+        <div className={styles.footerDecorCircle2}></div>
 
-        {/* Get Involved Section */}
-        <div className={styles.getInvolved}>
-          <p className={styles.getInvolvedTitle}>GET INVOLVED</p>
-          <div className={styles.getInvolvedForm}>
-            <span>Hi, I'm </span>
-            <input type="text" placeholder="Merlyn Fernandes" className={styles.formInput} />
-            <span>, I'm from </span>
-            <input type="text" placeholder="Giving Together Foundation" className={styles.formInput} />
-            <span>.</span>
-          </div>
-          <p className={styles.getInvolvedText}>
-            I'd love to be a part of Giving Together Foundation's initiatives.
-          </p>
-          <div className={styles.getInvolvedEmail}>
-            <span>I'm available on </span>
-            <input type="email" placeholder="m.fernandes@email.com" className={styles.formInput} />
-            <span> if you need to reach out to me for updates & details.</span>
-          </div>
-          <button className={styles.subscribeButton}>
-            Subscribe <span className={styles.subscribeArrow}>â†’</span>
-          </button>
-        </div>
-
-        {/* Decorative Dots */}
-        <div className={styles.footerDots}></div>
-      </footer >
+        {/* Footer Background Pattern */}
+        <img
+          src="/assets/footer_background.svg"
+          alt=""
+          className={styles.footerBackgroundPattern}
+        />
+      </footer>
     </div >
   )
 }

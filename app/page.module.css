@@ -4513,3 +4513,1529 @@
   opacity: 0.3;
   pointer-events: none;
 }
+
+/* =========================================
+   MOBILE RESPONSIVE STYLES - CHAPTERS SECTION
+   ========================================= */
+
+@media (max-width: 768px) {
+
+  /* Chapters Section - Fill viewport */
+  .chaptersSection {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+
+  /* Hide top navigation on mobile */
+  .topNavigation {
+    display: none;
+  }
+
+  /* Chapter Container */
+  .chapterContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Chapter Panel - Full screen */
+  .chapterPanel {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+
+  /* Content Section */
+  .contentSection {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border: none;
+    padding-bottom: 70px;
+    /* Space for mobile tabs */
+  }
+
+  /* Scroll Container - Vertical on mobile */
+  .scrollContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    min-width: unset;
+    padding: 16px 16px 0;
+    gap: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  /* Chapter 1 Wrapper - Mobile Layout */
+  .chapter1Wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 0;
+    overflow: hidden;
+  }
+
+  /* Chapter Header - Mobile */
+  .chapter1Header {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 10px;
+    padding: 0 4px;
+    flex-shrink: 0;
+  }
+
+  .ch1Label {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+    text-align: left;
+  }
+
+  .ch1Title {
+    font-size: 16px;
+    line-height: 135%;
+    text-align: left;
+    margin-bottom: 10px;
+    max-width: 100%;
+  }
+
+  .ch1Title br {
+    display: none;
+  }
+
+  /* Scenario Container - Vertical Stack on Mobile */
+  .scenarioContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 0;
+    padding: 0;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  /* Center Card - Mobile (Shown First) */
+  .centerCard {
+    order: 1;
+    width: 100%;
+    max-width: 240px;
+    height: auto;
+    aspect-ratio: 280 / 320;
+    margin: 0 auto 12px;
+    flex-shrink: 0;
+  }
+
+  .centerCard img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  /* Instruction text - below card */
+  .ch1Instruction {
+    order: 2;
+    font-size: 11px;
+    text-align: center;
+    margin: 0 0 8px 0;
+    width: 100%;
+    color: #1a4d3a;
+    font-style: italic;
+    opacity: 0.7;
+    flex-shrink: 0;
+  }
+
+  /* Option Cards - Stack Vertically */
+  .optionColumnLeft,
+  .optionColumnRight {
+    order: 3;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 0;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 10px;
+    padding: 8px 12px;
+    gap: 2px;
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    height: auto;
+    max-height: 80px;
+    /* Adjust this value to control box height */
+    overflow: hidden;
+  }
+
+  .optionColumnRight {
+    order: 4;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .optionLabel {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #0FB8C5;
+    margin-bottom: 4px;
+    opacity: 1;
+  }
+
+  .optionDesc {
+    font-size: 15px;
+    line-height: 130%;
+    letter-spacing: -0.02em;
+    color: #1a4d3a;
+    font-weight: 400;
+  }
+
+  .optionDesc br {
+    display: none;
+  }
+
+  /* Hide hover decorations on mobile */
+  .hoverFlowerLeftmost,
+  .hoverFlowerMiddle,
+  .hoverFlowerRightmost,
+  .hoverPetal,
+  .hoverFly,
+  .hoverRightFlowerTop,
+  .hoverRightFlowerBottom,
+  .hoverRightFly,
+  .ch2HoverLamp,
+  .ch2HoverFly,
+  .ch2HoverEmptyBubble,
+  .ch2HoverFilledBubble,
+  .ch2HoverImageLeft,
+  .ch2HoverImageRight,
+  .ch2HoverEmptyBubble2,
+  .ch2HoverFilledBubble2,
+  .ch2RightFly,
+  .ch2RightImage,
+  .ch2RightFlowerPetal1,
+  .ch2RightFlowerPetal2,
+  .ch2RightFlowerPetal3,
+  .ch2RightFlower1,
+  .ch2RightHalfBottom,
+  .ch2RightHalfTop,
+  .ch2RightStick,
+  .ch3RightFly,
+  .ch3RightFlower,
+  .ch3DiamondBottom,
+  .ch3TopSection,
+  .ch3LeftFlower {
+    display: none !important;
+  }
+
+  /* Hide hover CTA on mobile */
+  .optionColumnLeft>div:last-child,
+  .optionColumnRight>div:last-child {
+    display: none;
+  }
+
+  /* Chapter Content Sticky - Mobile */
+  .chapterContentSticky {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  /* ===== CHAPTER SELECTION CAROUSEL - MOBILE ===== */
+
+  .chapterSelectionWrapper {
+    margin-top: 30px;
+    width: 100%;
+    padding: 0;
+  }
+
+  .heroDividerLine {
+    height: 40px;
+    margin: 0 auto 15px;
+  }
+
+  .selectChapter {
+    font-size: 12px;
+    margin-bottom: 20px;
+  }
+
+  .chapterGrid {
+    width: 100%;
+    margin: 20px 0 0 0;
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 0 20px 20px;
+    gap: 16px;
+  }
+
+  .chapterGrid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gridColumn {
+    flex: 0 0 85%;
+    min-width: 280px;
+    max-width: 320px;
+    scroll-snap-align: center;
+    border-right: none;
+    border: 1px solid rgba(80, 227, 194, 0.3);
+    border-radius: 16px;
+    padding: 30px 20px;
+    background: rgba(18, 54, 59, 0.8);
+  }
+
+  .gridColumn:last-child {
+    border-right: none;
+  }
+
+  .gridLabel {
+    font-size: 10px;
+    letter-spacing: 1.2px;
+    margin-bottom: 15px;
+  }
+
+  .gridTitle {
+    font-size: 22px;
+    margin-bottom: 25px;
+  }
+
+  .gridImage {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+/* Download Section */
+.downloadSection {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: #0d3b3f;
+  /* Matched with bonusSection */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 20px 300px;
+  /* Increased bottom padding */
+  overflow: hidden;
+}
+
+.downloadCard {
+  position: relative;
+  width: 825px;
+  /* USER EDIT: Set exact width of the card here */
+  height: 485px;
+  /* USER EDIT: Set exact height of the card here (was auto) */
+  max-width: 95%;
+  /* Prevent overflow on small screens */
+  margin: 0 auto;
+  /* Centers the card horizontally */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Centers content vertically in the card */
+  background: radial-gradient(circle, #d9c952 0%, #b5b92e 50%, #87a300 100%);
+  border-radius: 40px;
+  padding: 80px 100px;
+  z-index: 10;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  /* Add noise texture effect if possible, otherwise simple gradient */
+  /* background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E"), linear-gradient(135deg, #8ba83e 0%, #689f38 100%); */
+  overflow: hidden;
+}
+
+.downloadCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 300px;
+  z-index: 1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.4'/%3E%3C/svg%3E");
+  opacity: 0.6;
+  mix-blend-mode: overlay;
+}
+
+/* Background Image */
+.downloadBackgroundImage {
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1400px;
+  /* USER EDIT: Set width of background image */
+  height: 400px;
+  /* USER EDIT: Set height of background image (was auto) */
+  /* max-width: 1400px; Removed to allow explicit width control */
+  min-width: unset;
+  background-size: cover;
+  /* Optional: ensures image covers dimensions */
+  object-fit: cover;
+  /* For img tag behavior */
+  z-index: 1;
+  pointer-events: none;
+  opacity: 1;
+  /* Reset opacity as it might be a solid graphic now */
+}
+
+.downloadContent {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  right: 10px;
+}
+
+.downloadHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+/* New Icon Styles */
+.downloadIconsImage {
+  width: 60px;
+  height: 60px;
+  display: block;
+  position: relative;
+  /* USER EDIT: Enables top/left movement */
+  top: 100px;
+  left: -65px;
+}
+
+.downloadIcons {
+  margin-bottom: 30px;
+  padding-left: 0;
+  /* USER EDIT: Removed padding to allow free icon movement */
+}
+
+.downloadTitle {
+  font-family: 'Zalando Sans Expanded', sans-serif;
+  font-size: 56px;
+  font-weight: 400;
+  line-height: 1.1;
+  color: white;
+  margin: 0;
+}
+
+.downloadDescription {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+  margin-bottom: 50px;
+  padding-left: 80px;
+  /* Align with title */
+}
+
+.downloadActions {
+  display: flex;
+  gap: 20px;
+  padding-left: 80px;
+}
+
+.downloadBtnPrimary,
+.downloadBtnSecondary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 50px;
+  padding: 0 24px;
+  border-radius: 25px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: white;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.downloadBtnPrimary:hover,
+.downloadBtnSecondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: white;
+}
+
+.btnIcon {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.btnArrowCircle {
+  width: 24px;
+  height: 24px;
+  background: white;
+  border-radius: 50%;
+  color: #689f38;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+/* Decorative Elements */
+.leftPlant {
+  position: absolute;
+  left: 15%;
+  top: 40%;
+  /* transform: translateY(-50%); */
+  z-index: 5;
+}
+
+.plantStem {
+  width: 2px;
+  height: 200px;
+  background: #689f38;
+  /* Light green */
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.plantHead {
+  width: 60px;
+  height: 60px;
+  background: #d81b60;
+  /* Pink/Magenta */
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  position: absolute;
+  bottom: 180px;
+  left: -30px;
+  box-shadow: inset -5px -5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.plantSpore {
+  width: 10px;
+  height: 30px;
+  border: 1px solid #aed581;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 240px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Right Plant Decoration */
+.rightPlant {
+  position: absolute;
+  right: 15%;
+  bottom: 20%;
+  /* transform: translateY(0); */
+  z-index: 5;
+  display: flex;
+  align-items: flex-end;
+}
+
+.longStem {
+  width: 20px;
+  height: 300px;
+  background: linear-gradient(to bottom, #8bc34a, #33691e);
+  border-radius: 10px 10px 0 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.longStem::after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 6px;
+  height: 6px;
+  background: #cddc39;
+  border-radius: 50%;
+}
+
+/* Dots Pattern */
+/* Removed old bottom dots CSS since removed from markup */
+
+@media (max-width: 1024px) {
+  .downloadCard {
+    padding: 60px 40px;
+    width: 90%;
+  }
+
+  /* Adjust background image for mobile */
+  .downloadBackgroundImage {
+    width: 200%;
+    min-width: unset;
+    opacity: 0.2;
+  }
+
+  .downloadHeader {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .downloadIcons {
+    padding-left: 0;
+    margin-bottom: 20px;
+  }
+
+  .downloadTitle {
+    font-size: 40px;
+  }
+
+  .downloadDescription,
+  .downloadActions {
+    padding-left: 0;
+  }
+
+  /* Fade out decorations on smaller screens */
+}
+
+/* =========================================
+   EXPLORE SECTION
+   ========================================= */
+
+.exploreSection {
+  width: 100%;
+  min-height: 80vh;
+  background: #0d3b3f;
+  /* Matched with bonusSection */
+  /* Dark teal background */
+  padding: 100px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.exploreHeader {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.exploreLabel {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: #1eb59a;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.exploreTitle {
+  font-family: 'Zalando Sans Expanded', sans-serif;
+  font-weight: 300;
+  font-size: 48px;
+  color: white;
+  margin: 0;
+}
+
+.folderContainer {
+  display: flex;
+  gap: 40px;
+  width: 100%;
+  max-width: 1200px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.folderCard {
+  position: relative;
+  width: 580px;
+  height: 400px;
+  /* background: rgba(255,255,255,0.02); */
+  border-radius: 20px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.folderCard:hover {
+  transform: translateY(-5px);
+}
+
+.folderSvg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.folderFrontPath {
+  transition: all 0.3s ease;
+}
+
+.folderCard:hover .folderFrontPath {
+  fill: url(#chapter1Gradient);
+  stroke: none;
+}
+
+.folderContent {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+
+.folderLabel {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: #1eb59a;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.folderTitle {
+  font-family: 'Zalando Sans Expanded', sans-serif;
+  font-weight: 400;
+  font-size: 42px;
+  color: white;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 1024px) {
+  .folderCard {
+    width: 100%;
+    max-width: 500px;
+    height: 350px;
+  }
+
+  .exploreTitle {
+    font-size: 36px;
+  }
+}
+
+/* =========================================
+   NEW FOOTER STYLES (Refactor)
+   ========================================= */
+
+.footerSection {
+  width: 100%;
+  background: linear-gradient(180deg, #0d3b3f 0%, #041A1D);
+  /* Seamless dark teal gradient */
+  padding: 80px 100px;
+  position: relative;
+  overflow: hidden;
+  color: white;
+}
+
+.footerContainer {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 60px;
+  position: relative;
+  z-index: 10;
+}
+
+/* LEFT COLUMN */
+.footerLeftColumn {
+  width: 30%;
+  padding-top: 10px;
+}
+
+.footerLogo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.footerTreeIcon {
+  width: 60px;
+  height: 60px;
+  /* Add filter if SVG needs coloring, assuming SVG is white/light */
+}
+
+.footerLogoTextGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.footerLogoTitle {
+  font-family: 'Zalando Sans Expanded', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  color: white;
+}
+
+.footerLogoSubtitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  margin-top: 4px;
+  opacity: 0.8;
+  color: white;
+}
+
+.footerDescription {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.9;
+  margin-bottom: 60px;
+  max-width: 300px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Map Area */
+.footerMapContainer {
+  /* margin-top: auto; */
+}
+
+.footerMapPlaceholder {
+  width: 200px;
+  height: 100px;
+  /* background: url('/assets/network_mapping.png'); */
+  /* Temporarily disabled */
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.3;
+  /* Darker look */
+  margin-bottom: 15px;
+  /* Placeholder map shape */
+  background-image: radial-gradient(circle at 30% 50%, rgba(30, 181, 154, 0.4) 0%, transparent 40%),
+    radial-gradient(circle at 70% 60%, rgba(30, 181, 154, 0.4) 0%, transparent 40%);
+}
+
+.footerLocationText {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  opacity: 0.8;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+
+/* RIGHT COLUMN */
+.footerRightColumn {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+/* GET INVOLVED ROW */
+.getInvolvedRow {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.getInvolvedLabel {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: #1eb59a;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.getInvolvedForm {
+  font-family: 'Zalando Sans Expanded', sans-serif;
+  /* Use content font */
+  font-size: 20px;
+  line-height: 1.8;
+  color: white;
+}
+
+.formLine {
+  margin-bottom: 5px;
+}
+
+.inlineInput {
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: #1eb59a;
+  /* Green text for inputs */
+  border-bottom: 1px solid rgba(30, 181, 154, 0.3);
+  padding: 0 5px;
+  width: auto;
+  min-width: 150px;
+}
+
+.inlineInput:focus {
+  outline: none;
+  border-bottom: 1px solid #1eb59a;
+}
+
+/* Subscribe Button */
+.subscribeBtn {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  border: none;
+  color: white;
+  font-family: 'Zalando Sans Expanded', sans-serif;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.btnArrow {
+  width: 38px;
+  height: 22px;
+  background: white;
+  color: black;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  padding-bottom: 2px;
+}
+
+
+/* NAV LINKS GRID */
+.footerLinksGrid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr 1.5fr;
+  /* Adjust ratios */
+  gap: 40px;
+  align-items: start;
+}
+
+.footerGridCol {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  /* Space for the border */
+  height: 100%;
+}
+
+/* First two columns have inline styles for borderLeft in TSX, or we can add class modifier */
+
+.footerColTitle {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: #1eb59a;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+  margin-top: 0;
+}
+
+.footerLinkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footerLinkList li a,
+.contactLink,
+.addressText {
+  font-family: 'Zalando Sans Expanded', sans-serif;
+  font-size: 15px;
+  /* Slightly smaller than body */
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-decoration: none;
+  transition: color 0.2s;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+.footerLinkList li a:hover,
+.contactLink:hover {
+  color: #1eb59a !important;
+}
+
+.indentedItem {
+  padding-left: 15px;
+  font-size: 15px;
+  opacity: 0.8;
+}
+
+.arrowItem a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.contactLink {
+  word-break: break-all;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.addressText {
+  line-height: 1.6;
+  opacity: 0.8;
+  margin-top: 0;
+}
+
+/* Decorations */
+.footerDecorCircle1 {
+  position: absolute;
+  bottom: -50px;
+  right: 10%;
+  width: 150px;
+  height: 150px;
+  border: 1px solid rgba(80, 227, 194, 0.1);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.footerDecorCircle2 {
+  position: absolute;
+  bottom: 80px;
+  right: 18%;
+  width: 12px;
+  height: 12px;
+  background: #11383d;
+  /* Slightly lighter dot */
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+  .footerContainer {
+    flex-direction: column;
+    padding: 0 20px;
+  }
+
+  .footerLeftColumn,
+  .footerRightColumn {
+    width: 100%;
+  }
+
+  .footerLinksGrid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .footerGridCol {
+    border-left: 2px solid #0FB8C5 !important;
+    /* Force border on mobile for consistency */
+  }
+}
+
+/* Logo Image Styles */
+.logoImage {
+  height: 50px;
+  width: auto;
+}
+
+.footerLogoImage {
+  height: 70px;
+  width: auto;
+}
+
+/* ===== Chapter 4 Option A Styles ===== */
+.ch4OptionAWrapper {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #FFEF3D 0%, #DCD647 20%, #C9CD33 40%, #8DA806 60%, #86A401 80%, #315900 100%);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.backToScenarioBtn {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: transparent;
+  border: none;
+  color: #1a4d3a;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.backToScenarioBtn:hover {
+  opacity: 0.8;
+}
+
+.ch4ScrollContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 60px;
+  padding: 150px 80px 100px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  height: 100%;
+}
+
+.ch4ScrollContainer::-webkit-scrollbar {
+  display: none;
+}
+
+/* Section 1: You've unlocked growth */
+.ch4Section1 {
+  min-width: 400px;
+  position: relative;
+  padding-top: 100px;
+}
+
+.ch4BalloonDecor {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  width: 120px;
+  height: 200px;
+}
+
+.ch4BalloonLarge {
+  width: 80px;
+  height: 100px;
+  background: linear-gradient(180deg, #B8E986 0%, #93CD4D 100%);
+  border-radius: 50% 50% 50% 50%;
+  position: absolute;
+  top: 0;
+  left: 20px;
+}
+
+.ch4BalloonSmall {
+  width: 50px;
+  height: 60px;
+  background: linear-gradient(180deg, #0FB8C5 0%, #1BD5E4 100%);
+  border-radius: 50%;
+  position: absolute;
+  top: 50px;
+  left: 60px;
+}
+
+.ch4BalloonLine {
+  width: 2px;
+  height: 80px;
+  background: #1a4d3a;
+  position: absolute;
+  top: 100px;
+  left: 55px;
+  opacity: 0.5;
+}
+
+.ch4GrowthContent {
+  margin-top: 60px;
+}
+
+.ch4GrowthTitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.ch4GrowthDesc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 160%;
+}
+
+.ch4CircleDecor1 {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(183, 255, 0, 0.3);
+  position: absolute;
+  bottom: 80px;
+  left: 100px;
+}
+
+.ch4CircleDecor2 {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(183, 255, 0, 0.5);
+  position: absolute;
+  bottom: 50px;
+  left: 200px;
+}
+
+/* Vertical Bar Divider */
+.ch4VerticalBar {
+  width: 8px;
+  min-height: 300px;
+  background: linear-gradient(180deg, #0FB8C5 0%, #93CD4D 100%);
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+/* Section 2: What Changes Internally */
+.ch4Section2 {
+  min-width: 400px;
+  position: relative;
+}
+
+.ch4DecorBars {
+  position: absolute;
+  top: -30px;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.ch4DecorBar1 {
+  width: 8px;
+  height: 60px;
+  background: linear-gradient(180deg, #0FB8C5 0%, #1BD5E4 100%);
+  border-radius: 4px;
+}
+
+.ch4DecorBar2 {
+  width: 8px;
+  height: 80px;
+  background: linear-gradient(180deg, #93CD4D 0%, #B8E986 100%);
+  border-radius: 4px;
+  margin-left: 20px;
+}
+
+.ch4DecorBar3 {
+  width: 8px;
+  height: 50px;
+  background: linear-gradient(180deg, #0FB8C5 0%, #1BD5E4 100%);
+  border-radius: 4px;
+  margin-left: 10px;
+}
+
+.ch4ChangesContent {
+  margin-left: 60px;
+}
+
+.ch4SectionLabel {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.ch4ChangesTitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  color: #fff;
+  line-height: 140%;
+  margin-bottom: 30px;
+}
+
+.ch4BulletList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ch4BulletItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.ch4BulletDot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.ch4BulletItem p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  line-height: 150%;
+  margin: 0;
+}
+
+/* Section 3: Why This Works */
+.ch4Section3 {
+  min-width: 350px;
+  position: relative;
+}
+
+.ch4DiamondDecor {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ch4Arrows {
+  width: 60px;
+  height: auto;
+}
+
+.ch4WhyContent {
+  margin-top: 60px;
+}
+
+.ch4WhyTitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: #fff;
+  line-height: 140%;
+  margin-bottom: 30px;
+}
+
+.ch4ToolkitIntro {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.ch4YellowDiamond {
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, #FFCD86 0%, #FFEF3D 100%);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.ch4ToolkitIntro p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+  line-height: 160%;
+  margin: 0;
+}
+
+/* Section 4: Toolkit Cards */
+.ch4ToolkitSection {
+  display: flex;
+  gap: 30px;
+  flex-shrink: 0;
+}
+
+.ch4ToolkitCard {
+  width: 320px;
+  background: #0d3b3f;
+  border-radius: 20px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.ch4ToolkitImage {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.ch4ToolkitContent {
+  padding: 24px;
+}
+
+.ch4ToolkitLabel {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: #0FB8C5;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.ch4ToolkitTitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 130%;
+  margin-bottom: 16px;
+}
+
+.ch4ToolkitDesc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 160%;
+  margin-bottom: 24px;
+}
+
+.ch4ToolkitActions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ch4DownloadBtn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ch4DownloadBtn:hover {
+  opacity: 0.8;
+}
+
+.ch4ViewBtn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  padding: 10px 20px;
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ch4ViewBtn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Right Edge Decorations */
+.ch4RightDecor {
+  position: relative;
+  min-width: 150px;
+  flex-shrink: 0;
+}
+
+.ch4DecorCircle1 {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0FB8C5 0%, #1BD5E4 100%);
+  position: absolute;
+  top: 50px;
+  right: 20px;
+}
+
+.ch4DecorCircle2 {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #93CD4D 0%, #B8E986 100%);
+  position: absolute;
+  top: 130px;
+  right: 80px;
+}
+
+.ch4DecorDiamond {
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, #FF6B9D 0%, #E91E8C 100%);
+  transform: rotate(45deg);
+  position: absolute;
+  top: 200px;
+  right: 50px;
+}
+
+/* Next Chapter Button */
+.ch4NextChapterBtn {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #0d3b3f;
+  border: none;
+  border-radius: 30px;
+  padding: 14px 28px;
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.ch4NextChapterBtn:hover {
+  transform: translateY(-50%) scale(1.05);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+}
+
+.ch4NextDiamond {
+  color: #0FB8C5;
+  font-size: 12px;
+}
+
+/* Footer Map Image */
+.footerMapImage {
+  width: 150px;
+  height: auto;
+  opacity: 0.6;
+  margin-bottom: 16px;
+}
+
+/* Footer Background Pattern */
+.footerBackgroundPattern {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  z-index: 0;
+}
