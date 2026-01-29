@@ -74,6 +74,18 @@
     opacity: 0.8;
 }
 
+.scrollToggle {
+    position: absolute;
+    top: 30px;
+    right: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    padding: 0;
+    border: none;
+}
+
 .horizontalScrollContainer {
     width: 100%;
     flex-grow: 1;

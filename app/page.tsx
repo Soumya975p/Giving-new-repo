@@ -129,6 +129,8 @@ export default function Home() {
   const [isCh3OptionBHovered, setIsCh3OptionBHovered] = useState(false)
   const [isCh4OptionAHovered, setIsCh4OptionAHovered] = useState(false)
   const [isCh4OptionBHovered, setIsCh4OptionBHovered] = useState(false)
+  const [isExplore1Hovered, setIsExplore1Hovered] = useState(false)
+  const [isExplore2Hovered, setIsExplore2Hovered] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const chapterRefs = useRef<(HTMLDivElement | null)[]>([])
   const activeChapterRef = useRef(activeChapter) // To track active chapter without dependency issues
@@ -139,6 +141,8 @@ export default function Home() {
   const scrollContainerRefs = useRef<(HTMLDivElement | null)[]>([])
   // Scroll Reference for Bonus Section
   const bonusSectionRef = useRef<HTMLDivElement>(null);
+  // Refs for center cards in each chapter
+  const centerCardRefs = useRef<(HTMLDivElement | null)[]>([null, null, null, null]);
 
   // State for Custom Grid Cursor
   const [gridCursorPos, setGridCursorPos] = useState({ x: 0, y: 0 });
@@ -309,10 +313,10 @@ export default function Home() {
             <p className={styles.heroDescription}>
               Drawing on insights from the UDARTA:EG study of 300+ <span className={styles.emphasis}>Indian nonprofits</span>, this guide offers toolkits to shift donor engagement from reactive to retention-focused.
             </p>
-            <button className={styles.startButton}>
-              <img src="/assets/diamond-start.svg" alt="" className={styles.buttonDiamond} />
-              <span>Start journey</span>
-              <img src="/assets/diamond-start.svg" alt="" className={styles.buttonDiamond} />
+            <button className={styles.startButton} onClick={() => {
+              chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+            }}>
+              <img src="/assets/start_button.svg" alt="Start Journey" className={styles.startButtonImage} />
             </button>
           </div>
         </div>
@@ -598,10 +602,25 @@ export default function Home() {
                               {/* Option A */}
                               <motion.div
                                 className={styles.optionColumnLeft}
-                                onMouseEnter={() => setIsOptionAHovered(true)}
-                                onMouseLeave={() => setIsOptionAHovered(false)}
+                                initial="rest"
+                                whileHover="hover"
+                                animate="rest"
+                                onMouseEnter={() => {
+                                  setIsOptionAHovered(true);
+                                  // Rotate card away from hovered option
+                                  const card = centerCardRefs.current[0];
+                                  if (card) {
+                                    card.style.transformOrigin = 'bottom left';
+                                    card.style.transform = 'rotate(-15deg)';
+                                  }
+                                }}
+                                onMouseLeave={() => {
+                                  setIsOptionAHovered(false);
+                                  const card = centerCardRefs.current[0];
+                                  if (card) card.style.transform = 'rotate(0deg)';
+                                }}
                                 onClick={() => setSelectedOption('A')}
-                                style={{ cursor: 'pointer' }}
+                                style={{ cursor: 'pointer', marginTop: '30px' }}
                               >
                                 <span className={styles.optionLabel}>OPTION A</span>
                                 <p className={styles.optionDesc}>
@@ -634,7 +653,7 @@ export default function Home() {
                               </motion.div>
 
                               {/* Center Card - Dark */}
-                              <div className={styles.centerCard}>
+                              <div className={styles.centerCard} ref={(el) => { centerCardRefs.current[0] = el }}>
                                 <img
                                   src="/assets/chapter_1_card.svg"
                                   alt="Scenario 1 Card"
@@ -713,8 +732,23 @@ export default function Home() {
                               {/* Option B */}
                               <motion.div
                                 className={styles.optionColumnRight}
-                                onMouseEnter={() => setIsOptionBHovered(true)}
-                                onMouseLeave={() => setIsOptionBHovered(false)}
+                                initial="rest"
+                                whileHover="hover"
+                                animate="rest"
+                                onMouseEnter={() => {
+                                  setIsOptionBHovered(true);
+                                  // Rotate card away from hovered option
+                                  const card = centerCardRefs.current[0];
+                                  if (card) {
+                                    card.style.transformOrigin = 'bottom right';
+                                    card.style.transform = 'rotate(15deg)';
+                                  }
+                                }}
+                                onMouseLeave={() => {
+                                  setIsOptionBHovered(false);
+                                  const card = centerCardRefs.current[0];
+                                  if (card) card.style.transform = 'rotate(0deg)';
+                                }}
                                 onClick={() => setSelectedOption('B')}
                                 style={{ cursor: 'pointer' }}
                               >
@@ -867,7 +901,6 @@ export default function Home() {
                                     toolkitImage: '/assets/chapter2_option1_toolkit.svg'
                                   }
                                 ]}
-                                endImage="/assets/ch2.png"
                               />
                             </div>
                           ) : selectedOption === 'B' ? (
@@ -880,7 +913,6 @@ export default function Home() {
                                 onBack={() => setSelectedOption(null)}
                                 onNext={handleNextChapter}
                                 customStyles={chapter2StylesB}
-                                flowerDecorImage="/assets/chapter_2_option_A.svg"
                                 flowerDecorImage="/assets/chapter_2_option_A.svg"
                                 contentCards={[
                                   {
@@ -954,8 +986,22 @@ export default function Home() {
                               {/* Option A */}
                               <motion.div
                                 className={styles.optionColumnLeft}
-                                initial="hover"
-                                animate="hover"
+                                initial="rest"
+                                whileHover="hover"
+                                animate="rest"
+                                onMouseEnter={() => {
+                                  setIsCh2OptionAHovered(true);
+                                  const card = centerCardRefs.current[1];
+                                  if (card) {
+                                    card.style.transformOrigin = 'bottom left';
+                                    card.style.transform = 'rotate(-15deg)';
+                                  }
+                                }}
+                                onMouseLeave={() => {
+                                  setIsCh2OptionAHovered(false);
+                                  const card = centerCardRefs.current[1];
+                                  if (card) card.style.transform = 'rotate(0deg)';
+                                }}
                                 onClick={() => setSelectedOption('A')}
                                 style={{ cursor: 'pointer' }}
                               >
@@ -991,7 +1037,7 @@ export default function Home() {
                               </motion.div>
 
                               {/* Center Card - Dark */}
-                              <div className={styles.centerCard}>
+                              <div className={styles.centerCard} ref={(el) => { centerCardRefs.current[1] = el }}>
                                 <img
                                   src="/assets/chapter_2_card.svg"
                                   alt="Scenario 2 Card"
@@ -1002,8 +1048,22 @@ export default function Home() {
                               {/* Option B */}
                               <motion.div
                                 className={styles.optionColumnRight}
-                                initial="hover"
-                                animate="hover"
+                                initial="rest"
+                                whileHover="hover"
+                                animate="rest"
+                                onMouseEnter={() => {
+                                  setIsCh2OptionBHovered(true);
+                                  const card = centerCardRefs.current[1];
+                                  if (card) {
+                                    card.style.transformOrigin = 'bottom right';
+                                    card.style.transform = 'rotate(15deg)';
+                                  }
+                                }}
+                                onMouseLeave={() => {
+                                  setIsCh2OptionBHovered(false);
+                                  const card = centerCardRefs.current[1];
+                                  if (card) card.style.transform = 'rotate(0deg)';
+                                }}
                                 onClick={() => setSelectedOption('B')}
                                 style={{ cursor: 'pointer' }}
                               >
@@ -1302,10 +1362,8 @@ export default function Home() {
                             // Chapter 3 Default View - just render scenario container, header is above
                             <div className={styles.scenarioContainer} style={{ marginTop: '10px' }}>
                               {/* Option A */}
-                              <motion.div
+                              <div
                                 className={styles.optionColumnLeft}
-                                initial="hover"
-                                animate="hover"
                                 onClick={() => setSelectedOption('A')}
                                 style={{ cursor: 'pointer' }}
                               >
@@ -1315,9 +1373,8 @@ export default function Home() {
                                   you need funds again
                                 </p>
 
-                                {/* Animated CTA */}
-                                <motion.div
-                                  variants={ctaVariants}
+                                {/* CTA */}
+                                <div
                                   style={{
                                     marginTop: '24px',
                                     display: 'flex',
@@ -1327,19 +1384,17 @@ export default function Home() {
                                     fontWeight: 500
                                   }}
                                 >
-                                  <motion.div variants={arrowVariants}>
-                                    <ArrowRight style={{ width: '20px', height: '20px' }} />
-                                  </motion.div>
+                                  <ArrowRight style={{ width: '20px', height: '20px' }} />
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
                                   }}>Choose Option</span>
-                                </motion.div>
-                              </motion.div>
+                                </div>
+                              </div>
 
                               {/* Center Card */}
-                              <div className={styles.centerCard}>
+                              <div className={styles.centerCard} ref={(el) => { centerCardRefs.current[2] = el }}>
                                 <img
                                   src="/assets/chapter_3_card.svg"
                                   alt="Scenario 3 Card"
@@ -1348,10 +1403,8 @@ export default function Home() {
                               </div>
 
                               {/* Option B */}
-                              <motion.div
+                              <div
                                 className={styles.optionColumnRight}
-                                initial="hover"
-                                animate="hover"
                                 onClick={() => setSelectedOption('B')}
                                 style={{ cursor: 'pointer' }}
                               >
@@ -1364,9 +1417,8 @@ export default function Home() {
                                   money
                                 </p>
 
-                                {/* Animated CTA */}
-                                <motion.div
-                                  variants={ctaVariants}
+                                {/* CTA */}
+                                <div
                                   style={{
                                     marginTop: '24px',
                                     display: 'flex',
@@ -1377,102 +1429,14 @@ export default function Home() {
                                     flexDirection: 'row-reverse'
                                   }}
                                 >
-                                  <motion.div variants={arrowLeftVariants}>
-                                    <ArrowLeft style={{ width: '20px', height: '20px' }} />
-                                  </motion.div>
+                                  <ArrowLeft style={{ width: '20px', height: '20px' }} />
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
                                   }}>Choose Option</span>
-                                </motion.div>
-                              </motion.div>
-
-                              {/* Chapter 3 Option B Hover Decorations */}
-                              <AnimatePresence>
-                                {isCh3OptionBHovered && (
-                                  <>
-                                    <motion.img
-                                      key="ch3b-fly"
-                                      src="/assets/chapter3/hover_fly_ch3.svg"
-                                      alt=""
-                                      className={styles.ch3RightFly}
-                                      initial={{ opacity: 0, x: 20 }}
-                                      animate={{ opacity: 1, x: 0 }}
-                                      exit={{ opacity: 0, x: 20 }}
-                                      transition={{ duration: 0.5, delay: 0.1 }}
-                                    />
-                                    <motion.img
-                                      key="ch3b-right-flower"
-                                      src="/assets/chapter3/hover_right_flower_ch3.svg"
-                                      alt=""
-                                      className={styles.ch3RightFlower}
-                                      initial={{ opacity: 0, y: 20 }}
-                                      animate={{ opacity: 1, y: 0 }}
-                                      exit={{ opacity: 0, y: 20 }}
-                                      transition={{ duration: 0.4, delay: 0.05 }}
-                                    />
-                                    <motion.img
-                                      key="ch3b-diamond"
-                                      src="/assets/chapter3/hover_diamond_bottom_ch3.svg"
-                                      alt=""
-                                      className={styles.ch3DiamondBottom}
-                                      initial={{ opacity: 0, scale: 0.8 }}
-                                      animate={{ opacity: 1, scale: 1 }}
-                                      exit={{ opacity: 0, scale: 0.8 }}
-                                      transition={{ duration: 0.3, delay: 0.15 }}
-                                    />
-                                    <motion.img
-                                      key="ch3b-topsection"
-                                      src="/assets/chapter3/hover_topsection_ch3.svg"
-                                      alt=""
-                                      className={styles.ch3TopSection}
-                                      initial={{ opacity: 0, y: -20 }}
-                                      animate={{ opacity: 1, y: 0 }}
-                                      exit={{ opacity: 0, y: -20 }}
-                                      transition={{ duration: 0.4 }}
-                                    />
-                                    <motion.img
-                                      key="ch3b-left-flower"
-                                      src="/assets/chapter3/hover_left_flower_ch3.svg"
-                                      alt=""
-                                      className={styles.ch3LeftFlower}
-                                      initial={{ opacity: 0, y: 20 }}
-                                      animate={{ opacity: 1, y: 0 }}
-                                      exit={{ opacity: 0, y: 20 }}
-                                      transition={{ duration: 0.4, delay: 0.1 }}
-                                    />
-                                  </>
-                                )}
-                              </AnimatePresence>
-
-                              {/* Chapter 3 Option A Hover Decorations */}
-                              <AnimatePresence>
-                                {isCh3OptionAHovered && (
-                                  <>
-                                    <motion.img
-                                      key="ch3a-flower"
-                                      src="/assets/chapter3/hover_left_flower_ch3.svg"
-                                      alt=""
-                                      className={styles.ch3LeftFlowerA}
-                                      initial={{ opacity: 0, scale: 0.8 }}
-                                      animate={{ opacity: 1, scale: 1 }}
-                                      exit={{ opacity: 0, scale: 0.8 }}
-                                      transition={{ duration: 0.3 }}
-                                    />
-                                    <motion.img
-                                      key="ch3a-diamond"
-                                      src="/assets/chapter3/hover_diamond_bottom_ch3.svg"
-                                      alt=""
-                                      className={styles.ch3DiamondA}
-                                      initial={{ opacity: 0, y: 10 }}
-                                      animate={{ opacity: 1, y: 0 }}
-                                      exit={{ opacity: 0, y: 10 }}
-                                      transition={{ duration: 0.4, delay: 0.1 }}
-                                    />
-                                  </>
-                                )}
-                              </AnimatePresence>
+                                </div>
+                              </div>
                             </div>
                           )}
                         </div>
@@ -1588,131 +1552,158 @@ export default function Home() {
                             <div className={styles.scenarioContainer} style={{ marginTop: '10px' }}>
 
 
-                              <div className={styles.scenarioContainer}>
-                                {/* Option A */}
+
+                              {/* Option A */}
+                              <motion.div
+                                className={styles.optionColumnLeft}
+                                initial="rest"
+                                whileHover="hover"
+                                animate="rest"
+                                onMouseEnter={() => {
+                                  setIsCh4OptionAHovered(true);
+                                  const card = centerCardRefs.current[3];
+                                  if (card) {
+                                    card.style.transformOrigin = 'bottom left';
+                                    card.style.transform = 'rotate(-15deg)';
+                                  }
+                                }}
+                                onMouseLeave={() => {
+                                  setIsCh4OptionAHovered(false);
+                                  const card = centerCardRefs.current[3];
+                                  if (card) card.style.transform = 'rotate(0deg)';
+                                }}
+                                onClick={() => setSelectedOption('A')}
+                                style={{ cursor: 'pointer' }}
+                              >
+                                <span className={styles.optionLabel} style={{ color: '#1a4d3a' }}>OPTION A</span>
+                                <p className={styles.optionDesc} style={{ color: '#1a4d3a' }}>
+                                  Treat Nidhi like any<br />
+                                  other donor and send a<br />
+                                  standard appeal
+                                </p>
+
+                                {/* Animated CTA */}
                                 <motion.div
-                                  className={styles.optionColumnLeft}
-                                  onMouseEnter={() => setIsCh4OptionAHovered(true)}
-                                  onMouseLeave={() => setIsCh4OptionAHovered(false)}
-                                  onClick={() => setSelectedOption('A')}
-                                  style={{ cursor: 'pointer' }}
+                                  variants={ctaVariants}
+                                  style={{
+                                    marginTop: '24px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '12px',
+                                    color: '#1a4d3a',
+                                    fontWeight: 500
+                                  }}
                                 >
-                                  <span className={styles.optionLabel} style={{ color: '#1a4d3a' }}>OPTION A</span>
-                                  <p className={styles.optionDesc} style={{ color: '#1a4d3a' }}>
-                                    Treat Nidhi like any<br />
-                                    other donor and send a<br />
-                                    standard appeal
-                                  </p>
-
-                                  {/* Animated CTA */}
-                                  <motion.div
-                                    variants={ctaVariants}
-                                    style={{
-                                      marginTop: '24px',
-                                      display: 'flex',
-                                      alignItems: 'center',
-                                      gap: '12px',
-                                      color: '#1a4d3a',
-                                      fontWeight: 500
-                                    }}
-                                  >
-                                    <motion.div variants={arrowVariants}>
-                                      <ArrowRight style={{ width: '20px', height: '20px' }} />
-                                    </motion.div>
-                                    <span style={{
-                                      textTransform: 'uppercase',
-                                      letterSpacing: '0.1em',
-                                      fontSize: '12px'
-                                    }}>Choose Option</span>
+                                  <motion.div variants={arrowVariants}>
+                                    <ArrowRight style={{ width: '20px', height: '20px' }} />
                                   </motion.div>
+                                  <span style={{
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.1em',
+                                    fontSize: '12px'
+                                  }}>Choose Option</span>
                                 </motion.div>
+                              </motion.div>
 
-                                {/* Center Card */}
-                                <div className={styles.centerCard}>
-                                  <img
-                                    src="/assets/chapter_4_card.svg"
-                                    alt="Scenario 4 Card"
-                                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                                  />
-                                </div>
-
-                                {/* Option B */}
-                                <motion.div
-                                  className={styles.optionColumnRight}
-                                  onMouseEnter={() => setIsCh4OptionBHovered(true)}
-                                  onMouseLeave={() => setIsCh4OptionBHovered(false)}
-                                  onClick={() => setSelectedOption('B')}
-                                  style={{ cursor: 'pointer' }}
-                                >
-                                  <span className={styles.optionLabel} style={{ color: '#1a4d3a' }}>OPTION B</span>
-                                  <p className={styles.optionDesc} style={{ color: '#1a4d3a' }}>
-                                    Invite her to give again –<br />
-                                    and share the cause<br />
-                                    with her network
-                                  </p>
-
-                                  {/* Animated CTA */}
-                                  <motion.div
-                                    variants={ctaVariants}
-                                    style={{
-                                      marginTop: '24px',
-                                      display: 'flex',
-                                      alignItems: 'center',
-                                      gap: '12px',
-                                      color: '#1a4d3a',
-                                      fontWeight: 500,
-                                      flexDirection: 'row-reverse'
-                                    }}
-                                  >
-                                    <motion.div variants={arrowLeftVariants}>
-                                      <ArrowLeft style={{ width: '20px', height: '20px' }} />
-                                    </motion.div>
-                                    <span style={{
-                                      textTransform: 'uppercase',
-                                      letterSpacing: '0.1em',
-                                      fontSize: '12px'
-                                    }}>Choose Option</span>
-                                  </motion.div>
-                                </motion.div>
-
-                                {/* Chapter 4 Hover Decorations */}
-                                <AnimatePresence>
-                                  {(isCh4OptionAHovered || isCh4OptionBHovered) && (
-                                    <>
-                                      <motion.img
-                                        key="ch4-fly"
-                                        src="/assets/chapter4/hover_fly_ch4.svg"
-                                        alt=""
-                                        className={styles.ch4HoverFly}
-                                        initial={{ opacity: 0, x: isCh4OptionAHovered ? -50 : 50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        exit={{ opacity: 0, x: isCh4OptionAHovered ? -50 : 50 }}
-                                        transition={{ duration: 0.5 }}
-                                      />
-                                      <motion.img
-                                        key="ch4-circle-fill"
-                                        src="/assets/chapter4/hover_fill_circle_ch4.svg"
-                                        alt=""
-                                        className={styles.ch4HoverCircleFill}
-                                        initial={{ opacity: 0, scale: 0.5 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        exit={{ opacity: 0, scale: 0.5 }}
-                                        transition={{ duration: 0.3, delay: 0.1 }}
-                                      />
-                                      <motion.img
-                                        key="ch4-circle-hollow"
-                                        src="/assets/chapter4/hover_hollow_ch4.svg"
-                                        alt=""
-                                        className={styles.ch4HoverCircleHollow}
-                                        initial={{ opacity: 0, scale: 0.5 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        exit={{ opacity: 0, scale: 0.5 }}
-                                        transition={{ duration: 0.3, delay: 0.2 }}
-                                      />
-                                    </>
-                                  )}
-                                </AnimatePresence>
+                              {/* Center Card */}
+                              <div className={styles.centerCard} ref={(el) => { centerCardRefs.current[3] = el }}>
+                                <img
+                                  src="/assets/chapter_4_card.svg"
+                                  alt="Scenario 4 Card"
+                                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                                />
                               </div>
+
+                              {/* Option B */}
+                              <motion.div
+                                className={styles.optionColumnRight}
+                                initial="rest"
+                                whileHover="hover"
+                                animate="rest"
+                                onMouseEnter={() => {
+                                  setIsCh4OptionBHovered(true);
+                                  const card = centerCardRefs.current[3];
+                                  if (card) {
+                                    card.style.transformOrigin = 'bottom right';
+                                    card.style.transform = 'rotate(15deg)';
+                                  }
+                                }}
+                                onMouseLeave={() => {
+                                  setIsCh4OptionBHovered(false);
+                                  const card = centerCardRefs.current[3];
+                                  if (card) card.style.transform = 'rotate(0deg)';
+                                }}
+                                onClick={() => setSelectedOption('B')}
+                                style={{ cursor: 'pointer' }}
+                              >
+                                <span className={styles.optionLabel} style={{ color: '#1a4d3a' }}>OPTION B</span>
+                                <p className={styles.optionDesc} style={{ color: '#1a4d3a' }}>
+                                  Invite her to give again –<br />
+                                  and share the cause<br />
+                                  with her network
+                                </p>
+
+                                {/* Animated CTA */}
+                                <motion.div
+                                  variants={ctaVariants}
+                                  style={{
+                                    marginTop: '24px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '12px',
+                                    color: '#1a4d3a',
+                                    fontWeight: 500,
+                                    flexDirection: 'row-reverse'
+                                  }}
+                                >
+                                  <motion.div variants={arrowLeftVariants}>
+                                    <ArrowLeft style={{ width: '20px', height: '20px' }} />
+                                  </motion.div>
+                                  <span style={{
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.1em',
+                                    fontSize: '12px'
+                                  }}>Choose Option</span>
+                                </motion.div>
+                              </motion.div>
+
+                              {/* Chapter 4 Hover Decorations */}
+                              <AnimatePresence>
+                                {(isCh4OptionAHovered || isCh4OptionBHovered) && (
+                                  <>
+                                    <motion.img
+                                      key="ch4-fly"
+                                      src="/assets/chapter4/hover_fly_ch4.svg"
+                                      alt=""
+                                      className={styles.ch4HoverFly}
+                                      initial={{ opacity: 0, x: isCh4OptionAHovered ? -50 : 50 }}
+                                      animate={{ opacity: 1, x: 0 }}
+                                      exit={{ opacity: 0, x: isCh4OptionAHovered ? -50 : 50 }}
+                                      transition={{ duration: 0.5 }}
+                                    />
+                                    <motion.img
+                                      key="ch4-circle-fill"
+                                      src="/assets/chapter4/hover_fill_circle_ch4.svg"
+                                      alt=""
+                                      className={styles.ch4HoverCircleFill}
+                                      initial={{ opacity: 0, scale: 0.5 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      exit={{ opacity: 0, scale: 0.5 }}
+                                      transition={{ duration: 0.3, delay: 0.1 }}
+                                    />
+                                    <motion.img
+                                      key="ch4-circle-hollow"
+                                      src="/assets/chapter4/hover_hollow_ch4.svg"
+                                      alt=""
+                                      className={styles.ch4HoverCircleHollow}
+                                      initial={{ opacity: 0, scale: 0.5 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      exit={{ opacity: 0, scale: 0.5 }}
+                                      transition={{ duration: 0.3, delay: 0.2 }}
+                                    />
+                                  </>
+                                )}
+                              </AnimatePresence>
                             </div>
                           )}
                         </div>
@@ -1732,7 +1723,7 @@ export default function Home() {
                             {/* Bonus Card Image */}
                             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '40px' }}>
                               <img
-                                src="/assets/Bonus Chapter.png"
+                                src="/assets/Bonus.png"
                                 alt="Stewardship is a team effort"
                                 style={{ maxWidth: '400px', width: '100%', height: 'auto' }}
                               />
@@ -1828,13 +1819,13 @@ export default function Home() {
           </div>
           <div className={styles.bonusRight}>
             <img
-              src="/assets/Bonus Chapter - Flip.svg"
+              src="/assets/Bonus_flp.png"
               alt="Stewardship is a team effort"
               className={styles.bonusCardImage}
             />
             <div className={styles.bonusDotsPattern}>
               <img
-                src="/assets/Group 326.svg"
+                src="/assets/bonus_background.png"
                 alt=""
                 className={styles.bonusDotsImage}
               />
@@ -1922,7 +1913,10 @@ export default function Home() {
             </p>
             <div className={styles.downloadButtons}>
               <button className={styles.downloadAllBtn}>
-                <img src="/assets/download_button.svg" alt="Download all" style={{ height: '56px', width: 'auto' }} />
+                <img src="/assets/download_all.svg" alt="Download all" style={{ height: '56px', width: 'auto' }} />
+              </button>
+              <button className={styles.viewAllBtn}>
+                <img src="/assets/view_all.svg" alt="View all" style={{ height: '56px', width: 'auto' }} />
               </button>
             </div>
           </div>
@@ -1940,45 +1934,38 @@ export default function Home() {
           <h2 className={styles.exploreTitle}>Explore the other sections</h2>
         </div>
 
-        <div className={styles.folderContainer}>
-
+        <div className={styles.exploreGrid}>
           {/* Folder Card 1 */}
-          <div className={styles.folderCard}>
-            <div className={styles.folderContent}>
-              <span className={styles.folderLabel}>UDARTA:EG FIELD GUIDE</span>
-              <h3 className={styles.folderTitle}>Introduction</h3>
-            </div>
-            {/* Back Card */}
-            <img
-              src="/assets/explore_card_back.svg"
-              alt=""
-              className={styles.folderBackImage}
+          <div
+            className={`${styles.exploreCardBase} ${styles.exploreCard1}`}
+            style={{ transform: isExplore1Hovered ? 'translateY(-10px)' : 'none' }}
+          >
+            <div
+              className={styles.hoverTrigger}
+              onMouseEnter={() => setIsExplore1Hovered(true)}
+              onMouseLeave={() => setIsExplore1Hovered(false)}
             />
-            {/* Front Card */}
             <img
-              src="/assets/explore_card_Front.svg"
-              alt=""
-              className={styles.folderFrontImage}
+              src={isExplore1Hovered ? "/assets/explore_hover_intro.png" : "/assets/explore_introduction.png"}
+              alt="Introduction"
+              className={styles.exploreCardImage}
             />
           </div>
 
           {/* Folder Card 2 */}
-          <div className={styles.folderCard}>
-            <div className={styles.folderContent}>
-              <span className={styles.folderLabel}>UDARTA:EG FIELD GUIDE ON</span>
-              <h3 className={styles.folderTitle}>Volunteer Engagement</h3>
-            </div>
-            {/* Back Card */}
-            <img
-              src="/assets/explore_card_back.svg"
-              alt=""
-              className={styles.folderBackImage}
+          <div
+            className={`${styles.exploreCardBase} ${styles.exploreCard2}`}
+            style={{ transform: isExplore2Hovered ? 'translateY(-10px)' : 'none' }}
+          >
+            <div
+              className={styles.hoverTrigger}
+              onMouseEnter={() => setIsExplore2Hovered(true)}
+              onMouseLeave={() => setIsExplore2Hovered(false)}
             />
-            {/* Front Card */}
             <img
-              src="/assets/explore_card_Front.svg"
-              alt=""
-              className={styles.folderFrontImage}
+              src={isExplore2Hovered ? "/assets/explore_hover_volunteer.png" : "/assets/explore_volunteer_engagement.png"}
+              alt="Volunteer Engagement"
+              className={styles.exploreCardImage}
             />
           </div>
         </div>
@@ -2004,7 +1991,7 @@ export default function Home() {
             <div className={styles.footerMapContainer}>
               {/* India Map Image */}
               <img
-                src="/assets/based_in_india.svg"
+                src="/assets/based_in_india.png"
                 alt="Based in India Map"
                 className={styles.footerMapImage}
               />

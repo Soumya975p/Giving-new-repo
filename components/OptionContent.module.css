@@ -12,8 +12,9 @@
 }
 
 .optionContentWrapper.embedded {
-    position: relative;
-    height: auto;
+    position: sticky;
+    top: 0;
+    height: 100vh;
     min-height: 500px;
     z-index: 1;
 }
@@ -135,35 +136,13 @@
     right: 60px;
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    color: white;
-    font-weight: 500;
-    background: #1a4d3a;
-    padding: 8px 16px;
-    border-radius: 30px;
+    justify-content: center;
+    background: transparent;
+    padding: 0;
+    border: none;
 }
 
-.toggleSwitch {
-    width: 36px;
-    height: 20px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
-    position: relative;
-    cursor: pointer;
-}
 
-.toggleKnob {
-    width: 16px;
-    height: 16px;
-    background: white;
-    border-radius: 50%;
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    transition: transform 0.3s;
-}
 
 /* ========================================
    HORIZONTAL SCROLL LAYOUT - MAIN CONTENT
@@ -178,6 +157,7 @@
     -ms-overflow-style: none;
     display: flex;
     align-items: center;
+    /* margin-top: 180px; */
 }
 
 .horizontalScrollContainer::-webkit-scrollbar {
@@ -337,7 +317,7 @@
 
 /* Chapter 1 Option B - Card 1 Multi-Decorations */
 .decor-11-0 {
-    top: -5%;
+    top: -1%;
     bottom: auto;
     left: -60px;
     right: auto;
@@ -477,7 +457,7 @@
     align-items: flex-start;
     color: white;
     box-shadow: none;
-    margin-top: 0;
+    margin-top: 20px;
     min-width: 350px;
 }
 
@@ -727,7 +707,7 @@
 }
 
 .ch1OptionA .scrollContent {
-    padding: 20px 0 20px 280px;
+    padding: 200px 0 20px 280px;
     gap: 200px;
     transform: translateY(-20px);
 }
@@ -736,6 +716,10 @@
     padding: 20px 0 20px 150px;
     gap: 200px;
     transform: translateY(-20px);
+}
+
+.ch1OptionB .horizontalScrollContainer {
+    margin-top: 175px;
 }
 
 .nextChapterImage {

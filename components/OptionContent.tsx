@@ -84,10 +84,7 @@ export default function OptionContent({
                 )}
 
                 <div className={s.scrollToggle}>
-                    <span>Scroll</span>
-                    <div className={s.toggleSwitch}>
-                        <div className={s.toggleKnob}></div>
-                    </div>
+                    <img src="/assets/scroll.svg" alt="Scroll" />
                 </div>
             </div>
 

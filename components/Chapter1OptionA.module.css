@@ -126,14 +126,10 @@
     right: 60px;
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    color: white;
-    font-weight: 500;
-    background: #1a4d3a;
-    padding: 8px 16px;
-    border-radius: 30px;
+    justify-content: center;
+    background: transparent;
+    padding: 0;
+    border: none;
 }
 
 .toggleSwitch {

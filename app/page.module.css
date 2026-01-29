@@ -289,43 +289,27 @@
 }
 
 .startButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  width: auto;
-  height: 56px;
-  background: rgba(0, 0, 0, 0.01);
-  border: 2px solid transparent;
-  border-radius: 60px;
-  padding: 12px 24px;
-  /* As requested in reference */
-  color: white;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
+  display: inline-block;
+  background: transparent;
+  border: none;
+  padding: 0;
   cursor: pointer;
-  transition: all 0.3s ease;
-  opacity: 1;
-  position: relative;
-  backdrop-filter: blur(54px);
-  -webkit-backdrop-filter: blur(54px);
+  transition: transform 0.3s ease;
+}
+
+.startButton:hover {
+  transform: scale(1.05);
+  background: transparent;
 }
 
 .startButton::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 60px;
-  padding: 2px;
-  /* Border thickness */
-  /* Gradient requested: 90deg, #07595F 0%, #0FB8C5 100% */
-  background: linear-gradient(90deg, #07595F, #0FB8C5);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  pointer-events: none;
+  display: none;
+}
+
+.startButtonImage {
+  height: 56px;
+  width: auto;
+  display: block;
 }
 
 .buttonArrow {
@@ -433,24 +417,16 @@
   }
 
   /* Pill button style for start button on mobile */
+  /* Start button mobile reset */
   .startButton {
     width: auto;
-    min-width: 160px;
-    border-radius: 30px;
-    background: rgba(16, 46, 51, 0.8);
-    /* Darker background */
-    border: 1px solid #3dd9c4;
-    justify-content: center;
-    gap: 12px;
+    min-width: auto;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
   }
 
-  .buttonArrow {
-    background: transparent;
-    color: #3dd9c4;
-    font-size: 14px;
-    width: auto;
-    height: auto;
-  }
 }
 
 /* .dotsPattern {
@@ -535,7 +511,7 @@
   width: 100%;
   height: 100vh;
   z-index: 100;
-  overflow: hidden;
+  overflow: visible;
   animation: slideUpAndFix 0.5s ease-out forwards;
 }
 
@@ -610,7 +586,7 @@
   display: flex;
   flex-direction: row;
   overflow-x: auto;
-  overflow-y: visible;
+  overflow-y: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -798,10 +774,21 @@
 .contentSection {
   flex: 1;
   width: 100%;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
   border: 3px solid rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE/Edge */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.contentSection::-webkit-scrollbar {
+  display: none;
 }
 
 .chapterPanel.active {
@@ -896,7 +883,7 @@
   min-width: 100%;
   height: 100%;
   overflow: visible;
-  padding: 30px 60px;
+  padding: 30px 60px 200px 60px;
   display: flex;
   flex-direction: row;
   gap: 60px;
@@ -2561,10 +2548,16 @@
 .contentSection {
   flex: 1;
   width: 100%;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
   border: 3px solid rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE/Edge */
 }
 
 .chapterPanel.active {
@@ -3906,8 +3899,8 @@
 /* Chapter 1 Specific Layout */
 .chapter1Wrapper {
   width: 100%;
-  height: auto;
-  /* changed from 100% to allow growth */
+  height: 100%;
+  /* Changed to 100% to fill container */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -3918,8 +3911,19 @@
   box-sizing: border-box;
   justify-content: flex-start;
   /* Ensure content starts from top but allows centering via auto margins if needed */
-  overflow: visible;
-  /* Changed from hidden to allow scroll */
+  overflow-y: auto;
+  /* Enable vertical scrolling */
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE/Edge */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.chapter1Wrapper::-webkit-scrollbar {
+  display: none;
 }
 
 .chapter1Header {
@@ -5256,10 +5260,16 @@
   .contentSection {
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
     border: none;
     padding-bottom: 70px;
     /* Space for mobile tabs */
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
   }
 
   /* Scroll Container - Vertical on mobile */
@@ -5703,7 +5713,21 @@
 }
 
 .downloadAllBtn:hover {
-  transform: scale(1.05);
+  transform: scale(1.05) translate(10px, -22px);
+}
+
+.viewAllBtn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  transition: transform 0.3s ease;
+  transform: translate(10px, -22px);
+}
+
+.viewAllBtn:hover {
+  transform: scale(1.05) translate(10px, -22px);
 }
 
 
@@ -5863,7 +5887,7 @@
 
 .exploreHeader {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: -10px;
 }
 
 .exploreLabel {
@@ -5885,133 +5909,72 @@
   margin: 0;
 }
 
-.folderContainer {
-  display: flex;
-  gap: 40px;
-  width: 100%;
-  max-width: 1200px;
-  justify-content: center;
-  flex-wrap: wrap;
+
+.exploreGrid {
+  position: relative;
+  width: 1299px;
+  height: 648.5px;
+  margin-top: 0px;
 }
 
-.folderCard {
-  position: relative;
-  width: 580px;
-  height: 400px;
-  /* background: rgba(255,255,255,0.02); */
-  border-radius: 20px;
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  cursor: pointer;
+.exploreCardBase {
+  position: absolute;
+  width: 590px;
+  height: 628px;
+  opacity: 1;
   transition: transform 0.3s ease;
 }
 
-.folderCard:hover {
-  transform: translateY(-5px);
-}
-
-.folderSvg {
+.hoverTrigger {
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.folderFrontPath {
-  transition: all 0.3s ease;
-}
-
-.folderCard:hover .folderFrontPath {
-  fill: url(#chapter1Gradient);
-  stroke: none;
-}
-
-/* Folder Card Images */
-.folderBackImage {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-  object-fit: contain;
-  transform: translate(10px, 5px) rotate(1deg);
-  opacity: 0.6;
-}
-
-.folderFrontImage {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  pointer-events: none;
-  object-fit: contain;
-  transition: all 0.3s ease;
-}
-
-.folderCard:hover .folderFrontImage {
-  transform: translateY(-5px);
-}
-
-
-.folderContent {
-  position: absolute;
+  height: 401px;
   z-index: 10;
-  bottom: 40px;
-  left: 40px;
-  padding-left: 0;
+  cursor: url('/assets/explore_cursor.svg') 32 13, pointer;
 }
 
-.folderLabel {
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 600;
-  font-size: 13px;
-  line-height: 140%;
-  letter-spacing: 0.1em;
-  color: #38F1FF;
-  text-transform: uppercase;
-  display: block;
-  margin-bottom: 15px;
+.exploreCard1 {
+  top: 0;
+  left: 0;
 }
 
-.folderTitle {
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 500;
-  font-size: 48px;
-  line-height: 110%;
-  /* letter-spacing: 0; */
-  color: white;
-  margin: 0;
-
+.exploreCard2 {
+  top: 20.5px;
+  left: 709px;
 }
+
+.exploreCardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 
 @media (max-width: 1024px) {
   .exploreSection {
     padding: 60px 20px;
   }
 
-  .folderContainer {
+  .exploreGrid {
+    width: 100%;
+    height: auto;
+    display: flex;
     flex-direction: column;
     align-items: center;
     gap: 30px;
-    width: 100%;
   }
 
-  .folderCard {
+  .exploreCardBase {
+    position: relative;
     width: 100%;
-    max-width: 350px;
-    height: 280px;
-    /* Reduced height for mobile */
-    padding: 30px;
+    max-width: 590px;
+    height: auto;
+    top: 0 !important;
+    left: 0 !important;
   }
+
 
   .exploreTitle {
     font-size: 32px;
@@ -7139,6 +7102,374 @@
     transform: rotate(0deg) !important;
     opacity: 1 !important;
     top: 2550px !important;
-    left: 2px !important;
   }
+}
+
+/* --- Extracted Scenario & Card Animations --- */
+.scenarioContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  width: 100%;
+  max-width: 1250px;
+  margin-top: 20px;
+  position: relative;
+}
+
+.optionColumnLeft,
+.optionColumnRight {
+  flex: 1;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  position: relative;
+}
+
+.optionColumnRight {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.centerCard {
+  width: 320px;
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  transition: transform 0.8s ease-out;
+  transform-style: preserve-3d;
+  z-index: 10;
+}
+
+.optionLabel {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 140%;
+  letter-spacing: 0.1em;
+  color: #1a4d3a;
+  opacity: 0.6;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.optionDesc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 110%;
+  letter-spacing: -0.03em;
+  color: #1a4d3a;
+  text-align: inherit;
+}
+
+/* Hover Decorations */
+.hoverFlowerLeftmost {
+  position: absolute;
+  bottom: -225px;
+  left: -45px;
+  width: 125px;
+  height: 400px;
+  pointer-events: none;
+  z-index: 5;
+  transform: translateX(-100px);
+}
+
+.hoverFlowerMiddle {
+  position: absolute;
+  bottom: -150px;
+  left: 90px;
+  width: 60px;
+  height: auto;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.hoverFlowerRightmost {
+  position: absolute;
+  bottom: -100px;
+  left: 180px;
+  width: 50px;
+  height: auto;
+  pointer-events: none;
+  z-index: 7;
+}
+
+.hoverPetal {
+  position: absolute;
+  top: -60px;
+  left: -100px;
+  width: 250px;
+  height: auto;
+  pointer-events: none;
+  z-index: 8;
+}
+
+.hoverFly {
+  position: absolute;
+  top: -20px;
+  left: 25%;
+  width: 50px;
+  height: auto;
+  pointer-events: none;
+  z-index: 9;
+}
+
+.hoverRightFlowerTop {
+  position: absolute;
+  top: 250px;
+  right: -30px;
+  width: 200px;
+  height: auto;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.hoverRightFlowerBottom {
+  position: absolute;
+  bottom: -20px;
+  right: 150px;
+  width: 150px;
+  height: auto;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.hoverRightFly {
+  position: absolute;
+  top: -20px;
+  right: 50px;
+  width: 50px;
+  height: auto;
+  pointer-events: none;
+  z-index: 7;
+}
+
+.ch2HoverLamp {
+  position: absolute;
+  bottom: -60px;
+  left: -70px;
+  width: 150px;
+  height: auto;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.ch2HoverFly {
+  position: absolute;
+  top: 0;
+  left: 300px;
+  width: 50px;
+  height: auto;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.ch2HoverEmptyBubble {
+  position: absolute;
+  top: -120px;
+  left: 45px;
+  width: 60px;
+  height: auto;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.ch2HoverFilledBubble {
+  position: absolute;
+  top: -70px;
+  left: 100px;
+  width: 60px;
+  height: auto;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.ch2HoverImageLeft {
+  position: absolute;
+  bottom: -120px;
+  left: 10px;
+  width: 80px;
+  height: auto;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.ch2HoverImageRight {
+  position: absolute;
+  bottom: -70px;
+  left: 100px;
+  width: 80px;
+  height: auto;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.ch2HoverEmptyBubble2 {
+  position: absolute;
+  top: 255px;
+  left: 30%;
+  width: 50px;
+  height: auto;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.ch2HoverFilledBubble2 {
+  position: absolute;
+  top: 210px;
+  left: 32%;
+  width: 50px;
+  height: auto;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.ch2RightFly {
+  position: absolute;
+  top: 70%;
+  right: 350px;
+  width: 50px;
+  height: auto;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.ch2RightImage {
+  position: absolute;
+  top: 50px;
+  right: -30px;
+  width: 80px;
+  height: auto;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.ch2RightFlowerPetal1 {
+  position: absolute;
+  top: 0px;
+  right: 30px;
+  width: 70px;
+  height: auto;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.ch2RightFlowerPetal2 {
+  position: absolute;
+  top: 220px;
+  right: -55px;
+  width: 15px;
+  height: auto;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.ch2RightFlowerPetal3 {
+  position: absolute;
+  top: 240px;
+  right: -38px;
+  width: 15px;
+  height: auto;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.ch2RightFlower1 {
+  position: absolute;
+  bottom: -100px;
+  right: -20px;
+  width: 110px;
+  height: auto;
+  pointer-events: none;
+  z-index: 7;
+}
+
+.ch2RightHalfBottom {
+  position: absolute;
+  top: -22px;
+  right: 250px;
+  width: 50px;
+  height: auto;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.ch2RightHalfTop {
+  position: absolute;
+  top: -50px;
+  right: 250px;
+  width: 50px;
+  height: auto;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.ch2RightStick {
+  position: absolute;
+  bottom: -110px;
+  right: -40px;
+  width: 80px;
+  height: auto;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.ch3RightFly {
+  position: absolute;
+  top: -80px;
+  right: 350px;
+  width: 50px;
+  height: auto;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.ch3RightFlower {
+  position: absolute;
+  bottom: -10px;
+  right: -65px;
+  width: 70px;
+  height: auto;
+  pointer-events: none;
+  z-index: 7;
+  transform: translateY(120px);
+}
+
+.ch3DiamondBottom {
+  position: absolute;
+  bottom: -40px;
+  right: -60px;
+  width: 200px;
+  height: auto;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.ch3TopSection {
+  position: absolute;
+  top: -90px;
+  right: -120px;
+  width: 250px;
+  height: auto;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.ch3LeftFlower {
+  position: absolute;
+  bottom: -120px;
+  right: 60px;
+  width: 70px;
+  height: auto;
+  pointer-events: none;
+  z-index: 7;
 }
