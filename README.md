@@ -1,3 +1,5 @@
+# [Live Demo](https://giving-new-repo.vercel.app/)
+
 # Fundraising Network Expansion
 
 A Next.js application showcasing the "Network Expansion" chapter from a fundraising guide.
