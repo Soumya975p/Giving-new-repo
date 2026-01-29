@@ -448,3 +448,9 @@
 .nextChapterButton:hover .nextArrow {
     transform: translateX(6px);
 }
+
+.embedded .nextChapterCard {
+    margin-left: 0;
+    margin-right: 30px;
+    z-index: 10001;
+}

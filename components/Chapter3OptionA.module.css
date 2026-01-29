@@ -165,3 +165,9 @@
 .ch3theme .textCard {
     background: rgba(26, 77, 58, 0.2);
 }
+
+.embedded .nextChapterCard {
+    margin-left: 0;
+    margin-right: 30px;
+    z-index: 10001;
+}
