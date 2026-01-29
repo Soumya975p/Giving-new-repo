@@ -4,28 +4,33 @@ import styles from './Chapter3OptionB.module.css';
 
 interface Chapter3OptionBProps {
     onBack: () => void;
+    embedded?: boolean;
 }
 
-export default function Chapter3OptionB({ onBack }: Chapter3OptionBProps) {
+export default function Chapter3OptionB({ onBack, embedded = false }: Chapter3OptionBProps) {
     return (
         <div className={styles.wrapper}>
-            {/* Back Button */}
-            <button className={styles.backButton} onClick={onBack}>
-                <ArrowLeft size={16} />
-                <span>Back to scenario</span>
-            </button>
+            {/* Back Button - only show when not embedded */}
+            {!embedded && (
+                <button className={styles.backButton} onClick={onBack}>
+                    <ArrowLeft size={16} />
+                    <span>Back to scenario</span>
+                </button>
+            )}
 
-            {/* Header Content */}
-            <div className={styles.headerSection}>
-                <h4 className={styles.headerLabel}>CHAPTER III: STEWARDING DONORS</h4>
-                <p className={styles.headerText}>
-                    Staying connected after the first gift builds trust. This chapter focuses on
-                    how consistent, non-ask engagement helps donors feel involved and valued.
-                </p>
-            </div>
+            {/* Header Content - only show when not embedded */}
+            {!embedded && (
+                <div className={styles.headerSection}>
+                    <h4 className={styles.headerLabel}>CHAPTER III: STEWARDING DONORS</h4>
+                    <p className={styles.headerText}>
+                        Staying connected after the first gift builds trust. This chapter focuses on
+                        how consistent, non-ask engagement helps donors feel involved and valued.
+                    </p>
+                </div>
+            )}
 
             {/* Horizontal Scroll Container */}
-            <div className={styles.horizontalScrollContainer}>
+            <div className={`${styles.horizontalScrollContainer} ${embedded ? styles.embeddedScroll : ''}`}>
                 <div className={styles.scrollContent}>
                     {/* Card 1 - Story Card with Flower */}
                     <div className={styles.contentCard}>
@@ -44,6 +49,15 @@ export default function Chapter3OptionB({ onBack }: Chapter3OptionBProps) {
                         </p>
                     </div>
 
+                    {/* Green Stick Decoration 1 - Moved here */}
+                    <div className={styles.greenStickWrapper}>
+                        <img
+                            src="/assets/chapter_3_middlestick.svg"
+                            alt=""
+                            className={styles.greenStick}
+                        />
+                    </div>
+
                     {/* Card 2 - Study Box */}
                     <div className={styles.contentCard}>
                         <div className={styles.studyBox}>
@@ -56,7 +70,7 @@ export default function Chapter3OptionB({ onBack }: Chapter3OptionBProps) {
                         </div>
                     </div>
 
-                    {/* Green Stick Decoration 1 */}
+                    {/* Green Stick Decoration 2 - Moved here */}
                     <div className={styles.greenStickWrapper}>
                         <img
                             src="/assets/chapter_3_middlestick.svg"
@@ -91,57 +105,19 @@ export default function Chapter3OptionB({ onBack }: Chapter3OptionBProps) {
                         </div>
                     </div>
 
-                    {/* Green Stick Decoration 2 */}
-                    <div className={styles.greenStickWrapper}>
-                        <img
-                            src="/assets/chapter_3_middlestick.svg"
-                            alt=""
-                            className={styles.greenStick}
-                        />
-                    </div>
-
                     {/* Toolkit Card 1 - The Storytelling Bank */}
                     <div className={styles.toolkitCard}>
-                        <img src="/assets/Toolkit_4.svg" alt="Card background" className={styles.toolkitBg} />
-                        <img src="/assets/Toolkit_4_inner.svg" alt="Decoration" className={styles.toolkitInner} />
-                        <div className={styles.toolkitOverlay}>
-                            <span className={styles.toolkitLabel}>TOOLKIT #4</span>
-                            <h3 className={styles.toolkitTitle}>The Storytelling Bank</h3>
-                            <p className={styles.toolkitDesc}>Build trust with donors through real stories saved and sorted systematically.</p>
-                            <div className={styles.toolkitButtons}>
-                                <button className={styles.downloadButton}>Download ↓</button>
-                                <button className={styles.viewButton}>View toolkit →</button>
-                            </div>
-                        </div>
+                        <img src="/assets/toolkit_44.svg" alt="Card background" className={styles.toolkitBg} />
                     </div>
 
                     {/* Toolkit Card 2 - Segmentation & Profiling */}
                     <div className={styles.toolkitCard}>
-                        <img src="/assets/Toolkit_3.svg" alt="Card background" className={styles.toolkitBg} />
-                        <img src="/assets/Toolkit_3_inner.svg" alt="Decoration" className={styles.toolkitInner} />
-                        <div className={styles.toolkitOverlay}>
-                            <span className={styles.toolkitLabel}>TOOLKIT #3</span>
-                            <h3 className={styles.toolkitTitle}>Segmentation & Profiling</h3>
-                            <p className={styles.toolkitDesc}>The foundation for effective donor communication.</p>
-                            <div className={styles.toolkitButtons}>
-                                <button className={styles.downloadButton}>Download ↓</button>
-                                <button className={styles.viewButton}>View toolkit →</button>
-                            </div>
-                        </div>
+                        <img src="/assets/toolkit_33.svg" alt="Card background" className={styles.toolkitBg} />
                     </div>
 
                     {/* Toolkit Card 3 - Communications Calendar */}
                     <div className={styles.toolkitCard}>
-                        <img src="/assets/Toolkit_5.svg" alt="Card background" className={styles.toolkitBg} />
-                        <div className={styles.toolkitOverlay}>
-                            <span className={styles.toolkitLabel}>TOOLKIT #5</span>
-                            <h3 className={styles.toolkitTitle}>Communications Calendar</h3>
-                            <p className={styles.toolkitDesc}>A simple planning tool to keep outreach consistent, deliberate and aligned with donor preferences.</p>
-                            <div className={styles.toolkitButtons}>
-                                <button className={styles.downloadButton}>Download ↓</button>
-                                <button className={styles.viewButton}>View toolkit →</button>
-                            </div>
-                        </div>
+                        <img src="/assets/toolkit_55.svg" alt="Card background" className={styles.toolkitBg} />
                     </div>
 
                     {/* Next Chapter Button */}

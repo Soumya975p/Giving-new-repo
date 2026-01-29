@@ -10,11 +10,11 @@ const TabsSection: React.FC<TabsSectionProps> = ({ activeChapter, onTabClick }) 
     const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
     const tabs = [
-        { id: 1, svg: activeChapter === 1 ? '/assets/chapter_!_tab_open.svg' : '/assets/chapter_1_tab.svg', label: 'I. Network Expansion', fullLabel: 'Chapter I : Tilling the Soil' },
-        { id: 2, svg: activeChapter === 2 ? '/assets/chapter_2_tab_open.svg' : '/assets/chapter_2_tab.svg', label: 'II. First Donation', fullLabel: 'Chapter II : The Planting' },
-        { id: 3, svg: activeChapter === 3 ? '/assets/chapter_3_tab_open.svg' : '/assets/chapter_3_tab (2).svg', label: 'III. Stewarding Donors', fullLabel: 'Chapter III : The Nurturing' },
-        { id: 4, svg: activeChapter === 4 ? '/assets/chapter_4_tab_open.svg' : '/assets/chapter_4_tab.svg', label: 'IV. Donors to Champions', fullLabel: 'Chapter IV : Growth' },
-        { id: 5, svg: activeChapter === 5 ? '/assets/bonus_chapter_tab_open.svg' : '/assets/chapter_bonus_tab.svg', label: 'V. Bonus Chapter', fullLabel: 'Chapter V : Bonus Chapter' }
+        { id: 1, svg: '/assets/ch_1_tab.svg', label: 'I. Network Expansion', fullLabel: 'Chapter I : Tilling the Soil' },
+        { id: 2, svg: '/assets/ch_2_tab.svg', label: 'II. First Donation', fullLabel: 'Chapter II : The Planting' },
+        { id: 3, svg: '/assets/ch_3_tab.svg', label: 'III. Stewarding Donors', fullLabel: 'Chapter III : The Nurturing' },
+        { id: 4, svg: '/assets/ch_4_tab.svg', label: 'IV. Donors to Champions', fullLabel: 'Chapter IV : Growth' },
+        { id: 5, svg: '/assets/ch_5_tab.svg', label: 'V. Bonus Chapter', fullLabel: 'Chapter V : Bonus Chapter' }
     ];
 
     const activeTabLabel = tabs.find(t => t.id === activeChapter)?.label || 'Select a chapter';

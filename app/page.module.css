@@ -1,4 +1,4 @@
-/* Page Wrapper - Scrollable
+/* Page Wrapper - Scrollable */
 .pageWrapper {
   width: 100%;
   height: 100vh;
@@ -7,10 +7,10 @@
   scroll-behavior: smooth;
   scrollbar-width: none;
   /* Firefox */
-/* -ms-overflow-style: none; */
-/* IE/Edge */
-/* background: #12363B;
-} */
+  /* -ms-overflow-style: none; */
+  /* IE/Edge */
+  /* background: #12363B; */
+}
 
 /* Hide scrollbar for Chrome, Safari and Opera */
 .pageWrapper::-webkit-scrollbar {
@@ -58,14 +58,40 @@
   display: flex;
   align-items: center;
   gap: 20px;
+  width: 350px;
+  /* width: 274; */
+  height: 35;
+  top: 4px;
+  left: 305px;
+  angle: 0 deg;
+  opacity: 1;
+
+
 }
 
 .fieldGuide {
-  font-size: 11px;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 600;
-  color: #1eb59a;
-  letter-spacing: 1px;
+  font-size: 18px;
+  line-height: 140%;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  background: radial-gradient(149.16% 203.55% at 149.16% 147.06%,
+      #d349ae 0%,
+      #13d9e8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+
+.menuButton span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+
 
 .menuDots {
   font-size: 20px;
@@ -120,30 +146,90 @@
 }
 
 /* Hero Background SVG - Responsive & Centered */
+/* Hero Background SVG - Responsive & Centered */
+/* Hero Background SVG - Responsive & Centered */
 .heroBackgroundSvg {
-  position: relative;
-  display: block;
-  width: 100%;
-  max-width: 95vw;
+  position: absolute;
+  /* top: 10vh; */
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
   height: auto;
-  margin: -70vh auto 0;
+  min-height: 80vh;
+  object-fit: cover;
   z-index: 1;
   pointer-events: none;
   opacity: 1;
   transition: all 0.3s ease;
+  margin: 0;
+}
+
+/* Mobile Hero Background - Initially hidden */
+/* .mobileHeroBackground {
+  display: none;
+} */
+
+/* Scroll Indicator Style */
+.scrollIndicator {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 15px;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  display: none;
+  /* Hidden on desktop by default unless redesign requires it */
+}
+
+.scrollDot {
+  width: 24px;
+  height: 36px;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.scrollDot::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background: #3dd9c4;
+  border-radius: 50%;
+  animation: scrollAnim 2s infinite;
+}
+
+@keyframes scrollAnim {
+  0% {
+    top: 6px;
+    opacity: 1;
+  }
+
+  100% {
+    top: 20px;
+    opacity: 0;
+  }
 }
 
 /* Responsive adjustments */
 @media (max-width: 1400px) {
   .heroBackgroundSvg {
-    width: 900px;
+    width: 100vw;
+    bottom: 5vh;
   }
 }
 
 @media (max-width: 1024px) {
   .heroBackgroundSvg {
-    width: 700px;
-    top: 87%;
+    width: 100vw;
+    bottom: 10vh;
     opacity: 0.6;
     /* Fade out slightly to improve text readability */
   }
@@ -151,9 +237,8 @@
 
 @media (max-width: 768px) {
   .heroBackgroundSvg {
-    width: 100%;
-    top: 25%;
-    transform: translate(-50%, 0);
+    width: 100vw;
+    bottom: 0;
     opacity: 0.2;
     /* Fade substantially on mobile */
   }
@@ -193,7 +278,7 @@
 }
 
 .heroDescription em {
-  color: #1eb59a;
+  color: #38F1FF;
   font-style: italic;
   font-weight: inherit;
 }
@@ -205,19 +290,16 @@
 
 .startButton {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  width: 177.79px;
-  /* As specified */
+  gap: 12px;
+  width: auto;
   height: 56px;
-  /* As specified */
-  background: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.4);
-  /* border-width: 2px */
+  background: rgba(0, 0, 0, 0.01);
+  border: 2px solid transparent;
   border-radius: 60px;
-  /* As specified */
-  padding: 0 20px;
-  /* Horizontal padding, height is fixed */
+  padding: 12px 24px;
+  /* As requested in reference */
   color: white;
   font-family: 'DM Sans', sans-serif;
   font-size: 14px;
@@ -225,6 +307,25 @@
   cursor: pointer;
   transition: all 0.3s ease;
   opacity: 1;
+  position: relative;
+  backdrop-filter: blur(54px);
+  -webkit-backdrop-filter: blur(54px);
+}
+
+.startButton::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 60px;
+  padding: 2px;
+  /* Border thickness */
+  /* Gradient requested: 90deg, #07595F 0%, #0FB8C5 100% */
+  background: linear-gradient(90deg, #07595F, #0FB8C5);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 .buttonArrow {
@@ -239,9 +340,117 @@
   font-size: 18px;
 }
 
+.buttonDiamond {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
 .startButton:hover {
   background: rgba(255, 255, 255, 0.05);
-  border-color: #3dd9c4;
+}
+
+/* Mobile Layout adjustments */
+@media (max-width: 768px) {
+  .heroContent {
+    flex-direction: column;
+    padding: 20px 30px;
+    align-items: flex-start;
+    /* Left align everything */
+    text-align: left;
+    gap: 30px;
+  }
+
+  .heroLeft {
+    width: 100%;
+    margin-bottom: 0;
+    order: 1;
+    /* First: Title */
+  }
+
+  .scrollIndicator {
+    display: flex;
+    margin-top: 20px;
+  }
+
+  .mobileHeroBackground {
+    display: block;
+    position: relative;
+    top: 0;
+    left: 0;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    height: auto;
+    max-width: 350px;
+    /* kept for sanity, user can override */
+    margin: 0 auto;
+    order: 2;
+    /* Second: Image */
+    transform: scale(1.1);
+    z-index: 5;
+  }
+
+  .heroBackgroundSvg {
+    display: none;
+    /* Hide desktop background */
+  }
+
+  /* Dots pattern removal on mobile if needed, or adjust z-index */
+  .dotsPattern {
+    display: none;
+  }
+
+  .heroRight {
+    width: 100%;
+    max-width: 100%;
+    padding-top: 20px;
+    padding-left: 0;
+    order: 3;
+    /* Third: Content */
+  }
+
+  /* Mobile title adjustments */
+  .titleLine1,
+  .titleLine2 {
+    font-size: 52px;
+    /* Smaller title on mobile */
+    text-align: left;
+  }
+
+  .heroSubtitle {
+    text-align: left;
+    margin-bottom: 15px;
+    font-size: 24px;
+  }
+
+  .heroDescription {
+    text-align: left;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  /* Pill button style for start button on mobile */
+  .startButton {
+    width: auto;
+    min-width: 160px;
+    border-radius: 30px;
+    background: rgba(16, 46, 51, 0.8);
+    /* Darker background */
+    border: 1px solid #3dd9c4;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .buttonArrow {
+    background: transparent;
+    color: #3dd9c4;
+    font-size: 14px;
+    width: auto;
+    height: auto;
+  }
 }
 
 /* .dotsPattern {
@@ -266,7 +475,7 @@
   margin: -140px auto 0;
   text-align: center;
   position: relative;
-  padding-bottom: 100px;
+  padding-bottom: 0px;
   z-index: 5;
 }
 
@@ -274,7 +483,7 @@
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 2px;
-  color: #1eb59a;
+  color: #38F1FF;
   margin-bottom: 30px;
 }
 
@@ -287,7 +496,13 @@
 }
 
 .highlight {
-  color: #a8e583;
+  /* color: #a8e583; */
+  /* font-color: radial-gradient(circle, #0FB8C5 0%, #93CD4D 100%); */
+  background: radial-gradient(circle, #0FB8C5 0%, #93CD4D 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
 }
 
 .heroBottomDesc {
@@ -305,9 +520,33 @@
 /* Chapters Section - Transform-based stacking */
 .chaptersSection {
   width: 100%;
-  min-height: 100vh;
+  /* min-height: calc(100vh + 200px); Removed fixed height constraint */
+  height: auto;
   position: relative;
-  /* overflow: hidden; Removed to allow scrolling if content overflows */
+  overflow: visible;
+  padding-bottom: 300px;
+}
+
+/* Sticky state - triggered when 10% visible */
+.chaptersSectionSticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 100;
+  overflow: hidden;
+  animation: slideUpAndFix 0.5s ease-out forwards;
+}
+
+@keyframes slideUpAndFix {
+  from {
+    transform: translateY(40%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
 }
 
 /* Each chapter container - absolutely positioned, stacked */
@@ -316,14 +555,18 @@
   top: 0;
   left: 0;
   width: 100%;
+  height: auto;
   min-height: 100vh;
-  will-change: transform;
-  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
+  /* Changed from transform to avoid stacking context issues with flow */
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  /* simplified transition */
 }
 
 /* Chapter states for visual feedback */
 .chapterActive {
-  /* Active chapter is fully visible */
+  /* Active chapter enters flow */
+  position: relative;
   opacity: 1;
   visibility: visible;
 }
@@ -331,15 +574,17 @@
 .chapterPast {
   /* Past chapters stay underneath */
   pointer-events: none;
-  opacity: 1;
-  visibility: visible;
+  opacity: 0;
+  visibility: hidden;
+  display: none !important;
 }
 
 .chapterFuture {
   /* Future chapters are translated down, off-screen */
   pointer-events: none;
-  opacity: 1;
-  visibility: visible;
+  opacity: 0;
+  visibility: hidden;
+  display: none !important;
 }
 
 /* Chapter panel that fills viewport with depth shadow */
@@ -359,17 +604,15 @@
 /* Content area inside panel */
 .chapterContentSticky {
   width: 100%;
-  height: 100%;
+  height: auto;
   padding: 0;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
   overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: visible;
   scrollbar-width: none;
-  /* Firefox */
   -ms-overflow-style: none;
-  /* IE/Edge */
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -653,7 +896,7 @@
   min-width: 100%;
   height: 100%;
   overflow: visible;
-  padding: 50px 60px;
+  padding: 30px 60px;
   display: flex;
   flex-direction: row;
   gap: 60px;
@@ -678,6 +921,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 0 40px;
+  top: 120px;
 }
 
 .chapterLabel {
@@ -1091,7 +1335,7 @@
 .footerSection {
   width: 100%;
   background: linear-gradient(180deg, #0a2233 0%, #071a28 100%);
-  padding: 60px 80px 40px;
+  padding: 60px 80px 200px;
   position: relative;
   z-index: 100;
   /* Above all chapter stacks */
@@ -1137,7 +1381,7 @@
 }
 
 .footerDescription {
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.7);
   margin-bottom: 30px;
@@ -1254,7 +1498,8 @@
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 2px;
-  color: #3dd9c4;
+  color: #38F1FF;
+
   margin-bottom: 25px;
 }
 
@@ -1345,7 +1590,7 @@
   left: 0;
   right: 0;
   height: 80px;
-  background-image: radial-gradient(circle, #1eb59a 3px, transparent 3px),
+  background-image: radial-gradient(circle, #38F1FF 3px, transparent 3px),
     radial-gradient(circle, #b8e986 3px, transparent 3px),
     radial-gradient(circle, #3dd9c4 2px, transparent 2px);
   background-size: 40px 40px, 60px 60px, 25px 25px;
@@ -1360,7 +1605,7 @@
   margin: 100px auto 0;
   text-align: center;
   position: relative;
-  padding-bottom: 100px;
+  padding-bottom: 0px;
 }
 
 .cultivationLabel {
@@ -1369,7 +1614,7 @@
   font-size: 14px;
   line-height: 110%;
   letter-spacing: 0.12em;
-  color: #0FB8C5;
+  color: #38F1FF;
   text-transform: uppercase;
   margin-bottom: 20px;
 }
@@ -1403,13 +1648,13 @@
   width: 100%;
 }
 
-.heroDividerLine {
+/* .heroDividerLine {
   width: 1px;
   height: 60px;
   border-left: 2px dashed #0FB8C5;
   margin: 0 auto 20px;
   opacity: 0.6;
-}
+} */
 
 .chapterGrid {
   width: 100vw;
@@ -1449,7 +1694,7 @@
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 1.5px;
-  color: #ff8da1;
+  color: #FF6DDE;
   /* Pink accent */
   text-transform: uppercase;
   margin-bottom: 20px;
@@ -1483,6 +1728,7 @@
   padding: 100px 0;
   position: relative;
   overflow: hidden;
+  /* margin-top: 500px; */
 }
 
 .bonusContent {
@@ -1541,12 +1787,12 @@
 }
 
 .bonusTitleHighlight {
-  color: white;
+  fontcolor: white;
 }
 
 .bonusText {
   font-family: 'DM Sans', sans-serif;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.8);
   margin-bottom: 30px;
@@ -1595,6 +1841,7 @@
   max-height: 500px;
   object-fit: contain;
   filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.3));
+  z-index: 10;
 }
 
 .bonusDotsPattern {
@@ -1835,15 +2082,46 @@
 .headerRight {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 14px;
+  padding: 10px 14px;
+  /*   background: rgba(10, 25, 30, 0.55 */
+  ;
+  backdrop-filter: blur(54px);
+  -webkit-backdrop-filter: blur(54px);
+
+  border-radius: 14px;
+
+
 }
+
+.fieldGuideWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+
+  border-radius: 999px;
+  /* background: rgba(8, 18, 22, 0.65); */
+}
+
 
 .fieldGuide {
   font-size: 11px;
   font-weight: 600;
-  color: #1eb59a;
+  color: #38F1FF;
   letter-spacing: 1px;
 }
+
+.diamond {
+  width: 10px;
+  height: 10px;
+  transform: rotate(45deg);
+
+  background: radial-gradient(149.16% 203.55% at 149.16% 147.06%,
+      #d349ae 0%,
+      #13d9e8 100%);
+}
+
 
 .menuDots {
   font-size: 20px;
@@ -1902,9 +2180,9 @@
   position: relative;
   display: block;
   width: 100%;
-  max-width: 95vw;
+  max-width: 100vw;
   height: auto;
-  margin: -70vh auto 0;
+  margin: -70vh auto -225;
   z-index: 1;
   pointer-events: none;
   opacity: 1;
@@ -1971,13 +2249,13 @@
 }
 
 .heroDescription em {
-  color: #1eb59a;
+  color: #38F1FF;
   font-style: italic;
   font-weight: inherit;
 }
 
 .emphasis {
-  color: #5dd9c4;
+  color: #3AF1FF;
   font-weight: 600;
 }
 
@@ -1985,12 +2263,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 177.79px;
+  width: 200px;
   /* As specified */
   height: 56px;
   /* As specified */
   background: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.4);
+  /* border: 2px solid rgba(255, 255, 255, 0.4); */
+  border: linear-gradient(90deg,
+      #07595F 0%,
+      #0FB8C5 100%);
+  backdrop-filter: blur(54px);
+  -webkit-backdrop-filter: blur(54px);
+
   /* border-width: 2px */
   border-radius: 60px;
   /* As specified */
@@ -2017,10 +2301,10 @@
   font-size: 18px;
 }
 
-.startButton:hover {
+/* .startButton:hover {
   background: rgba(255, 255, 255, 0.05);
   border-color: #3dd9c4;
-}
+} */
 
 /* .dotsPattern {
   position: absolute;
@@ -2041,7 +2325,7 @@
 .heroBottom {
   width: 100%;
   max-width: 1200px;
-  margin: -140px auto 0;
+  /* margin: -100px auto 0; */
   text-align: center;
   position: relative;
   padding-bottom: 100px;
@@ -2052,7 +2336,7 @@
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 2px;
-  color: #1eb59a;
+  color: #38F1FF;
   margin-bottom: 30px;
 }
 
@@ -2077,7 +2361,7 @@
 
 .selectChapter {
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.5);
+  color: #93CD4D
 }
 
 /* Chapters Section - Transform-based stacking */
@@ -2376,7 +2660,7 @@
   min-width: 100%;
   height: 100%;
   overflow: visible;
-  padding: 50px 60px;
+  padding: 0px 0px;
   display: flex;
   flex-direction: row;
   gap: 60px;
@@ -2401,6 +2685,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 0 40px;
+  top: 120px;
 }
 
 .chapterLabel {
@@ -2977,7 +3262,8 @@
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 2px;
-  color: #3dd9c4;
+  color: #38F1FF;
+
   margin-bottom: 25px;
 }
 
@@ -3068,7 +3354,7 @@
   left: 0;
   right: 0;
   height: 80px;
-  background-image: radial-gradient(circle, #1eb59a 3px, transparent 3px),
+  background-image: radial-gradient(circle, #38F1FF 3px, transparent 3px),
     radial-gradient(circle, #b8e986 3px, transparent 3px),
     radial-gradient(circle, #3dd9c4 2px, transparent 2px);
   background-size: 40px 40px, 60px 60px, 25px 25px;
@@ -3080,10 +3366,10 @@
 .heroBottom {
   width: 100%;
   max-width: 1200px;
-  margin: 100px auto 0;
+  margin: -600px auto 0;
   text-align: center;
   position: relative;
-  padding-bottom: 100px;
+  /* padding-bottom: 100px; */
 }
 
 .cultivationLabel {
@@ -3092,7 +3378,7 @@
   font-size: 14px;
   line-height: 110%;
   letter-spacing: 0.12em;
-  color: #0FB8C5;
+  color: #38F1FF;
   text-transform: uppercase;
   margin-bottom: 20px;
 }
@@ -3122,7 +3408,7 @@
 
 /* Chapter Selection Menu Grid */
 .chapterSelectionWrapper {
-  margin-top: 60px;
+  margin-top: 100px;
   width: 100%;
 }
 
@@ -3154,7 +3440,8 @@
   flex-direction: column;
   align-items: center;
   padding: 60px 20px;
-  cursor: pointer;
+  cursor: none;
+  /* Hide default cursor, custom cursor image is shown instead */
   transition: background 0.3s ease;
   position: relative;
 }
@@ -3172,7 +3459,7 @@
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 1.5px;
-  color: #ff8da1;
+  color: #FF6DDE;
   /* Pink accent */
   text-transform: uppercase;
   margin-bottom: 20px;
@@ -3206,6 +3493,7 @@
   padding: 100px 0;
   position: relative;
   overflow: hidden;
+  /* margin-top: 500px; */
 }
 
 .bonusContent {
@@ -3223,25 +3511,23 @@
   position: relative;
 }
 
-.bonusDiamond {
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, #ff8da1 0%, #e91e8c 100%);
-  transform: rotate(45deg);
-  margin-bottom: 30px;
-  position: relative;
+.bonusFlowerImage {
+  position: absolute;
+  top: 35px;
+  bottom: auto;
+  left: -150px;
+  right: auto;
+  width: 900px;
+  height: 340px;
 }
 
-.bonusDiamond::after {
-  content: '';
+.bonusFlowerDot {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 220px;
+  left: -70px;
   width: 20px;
-  height: 20px;
-  background: #0d3b3f;
-  border-radius: 2px;
+  height: 97px;
+  z-index: 2;
 }
 
 .bonusLabel {
@@ -3249,27 +3535,30 @@
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 1.5px;
-  color: #4dd4d4;
+  color: #38F1FF;
   text-transform: uppercase;
   margin-bottom: 20px;
 }
 
 .bonusTitle {
   font-family: 'Zalando Sans Expanded', sans-serif;
-  font-size: 48px;
+  font-size: 42px;
   font-weight: 300;
   line-height: 1.1;
-  color: #4dd4d4;
+  color: white;
   margin-bottom: 30px;
 }
 
 .bonusTitleHighlight {
-  color: white;
+  background: radial-gradient(circle, #0FB8C5 0%, #93CD4D 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .bonusText {
   font-family: 'DM Sans', sans-serif;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.8);
   margin-bottom: 30px;
@@ -3281,13 +3570,13 @@
   gap: 12px;
 }
 
-.bonusDot {
+/* .bonusDot {
   width: 12px;
   height: 12px;
   background: #b8e986;
   border-radius: 50%;
   flex-shrink: 0;
-}
+} */
 
 .bonusCalloutText {
   font-family: 'DM Sans', sans-serif;
@@ -3380,11 +3669,13 @@
 
 .bonusDotsPattern {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
+  width: 80%;
+  height: 80%;
+  top: 200px;
+  left: 300px;
+  right: 100px;
   pointer-events: none;
+  z-index: 1;
 }
 
 .bonusDotCircle {
@@ -3560,8 +3851,8 @@
 /* Fixed Top Navigation */
 .topNavigation {
   position: absolute;
-  top: 40px;
-  left: 40px;
+  top: 30px;
+  left: 30px;
   z-index: 100;
   display: flex;
   align-items: center;
@@ -3596,30 +3887,50 @@
   margin: 0 5px;
 }
 
+/* Chapters Section Container - for height management */
+.chaptersSection {
+  position: relative;
+  /* Changed from sticky to prevent hiding footer */
+  top: 0;
+  width: 100%;
+  height: auto;
+  /* Let content drive height */
+  min-height: 100vh;
+  /* Ensure full screen min */
+  overflow: visible;
+  /* Use window scroll */
+  padding-bottom: 250px;
+  /* Extra padding to clear bottom tabs/nav */
+}
+
 /* Chapter 1 Specific Layout */
 .chapter1Wrapper {
   width: 100%;
-  min-height: 100%;
+  height: auto;
+  /* changed from 100% to allow growth */
   display: flex;
   flex-direction: column;
   align-items: center;
   /* Centered vertically roughly or with padding */
-  padding-top: 100px;
-  /* Reduced from 60px to move everything up */
+  padding-top: 0px;
+  /* Padding for chapter content - reduced by 10px */
   position: relative;
   box-sizing: border-box;
   justify-content: flex-start;
   /* Ensure content starts from top but allows centering via auto margins if needed */
-  overflow: hidden;
+  overflow: visible;
+  /* Changed from hidden to allow scroll */
 }
 
 .chapter1Header {
+  width: 996px;
   text-align: center;
   margin-bottom: 30px;
-  /* Reduced from 40px */
+  /* Reduced from 50px */
   position: relative;
   z-index: 10;
   padding: 0 10px;
+  top: 120px;
   /* Reduced side padding slightly */
 }
 
@@ -3640,14 +3951,14 @@
 
 .ch1Title {
   font-family: 'DM Sans', sans-serif;
-  font-size: 24px;
+  font-size: 28px;
   /* Reduced from 28px to save significant space */
   font-weight: 500;
   line-height: 130%;
   letter-spacing: -0.03em;
   color: #1a4d3a;
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 125px;
   /* Reduced from 20px */
   max-width: 1000px;
   margin-left: auto;
@@ -3656,19 +3967,25 @@
 
 .ch1Instruction {
   font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  /* Reduced from 15px */
-  color: #1a4d3a;
-  font-style: italic;
-  opacity: 0.6;
+  font-size: 16px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 20;
+  margin-bottom: 30px;
+  /* Increased spacing to avoid overlap */
 }
 
 /* Scenario Container */
 .scenarioContainer {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  /* Aligns options to the top */
   justify-content: center;
   gap: 40px;
+  padding-top: 20px;
+  /* Add breathing room */
   /* Reduced from 20px */
   width: 100%;
   max-width: 1250px;
@@ -3676,9 +3993,20 @@
   margin-top: 20px;
   /* Positive margin to prevent overlapping */
   position: relative;
+  top: 120px;
 }
 
 /* Hover Decorations for Chapter 1 Option A */
+.hoverFlowerLeftMain {
+  position: absolute;
+  bottom: -180px;
+  left: -80px;
+  width: 200px;
+  height: auto;
+  pointer-events: none;
+  z-index: 4;
+}
+
 .hoverFlowerLeftmost {
   position: absolute;
   bottom: -225px;
@@ -3933,6 +4261,375 @@
   z-index: 4;
 }
 
+/* ===== Chapter 2 Option A Styles ===== */
+.ch2OptionAWrapper {
+  flex: 1;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.ch2ScrollContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 50px;
+  padding: 30px 100px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-width: max-content;
+  height: 100%;
+  min-height: 500px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.ch2ScrollContainer::-webkit-scrollbar {
+  display: none;
+}
+
+/* ===== Chapter 4 Option A Styles ===== */
+.ch4OptionAWrapper {
+  flex: 1;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.ch4ScrollContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 50px;
+  padding: 30px 100px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-width: max-content;
+  height: 100%;
+  min-height: 500px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.ch4ScrollContainer::-webkit-scrollbar {
+  display: none;
+}
+
+/* Column container for each section */
+.ch2Column {
+  flex-shrink: 0;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-self: flex-start;
+  position: relative;
+  padding-left: 25px;
+}
+
+/* Yellow bar decoration for first column */
+.ch2Column:first-child::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 8px;
+  height: 100px;
+  background: linear-gradient(to bottom, #FFD700 0%, #CDDC39 50%, #8BC34A 100%);
+  border-radius: 4px;
+}
+
+/* Floating text above cards */
+.ch2FloatingText {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #38F1FF;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 140%;
+  margin: 0 0 4px 0;
+}
+
+.ch2FloatingDesc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 120%;
+  letter-spacing: -0.04em;
+  margin: 0 0 8px 0;
+}
+
+/* Initial Text Section */
+.ch2InitialText {
+  flex-shrink: 0;
+  width: 280px;
+  padding: 20px 0;
+  align-self: flex-start;
+  margin-top: 30px;
+}
+
+.ch2InitialText p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #1a4d3a;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Top Row - Now individual columns */
+.ch2TopRow {
+  display: none;
+  /* Hide the old row container */
+}
+
+/* Card 1 - DID YOU KNOW? (Darker stat card) */
+.ch2Card1 {
+  flex-shrink: 0;
+  width: 260px;
+  background: transparent;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ch2Card1Label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #FFFFFF;
+  /* Assuming white for visibility on dark card */
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 140%;
+}
+
+/* Stat icons row */
+.ch2StatIcons {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.ch2StatIcon {
+  width: 16px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.3);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.ch2StatIcon.active {
+  background: #FFB84D;
+}
+
+.ch2Card1Text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Card 2 - UDARTA:EG STUDY SHOWS (Teal card) */
+.ch2Card2 {
+  flex-shrink: 0;
+  width: 280px;
+  background: transparent;
+  border-radius: 12px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ch2Card2Label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #38F1FF;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 140%;
+}
+
+.ch2Card2Text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #FFFFFF;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Card 3 stats */
+.ch2Card3Content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ch2Card3Stat {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 120%;
+  letter-spacing: -0.04em;
+}
+
+.ch2Card3Text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.ch2Card3Label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.ch2Card3Content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ch2Card3Stat {
+  font-family: 'Zalando Sans Expanded', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1;
+}
+
+.ch2Card3Text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 1.5;
+  margin: 0;
+  opacity: 0.95;
+}
+
+/* Yellow Stick Decoration */
+.ch2YellowStick {
+  display: none;
+  /* Hidden in horizontal layout */
+}
+
+.ch2YellowStick img {
+  height: 50px;
+  width: auto;
+}
+
+/* Green Section */
+.ch2GreenSection {
+  flex-shrink: 0;
+  width: 260px;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: none;
+  align-self: flex-start;
+  margin-top: 0;
+}
+
+.ch2GreenTitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: #1a4d3a;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.ch2GreenText {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #1a4d3a;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Toolkit Card */
+.ch2ToolkitCard {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 280px;
+  height: 320px;
+  align-self: center;
+}
+
+.ch2ToolkitImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: rotate(6deg);
+}
+
+/* Next Chapter Button */
+.ch2NextChapterCard {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  align-self: center;
+}
+
+.ch2NextChapterButton {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  background: rgba(26, 77, 58, 0.3);
+  border: 2px solid #1a4d3a;
+  border-radius: 50px;
+  color: #1a4d3a;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.ch2NextChapterButton:hover {
+  background: rgba(26, 77, 58, 0.5);
+  transform: translateX(5px);
+}
+
+.ch2NextArrow {
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+
+.ch2NextChapterButton:hover .ch2NextArrow {
+  transform: translateX(4px);
+}
+
 /* Chapter 3 Hover Decorations - Option B (Right Side) */
 .ch3RightFly {
   position: absolute;
@@ -3998,9 +4695,9 @@
 }
 
 .optionColumnRight {
-  align-items: flex-end;
-  text-align: right;
-  /* Image shows left aligned text for both options mostly */
+  align-items: flex-start;
+  text-align: left;
+  /* Left aligned like Option A */
 }
 
 .optionLabel {
@@ -4030,7 +4727,7 @@
 /* Center Card - Dark */
 .centerCard {
   width: 320px;
-  height: 380px;
+  height: 340px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -4044,6 +4741,11 @@
   border-radius: 0;
   transition: transform 0.8s ease-out;
   transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  margin-top: -60px;
+  /* Move card up - adjust as needed */
+  align-self: center;
+  /* keep center card vertically centered */
 }
 
 .cardScenarioLabel {
@@ -4261,7 +4963,7 @@
 
 .footerDescription {
   font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.8);
   margin: 0 0 30px 0;
@@ -4415,7 +5117,7 @@
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 2px;
-  color: #0FB8C5;
+  color: #38F1FF;
   margin: 0 0 25px 0;
 }
 
@@ -4770,8 +5472,21 @@
     margin: 0 auto 15px;
   }
 
-  .selectChapter {
+  /* .selectChapter {
     font-size: 12px;
+    margin-bottom: 20px;
+  } */
+  .selectChapter {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.5;
+    /* 150% */
+    letter-spacing: -2%;
+    /* -2% */
+    text-align: center;
+
     margin-bottom: 20px;
   }
 
@@ -4844,9 +5559,9 @@
 
 .downloadCard {
   position: relative;
-  width: 825px;
+  width: 800px;
   /* USER EDIT: Set exact width of the card here */
-  height: 485px;
+  height: 350px;
   /* USER EDIT: Set exact height of the card here (was auto) */
   max-width: 95%;
   /* Prevent overflow on small screens */
@@ -4856,10 +5571,10 @@
   flex-direction: column;
   justify-content: center;
   /* Centers content vertically in the card */
-  background: radial-gradient(circle, #d9c952 0%, #b5b92e 50%, #87a300 100%);
+  background: linear-gradient(to right, #96B600 0%, #C9CD33 50%, #F0DF5B 100%);
   border-radius: 40px;
   padding: 80px 100px;
-  z-index: 10;
+  z-index: 100;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
   /* Add noise texture effect if possible, otherwise simple gradient */
   /* background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E"), linear-gradient(135deg, #8ba83e 0%, #689f38 100%); */
@@ -4878,6 +5593,18 @@
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.4'/%3E%3C/svg%3E");
   opacity: 0.6;
   mix-blend-mode: overlay;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-radial-gradient(circle at 0 0,
+      rgba(11, 48, 52, 0.15) 0,
+      rgba(11, 48, 52, 0.15) 1px,
+      rgba(255, 255, 255, 0.25) 1px,
+      rgba(255, 255, 255, 0.25) 2px);
+  mix-blend-mode: overlay;
+  opacity: 1;
+  pointer-events: none;
 }
 
 /* Background Image */
@@ -4887,9 +5614,9 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 1400px;
+  width: 100%;
   /* USER EDIT: Set width of background image */
-  height: 400px;
+  height: 505px;
   /* USER EDIT: Set height of background image (was auto) */
   /* max-width: 1400px; Removed to allow explicit width control */
   min-width: unset;
@@ -4897,7 +5624,8 @@
   /* Optional: ensures image covers dimensions */
   object-fit: cover;
   /* For img tag behavior */
-  z-index: 1;
+  z-index: 15;
+  /* Higher z-index to appear above card */
   pointer-events: none;
   opacity: 1;
   /* Reset opacity as it might be a solid graphic now */
@@ -4924,8 +5652,8 @@
   width: 60px;
   height: 60px;
   display: block;
-  position: relative;
-  /* USER EDIT: Enables top/left movement */
+  position: absolute;
+  /* Changed to absolute so icons don't affect title positioning */
   top: 100px;
   left: -65px;
 }
@@ -4938,8 +5666,8 @@
 
 .downloadTitle {
   font-family: 'Zalando Sans Expanded', sans-serif;
-  font-size: 56px;
-  font-weight: 400;
+  font-size: 38px;
+  font-weight: 300;
   line-height: 1.1;
   color: white;
   margin: 0;
@@ -4952,33 +5680,33 @@
   color: rgba(255, 255, 255, 0.9);
   max-width: 600px;
   margin-bottom: 50px;
-  padding-left: 80px;
+  font-weight: 400;
+  /* padding-left: 80px; */
   /* Align with title */
 }
 
-.downloadActions {
+.downloadButtons {
   display: flex;
   gap: 20px;
   padding-left: 80px;
+  align-items: center;
 }
 
-.downloadBtnPrimary,
-.downloadBtnSecondary {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  height: 50px;
-  padding: 0 24px;
-  border-radius: 25px;
+.downloadAllBtn {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  color: white;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
+  border: none;
+  padding: 0;
   cursor: pointer;
-  transition: all 0.3s ease;
+  display: flex;
+  transition: transform 0.3s ease;
+  transform: translate(10px, -22px);
 }
+
+.downloadAllBtn:hover {
+  transform: scale(1.05);
+}
+
+
 
 .downloadBtnPrimary:hover,
 .downloadBtnSecondary:hover {
@@ -5143,7 +5871,7 @@
   font-weight: 700;
   font-size: 11px;
   letter-spacing: 0.15em;
-  color: #1eb59a;
+  color: #38F1FF;
   text-transform: uppercase;
   display: block;
   margin-bottom: 20px;
@@ -5203,42 +5931,139 @@
   stroke: none;
 }
 
-.folderContent {
-  position: relative;
+/* Folder Card Images */
+.folderBackImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  object-fit: contain;
+  transform: translate(10px, 5px) rotate(1deg);
+  opacity: 0.6;
+}
+
+.folderFrontImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   z-index: 2;
-  margin-bottom: 20px;
-  padding-left: 20px;
+  pointer-events: none;
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+
+.folderCard:hover .folderFrontImage {
+  transform: translateY(-5px);
+}
+
+
+.folderContent {
+  position: absolute;
+  z-index: 10;
+  bottom: 40px;
+  left: 40px;
+  padding-left: 0;
 }
 
 .folderLabel {
   font-family: 'DM Sans', sans-serif;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.15em;
-  color: #1eb59a;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 140%;
+  letter-spacing: 0.1em;
+  color: #38F1FF;
   text-transform: uppercase;
   display: block;
   margin-bottom: 15px;
 }
 
 .folderTitle {
-  font-family: 'Zalando Sans Expanded', sans-serif;
-  font-weight: 400;
-  font-size: 42px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 110%;
+  /* letter-spacing: 0; */
   color: white;
   margin: 0;
-  letter-spacing: -0.02em;
+
 }
 
 @media (max-width: 1024px) {
+  .exploreSection {
+    padding: 60px 20px;
+  }
+
+  .folderContainer {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+  }
+
   .folderCard {
     width: 100%;
-    max-width: 500px;
-    height: 350px;
+    max-width: 350px;
+    height: 280px;
+    /* Reduced height for mobile */
+    padding: 30px;
   }
 
   .exploreTitle {
-    font-size: 36px;
+    font-size: 32px;
+    line-height: 1.2;
+    padding: 0 20px;
+  }
+
+  .folderTitle {
+    font-size: 32px;
+  }
+
+  .folderContent {
+    margin-bottom: 10px;
+  }
+
+  /* Download Section Mobile Styles */
+  .downloadCard {
+    padding: 40px 24px;
+    width: 90%;
+    margin-top: 60px;
+  }
+
+  /* Hide decorations on mobile */
+  .downloadPetal1,
+  .downloadPetal2,
+  .downloadPetal3,
+  .downloadBall1,
+  .downloadBall2 {
+    display: none;
+  }
+
+  .downloadTitle {
+    font-size: 32px;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+
+  .downloadDescription {
+    text-align: left;
+    padding: 0;
+    margin-bottom: 30px;
+    font-size: 14px;
+  }
+
+  .downloadButtons {
+    justify-content: flex-start;
+  }
+
+  /* Ensure background fits nicely */
+  .downloadBackgroundImage {
+    height: 100%;
+    object-fit: cover;
   }
 }
 
@@ -5250,7 +6075,8 @@
   width: 100%;
   background: linear-gradient(180deg, #0d3b3f 0%, #041A1D);
   /* Seamless dark teal gradient */
-  padding: 80px 100px;
+  padding: 80px 100px 170px;
+  /* Increased bottom padding for background image space */
   position: relative;
   overflow: hidden;
   color: white;
@@ -5308,15 +6134,33 @@
   color: white;
 }
 
-.footerDescription {
+/* .footerDescription {
   font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.6;
   opacity: 0.9;
   margin-bottom: 60px;
-  max-width: 300px;
+  max-width: 350px;
+  color: rgba(255, 255, 255, 0.9);
+} */
+.footerDescription {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  /* Regular */
+  font-style: normal;
+  /* Regular */
+  font-size: 18px;
+  line-height: 150%;
+  /* = 1.5 */
+  letter-spacing: -0.02em;
+  /* -2% */
+
+  opacity: 0.9;
+  margin-bottom: 60px;
+  max-width: 405px;
   color: rgba(255, 255, 255, 0.9);
 }
+
 
 /* Map Area */
 .footerMapContainer {
@@ -5352,6 +6196,7 @@
   display: flex;
   flex-direction: column;
   gap: 60px;
+  margin-left: 10px;
 }
 
 /* GET INVOLVED ROW */
@@ -5367,16 +6212,17 @@
   font-weight: 700;
   font-size: 11px;
   letter-spacing: 0.1em;
-  color: #1eb59a;
+  color: #38F1FF;
   text-transform: uppercase;
   margin-bottom: 10px;
 }
 
 .getInvolvedForm {
-  font-family: 'Zalando Sans Expanded', sans-serif;
-  /* Use content font */
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
   font-size: 20px;
-  line-height: 1.8;
+  line-height: 140%;
+  letter-spacing: -0.04em;
   color: white;
 }
 
@@ -5387,19 +6233,21 @@
 .inlineInput {
   background: transparent;
   border: none;
-  font-family: inherit;
-  font-size: inherit;
-  color: #1eb59a;
-  /* Green text for inputs */
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: -0.04em;
+  background: radial-gradient(circle, rgb(15, 184, 197) 0%, rgb(147, 205, 77) 100%) text;
+  -webkit-text-fill-color: transparent;
   border-bottom: 1px solid rgba(30, 181, 154, 0.3);
   padding: 0 5px;
-  width: auto;
-  min-width: 150px;
+  width: fit-content;
 }
 
 .inlineInput:focus {
   outline: none;
-  border-bottom: 1px solid #1eb59a;
+  border-bottom: 1px solid #38F1FF;
 }
 
 /* Subscribe Button */
@@ -5411,23 +6259,28 @@
   background: transparent;
   border: none;
   color: white;
-  font-family: 'Zalando Sans Expanded', sans-serif;
-  font-size: 18px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: -0.04em;
   cursor: pointer;
   padding: 0;
 }
 
 .btnArrow {
-  width: 38px;
-  height: 22px;
+  width: 34.5px;
+  height: 24px;
   background: white;
   color: black;
-  border-radius: 12px;
+  border-radius: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 16px;
   padding-bottom: 2px;
+  position: relative;
+  top: 2px;
 }
 
 
@@ -5443,8 +6296,6 @@
 .footerGridCol {
   display: flex;
   flex-direction: column;
-  padding-left: 20px;
-  /* Space for the border */
   height: 100%;
 }
 
@@ -5452,10 +6303,11 @@
 
 .footerColTitle {
   font-family: 'DM Sans', sans-serif;
-  font-weight: 700;
-  font-size: 11px;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 140%;
   letter-spacing: 0.1em;
-  color: #1eb59a;
+  color: #38F1FF;
   text-transform: uppercase;
   margin-bottom: 25px;
   margin-top: 0;
@@ -5473,19 +6325,19 @@
 .footerLinkList li a,
 .contactLink,
 .addressText {
-  font-family: 'Zalando Sans Expanded', sans-serif;
-  font-size: 15px;
-  /* Slightly smaller than body */
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 130%;
+  letter-spacing: -0.04em;
   color: rgba(255, 255, 255, 0.9) !important;
   text-decoration: none;
   transition: color 0.2s;
-  font-weight: 300;
-  letter-spacing: 0.02em;
 }
 
 .footerLinkList li a:hover,
 .contactLink:hover {
-  color: #1eb59a !important;
+  color: #38F1FF !important;
 }
 
 .indentedItem {
@@ -5536,25 +6388,70 @@
   pointer-events: none;
 }
 
+/* Footer Background Pattern */
+.footerBackgroundPattern {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 0;
+  pointer-events: none;
+  margin-top: 60px;
+}
+
 @media (max-width: 1024px) {
+  .footerSection {
+    padding: 60px 20px;
+  }
+
   .footerContainer {
     flex-direction: column;
-    padding: 0 20px;
+    padding: 0;
+    gap: 40px;
   }
 
   .footerLeftColumn,
   .footerRightColumn {
     width: 100%;
+    align-items: flex-start;
   }
 
   .footerLinksGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 30px;
+    grid-template-rows: auto auto;
+  }
+
+  /* Explicit grid placement for mobile layout */
+  /* Col 1: Home (Top Left) */
+  .footerLinksGrid>div:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  /* Col 2: Reports (Bottom Left) */
+  .footerLinksGrid>div:nth-child(2) {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  /* Col 3: Email + Address (Right Column, spanning full height mostly) */
+  .footerLinksGrid>div:nth-child(3) {
+    grid-column: 2;
+    grid-row: 1 / span 2;
   }
 
   .footerGridCol {
-    border-left: 2px solid #0FB8C5 !important;
-    /* Force border on mobile for consistency */
+    /* border-left: 2px solid #0FB8C5 !important; - Removed to respect inline styles (Email has no border) */
+    padding-left: 20px;
+  }
+
+  /* Ensure map and text are left aligned */
+  .footerMapContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
@@ -5573,11 +6470,10 @@
 .ch4OptionAWrapper {
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, #FFEF3D 0%, #DCD647 20%, #C9CD33 40%, #8DA806 60%, #86A401 80%, #315900 100%);
   position: relative;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  /* overflow: hidden; Removed to allow vertical scrolling */
 }
 
 .backToScenarioBtn {
@@ -5607,12 +6503,19 @@
   flex-direction: row;
   align-items: flex-start;
   gap: 60px;
-  padding: 150px 80px 100px;
+  gap: 60px;
+  padding: 20px 0 0 0;
+  /* Reduced from 135px to fix header gap */
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: none;
   -ms-overflow-style: none;
   height: 100%;
+  transform: scale(0.85);
+  /* Scale down content */
+  /* transform-origin: top left; */
+  width: 118%;
+  /* Compensate for scale (100/0.85 ≈ 117.6%) */
 }
 
 .ch4ScrollContainer::-webkit-scrollbar {
@@ -5623,7 +6526,9 @@
 .ch4Section1 {
   min-width: 400px;
   position: relative;
-  padding-top: 100px;
+  padding-top: 0;
+  margin-left: 80px;
+  /* Add margin to first element instead of container padding */
 }
 
 .ch4BalloonDecor {
@@ -6038,4 +6943,202 @@
   height: auto;
   pointer-events: none;
   z-index: 0;
+}
+
+/* =========================================
+   DOWNLOAD SECTION DECORATIONS
+   ========================================= */
+
+/* Petal 1 - Left side */
+.downloadPetal1 {
+  position: absolute;
+  /* top: 50px; */
+  bottom: 48px;
+  /* left: 50px; */
+  right: 120px;
+  width: 20px;
+  height: auto;
+  pointer-events: none;
+}
+
+/* Petal 2 - Left side lower */
+.downloadPetal2 {
+  position: absolute;
+  /* top: 200px; */
+  bottom: -10px;
+  /* left: 100px; */
+  right: 155px;
+  width: 20px;
+  height: auto;
+  pointer-events: none;
+}
+
+/* Petal 3 - Right side */
+.downloadPetal3 {
+  position: absolute;
+  /* top: 80px; */
+  bottom: -50px;
+  /* left: auto; */
+  right: 85px;
+  width: 20px;
+  height: auto;
+  pointer-events: none;
+}
+
+/* Ball 1 - Left side */
+.downloadBall1 {
+  position: absolute;
+  top: 118px;
+  bottom: auto;
+  /* left: 30px; */
+  right: 125px;
+  width: 20px;
+  height: auto;
+  pointer-events: none;
+}
+
+/* Ball 2 - Right side */
+.downloadBall2 {
+  position: absolute;
+  top: 178px;
+  bottom: auto;
+  left: auto;
+  right: 150px;
+  width: 20px;
+  height: auto;
+  pointer-events: none;
+}
+
+/* Decorative Sticks */
+.downloadStick1 {
+  position: absolute;
+  top: 80px;
+  left: 80px;
+  width: 60px;
+  height: auto;
+  pointer-events: none;
+  z-index: 5;
+  transform: rotate(-30deg);
+}
+
+.downloadStick2 {
+  position: absolute;
+  top: 200px;
+  left: 40px;
+  width: 50px;
+  height: auto;
+  pointer-events: none;
+  z-index: 5;
+  transform: rotate(15deg);
+}
+
+.downloadStick3 {
+  position: absolute;
+  bottom: 120px;
+  right: 60px;
+  width: 55px;
+  height: auto;
+  pointer-events: none;
+  z-index: 5;
+  transform: rotate(-45deg);
+}
+
+.downloadStick4 {
+  position: absolute;
+  bottom: 80px;
+  right: 120px;
+  width: 45px;
+  height: auto;
+  pointer-events: none;
+  z-index: 5;
+  transform: rotate(25deg);
+}
+
+/* =========================================
+   MOBILE RESPONSIVE STYLES
+   ========================================= */
+
+/* Mobile Hero Background - Hidden on desktop */
+.mobileHeroBackground {
+  display: none;
+}
+
+/* Cultivation in Action Section - Mobile */
+@media (max-width: 768px) {
+
+  /* Show mobile hero background */
+  .mobileHeroBackground {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: 40px;
+  }
+
+  .heroBottom {
+    text-align: left;
+    padding: 0 24px 60px;
+    margin: 0 auto;
+  }
+
+  .cultivationLabel {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: 38F1FF;
+    margin-bottom: 24px;
+  }
+
+  .heroBottomTitle {
+    font-size: 32px;
+    font-weight: 300;
+    color: white;
+    line-height: 1.25;
+    margin-bottom: 24px;
+    text-align: left;
+  }
+
+  .highlight {
+    color: #4dd4d4;
+  }
+
+  .heroBottomDesc {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 32px;
+  }
+
+  .heroBottomDesc br {
+    display: none;
+  }
+
+  .heroBottomTitle br {
+    display: none;
+  }
+}
+
+/* Download Section - Mobile Specifics */
+@media (max-width: 768px) {
+  .downloadSection {
+    padding-left: 0;
+    padding-right: 0;
+    overflow: visible;
+  }
+
+  .downloadCard {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    border-radius: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .downloadBackgroundImage {
+    width: 386px !important;
+    height: 275px !important;
+    transform: rotate(0deg) !important;
+    opacity: 1 !important;
+    top: 2550px !important;
+    left: 2px !important;
+  }
 }

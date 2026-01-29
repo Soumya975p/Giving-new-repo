@@ -1,0 +1,155 @@
+.optionContentWrapper {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3000;
+    overflow: hidden;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+}
+
+.optionContentWrapper.embedded {
+    position: relative;
+    height: auto;
+    min-height: 500px;
+    z-index: 1;
+}
+
+.stickyHeader {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 30px 60px 15px;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    flex-shrink: 0;
+}
+
+.embeddedHeader {
+    padding: 10px 60px 15px 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    min-height: 40px;
+    pointer-events: none;
+    width: 100%;
+}
+
+.embeddedHeader .backButton {
+    pointer-events: auto;
+}
+
+.headerText {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: #1a4d3a;
+    margin: 0;
+    text-align: center;
+}
+
+.backButton {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    color: #1a4d3a;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0;
+    opacity: 0.8;
+}
+
+.horizontalScrollContainer {
+    width: 100%;
+    flex-grow: 1;
+    overflow-x: auto;
+    scrollbar-width: none;
+    display: flex;
+    align-items: center;
+}
+
+.scrollContent {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 50px;
+    padding: 30px 100px;
+}
+
+.contentCard {
+    flex-shrink: 0;
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.floatingText {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #20315B;
+    margin: 0;
+    padding-left: 20px;
+    border-left: 3px solid #1a4d3a;
+}
+
+.textCard {
+    background: rgba(32, 49, 91, 0.2);
+    border-radius: 20px;
+    padding: 30px;
+    color: white;
+}
+
+.cardTitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 24px;
+    margin: 0 0 10px 0;
+}
+
+.cardContent {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
+.nextChapterButton {
+    background: rgba(26, 77, 58, 0.3);
+    border: 2px solid #1a4d3a;
+    border-radius: 50px;
+    padding: 14px 28px;
+    color: #1a4d3a;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Theme specific overrides */
+.ch3theme .headerText,
+.ch3theme .backButton,
+.ch3theme .floatingText {
+    color: #1a4d3a;
+}
+
+.ch3theme .textCard {
+    background: rgba(26, 77, 58, 0.2);
+}

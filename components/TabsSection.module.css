@@ -9,72 +9,50 @@
     left: 0;
     width: 100vw;
     height: 90px;
-    display: block;
+    display: flex;
+    align-items: flex-end;
     overflow: visible;
     margin: 0;
     padding: 0;
     z-index: 100;
     pointer-events: auto;
-
-    /* PREVENT BLUE HIGHLIGHT ON DOUBLE CLICK */
     user-select: none;
     -webkit-user-select: none;
-
-    /* WIDTH CONFIGURATION */
-    --tab-scale-width: 2600px;
-    --tab-offset-x: 0px;
 }
 
 /* CLICK OVERLAY - INVISIBLE INTERACTION LAYER */
 .clickOverlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    z-index: 200;
-    /* Higher than visual tabs (active tab is ~10-100) */
-    pointer-events: none;
-    /* Let the container handle pointer events? No, children need pointer-events */
-}
-
-.clickZone {
-    flex: 1;
-    height: 100%;
-    height: 100%;
-    cursor: pointer;
-    background: transparent;
-    /* background: rgba(255, 0, 0, 0.2);  DEBUG: Uncomment to see click zones */
-    pointer-events: auto;
-    /* Enable clicks on these zones */
-    outline: none;
-    -webkit-tap-highlight-color: transparent;
+    display: none;
 }
 
 /* Individual Tab */
 .tab {
-    position: absolute;
-    top: 0;
-    left: calc(50% + var(--tab-offset-x));
-    transform: translateX(-50%);
-    width: var(--tab-scale-width);
-    min-width: 100vw;
-    height: 90px;
-    min-width: 100vw;
-    height: 90px;
+    position: relative;
+    width: calc(100vw / 5 + 20px);
+    /* Slightly wider than 1/5 to allow overlap */
+    height: 100%;
     cursor: pointer;
-    transition: transform 0.3s ease, filter 0.3s ease;
+    transition: filter 0.3s ease;
     pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -20px;
+    /* Creates overlap */
 }
 
-/* Tab Stack Order */
+/* First tab - no overlap on left */
+.tab:first-child {
+    margin-left: 0;
+}
+
+/* Z-index stacking - later tabs appear on top */
 .tab:nth-child(1) {
-    z-index: 5;
+    z-index: 1;
 }
 
 .tab:nth-child(2) {
-    z-index: 4;
+    z-index: 2;
 }
 
 .tab:nth-child(3) {
@@ -82,18 +60,18 @@
 }
 
 .tab:nth-child(4) {
-    z-index: 2;
+    z-index: 4;
 }
 
 .tab:nth-child(5) {
-    z-index: 1;
+    z-index: 5;
 }
 
 /* Images */
 .tabImage {
     width: 100%;
-    height: 125%;
-    object-fit: fill;
+    height: 100%;
+    object-fit: cover;
     display: block;
     pointer-events: auto;
 }
@@ -102,79 +80,41 @@
 .tabLabel {
     position: absolute;
     top: 55%;
+    left: 50%;
     transform: translate(-50%, -50%);
     color: white;
     font-family: 'DM Sans', sans-serif;
     font-size: 14px;
     font-weight: 500;
     white-space: nowrap;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
     z-index: 20;
     pointer-events: none;
-}
-
-/* Label Positioning */
-.tab:nth-child(1) .tabLabel {
-    left: calc(50% - 38vw);
-}
-
-.tab:nth-child(2) .tabLabel {
-    left: calc(50% - 19vw);
-}
-
-.tab:nth-child(3) .tabLabel {
-    left: 50%;
-}
-
-.tab:nth-child(4) .tabLabel {
-    left: calc(50% + 19vw);
-}
-
-.tab:nth-child(5) .tabLabel {
-    left: calc(50% + 38vw);
+    width: 100%;
+    text-align: center;
 }
 
 
-/* Interactions - HOVER ONLY FOR NON-ACTIVE */
+/* Interactions */
 .tab:not(.activeTab):hover {
-    transform: translateX(-50%) translateY(-4px);
     filter: brightness(1.1);
 }
 
-/* Active State - STATIC */
+/* Active State */
 .activeTab {
-    filter: brightness(1.15);
     z-index: 10 !important;
-    transform: translateX(-50%) !important;
-    /* Force static position */
+    /* Active tab always on top */
+    filter: brightness(1.2);
 }
-
 
 .activeTab .tabLabel {
     font-weight: 700;
-    color: black;
-}
-
-/* Custom alignment for Active Tabs (New "Open" SVGs have different dimensions) */
-.tab.activeTab .tabImage {
-    height: 95%;
-    transform: translateY(10px);
-}
-
-/* Chapter 3 Open SVG retains original 106px height, so revert/adjust for it specifically */
-.tab:nth-child(3).activeTab .tabImage {
-    height: 125%;
-    transform: translateY(0);
+    color: white;
 }
 
 
 @media (max-width: 1440px) {
     .tabsContainer {
-        height: 80px;
-        --tab-scale-width: 2800px;
-    }
-
-    .tab {
         height: 80px;
     }
 
@@ -186,31 +126,10 @@
 @media (max-width: 1024px) {
     .tabsContainer {
         height: 70px;
-        --tab-scale-width: 3000px;
-    }
-
-    .tab {
-        height: 70px;
     }
 
     .tabLabel {
         font-size: 12px;
-    }
-
-    .tab:nth-child(1) .tabLabel {
-        left: calc(50% - 40vw);
-    }
-
-    .tab:nth-child(2) .tabLabel {
-        left: calc(50% - 20vw);
-    }
-
-    .tab:nth-child(4) .tabLabel {
-        left: calc(50% + 20vw);
-    }
-
-    .tab:nth-child(5) .tabLabel {
-        left: calc(50% + 40vw);
     }
 }
 
@@ -270,7 +189,7 @@
         align-items: center;
         padding: 0 20px 0 24px;
         /* Adjusted padding */
-        gap: 12px;
+        gap: 8px;
         z-index: 2;
     }
 

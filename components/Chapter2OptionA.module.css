@@ -14,7 +14,7 @@
 .optionContentWrapper.embedded {
     position: relative;
     height: auto;
-    min-height: 500px;
+    min-height: 700px;
     z-index: 1;
 }
 
@@ -169,6 +169,10 @@
    HORIZONTAL SCROLL LAYOUT - MAIN CONTENT
    ======================================== */
 
+/* ========================================
+   HORIZONTAL SCROLL LAYOUT - MAIN CONTENT
+   ======================================== */
+
 .horizontalScrollContainer {
     width: 100%;
     flex-grow: 1;
@@ -189,10 +193,12 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    gap: 50px;
-    padding: 30px 0;
+    gap: 200px;
+    padding: 120px 100px 30px;
     min-width: max-content;
     height: 100%;
+    position: relative;
+    z-index: 9998;
 }
 
 /* Each content column in the horizontal flow */
@@ -203,6 +209,7 @@
     flex-direction: column;
     gap: 15px;
     width: 280px;
+    overflow: visible;
 }
 
 /* Staggered heights for visual interest */
@@ -222,12 +229,18 @@
 }
 
 /* Floating text above cards - with decorative left border */
-.floatingTextContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 25px;
-    /* max-width: 200px; */
+.floatingText {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 24px;
+    line-height: 1.5;
+    color: #FFFFFF;
+    margin: 0;
+    font-weight: 400;
+    padding-left: 0;
+    padding-bottom: 10px;
+    position: relative;
+    letter-spacing: -4%;
+    min-width: 450px;
 }
 
 .floatingTextLabel {
@@ -236,160 +249,45 @@
     font-size: 13px;
     line-height: 140%;
     letter-spacing: 0.1em;
-    color: #38F1FF;
     text-transform: uppercase;
+    color: #38F1FF;
+    display: block;
+    margin-bottom: 8px;
 }
 
-.floatingText {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    /* Regular */
-    font-size: 24px;
-    line-height: 1.2;
-    /* 120% */
-    letter-spacing: -0.04em;
-    /* -4% */
-    color: #20315B;
-    /* max-width: 200px; */
 
-    margin: 0;
-    padding-left: 0;
-    padding-bottom: 10px;
-    position: relative;
-    min-width: 450px;
-}
-
-/* Card specific border colors removed to match Chapter 2 styling */
-
-/* Decoration markers on the left border */
-.decoration {
-    position: absolute;
-    left: -10px;
-    top: 0;
-    width: 20px;
-    height: 20px;
-    z-index: 2;
-}
 
 .decorationImage {
     position: absolute;
-    z-index: 2;
+    z-index: 9999;
     pointer-events: none;
 }
 
-/* Chapter 1 Option A - Card 1 Multi-Decorations */
-.decor-1-0 {
-    /* Fly */
-    top: auto;
-    bottom: 70%;
-    left: -60%;
-    right: auto;
-    height: 60px;
-    width: 60px;
-}
-
-.decor-1-1 {
-    /* Tall Flower */
-    top: -2%;
-    bottom: auto;
-    left: -35%;
-    right: auto;
-    height: 500px;
+/* Card 1 Decoration */
+.contentCard:nth-child(1) .decorationImage {
+    top: -100px;
+    left: -20%;
     width: auto;
-    transform: translateY(0px);
-}
-
-.decor-1-2 {
-    /* Curved Flower */
-    /* top: ; */
-    bottom: -1%;
-    left: -65%;
-    right: auto;
-    height: 200px;
-    width: auto;
-    transform: translateY(80px);
-}
-
-/* .decor-1-3 { */
-/* New Leafy Decoration */
-/* top: 10%;
-    bottom: auto;
-    left: 20%;
-    right: auto;
-    height: 300px;
-    width: auto;
-    transform: none;
-} */
-
-/* Chapter 1 Option A - Cards 2 & 3 Decorations */
-.ch1OptionA .contentCard:nth-child(2) .decorationImage,
-.ch1OptionA .contentCard:nth-child(3) .decorationImage {
-    left: -40px;
-    top: -5%;
-    height: 500px;
-    width: auto;
-}
-
-
-
-
-
-/* Chapter 1 Option B - Card 1 Multi-Decorations */
-.decor-11-0 {
-    top: -5%;
-    bottom: auto;
-    left: -60px;
-    right: auto;
     height: 600px;
-    width: auto;
-    transform: none;
 }
 
-/* Chapter 1 Option B - Card 2 Multi-Decorations */
-.decor-12-0 {
-    top: -2%;
-    bottom: auto;
-    left: -60px;
-    right: auto;
+/* Card 2 Decoration */
+.contentCard:nth-child(2) .decorationImage {
+    top: -5%;
+    left: -10%;
+    width: auto;
+    height: 600px;
+}
+
+/* Card 3 Decoration */
+.contentCard:nth-child(3) .decorationImage {
+    top: -5%;
+    left: -10%;
+    width: auto;
     height: 500px;
-    width: auto;
-    transform: none;
-}
-
-.decor-12-1 {
-    top: 100%;
-    bottom: auto;
-    left: -36%;
-    right: auto;
-    height: 400px;
-    width: auto;
-    transform: none;
 }
 
 
-
-.flower {
-    background: #FFD700;
-    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-}
-
-.circle {
-    width: 40px;
-    height: 40px;
-    left: -20px;
-    background: conic-gradient(from 180deg at 50% 50%, #CDDC39 0deg, #CDDC39 90deg, transparent 90deg, transparent 360deg);
-    border-radius: 50%;
-    transform: rotate(-45deg);
-}
-
-.bar {
-    width: 8px;
-    height: 100px;
-    background: linear-gradient(to bottom, #CDDC39 0%, #8BC34A 100%);
-    border-radius: 4px;
-    left: -5px;
-}
 
 /* ========================================
    TEXT CARD STYLES
@@ -406,17 +304,16 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-    color: #20315B33 20%;
+    color: #1a4d3a;
     box-shadow: none;
-    min-width: 400px;
+    overflow: visible;
 }
 
 .textCard {
-    /* background: linear-gradient(135deg, #4DB6AC 0%, #00897B 100%); */
     background: #20315B33 20%;
     border-radius: 20px;
     padding: 30px;
-    box-shadow: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -425,19 +322,21 @@
 .cardTitle {
     font-family: 'DM Sans', sans-serif;
     font-size: 24px;
-    font-weight: 500;
+    font-weight: 400;
     color: #FFFFFF;
     margin: 0;
     line-height: 1.2;
+    max-width: 300px;
 }
 
 .cardContent {
     font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    color: rgba(255, 255, 255, 0.9);
+    font-size: 24px;
+    line-height: 1.2;
+    color: #FFFFFF;
     margin: 0;
     font-weight: 400;
+    max-width: 350px;
 }
 
 .infoBox {
@@ -468,7 +367,7 @@
 .statCard {
     width: 100%;
     min-height: auto;
-    background: #20315B33 20%;
+    background: #2a9d8f;
     backdrop-filter: blur(10px);
     border-radius: 12px;
     padding: 20px;
@@ -476,25 +375,20 @@
     flex-direction: column;
     align-items: flex-start;
     color: white;
-    box-shadow: none;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     margin-top: 0;
-    min-width: 350px;
 }
 
 .statLabel {
     font-family: 'DM Sans', sans-serif;
-    font-weight: 600;
-    /* SemiBold */
-    font-style: normal;
     font-size: 13px;
-    line-height: 1.4;
-    /* 140% */
-    letter-spacing: 0.1em;
-    /* 10% */
+    font-weight: 600;
+    letter-spacing: 1.5px;
     color: #38F1FF;
     text-transform: uppercase;
-
     margin-bottom: 12px;
+    font-style: semi-bold;
+    letter-spacing: 10%;
 }
 
 .statIcons {
@@ -516,32 +410,21 @@
 
 .statNumber {
     font-family: 'DM Sans', sans-serif;
-    font-weight: 500;
-    /* Medium */
-    font-style: normal;
     font-size: 24px;
-    line-height: 1.24;
-    /* 124% */
-    letter-spacing: -0.06em;
-    /* -6% */
-    color: #FFFFFF;
-
-    margin: 15px 0 8px 0;
+    font-weight: 400;
+    color: white;
+    margin: 0 0 8px 0;
+    letter-spacing: -4%;
 }
 
 .statDescription {
     font-family: 'DM Sans', sans-serif;
-    font-weight: 400;
-    /* Regular */
-    font-style: normal;
     font-size: 18px;
-    line-height: 1.4;
-    /* 140% */
-    letter-spacing: -0.02em;
-    /* -2% */
+    line-height: 1.5;
     color: #FFFFFF;
-
     margin: 0;
+    letter-spacing: -2%;
+    font-weight: 400;
 }
 
 /* ========================================
@@ -549,47 +432,24 @@
    ======================================== */
 
 .toolkitCard {
-    width: 350px;
-    height: 450px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     flex-shrink: 0;
-}
-
-.toolkitImageWrapper {
-    width: 340px;
-    height: 340px;
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: visible;
+    position: relative;
 }
 
 .toolkitImage {
-    width: 100%;
-    height: auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(6deg);
-    z-index: 1;
+    width: 350px;
+    height: 400px;
+    object-fit: contain;
+    position: relative;
+    top: 0;
+    left: 0;
 }
 
-/* .toolkitOverlay {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%) rotate(6deg);
-    width: 240px;
-    padding: 20px;
-    color: white;
-    z-index: 3;
-    text-align: left;
-} */
-
-/* .toolkitContent {
+.toolkitContent {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -601,7 +461,7 @@
     align-items: center;
     justify-content: center;
     padding: 15px;
-} */
+}
 
 .networkImage {
     width: 100%;
@@ -609,7 +469,7 @@
     object-fit: contain;
 }
 
-/* .toolkitLabel {
+.toolkitLabel {
     font-family: 'DM Sans', sans-serif;
     font-size: 9px;
     font-weight: 700;
@@ -618,7 +478,7 @@
     opacity: 0.8;
     display: block;
     margin-bottom: 6px;
-} */
+}
 
 .toolkitTitle {
     font-family: 'DM Sans', sans-serif;
@@ -627,13 +487,13 @@
     margin: 0 0 6px 0;
 }
 
-/* .toolkitDesc {
+.toolkitDesc {
     font-family: 'DM Sans', sans-serif;
     font-size: 12px;
     line-height: 1.4;
     margin: 0 0 12px 0;
     opacity: 0.9;
-} */
+}
 
 .toolkitButtons {
     display: flex;
@@ -678,17 +538,25 @@
    ======================================== */
 
 .nextChapterCard {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1000;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 150px;
-    padding-right: 20px;
+    width: 200px;
+    height: 400px;
+    align-self: center;
+    overflow: visible;
+}
+
+.nextChapterImage {
+    width: auto;
+    height: 60px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.nextChapterImage:hover {
+    transform: scale(1.05);
 }
 
 .nextChapterButton {
@@ -726,44 +594,25 @@
     display: none;
 }
 
-.ch1OptionA .scrollContent {
-    padding: 20px 0 20px 280px;
-    gap: 200px;
-    transform: translateY(-20px);
-}
-
-.ch1OptionB .scrollContent {
-    padding: 20px 0 20px 150px;
-    gap: 200px;
-    transform: translateY(-20px);
-}
-
-.nextChapterImage {
-    height: 48px;
-    /* Adjustable based on SVG size */
-    width: auto;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.nextChapterImage:hover {
-    transform: translateX(5px);
+.embedded .scrollContent {
+    padding: 20px 0px 20px 100px;
+    gap: 0;
+    width: 100%;
 }
 
 .embedded .contentCard {
     width: 399px;
+    margin-right: 200px;
+}
+
+.embedded .contentCard:nth-child(3) {
+    margin-right: 100px;
 }
 
 .embedded .toolkitCard {
-    width: 300px;
+    width: 350px;
     height: 400px;
-    /* Default offset removed, moving to specific IDs */
-}
-
-/* Specific Toolkit Offsets for 50px gap (Gap 200 - Offset 150 = 50) */
-.toolkit-4,
-.toolkit-13 {
-    transform: translateX(-210px);
+    margin-right: 10px;
 }
 
 .embedded .toolkitImage {
@@ -777,9 +626,25 @@
 }
 
 .embedded .nextChapterCard {
-    position: absolute;
-    right: 40px;
-    bottom: 40px;
-    margin: 0;
-    z-index: 50;
+    margin-left: 0;
+    margin-right: 30px;
+    z-index: 10001;
+}
+
+.endImageCard {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: -55px;
+    overflow: visible;
+    transform: translateY(50%);
+}
+
+.endImage {
+    width: auto;
+    height: 100px;
+    object-fit: contain;
+    margin-right: -25%;
+    transform: translateY(100%);
 }

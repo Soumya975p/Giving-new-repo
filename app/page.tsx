@@ -3,10 +3,23 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, ArrowLeft } from 'lucide-react'
+import { DM_Sans } from 'next/font/google'
 import styles from './page.module.css'
 import OptionContent from '../components/OptionContent'
+import chapter2StylesA from '../components/Chapter2OptionA.module.css'
+import chapter2StylesB from '../components/Chapter2OptionB.module.css'
+import chapter3StylesA from '../components/Chapter3OptionA.module.css'
+import chapter4StylesA from '../components/Chapter4OptionA.module.css'
+import chapter4StylesB from '../components/Chapter4OptionB.module.css'
 import Chapter3OptionB from '../components/Chapter3OptionB'
 import TabsSection from '../components/TabsSection'
+
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+  variable: '--font-dm-sans',
+})
 
 
 interface Chapter {
@@ -29,7 +42,7 @@ const chapters: Chapter[] = [
     contentImage: '/assets/1.png',
     gradient: 'linear-gradient(90deg, #0FB8C5 0%, #93CD4D 100%)',
     tabGradient: 'linear-gradient(135deg, #1eb59a 0%, #16a085 100%)',
-    gridImage: '/assets/c1.svg'
+    gridImage: '/assets/ch1.png'
   },
   {
     id: 2,
@@ -39,7 +52,7 @@ const chapters: Chapter[] = [
     contentImage: '/assets/2.png',
     gradient: 'linear-gradient(45deg, #D349AE 0%, #0FB8C5 50%, #1BD5E4 100%)',
     tabGradient: 'linear-gradient(135deg, #4dd4d4 0%, #3ababa 100%)',
-    gridImage: '/assets/c2.svg'
+    gridImage: '/assets/ch2.png'
   },
   {
     id: 3,
@@ -50,7 +63,7 @@ const chapters: Chapter[] = [
     // gradient: 'linear-gradient(180deg, #0FB8C5 0%, #13D9E8 100%)',
     gradient: 'radial-gradient(circle at bottom right, #FFCD86 10% , #13D9E8 )',
     tabGradient: 'linear-gradient(180deg, #0FB8C5 0%, #13D9E8 100%)',
-    gridImage: '/assets/c3.svg'
+    gridImage: '/assets/ch3.png'
   },
   {
     id: 4,
@@ -60,37 +73,37 @@ const chapters: Chapter[] = [
     contentImage: '/assets/4.png',
     gradient: 'linear-gradient(180deg, #FFEF3D 0%, #DCD647 20%, #C9CD33 40%, #8DA806 60%, #86A401 80%, #315900 100%)',
     tabGradient: 'linear-gradient(180deg, #315900 0%, #B0D313 100%)',
-    gridImage: '/assets/c4.svg'
+    gridImage: '/assets/ch4.png'
   }
 ]
 
-// Animation Variants for the "Choose Option" text
+/* Animation Variants with type fix */
+// Using explicit 'any' cast for ease to bypass current type mismatch for "cubic-bezier" string
 const ctaVariants = {
   rest: {
     opacity: 0,
     y: 10,
-    transition: { duration: 0.3, ease: "easeInOut" }
+    transition: { duration: 0.3, ease: "easeOut" as any }
   },
   hover: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.3, ease: "easeInOut" }
+    transition: { duration: 0.3, ease: "easeOut" as any }
   }
-};
+}
 
-// Animation for right arrow (Option A)
 const arrowVariants = {
   rest: { x: 0 },
   hover: {
     x: 5,
     transition: {
+      duration: 0.4,
+      ease: "easeInOut" as any,
       repeat: Infinity,
-      repeatType: "reverse" as const,
-      duration: 0.6
+      repeatType: "reverse" as const
     }
   }
-};
-
+}
 // Animation for left arrow (Option B)
 const arrowLeftVariants = {
   rest: { x: 0 },
@@ -112,7 +125,11 @@ export default function Home() {
   const [isOptionBHovered, setIsOptionBHovered] = useState(false)
   const [isCh2OptionAHovered, setIsCh2OptionAHovered] = useState(false)
   const [isCh2OptionBHovered, setIsCh2OptionBHovered] = useState(false)
+  const [isCh3OptionAHovered, setIsCh3OptionAHovered] = useState(false)
   const [isCh3OptionBHovered, setIsCh3OptionBHovered] = useState(false)
+  const [isCh4OptionAHovered, setIsCh4OptionAHovered] = useState(false)
+  const [isCh4OptionBHovered, setIsCh4OptionBHovered] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const chapterRefs = useRef<(HTMLDivElement | null)[]>([])
   const activeChapterRef = useRef(activeChapter) // To track active chapter without dependency issues
   const chaptersSectionRef = useRef<HTMLDivElement>(null)
@@ -126,6 +143,9 @@ export default function Home() {
   // State for Custom Grid Cursor
   const [gridCursorPos, setGridCursorPos] = useState({ x: 0, y: 0 });
   const [showGridCursor, setShowGridCursor] = useState(false);
+
+  // State for scroll-triggered sticky chapters section
+  const [isChaptersSectionSticky, setIsChaptersSectionSticky] = useState(false);
 
   useEffect(() => {
     activeChapterRef.current = activeChapter
@@ -182,10 +202,38 @@ export default function Home() {
   }, [activeChapter])
 
 
+  // Intersection Observer for scroll-triggered sticky chapters section
+  useEffect(() => {
+    const chaptersSection = chaptersSectionRef.current;
+    if (!chaptersSection) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          // When 10% of section is visible, trigger sticky
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.4) {
+            setIsChaptersSectionSticky(true);
+            // Scroll the section into full view
+            chaptersSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      },
+      {
+        threshold: 0.4, // Trigger when 40% visible
+        rootMargin: '0px'
+      }
+    );
+
+    observer.observe(chaptersSection);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
 
   return (
-    <div className={styles.pageWrapper}>
+    <div className={`${styles.pageWrapper} ${dmSans.className}`}>
       {/* Hero Section */}
       <section className={styles.heroSection}>
         {/* Header */}
@@ -194,10 +242,44 @@ export default function Home() {
             <img src="/assets/logo_name.svg" alt="Giving Together Foundation" className={styles.logoImage} />
           </div>
           <div className={styles.headerRight}>
-            <span className={styles.fieldGuide}>◆ FUNDRAISING FIELD GUIDE</span>
-            <span className={styles.menuDots}>⋮</span>
+            <img src="/assets/menu.svg" alt="Menu" className={styles.menuSvg} onClick={() => setIsMenuOpen(!isMenuOpen)} />
           </div>
+
         </header>
+
+        {/* Menu Overlay */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              className={styles.menuOverlay}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <motion.div
+                className={styles.menuContent}
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -20, opacity: 0 }}
+                transition={{ duration: 0.3, delay: 0.1 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className={styles.menuHeader}>
+                  <h3 className={styles.menuTitle}>Menu</h3>
+                  <button className={styles.closeButton} onClick={() => setIsMenuOpen(false)}>✕</button>
+                </div>
+                <nav className={styles.menuNav}>
+                  <a href="#chapters" className={styles.menuLink} onClick={() => setIsMenuOpen(false)}>Chapters</a>
+                  <a href="#toolkits" className={styles.menuLink} onClick={() => setIsMenuOpen(false)}>Toolkits</a>
+                  <a href="#about" className={styles.menuLink} onClick={() => setIsMenuOpen(false)}>About</a>
+                  <a href="#contact" className={styles.menuLink} onClick={() => setIsMenuOpen(false)}>Contact</a>
+                </nav>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Hero Content */}
         <div className={styles.heroContent}>
@@ -206,9 +288,18 @@ export default function Home() {
               <span className={styles.titleLine1}>Donor</span>
               <span className={styles.titleLine2}>Gardening</span>
             </h1>
+            <div className={styles.scrollIndicator}>
+              <div className={styles.scrollDot}></div>
+              <span>Scroll down</span>
+            </div>
           </div>
 
-
+          {/* Mobile Background Image - Moved inside heroContent for ordering */}
+          <img
+            src="/assets/mobile_background_hero.svg"
+            alt=""
+            className={styles.mobileHeroBackground}
+          />
 
           <div className={styles.heroRight}>
             <h2 className={styles.heroSubtitle}>From Donation to Relationship</h2>
@@ -219,14 +310,16 @@ export default function Home() {
               Drawing on insights from the UDARTA:EG study of 300+ <span className={styles.emphasis}>Indian nonprofits</span>, this guide offers toolkits to shift donor engagement from reactive to retention-focused.
             </p>
             <button className={styles.startButton}>
-              <span>Start Journey</span>
-              <span className={styles.buttonArrow}>→</span>
+              <img src="/assets/diamond-start.svg" alt="" className={styles.buttonDiamond} />
+              <span>Start journey</span>
+              <img src="/assets/diamond-start.svg" alt="" className={styles.buttonDiamond} />
             </button>
           </div>
         </div>
 
+        {/* Desktop Hero Background - Restored */}
         <img
-          src="/assets/hero background.svg"
+          src="/assets/hero.png"
           alt="Donor Gardening Tree"
           className={styles.heroBackgroundSvg}
         />
@@ -251,7 +344,7 @@ export default function Home() {
           </p>
 
           <div className={styles.chapterSelectionWrapper}>
-            <div className={styles.heroDividerLine}></div>
+            {/* <div className={styles.heroDividerLine}></div> */}
             <p className={styles.selectChapter}>Select a chapter to begin</p>
 
             <div
@@ -307,7 +400,7 @@ export default function Home() {
         </div>
       </section >
 
-      <section className={styles.chaptersSection} ref={chaptersSectionRef}>
+      <section className={`${styles.chaptersSection} ${isChaptersSectionSticky ? styles.chaptersSectionSticky : ''}`} ref={chaptersSectionRef}>
         {/* Fixed Top Navigation */}
         <div className={styles.topNavigation}>
           <div className={styles.navLeft}>
@@ -350,132 +443,164 @@ export default function Home() {
 
                       {/* Chapter 1 Specific Layout */}
                       {chapter.id === 1 ? (
-                        selectedOption === 'A' ? (
-                          <OptionContent
-                            chapterTitle="CHAPTER I: NETWORK EXPANSION"
-                            chapterSubtitle="Before seeking support, understand who's already in your circle. This chapter helps you map your existing network so fundraising starts with relationships, not cold outreach."
-                            backgroundColor="linear-gradient(180deg, #63C76B 0%, #17BABD 100%)"
-                            onBack={() => setSelectedOption(null)}
-                            onNext={handleNextChapter}
+                        <div className={styles.chapter1Wrapper}>
+                          <div className={styles.chapter1Header}>
+                            {!selectedOption && (
+                              <>
+                                <h4 className={styles.ch1Label}>CHAPTER I: NETWORK EXPANSION</h4>
+                                <h1 className={styles.ch1Title}>
+                                  Before seeking support, understand who's already in your circle.<br />
+                                  This chapter helps you map your existing network so fundraising starts<br />
+                                  with relationships, not cold outreach.
+                                </h1>
+                                <p className={styles.ch1Instruction}>Select one of the two options to reveal the right way</p>
+                              </>
+                            )}
+                          </div>
 
-                            contentCards={[
-                              {
-                                id: 1,
-                                type: 'text',
-                                floatingText: "You may reach many people, but responses are scattered. Most donations are small, one-time, and disconnected.",
-                                decorationType: 'flower',
-                                label: 'DID YOU KNOW?',
-                                title: 'It costs 10x more',
-                                content: 'To acquire a new donor than continuing a relationship with someone who already believes in your work.'
-                              },
-                              {
-                                id: 2,
-                                type: 'text',
-                                floatingText: "Instead, if you tapped into your existing network you will reach the people that care about the cause. The appeal feels more personal, more trusted.",
-                                decorationType: 'circle',
-                                label: '',
-                                title: '',
-                                content: '',
-                                // Nested stat box below the floating text
-                                showStatBelow: true,
-                                statLabel: 'UDARTA:EG STUDY SHOWS',
-                                stat: '60% of nonprofits',
-                                statDescription: 'find outreach through existing networks to be their most effective way of reaching new supporters'
-                              },
-                              {
-                                id: 3,
-                                type: 'text',
-                                floatingText: "We've make a template to simplify mapping your network",
-                                decorationType: 'bar',
-                                label: '',
-                                title: '',
-                                content: ''
-                              },
-                              {
-                                id: 4,
-                                type: 'toolkit',
-                                floatingText: "",
-                                decorationType: undefined,
-                                toolkitTitle: 'Network Mapping',
-                                toolkitDescription: 'A simple way to identify and activate people already connected to your cause',
-                                toolkitImage: '/assets/toolkit_card.svg'
-                              }
-                            ]}
-                          />
-                        ) : selectedOption === 'B' ? (
-                          <OptionContent
-                            chapterTitle="CHAPTER I: NETWORK EXPANSION"
-                            chapterSubtitle="Before seeking support, understand who's already in your circle. This chapter helps you map your existing network so fundraising starts with relationships, not cold outreach."
-                            backgroundColor="linear-gradient(180deg, #63C76B 0%, #17BABD 100%)"
-                            onBack={() => setSelectedOption(null)}
-                            onNext={handleNextChapter}
-
-                            contentCards={[
-                              {
-                                id: 1,
-                                type: 'text',
-                                floatingText: "Yes! You will reach the people that care about the cause. The appeal feels more personal, more trusted.",
-                                decorationType: 'flower',
-                                label: 'UDARTA:EG STUDY SHOWS',
-                                title: '60% of nonprofits',
-                                content: 'find outreach through existing networks to be their most effective way of reaching new supporters'
-                              },
-                              {
-                                id: 2,
-                                type: 'text',
-                                floatingText: "We've make a template to simplify mapping your network",
-                                decorationType: 'bar',
-                                label: '',
-                                title: '',
-                                content: ''
-                              },
-                              {
-                                id: 3,
-                                type: 'toolkit',
-                                floatingText: "",
-                                decorationType: undefined,
-                                toolkitTitle: 'Network Mapping',
-                                toolkitDescription: 'A simple way to identify and activate people already connected to your cause',
-                                toolkitImage: '/assets/toolkit_card.svg'
-                              }
-                            ]}
-                          />
-                        ) : (
-                          <div className={styles.chapter1Wrapper}>
-                            <div className={styles.chapter1Header}>
-                              <h4 className={styles.ch1Label}>CHAPTER I: NETWORK EXPANSION</h4>
-                              <h1 className={styles.ch1Title}>
-                                Before seeking support, understand who's already in your circle.<br />
-                                This chapter helps you map your existing network so fundraising starts<br />
-                                with relationships, not cold outreach.
-                              </h1>
-                              <p className={styles.ch1Instruction}>Select one of the two options to reveal the right way</p>
+                          {selectedOption === 'A' ? (
+                            <div style={{ flex: 1, width: '100%', position: 'relative' }}>
+                              <OptionContent
+                                embedded={true}
+                                chapterTitle="CHAPTER I: NETWORK EXPANSION"
+                                chapterSubtitle="Before seeking support, understand who's already in your circle. This chapter helps you map your existing network so fundraising starts with relationships, not cold outreach."
+                                backgroundColor="transparent"
+                                onBack={() => setSelectedOption(null)}
+                                onNext={handleNextChapter}
+                                optionId="ch1OptionA"
+                                contentCards={[
+                                  {
+                                    id: 1,
+                                    type: 'text',
+                                    floatingTextLabel: "UDARTA:EG STUDY SHOWS",
+                                    floatingText: "You may reach many people, but responses are scattered. Most donations are small, one-time, and disconnected.",
+                                    decorationImages: [
+                                      '/assets/chapter_1/fly_left_optionA.svg',
+                                      '/assets/chapter_1/flower_left_optionA.svg',
+                                      '/assets/chapter_1/hover_left_flower_leftmost_ch1.svg'
+                                    ],
+                                    label: '',
+                                    title: '',
+                                    content: '',
+                                    showStatBelow: true,
+                                    statLabel: 'DID YOU KNOW?',
+                                    stat: 'It costs 10x more',
+                                    statDescription: 'To acquire a new donor than continuing a relationship with someone who already believes in your work.',
+                                    showStatIcons: false,
+                                    statBoxTransparent: true
+                                  },
+                                  {
+                                    id: 2,
+                                    type: 'text',
+                                    floatingText: "Instead, if you tapped into your existing network you will reach the people that care about the cause. The appeal feels more personal, more trusted.",
+                                    decorationImage: '/assets/chapter_2_column2_1.svg',
+                                    label: '',
+                                    title: '',
+                                    content: '',
+                                    // Nested stat box below the floating text
+                                    showStatBelow: true,
+                                    statLabel: 'UDARTA:EG STUDY SHOWS',
+                                    stat: '60% of nonprofits',
+                                    statDescription: 'find outreach through existing networks to be their most effective way of reaching new supporters'
+                                  },
+                                  {
+                                    id: 3,
+                                    type: 'text',
+                                    floatingText: (
+                                      <>
+                                        We've make a template<br />
+                                        to simplify mapping your<br />
+                                        network
+                                      </>
+                                    ),
+                                    decorationImage: '/assets/chapter_2_column3_1.svg',
+                                    label: '',
+                                    title: '',
+                                    content: ''
+                                  },
+                                  {
+                                    id: 4,
+                                    type: 'toolkit',
+                                    floatingText: "",
+                                    decorationType: undefined,
+                                    toolkitTitle: 'Network Mapping',
+                                    toolkitDescription: 'A simple way to identify and activate people already connected to your cause',
+                                    toolkitImage: '/assets/toolkit1.svg'
+                                  }
+                                ]}
+                              />
                             </div>
+                          ) : selectedOption === 'B' ? (
+                            <div style={{ flex: 1, width: '100%', position: 'relative' }}>
+                              <OptionContent
+                                embedded={true}
+                                chapterTitle="CHAPTER I: NETWORK EXPANSION"
+                                chapterSubtitle="Before seeking support, understand who's already in your circle. This chapter helps you map your existing network so fundraising starts with relationships, not cold outreach."
+                                backgroundColor="transparent"
+                                onBack={() => setSelectedOption(null)}
+                                onNext={handleNextChapter}
+                                optionId="ch1OptionB"
+                                contentCards={[
+                                  {
+                                    id: 11,
+                                    type: 'text',
+                                    // floatingTextLabel: "UDARTA:EG STUDY SHOWS",
+                                    floatingText: (
+                                      <>
+                                        Yes!<br />
+                                        You will reach the people that care<br />
+                                        about the cause. The appeal feels<br />
+                                        more personal, more trusted.
+                                      </>
+                                    ),
+                                    decorationImages: ['/assets/chapter_1_column1_2.svg'],
+                                    label: '',
+                                    title: '',
+                                    content: '',
+                                    showStatBelow: true,
+                                    statLabel: 'UDARTA:EG STUDY SHOWS',
+                                    stat: '60% of nonprofits',
+                                    statDescription: 'find outreach through existing networks to be their most effective way of reaching new supporters'
+                                  },
+                                  {
+                                    id: 12,
+                                    type: 'text',
+                                    floatingText: (
+                                      <>
+                                        We've make a template<br />
+                                        to simplify mapping your<br />
+                                        network
+                                      </>
+                                    ),
+                                    decorationImages: [
+                                      '/assets/chapter_2_column3_1.svg',
+                                      '/assets/chapter_1_column2_1.svg'
+                                    ],
+                                    label: '',
+                                    title: '',
+                                    content: ''
+                                  },
+                                  {
+                                    id: 13,
+                                    type: 'toolkit',
+                                    floatingText: "",
+                                    decorationType: undefined,
+                                    toolkitTitle: 'Network Mapping',
+                                    toolkitDescription: 'A simple way to identify and activate people already connected to your cause',
+                                    toolkitImage: '/assets/toolkit1.svg'
 
-
+                                  }
+                                ]}
+                              />
+                            </div>
+                          ) : (
                             <div className={styles.scenarioContainer}>
                               {/* Option A */}
                               <motion.div
                                 className={styles.optionColumnLeft}
-                                initial="rest"
-                                whileHover="hover"
-                                animate="rest"
+                                onMouseEnter={() => setIsOptionAHovered(true)}
+                                onMouseLeave={() => setIsOptionAHovered(false)}
                                 onClick={() => setSelectedOption('A')}
-                                onMouseEnter={(e) => {
-                                  setIsOptionAHovered(true);
-                                  const parent = e.currentTarget.parentElement;
-                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) {
-                                    card.style.transformOrigin = 'bottom left';
-                                    card.style.transform = 'rotate(-15deg)';
-                                  }
-                                }}
-                                onMouseLeave={(e) => {
-                                  setIsOptionAHovered(false);
-                                  const parent = e.currentTarget.parentElement;
-                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) card.style.transform = 'rotate(0deg)';
-                                }}
                                 style={{ cursor: 'pointer' }}
                               >
                                 <span className={styles.optionLabel}>OPTION A</span>
@@ -517,32 +642,42 @@ export default function Home() {
                                 />
                               </div>
 
-                              {/* Hover Decorations for Option A */}
+                              {/* Option A Decorations (Visible on Hover) */}
                               <AnimatePresence>
                                 {isOptionAHovered && (
                                   <>
                                     <motion.img
-                                      key="flower-leftmost"
-                                      src="/assets/chapter_1/hover_left_flower_leftmost_ch1.svg"
+                                      key="flower-left-main"
+                                      // src="/assets/chapter_1/flower_left_optionA.svg"
                                       alt=""
-                                      className={styles.hoverFlowerLeftmost}
-                                      initial={{ opacity: 0, y: 20 }}
-                                      animate={{ opacity: 1, y: 0 }}
-                                      exit={{ opacity: 0, y: 20 }}
+                                      className={styles.hoverFlowerLeftMain}
+                                      initial={{ opacity: 0, scale: 0.8 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      exit={{ opacity: 0, scale: 0.8 }}
                                       transition={{ duration: 0.4 }}
                                     />
                                     <motion.img
-                                      key="flower-middle"
+                                      key="left-flower"
+                                      src="/assets/chapter_1/hover_left_flower_leftmost_ch1.svg"
+                                      alt=""
+                                      className={styles.hoverFlowerLeftmost}
+                                      initial={{ opacity: 0, x: -50 }}
+                                      animate={{ opacity: 1, x: 0 }}
+                                      exit={{ opacity: 0, x: -50 }}
+                                      transition={{ duration: 0.5 }}
+                                    />
+                                    <motion.img
+                                      key="middle-flower"
                                       src="/assets/chapter_1/hover_left_flower_middle_ch1.svg"
                                       alt=""
                                       className={styles.hoverFlowerMiddle}
-                                      initial={{ opacity: 0, y: 15 }}
-                                      animate={{ opacity: 1, y: 0 }}
-                                      exit={{ opacity: 0, y: 15 }}
-                                      transition={{ duration: 0.4, delay: 0.1 }}
+                                      initial={{ opacity: 0, scale: 0.8 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      exit={{ opacity: 0, scale: 0.8 }}
+                                      transition={{ duration: 0.3, delay: 0.1 }}
                                     />
                                     <motion.img
-                                      key="flower-rightmost"
+                                      key="rightmost-flower"
                                       src="/assets/chapter_1/hover_left_flower_rightmost_ch1.svg"
                                       alt=""
                                       className={styles.hoverFlowerRightmost}
@@ -578,25 +713,9 @@ export default function Home() {
                               {/* Option B */}
                               <motion.div
                                 className={styles.optionColumnRight}
-                                initial="rest"
-                                whileHover="hover"
-                                animate="rest"
+                                onMouseEnter={() => setIsOptionBHovered(true)}
+                                onMouseLeave={() => setIsOptionBHovered(false)}
                                 onClick={() => setSelectedOption('B')}
-                                onMouseEnter={(e) => {
-                                  setIsOptionBHovered(true);
-                                  const parent = e.currentTarget.parentElement;
-                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) {
-                                    card.style.transformOrigin = 'bottom right';
-                                    card.style.transform = 'rotate(15deg)';
-                                  }
-                                }}
-                                onMouseLeave={(e) => {
-                                  setIsOptionBHovered(false);
-                                  const parent = e.currentTarget.parentElement;
-                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) card.style.transform = 'rotate(0deg)';
-                                }}
                                 style={{ cursor: 'pointer' }}
                               >
                                 <span className={styles.optionLabel}>OPTION B</span>
@@ -631,7 +750,7 @@ export default function Home() {
                                 </motion.div>
                               </motion.div>
 
-                              {/* Option B Hover Decorations */}
+                              {/* Option B Decorations (Visible on Hover) */}
                               <AnimatePresence>
                                 {isOptionBHovered && (
                                   <>
@@ -669,127 +788,175 @@ export default function Home() {
                                 )}
                               </AnimatePresence>
                             </div>
-
-                            {/* Tabs Section Removed from here */}
-                          </div>
-                        )
+                          )}
+                        </div>
                       ) : chapter.id === 2 ? (
                         // Chapter 2 Specific Layout
-                        selectedOption === 'A' ? (
-                          <OptionContent
-                            chapterTitle="CHAPTER II: FIRST DONATION"
-                            chapterSubtitle="A first donation is more than a transaction. This chapter focuses on how timely acknowledgment and simple follow-up can turn a first gift into the beginning of a relationship."
-                            backgroundColor="linear-gradient(225deg, #1BD5E4, #0FB8C5, #D349AE)"
-                            onBack={() => setSelectedOption(null)}
-                            onNext={handleNextChapter}
-                            contentCards={[
-                              {
-                                id: 1,
-                                type: 'text',
-                                floatingText: "You thank Nidhi within two days. She receives an 80G receipt and a clear message of appreciation.",
-                                decorationType: 'circle',
-                                label: '',
-                                title: '',
-                                content: '',
-                                // Nested stat box
-                                showStatBelow: true,
-                                statLabel: 'UDARTA:EG STUDY SHOWS',
-                                stat: 'Acknowledging donations leads to a 20.3 percentage point increase in funds raised from everyday givers.',
-                                statDescription: '',
-                                statBoxTransparent: true,
-                                showStatIcons: false
-                              },
-                              {
-                                id: 2,
-                                type: 'text',
-                                floatingText: (
-                                  <>
-                                    You didn&apos;t just raise funds.<br />
-                                    You began a relationship!
-                                    <br /><br />
-                                    We created a database template<br />
-                                    to help nonprofits to record,<br />
-                                    remember, and build continuity<br />
-                                    from the first gift.
-                                  </>
-                                ),
-                                decorationType: 'bar',
-                                label: '',
-                                title: '',
-                                content: '',
-                                transparentBackground: true
-                              },
-                              {
-                                id: 3,
-                                type: 'toolkit',
-                                floatingText: "",
-                                decorationType: undefined,
-                                toolkitLabel: 'TOOLKIT #1',
-                                toolkitTitle: 'Donor Database',
-                                toolkitDescription: 'How to record, remember, and build continuity from the first gift.',
-                                toolkitImage: '/assets/toolkit_card.svg',
-                                toolkitInnerImage: '/assets/chapter_2_toolkit.svg'
-                              }
-                            ]}
-                          />
-                        ) : selectedOption === 'B' ? (
-                          <OptionContent
-                            chapterTitle="CHAPTER II: FIRST DONATION"
-                            chapterSubtitle="A first donation is more than a transaction. This chapter focuses on how timely acknowledgment and simple follow-up can turn a first gift into the beginning of a relationship."
-                            backgroundColor="linear-gradient(225deg, #1BD5E4, #0FB8C5, #D349AE)"
-                            onBack={() => setSelectedOption(null)}
-                            onNext={handleNextChapter}
-                            flowerDecorImage="/assets/chapter_2_option_A.svg"
-                            firstCardOffset="140px"
-                            contentCards={[
-                              {
-                                id: 1,
-                                type: 'text',
-                                floatingText: "You accepted the donation but didn't follow up.",
-                                decorationType: 'circle',
-                                label: '',
-                                title: '',
-                                content: 'Without engagement, the donor relationship ends here.'
-                              }
-                            ]}
-                          />
-                        ) : (
-                          // Chapter 2 Default View
-                          <div className={styles.chapter1Wrapper} style={{ justifyContent: 'flex-start' }}>
-                            <div className={styles.chapter1Header} style={{ marginBottom: '40px' }}>
-                              <h4 className={styles.ch1Label}>CHAPTER II: FIRST DONATION</h4>
-                              <h1 className={styles.ch1Title}>
-                                A first donation is more than a transaction. This chapter focuses on<br />
-                                how timely acknowledgment and simple follow-up can turn a first gift<br />
-                                into the beginning of a relationship.
-                              </h1>
-                              <p className={styles.ch1Instruction}>Select one of the two options to reveal the right way</p>
+                        <div className={styles.chapter1Wrapper}>
+                          <div className={styles.chapter1Header}>
+                            {!selectedOption && (
+                              <>
+                                <h4 className={styles.ch1Label}>CHAPTER II: FIRST DONATION</h4>
+                                <h1 className={styles.ch1Title}>
+                                  A first donation is more than a transaction. This chapter focuses on<br />
+                                  how timely acknowledgment and simple follow-up can turn a first gift<br />
+                                  into the beginning of a relationship.
+                                </h1>
+                                <p className={styles.ch1Instruction}>Select one of the two options to reveal the right way</p>
+                              </>
+                            )}
+                          </div>
+
+                          {selectedOption === 'A' ? (
+                            <div style={{ flex: 1, width: '100%', position: 'relative' }}>
+                              <OptionContent
+                                embedded={true}
+                                chapterTitle="CHAPTER II: FIRST DONATION"
+                                chapterSubtitle="A first donation is more than a transaction. This chapter focuses on how timely acknowledgment and simple follow-up can turn a first gift into the beginning of a relationship."
+                                backgroundColor="transparent"
+                                onBack={() => setSelectedOption(null)}
+                                onNext={handleNextChapter}
+                                customStyles={chapter2StylesA}
+                                contentCards={[
+                                  {
+                                    id: 1,
+                                    type: 'text',
+                                    floatingTextLabel: "UDARTA:EG STUDY SHOWS",
+                                    floatingText: "When donors aren't acknowledged, potential ends early.",
+                                    decorationImage: '/assets/chapter_2_column1_1.svg',
+                                    label: '',
+                                    title: '',
+                                    content: '',
+                                    showStatBelow: true,
+                                    statLabel: 'DID YOU KNOW?',
+                                    stat: 'Only 20%',
+                                    statDescription: 'of first-time donors ever give again, while nearly 60% of repeat donors continue after their second gift.',
+                                    statBoxTransparent: true,
+                                    // statIconImage: '/assets/chapter_2_stat.svg'
+                                  },
+                                  {
+                                    id: 2,
+                                    type: 'text',
+                                    floatingText: "Instead, you thank Nidhi within two days. She receives an 80G receipt and a clear message of appreciation.",
+                                    decorationImage: '/assets/chapter_2_column2_1.svg',
+                                    label: '',
+                                    title: '',
+                                    content: '',
+                                    showStatBelow: true,
+                                    statLabel: 'UDARTA:EG STUDY SHOWS',
+                                    stat: '',
+                                    statDescription: 'Acknowledging donations leads to a 20.3 percentage point increase in funds raised from everyday givers.',
+                                    showStatIcons: false
+                                  },
+                                  {
+                                    id: 3,
+                                    type: 'text',
+                                    floatingText: "",
+                                    decorationImage: '/assets/chapter_2_column3_1.svg',
+                                    label: '',
+                                    title: "You didn't just raise funds.\nYou began a relationship!",
+                                    content: 'We created a database template to help nonprofits to record, remember, and build continuity from the first gift.',
+                                    transparentBackground: true
+                                  },
+                                  {
+                                    id: 4,
+                                    type: 'toolkit',
+                                    toolkitLabel: 'TOOLKIT #1',
+                                    toolkitTitle: 'Donor Database',
+                                    toolkitDescription: 'How to record, remember, and build continuity from the first gift.',
+                                    toolkitImage: '/assets/chapter2_option1_toolkit.svg'
+                                  }
+                                ]}
+                                endImage="/assets/ch2.png"
+                              />
                             </div>
-
-
-                            <div className={styles.scenarioContainer}>
+                          ) : selectedOption === 'B' ? (
+                            <div style={{ flex: 1, width: '100%', position: 'relative' }}>
+                              <OptionContent
+                                embedded={true}
+                                chapterTitle="CHAPTER II: FIRST DONATION"
+                                chapterSubtitle="A first donation is more than a transaction. This chapter focuses on how timely acknowledgment and simple follow-up can turn a first gift into the beginning of a relationship."
+                                backgroundColor="transparent"
+                                onBack={() => setSelectedOption(null)}
+                                onNext={handleNextChapter}
+                                customStyles={chapter2StylesB}
+                                flowerDecorImage="/assets/chapter_2_option_A.svg"
+                                flowerDecorImage="/assets/chapter_2_option_A.svg"
+                                contentCards={[
+                                  {
+                                    id: 1,
+                                    type: 'text',
+                                    // floatingTextLabel: "UDARTA:EG STUDY SHOWS",
+                                    floatingText: (
+                                      <>
+                                        You thank Nidhi within two days.<br />
+                                        She receives an 80G receipt and a<br />
+                                        clear message of appreciation.
+                                      </>
+                                    ),
+                                    decorationType: 'circle',
+                                    decorationImage: '/assets/chapter_2_option2.svg',
+                                    label: '',
+                                    title: '',
+                                    content: '',
+                                    showStatBelow: true,
+                                    showStatIcons: false,
+                                    statLabel: 'UDARTA:EG STUDY SHOWS',
+                                    stat: '',
+                                    statDescription: (
+                                      <>
+                                        Acknowledging donations leads to<br />
+                                        a 20.3 percentage point increase<br />
+                                        in funds raised from everyday<br />
+                                        givers.
+                                      </>
+                                    )
+                                  },
+                                  {
+                                    id: 2,
+                                    type: 'text',
+                                    floatingText: "",
+                                    decorationImages: [
+                                      '/assets/chapter_2_column3_1.svg',
+                                      '/assets/ch2_fly.svg'
+                                    ],
+                                    label: '',
+                                    title: (
+                                      <>
+                                        You didn't just raise funds.<br />
+                                        You began a relationship!
+                                      </>
+                                    ),
+                                    content: (
+                                      <>
+                                        We created a database template<br />
+                                        to help nonprofits to record,<br />
+                                        remember, and build continuity<br />
+                                        from the first gift.
+                                      </>
+                                    ),
+                                    transparentBackground: true
+                                  },
+                                  {
+                                    id: 3,
+                                    type: 'toolkit',
+                                    toolkitLabel: 'TOOLKIT #1',
+                                    toolkitTitle: 'Donor Database',
+                                    toolkitDescription: 'How to record, remember, and build continuity from the first gift.',
+                                    toolkitImage: '/assets/toolkit_22.svg'
+                                  }
+                                ]}
+                              />
+                            </div>
+                          ) : (
+                            // Chapter 2 Default View - just render scenario container, header is above
+                            <div className={styles.scenarioContainer} style={{ marginTop: '10px' }}>
                               {/* Option A */}
                               <motion.div
                                 className={styles.optionColumnLeft}
-                                initial="rest"
-                                whileHover="hover"
-                                animate="rest"
+                                initial="hover"
+                                animate="hover"
                                 onClick={() => setSelectedOption('A')}
-                                onMouseEnter={(e) => {
-                                  setIsCh2OptionAHovered(true);
-                                  const parent = e.currentTarget.parentElement;
-                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) {
-                                    card.style.transformOrigin = 'bottom left';
-                                    card.style.transform = 'rotate(-15deg)';
-                                  }
-                                }}
-                                onMouseLeave={(e) => {
-                                  setIsCh2OptionAHovered(false);
-                                  const parent = e.currentTarget.parentElement;
-                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) card.style.transform = 'rotate(0deg)';
-                                }}
                                 style={{ cursor: 'pointer' }}
                               >
                                 <span className={styles.optionLabel} style={{ color: '#ffffff' }}>OPTION A</span>
@@ -835,25 +1002,9 @@ export default function Home() {
                               {/* Option B */}
                               <motion.div
                                 className={styles.optionColumnRight}
-                                initial="rest"
-                                whileHover="hover"
-                                animate="rest"
+                                initial="hover"
+                                animate="hover"
                                 onClick={() => setSelectedOption('B')}
-                                onMouseEnter={(e) => {
-                                  setIsCh2OptionBHovered(true);
-                                  const parent = e.currentTarget.parentElement;
-                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) {
-                                    card.style.transformOrigin = 'bottom right';
-                                    card.style.transform = 'rotate(15deg)';
-                                  }
-                                }}
-                                onMouseLeave={(e) => {
-                                  setIsCh2OptionBHovered(false);
-                                  const parent = e.currentTarget.parentElement;
-                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) card.style.transform = 'rotate(0deg)';
-                                }}
                                 style={{ cursor: 'pointer' }}
                               >
                                 <span className={styles.optionLabel} style={{ color: '#ffffff' }}>OPTION B</span>
@@ -903,7 +1054,7 @@ export default function Home() {
                                     />
                                     <motion.img
                                       key="ch2-fly"
-                                      src="/assets/chapter2/hover_fly_left.svg"
+                                      src="/assets/chapter2/fly_left_optionA_ch2.svg"
                                       alt=""
                                       className={styles.ch2HoverFly}
                                       initial={{ opacity: 0, x: -20 }}
@@ -913,63 +1064,63 @@ export default function Home() {
                                     />
                                     <motion.img
                                       key="ch2-empty-bubble"
-                                      src="/assets/chapter2/empty_bubble.svg"
+                                      src="/assets/chapter2/hover_left_bubble_empty_ch2.svg"
                                       alt=""
                                       className={styles.ch2HoverEmptyBubble}
-                                      initial={{ opacity: 0, scale: 0.8 }}
-                                      animate={{ opacity: 1, scale: 1 }}
-                                      exit={{ opacity: 0, scale: 0.8 }}
-                                      transition={{ duration: 0.3, delay: 0.15 }}
-                                    />
-                                    <motion.img
-                                      key="ch2-filled-bubble"
-                                      src="/assets/chapter2/filled_bubble.svg"
-                                      alt=""
-                                      className={styles.ch2HoverFilledBubble}
                                       initial={{ opacity: 0, scale: 0.8 }}
                                       animate={{ opacity: 1, scale: 1 }}
                                       exit={{ opacity: 0, scale: 0.8 }}
                                       transition={{ duration: 0.3, delay: 0.2 }}
                                     />
                                     <motion.img
-                                      key="ch2-image-left"
-                                      src="/assets/chapter2/hover_image_left_ch2.svg"
+                                      key="ch2-filled-bubble"
+                                      src="/assets/chapter2/hover_left_bubble_filled_ch2.svg"
                                       alt=""
-                                      className={styles.ch2HoverImageLeft}
-                                      initial={{ opacity: 0, y: 20 }}
-                                      animate={{ opacity: 1, y: 0 }}
-                                      exit={{ opacity: 0, y: 20 }}
-                                      transition={{ duration: 0.4, delay: 0.05 }}
-                                    />
-                                    <motion.img
-                                      key="ch2-image-right"
-                                      src="/assets/chapter2/hover_image_right_ch2.svg"
-                                      alt=""
-                                      className={styles.ch2HoverImageRight}
-                                      initial={{ opacity: 0, y: 20 }}
-                                      animate={{ opacity: 1, y: 0 }}
-                                      exit={{ opacity: 0, y: 20 }}
-                                      transition={{ duration: 0.4, delay: 0.1 }}
-                                    />
-                                    <motion.img
-                                      key="ch2-empty-bubble-2"
-                                      src="/assets/chapter2/empty_bubble.svg"
-                                      alt=""
-                                      className={styles.ch2HoverEmptyBubble2}
+                                      className={styles.ch2HoverFilledBubble}
                                       initial={{ opacity: 0, scale: 0.8 }}
                                       animate={{ opacity: 1, scale: 1 }}
                                       exit={{ opacity: 0, scale: 0.8 }}
                                       transition={{ duration: 0.3, delay: 0.25 }}
                                     />
                                     <motion.img
+                                      key="ch2-image-left"
+                                      src="/assets/chapter2/hover_left_image_1_ch2.svg"
+                                      alt=""
+                                      className={styles.ch2HoverImageLeft}
+                                      initial={{ opacity: 0, y: 10 }}
+                                      animate={{ opacity: 1, y: 0 }}
+                                      exit={{ opacity: 0, y: 10 }}
+                                      transition={{ duration: 0.4, delay: 0.15 }}
+                                    />
+                                    <motion.img
+                                      key="ch2-image-right"
+                                      src="/assets/chapter2/hover_left_image_2_ch2.svg"
+                                      alt=""
+                                      className={styles.ch2HoverImageRight}
+                                      initial={{ opacity: 0, y: 10 }}
+                                      animate={{ opacity: 1, y: 0 }}
+                                      exit={{ opacity: 0, y: 10 }}
+                                      transition={{ duration: 0.4, delay: 0.2 }}
+                                    />
+                                    <motion.img
+                                      key="ch2-empty-bubble-2"
+                                      src="/assets/chapter2/hover_left_bubble_empty_ch2.svg"
+                                      alt=""
+                                      className={styles.ch2HoverEmptyBubble2}
+                                      initial={{ opacity: 0, scale: 0.8 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      exit={{ opacity: 0, scale: 0.8 }}
+                                      transition={{ duration: 0.3, delay: 0.3 }}
+                                    />
+                                    <motion.img
                                       key="ch2-filled-bubble-2"
-                                      src="/assets/chapter2/filled_bubble.svg"
+                                      src="/assets/chapter2/hover_left_bubble_filled_ch2.svg"
                                       alt=""
                                       className={styles.ch2HoverFilledBubble2}
                                       initial={{ opacity: 0, scale: 0.8 }}
                                       animate={{ opacity: 1, scale: 1 }}
                                       exit={{ opacity: 0, scale: 0.8 }}
-                                      transition={{ duration: 0.3, delay: 0.3 }}
+                                      transition={{ duration: 0.3, delay: 0.35 }}
                                     />
                                   </>
                                 )}
@@ -980,158 +1131,182 @@ export default function Home() {
                                 {isCh2OptionBHovered && (
                                   <>
                                     <motion.img
-                                      key="ch2b-fly"
-                                      src="/assets/chapter2/hover_fly_right_ch2.svg"
+                                      key="ch2-right-fly"
+                                      src="/assets/chapter2/fly_left_optionA_ch2.svg"
                                       alt=""
                                       className={styles.ch2RightFly}
                                       initial={{ opacity: 0, x: 20 }}
                                       animate={{ opacity: 1, x: 0 }}
                                       exit={{ opacity: 0, x: 20 }}
-                                      transition={{ duration: 0.5, delay: 0.1 }}
+                                      transition={{ duration: 0.5 }}
                                     />
                                     <motion.img
-                                      key="ch2b-petal1"
-                                      src="/assets/chapter2/hover_right_flower_petal1_ch2.svg"
+                                      key="ch2-right-image"
+                                      src="/assets/chapter2/hover_right_image_ch2.svg"
+                                      alt=""
+                                      className={styles.ch2RightImage}
+                                      initial={{ opacity: 0, scale: 0.8 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      exit={{ opacity: 0, scale: 0.8 }}
+                                      transition={{ duration: 0.4, delay: 0.1 }}
+                                    />
+                                    <motion.img
+                                      key="ch2-right-petal-1"
+                                      src="/assets/chapter2/hover_right_petal_1_ch2.svg"
                                       alt=""
                                       className={styles.ch2RightFlowerPetal1}
-                                      initial={{ opacity: 0, y: -20 }}
-                                      animate={{ opacity: 1, y: 0 }}
-                                      exit={{ opacity: 0, y: -20 }}
-                                      transition={{ duration: 0.4 }}
+                                      initial={{ opacity: 0, x: 10, y: 5 }}
+                                      animate={{ opacity: 1, x: 0, y: 0 }}
+                                      exit={{ opacity: 0, x: 10, y: 5 }}
+                                      transition={{ duration: 0.4, delay: 0.15 }}
                                     />
                                     <motion.img
-                                      key="ch2b-petal2"
-                                      src="/assets/chapter2/hover_right_flower_petal2_ch2.svg"
+                                      key="ch2-right-petal-2"
+                                      src="/assets/chapter2/hover_right_petal_2_ch2.svg"
                                       alt=""
                                       className={styles.ch2RightFlowerPetal2}
-                                      initial={{ opacity: 0, scale: 0.8 }}
-                                      animate={{ opacity: 1, scale: 1 }}
-                                      exit={{ opacity: 0, scale: 0.8 }}
-                                      transition={{ duration: 0.3, delay: 0.15 }}
+                                      initial={{ opacity: 0, x: 10, y: 5 }}
+                                      animate={{ opacity: 1, x: 0, y: 0 }}
+                                      exit={{ opacity: 0, x: 10, y: 5 }}
+                                      transition={{ duration: 0.4, delay: 0.2 }}
                                     />
                                     <motion.img
-                                      key="ch2b-petal3"
-                                      src="/assets/chapter2/hover_right_flower_petal3_ch2.svg"
+                                      key="ch2-right-petal-3"
+                                      src="/assets/chapter2/hover_right_petal_3_ch2.svg"
                                       alt=""
                                       className={styles.ch2RightFlowerPetal3}
-                                      initial={{ opacity: 0, scale: 0.8 }}
-                                      animate={{ opacity: 1, scale: 1 }}
-                                      exit={{ opacity: 0, scale: 0.8 }}
-                                      transition={{ duration: 0.3, delay: 0.2 }}
+                                      initial={{ opacity: 0, x: 10, y: 5 }}
+                                      animate={{ opacity: 1, x: 0, y: 0 }}
+                                      exit={{ opacity: 0, x: 10, y: 5 }}
+                                      transition={{ duration: 0.4, delay: 0.25 }}
                                     />
                                     <motion.img
-                                      key="ch2b-flower1"
-                                      src="/assets/chapter2/hover_right_flower1_ch2.svg"
+                                      key="ch2-right-flower-1"
+                                      src="/assets/chapter2/hover_right_flower_1_ch2.svg"
                                       alt=""
                                       className={styles.ch2RightFlower1}
                                       initial={{ opacity: 0, y: 20 }}
                                       animate={{ opacity: 1, y: 0 }}
                                       exit={{ opacity: 0, y: 20 }}
-                                      transition={{ duration: 0.4, delay: 0.05 }}
+                                      transition={{ duration: 0.4, delay: 0.3 }}
                                     />
                                     <motion.img
-                                      key="ch2b-halfbottom"
-                                      src="/assets/chapter2/hover_right_halfbottom_ch2.svg"
+                                      key="ch2-right-half-bottom"
+                                      src="/assets/chapter2/hover_right_half_circle_bottom_ch2.svg"
                                       alt=""
                                       className={styles.ch2RightHalfBottom}
-                                      initial={{ opacity: 0, y: -10 }}
-                                      animate={{ opacity: 1, y: 0 }}
-                                      exit={{ opacity: 0, y: -10 }}
-                                      transition={{ duration: 0.3, delay: 0.1 }}
+                                      initial={{ opacity: 0, scale: 0.8 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      exit={{ opacity: 0, scale: 0.8 }}
+                                      transition={{ duration: 0.3, delay: 0.35 }}
                                     />
                                     <motion.img
-                                      key="ch2b-halftop"
-                                      src="/assets/chapter2/hover_right_halftop_ch2.svg"
+                                      key="ch2-right-half-top"
+                                      src="/assets/chapter2/hover_right_half_circle_top_ch2.svg"
                                       alt=""
                                       className={styles.ch2RightHalfTop}
-                                      initial={{ opacity: 0, y: -15 }}
-                                      animate={{ opacity: 1, y: 0 }}
-                                      exit={{ opacity: 0, y: -15 }}
-                                      transition={{ duration: 0.3, delay: 0.15 }}
+                                      initial={{ opacity: 0, scale: 0.8 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      exit={{ opacity: 0, scale: 0.8 }}
+                                      transition={{ duration: 0.3, delay: 0.4 }}
                                     />
                                     <motion.img
-                                      key="ch2b-stick"
+                                      key="ch2-right-stick"
                                       src="/assets/chapter2/hover_right_stick_ch2.svg"
                                       alt=""
                                       className={styles.ch2RightStick}
-                                      initial={{ opacity: 0, y: 20 }}
+                                      initial={{ opacity: 0, y: 10 }}
                                       animate={{ opacity: 1, y: 0 }}
-                                      exit={{ opacity: 0, y: 20 }}
-                                      transition={{ duration: 0.4, delay: 0.1 }}
+                                      exit={{ opacity: 0, y: 10 }}
+                                      transition={{ duration: 0.4, delay: 0.45 }}
                                     />
                                   </>
                                 )}
                               </AnimatePresence>
                             </div>
-                          </div>
-                        )
-
+                          )}
+                        </div>
                       ) : chapter.id === 3 ? (
-                        // Chapter 3 Specific Layout
-                        selectedOption === 'A' ? (
-                          <div className={styles.ch3OptionAWrapper}>
-                            {/* Top Navigation */}
-                            <div className={styles.ch3NavContainer}>
-                              <button className={styles.ch3NavButton}>↑ Back to all chapters</button>
-                              <div className={styles.ch3NavDivider}>|</div>
-                              <button className={styles.ch3NavButton}>View all toolkits</button>
-                            </div>
-
-                            {/* Main Content */}
-                            <div className={styles.ch3OptionAContent}>
-                              <h4 className={styles.ch3OptionALabel}>CHAPTER III: STEWARDING DONORS</h4>
-                              <h1 className={styles.ch3OptionATitle}>
-                                Staying connected after the first gift builds trust. This chapter focuses<br />
-                                on how consistent, non-ask engagement helps donors feel involved<br />
-                                and valued.
-                              </h1>
-
-                              {/* Back to Scenario Button - Centered */}
-                              <button
-                                className={styles.ch3CenteredBackBtn}
-                                onClick={() => setSelectedOption(null)}
-                              >
-                                ← Back to scenario
-                              </button>
-                            </div>
+                        // Chapter 3 Specific Layout - Persistent Header
+                        <div className={styles.chapter1Wrapper}>
+                          <div className={styles.chapter1Header}>
+                            {!selectedOption && (
+                              <>
+                                <h4 className={styles.ch1Label}>CHAPTER III: STEWARDING DONORS</h4>
+                                <h1 className={styles.ch1Title}>
+                                  Staying connected after the first gift builds trust. This chapter focuses<br />
+                                  on how consistent, non-ask engagement helps donors feel involved<br />
+                                  and valued.
+                                </h1>
+                                <p className={styles.ch1Instruction}>Select one of the two options to reveal the right way</p>
+                              </>
+                            )}
                           </div>
-                        ) : selectedOption === 'B' ? (
-                          <Chapter3OptionB onBack={() => setSelectedOption(null)} />
-                        ) : (
-                          // Chapter 3 Default View
-                          <div className={styles.chapter1Wrapper} style={{ justifyContent: 'flex-start' }}>
-                            <div className={styles.chapter1Header} style={{ marginBottom: '40px' }}>
-                              <h4 className={styles.ch1Label}>CHAPTER III: STEWARDING DONORS</h4>
-                              <h1 className={styles.ch1Title}>
-                                Staying connected after the first gift builds trust. This chapter focuses<br />
-                                on how consistent, non-ask engagement helps donors feel involved<br />
-                                and valued.
-                              </h1>
-                              <p className={styles.ch1Instruction}>Select one of the two options to reveal the right way</p>
+
+                          {selectedOption === 'A' ? (
+                            <div style={{ flex: 1, width: '100%', position: 'relative' }}>
+                              <OptionContent
+                                embedded={true}
+                                chapterTitle="CHAPTER III: STEWARDING DONORS"
+                                chapterSubtitle="Staying connected after the first gift builds trust. This chapter focuses on how consistent, non-ask engagement helps donors feel involved and valued."
+                                backgroundColor="transparent"
+                                onBack={() => setSelectedOption(null)}
+                                onNext={handleNextChapter}
+                                customStyles={chapter3StylesA}
+                                contentCards={[
+                                  {
+                                    id: 1,
+                                    type: 'text',
+                                    floatingTextLabel: "UDARTA:EG STUDY SHOWS",
+                                    floatingText: "When communication is purely transactional, donors feel like ATM machines.",
+                                    decorationType: 'flower',
+                                    label: '',
+                                    title: 'Transactional outreach causes attrition',
+                                    content: 'Donors who only hear from you when you need money are 3x more likely to stop supporting within the first year.',
+                                    showStatBelow: true,
+                                    statLabel: 'DID YOU KNOW?',
+                                    stat: '70%',
+                                    statDescription: 'of donors who stop giving cite a lack of meaningful connection or information about their impact as the primary reason.',
+                                    statBoxTransparent: true
+                                  },
+                                  {
+                                    id: 2,
+                                    type: 'text',
+                                    floatingText: "Instead, the relationship goes cold. Nidhi feels unappreciated and eventually stops giving.",
+                                    decorationType: 'circle',
+                                    label: '',
+                                    title: '',
+                                    content: '',
+                                    showStatBelow: true,
+                                    statLabel: 'UDARTA:EG STUDY SHOWS',
+                                    stat: '',
+                                    statDescription: 'Lack of post-donation engagement leads to a significant decrease in donor lifetime value.'
+                                  },
+                                  {
+                                    id: 3,
+                                    type: 'toolkit',
+                                    toolkitLabel: 'TOOLKIT #3',
+                                    toolkitTitle: 'Engagement Calendar',
+                                    toolkitDescription: 'How to organize your communications to stay top-of-mind without being intrusive.',
+                                    toolkitImage: '/assets/toolkit_55.svg'
+                                  }
+                                ]}
+                              />
                             </div>
-
-
-                            <div className={styles.scenarioContainer}>
+                          ) : selectedOption === 'B' ? (
+                            // Chapter 3 Option B Content (without header, header is above)
+                            <div style={{ flex: 1, width: '100%', position: 'relative' }}>
+                              <Chapter3OptionB onBack={() => setSelectedOption(null)} embedded={true} />
+                            </div>
+                          ) : (
+                            // Chapter 3 Default View - just render scenario container, header is above
+                            <div className={styles.scenarioContainer} style={{ marginTop: '10px' }}>
                               {/* Option A */}
                               <motion.div
                                 className={styles.optionColumnLeft}
-                                initial="rest"
-                                whileHover="hover"
-                                animate="rest"
+                                initial="hover"
+                                animate="hover"
                                 onClick={() => setSelectedOption('A')}
-                                onMouseEnter={(e) => {
-                                  const parent = e.currentTarget.parentElement;
-                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) {
-                                    card.style.transformOrigin = 'bottom left';
-                                    card.style.transform = 'rotate(-15deg)';
-                                  }
-                                }}
-                                onMouseLeave={(e) => {
-                                  const parent = e.currentTarget.parentElement;
-                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) card.style.transform = 'rotate(0deg)';
-                                }}
                                 style={{ cursor: 'pointer' }}
                               >
                                 <span className={styles.optionLabel} style={{ color: '#1a4d3a' }}>OPTION A</span>
@@ -1175,25 +1350,9 @@ export default function Home() {
                               {/* Option B */}
                               <motion.div
                                 className={styles.optionColumnRight}
-                                initial="rest"
-                                whileHover="hover"
-                                animate="rest"
+                                initial="hover"
+                                animate="hover"
                                 onClick={() => setSelectedOption('B')}
-                                onMouseEnter={(e) => {
-                                  setIsCh3OptionBHovered(true);
-                                  const parent = e.currentTarget.parentElement;
-                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) {
-                                    card.style.transformOrigin = 'bottom right';
-                                    card.style.transform = 'rotate(15deg)';
-                                  }
-                                }}
-                                onMouseLeave={(e) => {
-                                  setIsCh3OptionBHovered(false);
-                                  const parent = e.currentTarget.parentElement;
-                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) card.style.transform = 'rotate(0deg)';
-                                }}
                                 style={{ cursor: 'pointer' }}
                               >
                                 <span className={styles.optionLabel} style={{ color: '#1a4d3a' }}>OPTION B</span>
@@ -1286,330 +1445,277 @@ export default function Home() {
                                   </>
                                 )}
                               </AnimatePresence>
+
+                              {/* Chapter 3 Option A Hover Decorations */}
+                              <AnimatePresence>
+                                {isCh3OptionAHovered && (
+                                  <>
+                                    <motion.img
+                                      key="ch3a-flower"
+                                      src="/assets/chapter3/hover_left_flower_ch3.svg"
+                                      alt=""
+                                      className={styles.ch3LeftFlowerA}
+                                      initial={{ opacity: 0, scale: 0.8 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      exit={{ opacity: 0, scale: 0.8 }}
+                                      transition={{ duration: 0.3 }}
+                                    />
+                                    <motion.img
+                                      key="ch3a-diamond"
+                                      src="/assets/chapter3/hover_diamond_bottom_ch3.svg"
+                                      alt=""
+                                      className={styles.ch3DiamondA}
+                                      initial={{ opacity: 0, y: 10 }}
+                                      animate={{ opacity: 1, y: 0 }}
+                                      exit={{ opacity: 0, y: 10 }}
+                                      transition={{ duration: 0.4, delay: 0.1 }}
+                                    />
+                                  </>
+                                )}
+                              </AnimatePresence>
                             </div>
-                          </div>
-                        )
+                          )}
+                        </div>
                       ) : chapter.id === 4 ? (
-                        // Chapter 4 Specific Layout
-                        selectedOption === 'A' ? (
-                          // Chapter 4 Option A - Horizontally Scrollable Content
-                          <div className={styles.ch4OptionAWrapper}>
-                            {/* Back to Scenario Button */}
-                            <button
-                              className={styles.backToScenarioBtn}
-                              onClick={() => setSelectedOption(null)}
-                            >
-                              ← Back to scenario
-                            </button>
+                        // Chapter 4 Specific Layout - Persistent Header
+                        <div className={styles.chapter1Wrapper}>
+                          <div className={styles.chapter1Header}>
+                            {!selectedOption && (
+                              <>
+                                <h4 className={styles.ch1Label}>CHAPTER IV: DONORS TO CHAMPIONS</h4>
+                                <h1 className={styles.ch1Title}>
+                                  When relationships are nurtured well, supporters deepen their involvement.<br />
+                                  This chapter explores how donors grow into champions.
+                                </h1>
+                                <p className={styles.ch1Instruction}>Select one of the two options to reveal the right way</p>
+                              </>
+                            )}
+                          </div>
 
-                            {/* Horizontally Scrollable Container */}
-                            <div className={styles.ch4ScrollContainer}>
-                              {/* Section 1: You've unlocked growth! */}
-                              <div className={styles.ch4Section1}>
-                                {/* Balloon decorations */}
-                                <div className={styles.ch4BalloonDecor}>
-                                  <div className={styles.ch4BalloonLarge}></div>
-                                  <div className={styles.ch4BalloonSmall}></div>
-                                  <div className={styles.ch4BalloonLine}></div>
-                                </div>
+                          {selectedOption === 'A' ? (
+                            <div style={{ flex: 1, width: '100%', position: 'relative' }}>
+                              <OptionContent
+                                embedded={true}
+                                chapterTitle="CHAPTER IV: DONORS TO CHAMPIONS"
+                                chapterSubtitle="When relationships are nurtured well, supporters deepen their involvement. This chapter explores how donors grow into champions."
+                                backgroundColor="transparent"
+                                onBack={() => setSelectedOption(null)}
+                                onNext={handleNextChapter}
+                                customStyles={chapter4StylesA}
+                                contentCards={[
+                                  {
+                                    id: 1,
+                                    type: 'text',
+                                    floatingTextLabel: "UDARTA:EG STUDY SHOWS",
+                                    floatingText: "You've unlocked growth! Nidhi increases her contribution and shares the campaign with her network.",
+                                    decorationType: 'flower',
+                                    label: 'WHAT CHANGES INTERNALLY',
+                                    title: 'Nidhi moves into a High Potential segment',
+                                    content: 'Her repeat donation improves retention metrics, while network referrals expand reach without cold outreach.',
+                                    showStatBelow: true,
+                                    statLabel: 'UDARTA:EG STUDY SHOWS',
+                                    stat: '4.5x more likely',
+                                    statDescription: 'Donors who are referred by a friend are 4.5 times more likely to convert into long-term supporters.',
+                                    statBoxTransparent: true
+                                  },
+                                  {
+                                    id: 2,
+                                    type: 'text',
+                                    floatingText: "Donors who feel valued don't just give more – they bring others with them.",
+                                    decorationType: 'circle',
+                                    label: 'WHY THIS WORKS',
+                                    title: 'Supporters become Champions',
+                                    content: "When you nurture relationships, you aren't just raising funds; you're building a movement of advocates."
+                                  },
+                                  {
+                                    id: 3,
+                                    type: 'toolkit',
+                                    toolkitLabel: 'TOOLKIT #6',
+                                    toolkitTitle: 'Engagement Tracking',
+                                    toolkitDescription: 'How to monitor and grow your network through champion engagement.',
+                                    toolkitImage: '/assets/toolkit66.svg'
+                                  },
+                                  {
+                                    id: 4,
+                                    type: 'toolkit',
+                                    toolkitLabel: 'TOOLKIT #7',
+                                    toolkitTitle: 'Network Growth',
+                                    toolkitDescription: 'Strategies for activating your donor network to reach new supporters.',
+                                    toolkitImage: '/assets/toolkit_77.svg'
+                                  }
+                                ]}
+                              />
+                            </div>
+                          ) : selectedOption === 'B' ? (
+                            <div style={{ flex: 1, width: '100%', position: 'relative' }}>
+                              <OptionContent
+                                embedded={true}
+                                chapterTitle="CHAPTER IV: DONORS TO CHAMPIONS"
+                                chapterSubtitle="When relationships are nurtured well, supporters deepen their involvement. This chapter explores how donors grow into champions."
+                                backgroundColor="transparent"
+                                onBack={() => setSelectedOption(null)}
+                                onNext={handleNextChapter}
+                                customStyles={chapter4StylesB}
+                                contentCards={[
+                                  {
+                                    id: 1,
+                                    type: 'text',
+                                    floatingText: "Treating Nidhi like any other donor risks losing the momentum you've built.",
+                                    decorationType: 'flower',
+                                    label: '',
+                                    title: 'Missed opportunity for growth',
+                                    content: 'By sending a standard appeal, you fail to acknowledge her unique history and potential to champion your cause.',
+                                    showStatBelow: true,
+                                    statLabel: 'DID YOU KNOW?',
+                                    stat: '53%',
+                                    statDescription: 'of donors leave due to poor communication, including not feeling recognized for their specific contributions.',
+                                    statBoxTransparent: true
+                                  },
+                                  {
+                                    id: 2,
+                                    type: 'text',
+                                    floatingText: "Without personalized engagement, she may remain a one-time donor or drift away entirely.",
+                                    decorationType: 'circle',
+                                    label: '',
+                                    title: '',
+                                    content: '',
+                                  }
+                                ]}
+                              />
+                            </div>
+                          ) : (
+                            // Chapter 4 Default View - Scenario Cards
+                            <div className={styles.scenarioContainer} style={{ marginTop: '10px' }}>
 
-                                <div className={styles.ch4GrowthContent}>
-                                  <h2 className={styles.ch4GrowthTitle}>You've unlocked growth!</h2>
-                                  <p className={styles.ch4GrowthDesc}>
-                                    Nidhi increases her contribution to ₹4,000 and<br />
-                                    shares the campaign with her network. A friend<br />
-                                    donates ₹2,000 based on her recommendation.
+
+                              <div className={styles.scenarioContainer}>
+                                {/* Option A */}
+                                <motion.div
+                                  className={styles.optionColumnLeft}
+                                  onMouseEnter={() => setIsCh4OptionAHovered(true)}
+                                  onMouseLeave={() => setIsCh4OptionAHovered(false)}
+                                  onClick={() => setSelectedOption('A')}
+                                  style={{ cursor: 'pointer' }}
+                                >
+                                  <span className={styles.optionLabel} style={{ color: '#1a4d3a' }}>OPTION A</span>
+                                  <p className={styles.optionDesc} style={{ color: '#1a4d3a' }}>
+                                    Treat Nidhi like any<br />
+                                    other donor and send a<br />
+                                    standard appeal
                                   </p>
-                                </div>
 
-                                {/* Circle decorations */}
-                                <div className={styles.ch4CircleDecor1}></div>
-                                <div className={styles.ch4CircleDecor2}></div>
-                              </div>
-
-                              {/* Vertical Divider Bar */}
-                              <div className={styles.ch4VerticalBar}></div>
-
-                              {/* Section 2: WHAT CHANGES INTERNALLY */}
-                              <div className={styles.ch4Section2}>
-                                {/* Decorative bars */}
-                                <div className={styles.ch4DecorBars}>
-                                  <div className={styles.ch4DecorBar1}></div>
-                                  <div className={styles.ch4DecorBar2}></div>
-                                  <div className={styles.ch4DecorBar3}></div>
-                                </div>
-
-                                <div className={styles.ch4ChangesContent}>
-                                  <p className={styles.ch4SectionLabel}>WHAT CHANGES INTERNALLY</p>
-                                  <h3 className={styles.ch4ChangesTitle}>
-                                    Nidhi moves into a High Potential<br />
-                                    donor segment.
-                                  </h3>
-
-                                  <div className={styles.ch4BulletList}>
-                                    <div className={styles.ch4BulletItem}>
-                                      <span className={styles.ch4BulletDot} style={{ background: 'linear-gradient(180deg, #0FB8C5, #1BD5E4)' }}></span>
-                                      <p>Her repeat donation improves<br />retention metrics</p>
-                                    </div>
-                                    <div className={styles.ch4BulletItem}>
-                                      <span className={styles.ch4BulletDot} style={{ background: 'linear-gradient(180deg, #93CD4D, #B8E986)' }}></span>
-                                      <p>Network referrals expand reach without<br />cold outreach</p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-
-                              {/* Section 3: WHY THIS WORKS */}
-                              <div className={styles.ch4Section3}>
-                                {/* Decorative diamond/arrow */}
-                                <div className={styles.ch4DiamondDecor}>
-                                  <img src="/assets/chapter4/decorative_arrows.svg" alt="" className={styles.ch4Arrows} />
-                                </div>
-
-                                <div className={styles.ch4WhyContent}>
-                                  <p className={styles.ch4SectionLabel}>WHY THIS WORKS</p>
-                                  <h3 className={styles.ch4WhyTitle}>
-                                    Donors who feel valued don't<br />
-                                    just give more – they bring<br />
-                                    others with them.
-                                  </h3>
-
-                                  <div className={styles.ch4ToolkitIntro}>
-                                    <span className={styles.ch4YellowDiamond}></span>
-                                    <p>
-                                      We have two toolkits to help<br />
-                                      you track donor engagement<br />
-                                      and how to grow your network
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-
-                              {/* Section 4: Toolkit Cards */}
-                              <div className={styles.ch4ToolkitSection}>
-                                {/* Toolkit Card 1 */}
-                                <div className={styles.ch4ToolkitCard}>
-                                  <img
-                                    src="/assets/toolkit_6.svg"
-                                    alt="Toolkit #6"
-                                    className={styles.ch4ToolkitImage}
-                                  />
-                                  <div className={styles.ch4ToolkitContent}>
-                                    <p className={styles.ch4ToolkitLabel}>TOOLKIT #6</p>
-                                    <h4 className={styles.ch4ToolkitTitle}>Donor Engagement<br />Dashboard</h4>
-                                    <p className={styles.ch4ToolkitDesc}>
-                                      A one stop shop to show you how well your<br />
-                                      organisation is retaining and engaging its<br />
-                                      everyday givers.
-                                    </p>
-                                    <div className={styles.ch4ToolkitActions}>
-                                      <button className={styles.ch4DownloadBtn}>
-                                        Download <span>↓</span>
-                                      </button>
-                                      <button className={styles.ch4ViewBtn}>
-                                        View toolkit →
-                                      </button>
-                                    </div>
-                                  </div>
-                                </div>
-
-                                {/* Toolkit Card 2 */}
-                                <div className={styles.ch4ToolkitCard}>
-                                  <img
-                                    src="/assets/toolkit_7.svg"
-                                    alt="Toolkit #7"
-                                    className={styles.ch4ToolkitImage}
-                                  />
-                                  <div className={styles.ch4ToolkitContent}>
-                                    <p className={styles.ch4ToolkitLabel}>TOOLKIT #7</p>
-                                    <h4 className={styles.ch4ToolkitTitle}>Supporter-Led<br />Fundraising</h4>
-                                    <p className={styles.ch4ToolkitDesc}>
-                                      A powerful toolkit to grow your network by<br />
-                                      creating champions for your cause.
-                                    </p>
-                                    <div className={styles.ch4ToolkitActions}>
-                                      <button className={styles.ch4DownloadBtn}>
-                                        Download <span>↓</span>
-                                      </button>
-                                      <button className={styles.ch4ViewBtn}>
-                                        View toolkit →
-                                      </button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-
-                              {/* Decorative circles on right edge */}
-                              <div className={styles.ch4RightDecor}>
-                                <div className={styles.ch4DecorCircle1}></div>
-                                <div className={styles.ch4DecorCircle2}></div>
-                                <div className={styles.ch4DecorDiamond}></div>
-                              </div>
-                            </div>
-
-                            {/* Next Chapter Button */}
-                            <button className={styles.ch4NextChapterBtn} onClick={handleNextChapter}>
-                              <span className={styles.ch4NextDiamond}>◆</span>
-                              Next chapter
-                            </button>
-                          </div>
-                        ) : selectedOption === 'B' ? (
-                          <div className={styles.ch4OptionBWrapper}>
-                            {/* Top Navigation */}
-                            <div className={styles.ch4NavContainer}>
-                              <button className={styles.ch4NavButton}>↑ Back to all chapters</button>
-                              <div className={styles.ch4NavDivider}>|</div>
-                              <button className={styles.ch4NavButton}>View all toolkits</button>
-                            </div>
-
-                            {/* Main Content */}
-                            <div className={styles.ch4OptionBContent}>
-                              <h4 className={styles.ch4OptionBLabel}>CHAPTER IV: DONORS TO CHAMPIONS</h4>
-                              <h1 className={styles.ch4OptionBTitle}>
-                                When relationships are nurtured well, supporters deepen<br />
-                                their involvement. This chapter explores how donors grow<br />
-                                into champions.
-                              </h1>
-
-                              {/* Back to Scenario Button - Centered */}
-                              <button
-                                className={styles.ch4CenteredBackBtn}
-                                onClick={() => setSelectedOption(null)}
-                              >
-                                ← Back to scenario
-                              </button>
-                            </div>
-                          </div>
-                        ) : (
-                          // Chapter 4 Default View
-                          <div className={styles.chapter1Wrapper} style={{ justifyContent: 'flex-start' }}>
-                            <div className={styles.chapter1Header} style={{ marginBottom: '40px' }}>
-                              <h4 className={styles.ch1Label}>CHAPTER IV: DONORS TO CHAMPIONS</h4>
-                              <h1 className={styles.ch1Title}>
-                                When relationships are nurtured well, supporters deepen their involvement.<br />
-                                This chapter explores how donors grow into champions.
-                              </h1>
-                              <p className={styles.ch1Instruction}>Select one of the two options to reveal the right way</p>
-                            </div>
-
-
-                            <div className={styles.scenarioContainer}>
-                              {/* Option A */}
-                              <motion.div
-                                className={styles.optionColumnLeft}
-                                initial="rest"
-                                whileHover="hover"
-                                animate="rest"
-                                onClick={() => setSelectedOption('A')}
-                                onMouseEnter={(e) => {
-                                  const parent = e.currentTarget.parentElement;
-                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) {
-                                    card.style.transformOrigin = 'bottom left';
-                                    card.style.transform = 'rotate(-15deg)';
-                                  }
-                                }}
-                                onMouseLeave={(e) => {
-                                  const parent = e.currentTarget.parentElement;
-                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) card.style.transform = 'rotate(0deg)';
-                                }}
-                                style={{ cursor: 'pointer' }}
-                              >
-                                <span className={styles.optionLabel} style={{ color: '#1a4d3a' }}>OPTION A</span>
-                                <p className={styles.optionDesc} style={{ color: '#1a4d3a' }}>
-                                  Treat Nidhi like any<br />
-                                  other donor and send a<br />
-                                  standard appeal
-                                </p>
-
-                                {/* Animated CTA */}
-                                <motion.div
-                                  variants={ctaVariants}
-                                  style={{
-                                    marginTop: '24px',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '12px',
-                                    color: '#1a4d3a',
-                                    fontWeight: 500
-                                  }}
-                                >
-                                  <motion.div variants={arrowVariants}>
-                                    <ArrowRight style={{ width: '20px', height: '20px' }} />
+                                  {/* Animated CTA */}
+                                  <motion.div
+                                    variants={ctaVariants}
+                                    style={{
+                                      marginTop: '24px',
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                      gap: '12px',
+                                      color: '#1a4d3a',
+                                      fontWeight: 500
+                                    }}
+                                  >
+                                    <motion.div variants={arrowVariants}>
+                                      <ArrowRight style={{ width: '20px', height: '20px' }} />
+                                    </motion.div>
+                                    <span style={{
+                                      textTransform: 'uppercase',
+                                      letterSpacing: '0.1em',
+                                      fontSize: '12px'
+                                    }}>Choose Option</span>
                                   </motion.div>
-                                  <span style={{
-                                    textTransform: 'uppercase',
-                                    letterSpacing: '0.1em',
-                                    fontSize: '12px'
-                                  }}>Choose Option</span>
                                 </motion.div>
-                              </motion.div>
 
-                              {/* Center Card */}
-                              <div className={styles.centerCard}>
-                                <img
-                                  src="/assets/chapter_4_card.svg"
-                                  alt="Scenario 4 Card"
-                                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                                />
-                              </div>
+                                {/* Center Card */}
+                                <div className={styles.centerCard}>
+                                  <img
+                                    src="/assets/chapter_4_card.svg"
+                                    alt="Scenario 4 Card"
+                                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                                  />
+                                </div>
 
-                              {/* Option B */}
-                              <motion.div
-                                className={styles.optionColumnRight}
-                                initial="rest"
-                                whileHover="hover"
-                                animate="rest"
-                                onClick={() => setSelectedOption('B')}
-                                onMouseEnter={(e) => {
-                                  const parent = e.currentTarget.parentElement;
-                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) {
-                                    card.style.transformOrigin = 'bottom right';
-                                    card.style.transform = 'rotate(15deg)';
-                                  }
-                                }}
-                                onMouseLeave={(e) => {
-                                  const parent = e.currentTarget.parentElement;
-                                  const card = parent?.querySelector(`.${styles.centerCard}`) as HTMLElement;
-                                  if (card) card.style.transform = 'rotate(0deg)';
-                                }}
-                                style={{ cursor: 'pointer' }}
-                              >
-                                <span className={styles.optionLabel} style={{ color: '#1a4d3a' }}>OPTION B</span>
-                                <p className={styles.optionDesc} style={{ color: '#1a4d3a' }}>
-                                  Invite her to give again –<br />
-                                  and share the cause<br />
-                                  with her network
-                                </p>
-
-                                {/* Animated CTA */}
+                                {/* Option B */}
                                 <motion.div
-                                  variants={ctaVariants}
-                                  style={{
-                                    marginTop: '24px',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '12px',
-                                    color: '#1a4d3a',
-                                    fontWeight: 500,
-                                    flexDirection: 'row-reverse'
-                                  }}
+                                  className={styles.optionColumnRight}
+                                  onMouseEnter={() => setIsCh4OptionBHovered(true)}
+                                  onMouseLeave={() => setIsCh4OptionBHovered(false)}
+                                  onClick={() => setSelectedOption('B')}
+                                  style={{ cursor: 'pointer' }}
                                 >
-                                  <motion.div variants={arrowLeftVariants}>
-                                    <ArrowLeft style={{ width: '20px', height: '20px' }} />
+                                  <span className={styles.optionLabel} style={{ color: '#1a4d3a' }}>OPTION B</span>
+                                  <p className={styles.optionDesc} style={{ color: '#1a4d3a' }}>
+                                    Invite her to give again –<br />
+                                    and share the cause<br />
+                                    with her network
+                                  </p>
+
+                                  {/* Animated CTA */}
+                                  <motion.div
+                                    variants={ctaVariants}
+                                    style={{
+                                      marginTop: '24px',
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                      gap: '12px',
+                                      color: '#1a4d3a',
+                                      fontWeight: 500,
+                                      flexDirection: 'row-reverse'
+                                    }}
+                                  >
+                                    <motion.div variants={arrowLeftVariants}>
+                                      <ArrowLeft style={{ width: '20px', height: '20px' }} />
+                                    </motion.div>
+                                    <span style={{
+                                      textTransform: 'uppercase',
+                                      letterSpacing: '0.1em',
+                                      fontSize: '12px'
+                                    }}>Choose Option</span>
                                   </motion.div>
-                                  <span style={{
-                                    textTransform: 'uppercase',
-                                    letterSpacing: '0.1em',
-                                    fontSize: '12px'
-                                  }}>Choose Option</span>
                                 </motion.div>
-                              </motion.div>
+
+                                {/* Chapter 4 Hover Decorations */}
+                                <AnimatePresence>
+                                  {(isCh4OptionAHovered || isCh4OptionBHovered) && (
+                                    <>
+                                      <motion.img
+                                        key="ch4-fly"
+                                        src="/assets/chapter4/hover_fly_ch4.svg"
+                                        alt=""
+                                        className={styles.ch4HoverFly}
+                                        initial={{ opacity: 0, x: isCh4OptionAHovered ? -50 : 50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: isCh4OptionAHovered ? -50 : 50 }}
+                                        transition={{ duration: 0.5 }}
+                                      />
+                                      <motion.img
+                                        key="ch4-circle-fill"
+                                        src="/assets/chapter4/hover_fill_circle_ch4.svg"
+                                        alt=""
+                                        className={styles.ch4HoverCircleFill}
+                                        initial={{ opacity: 0, scale: 0.5 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0, scale: 0.5 }}
+                                        transition={{ duration: 0.3, delay: 0.1 }}
+                                      />
+                                      <motion.img
+                                        key="ch4-circle-hollow"
+                                        src="/assets/chapter4/hover_hollow_ch4.svg"
+                                        alt=""
+                                        className={styles.ch4HoverCircleHollow}
+                                        initial={{ opacity: 0, scale: 0.5 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0, scale: 0.5 }}
+                                        transition={{ duration: 0.3, delay: 0.2 }}
+                                      />
+                                    </>
+                                  )}
+                                </AnimatePresence>
+                              </div>
                             </div>
-                          </div>
-                        )
+                          )}
+                        </div>
                       ) : chapter.id === 5 ? (
                         // Chapter 5 Bonus Chapter Layout
                         <div className={styles.chapter1Wrapper} style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -1626,7 +1732,7 @@ export default function Home() {
                             {/* Bonus Card Image */}
                             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '40px' }}>
                               <img
-                                src="/assets/Bonus Chapter - Flip.svg"
+                                src="/assets/Bonus Chapter.png"
                                 alt="Stewardship is a team effort"
                                 style={{ maxWidth: '400px', width: '100%', height: 'auto' }}
                               />
@@ -1692,22 +1798,31 @@ export default function Home() {
       </section >
 
       {/* Bonus Chapter Section */}
-      <section className={styles.bonusSection} ref={bonusSectionRef}>
+      < section className={styles.bonusSection} ref={bonusSectionRef} >
         <div className={styles.bonusContent}>
           <div className={styles.bonusLeft}>
-            <div className={styles.bonusDiamond}></div>
+            <img
+              src="/assets/bonus_chapter_flower.svg"
+              alt=""
+              className={styles.bonusFlowerImage}
+            />
+            <img
+              src="/assets/bonus_dot.svg"
+              alt=""
+              className={styles.bonusFlowerDot}
+            />
             <p className={styles.bonusLabel}>BONUS CHAPTER</p>
             <h2 className={styles.bonusTitle}>
-              No single team <span className={styles.bonusTitleHighlight}>owns</span><br />
+              <span className={styles.bonusTitleHighlight}>No single team</span> owns<br />
               the donor experience
             </h2>
             <p className={styles.bonusText}>
               As supporters move across stages, effective coordination between<br />
-              programme, communications, and fundraising teams enhances consistency,<br />
+              programme, communications, and fundraising teams ensures consistency,<br />
               continuity, and trust.
             </p>
             <div className={styles.bonusCallout}>
-              <span className={styles.bonusDot}></span>
+              {/* <span className={styles.bonusDot}></span> */}
               <span className={styles.bonusCalloutText}>Check the toolkit to learn how to build this alignment.</span>
             </div>
           </div>
@@ -1729,30 +1844,66 @@ export default function Home() {
       </section >
 
       {/* Download Section */}
-      <section className={styles.downloadSection}>
+      < section className={styles.downloadSection} >
         {/* Background Image */}
-        <img
+        < img
           src="/assets/download_background.svg"
           alt=""
           className={styles.downloadBackgroundImage}
         />
 
         <div className={styles.downloadContent}>
-          {/* Left decorative plant */}
-          <div className={styles.leftPlant}>
-            <div className={styles.plantStem}></div>
-            <div className={styles.plantFlower}>
-              <div className={styles.flowerPetal}></div>
-              <div className={styles.flowerPetal}></div>
-              <div className={styles.flowerPetal}></div>
-              <div className={styles.flowerPetal}></div>
-            </div>
-            <div className={styles.plantDots}>
-              <div className={styles.plantDot}></div>
-              <div className={styles.plantDot}></div>
-              <div className={styles.plantDot}></div>
-            </div>
-          </div>
+          {/* Decorative Petals */}
+          <img
+            src="/assets/download_section_Petals.svg"
+            alt=""
+            className={styles.downloadPetal1}
+          />
+          <img
+            src="/assets/download_section_Petals.svg"
+            alt=""
+            className={styles.downloadPetal2}
+          />
+          <img
+            src="/assets/download_section_Petals.svg"
+            alt=""
+            className={styles.downloadPetal3}
+          />
+
+          {/* Decorative Balls */}
+          <img
+            src="/assets/download_section_ball.svg"
+            alt=""
+            className={styles.downloadBall1}
+          />
+          <img
+            src="/assets/download_section_ball.svg"
+            alt=""
+            className={styles.downloadBall2}
+          />
+
+          {/* Decorative Sticks */}
+          <img
+            src="/assets/download_petal_stick.svg"
+            alt=""
+            className={styles.downloadStick1}
+          />
+          <img
+            src="/assets/download_petal_stick.svg"
+            alt=""
+            className={styles.downloadStick2}
+          />
+          <img
+            src="/assets/download_petal_stick.svg"
+            alt=""
+            className={styles.downloadStick3}
+          />
+          <img
+            src="/assets/download_petal_stick.svg"
+            alt=""
+            className={styles.downloadStick4}
+          />
+
 
           {/* Center Card */}
           <div className={styles.downloadCard}>
@@ -1771,31 +1922,19 @@ export default function Home() {
             </p>
             <div className={styles.downloadButtons}>
               <button className={styles.downloadAllBtn}>
-                <span>✦</span>
-                <span>Download all</span>
-              </button>
-              <button className={styles.viewAllBtn}>
-                <span>View all</span>
-                <span>→</span>
+                <img src="/assets/download_button.svg" alt="Download all" style={{ height: '56px', width: 'auto' }} />
               </button>
             </div>
           </div>
 
           {/* Right decorative plant */}
-          <div className={styles.rightPlant}>
-            <div className={styles.plantStem}></div>
-            <div className={styles.plantCircles}>
-              <div className={styles.plantCircle}></div>
-              <div className={styles.plantCircle}></div>
-              <div className={styles.plantCircle}></div>
-            </div>
-          </div>
+
         </div>
 
-      </section>
+      </section >
 
       {/* Explore Grid Section */}
-      <div className={styles.exploreSection}>
+      < div className={styles.exploreSection} >
         <div className={styles.exploreHeader}>
           <span className={styles.exploreLabel}>FOLLOW ALONG</span>
           <h2 className={styles.exploreTitle}>Explore the other sections</h2>
@@ -1809,32 +1948,18 @@ export default function Home() {
               <span className={styles.folderLabel}>UDARTA:EG FIELD GUIDE</span>
               <h3 className={styles.folderTitle}>Introduction</h3>
             </div>
-            {/* SVG Outline for Folder Shape */}
-            <svg className={styles.folderSvg} viewBox="0 0 600 420" preserveAspectRatio="none" style={{ overflow: 'visible' }}>
-              <defs>
-                <linearGradient id="chapter1Gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#63C76B" />
-                  <stop offset="100%" stopColor="#17BABD" />
-                </linearGradient>
-              </defs>
-              {/* Back/Peeking Folder Outline */}
-              <path
-                d="M20 30 C20 20 30 10 40 10 L410 10 C420 10 430 15 435 20 L455 50 C460 55 470 55 475 55 L560 55 C570 55 580 65 580 75 L580 390 C580 400 570 410 560 410 L40 410 C30 410 20 400 20 390 Z"
-                fill="none"
-                stroke="#2a6f5f"
-                strokeWidth="2"
-                opacity="0.4"
-                transform="translate(10, 5) rotate(1, 300, 200)"
-              />
-              {/* Main Folder Outline */}
-              <path
-                className={styles.folderFrontPath}
-                d="M10 20 C10 10 20 0 30 0 L400 0 C410 0 420 5 425 10 L445 40 C450 45 460 45 465 45 L550 45 C560 45 570 55 570 65 L570 380 C570 390 560 400 550 400 L30 400 C20 400 10 390 10 380 Z"
-                fill="none"
-                stroke="#2a6f5f"
-                strokeWidth="2"
-              />
-            </svg>
+            {/* Back Card */}
+            <img
+              src="/assets/explore_card_back.svg"
+              alt=""
+              className={styles.folderBackImage}
+            />
+            {/* Front Card */}
+            <img
+              src="/assets/explore_card_Front.svg"
+              alt=""
+              className={styles.folderFrontImage}
+            />
           </div>
 
           {/* Folder Card 2 */}
@@ -1843,34 +1968,21 @@ export default function Home() {
               <span className={styles.folderLabel}>UDARTA:EG FIELD GUIDE ON</span>
               <h3 className={styles.folderTitle}>Volunteer Engagement</h3>
             </div>
-            <svg className={styles.folderSvg} viewBox="0 0 600 420" preserveAspectRatio="none" style={{ overflow: 'visible' }}>
-              <defs>
-                <linearGradient id="chapter1Gradient2" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#63C76B" />
-                  <stop offset="100%" stopColor="#17BABD" />
-                </linearGradient>
-              </defs>
-              {/* Back/Peeking Folder Outline */}
-              <path
-                d="M20 30 C20 20 30 10 40 10 L410 10 C420 10 430 15 435 20 L455 50 C460 55 470 55 475 55 L560 55 C570 55 580 65 580 75 L580 390 C580 400 570 410 560 410 L40 410 C30 410 20 400 20 390 Z"
-                fill="none"
-                stroke="#2a6f5f"
-                strokeWidth="2"
-                opacity="0.4"
-                transform="translate(10, 5) rotate(1, 300, 200)"
-              />
-              {/* Main Folder Outline */}
-              <path
-                className={styles.folderFrontPath}
-                d="M10 20 C10 10 20 0 30 0 L400 0 C410 0 420 5 425 10 L445 40 C450 45 460 45 465 45 L550 45 C560 45 570 55 570 65 L570 380 C570 390 560 400 550 400 L30 400 C20 400 10 390 10 380 Z"
-                fill="none"
-                stroke="#2a6f5f"
-                strokeWidth="2"
-              />
-            </svg>
+            {/* Back Card */}
+            <img
+              src="/assets/explore_card_back.svg"
+              alt=""
+              className={styles.folderBackImage}
+            />
+            {/* Front Card */}
+            <img
+              src="/assets/explore_card_Front.svg"
+              alt=""
+              className={styles.folderFrontImage}
+            />
           </div>
         </div>
-      </div>
+      </div >
 
       {/* Footer Section */}
       {/* Footer Section */}
@@ -1925,7 +2037,7 @@ export default function Home() {
             {/* ROW 2: Navigation Grid */}
             <div className={styles.footerLinksGrid}>
               {/* Col 1: Home */}
-              <div className={styles.footerGridCol} style={{ borderLeft: '2px solid #0FB8C5' }}>
+              <div className={styles.footerGridCol}>
                 <p className={styles.footerColTitle}>HOME</p>
                 <ul className={styles.footerLinkList}>
                   <li><a href="#">Who is this for?</a></li>
@@ -1934,7 +2046,7 @@ export default function Home() {
               </div>
 
               {/* Col 2: Reports */}
-              <div className={styles.footerGridCol} style={{ borderLeft: '2px solid #0FB8C5' }}>
+              <div className={styles.footerGridCol}>
                 <p className={styles.footerColTitle}>REPORTS & RESOURCES</p>
                 <ul className={styles.footerLinkList}>
                   <li><a href="#">UDARTA:EG Field Guide</a></li>

@@ -1,8 +1,9 @@
 .wrapper {
     position: relative;
     width: 100%;
-    height: 100vh;
-    background: linear-gradient(135deg, #13D9E8 0%, #FFCD86 100%);
+    height: 100%;
+    background: transparent;
+    /* Seamless integration */
     overflow: hidden;
 }
 
@@ -83,8 +84,13 @@
     bottom: 0;
     overflow-x: auto;
     overflow-y: hidden;
-    padding: 0 30px 60px;
-    /* Reduced horizontal padding to 30px */
+    padding: 0 40px 60px;
+    scroll-behavior: smooth;
+}
+
+.embeddedScroll {
+    top: 0 !important;
+    padding-top: 0 !important;
 }
 
 /* ... existing scrollbar styles ... */
@@ -105,41 +111,43 @@
 
 .scrollContent {
     display: flex;
-    gap: 30px;
-    /* Reduced from 40px */
+    gap: 32px;
     height: 100%;
     align-items: flex-start;
-    padding-top: 40px;
+    padding-top: 20px;
+    padding-bottom: 40px;
 }
 
 /* Content Cards */
 .contentCard {
-    min-width: 420px;
-    max-width: 420px;
-    padding: 36px;
+    min-width: 300px;
+    max-width: 300px;
+    padding: 24px;
     position: relative;
     display: flex;
     flex-direction: column;
     gap: 16px;
-    min-height: 300px;
+    min-height: 320px;
+    background: transparent;
 }
 
 /* Flower Decoration */
 .flowerDecoration {
     position: absolute;
-    top: -25px;
-    left: -57px;
-    width: 90px;
-    height: 600px;
+    top: -30px;
+    left: -60px;
+    width: 100px;
+    height: auto;
+    max-height: 500px;
     z-index: 10;
 }
 
 /* Yellow Bar Decoration */
 .yellowBar {
-    width: 60px;
-    height: 6px;
-    background: #FFEF3D;
-    border-radius: 3px;
+    width: 70px;
+    height: 8px;
+    background: linear-gradient(to right, #FFD700, #FFEF3D);
+    border-radius: 4px;
     position: absolute;
     top: 28px;
     right: 32px;
@@ -147,19 +155,20 @@
 
 /* Green Circle Decoration */
 .greenCircle {
-    width: 32px;
-    height: 32px;
-    background: #86A401;
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, #86A401, #9BC001);
     border-radius: 50%;
     position: absolute;
-    top: -8px;
-    left: -8px;
+    top: -10px;
+    left: -10px;
+    box-shadow: 0 2px 8px rgba(134, 164, 1, 0.3);
 }
 
 /* Green Stick Decoration */
 .greenStickWrapper {
-    min-width: 80px;
-    max-width: 80px;
+    min-width: 60px;
+    max-width: 60px;
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -169,27 +178,27 @@
 
 .greenStick {
     width: auto;
-    height: 400px;
+    height: 350px;
     object-fit: contain;
 }
 
 /* Story Text */
 .storyTitle {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 24px;
-    font-weight: 400;
+    font-family: 6px;
+    font-weight: 500;
     font-style: normal;
     color: #1a4d3a;
     line-height: 120%;
     letter-spacing: -0.04em;
-    margin: 0 0 8px 0;
+    margin: 0 0 12px 0;
 }
 
 .storyText {
     font-family: 'DM Sans', sans-serif;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 400;
     font-style: normal;
+    line-height: 155al;
     line-height: 150%;
     letter-spacing: -0.02em;
     color: #1a4d3a;
@@ -198,14 +207,15 @@
 
 /* Study Box */
 .studyBox {
-    background: #FFFFFF33;
+    background: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(10px);
-    border-radius: 16px;
-    padding: 28px;
+    border-radius: 20px;
+    padding: 32px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 16px;
     width: 100%;
+    min-height: 200px;
 }
 
 .studyLabel {
@@ -221,10 +231,10 @@
 
 .studyText {
     font-family: 'DM Sans', sans-serif;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 400;
     font-style: normal;
-    line-height: 120%;
+    line-height: 125%;
     letter-spacing: -0.04em;
     color: #1a4d3a;
     margin: 0;
@@ -248,10 +258,10 @@
 
 .whyText {
     font-family: 'DM Sans', sans-serif;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 400;
     font-style: normal;
-    line-height: 120%;
+    line-height: 125%;
     letter-spacing: -0.04em;
     color: #1a4d3a;
     margin: 0;
@@ -265,10 +275,10 @@
 
 .toolkitIntroText {
     font-family: 'DM Sans', sans-serif;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 400;
     font-style: normal;
-    line-height: 120%;
+    line-height: 125%;
     letter-spacing: -0.04em;
     color: #1a4d3a;
     margin: 0;
@@ -276,12 +286,14 @@
 
 /* Toolkit Cards */
 .toolkitCard {
-    min-width: 400px;
-    max-width: 400px;
-    height: 520px;
+    min-width: 300px;
+    max-width: 300px;
+    height: 400px;
     position: relative;
     border-radius: 24px;
-    overflow: visible;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     flex-shrink: 0;
 }
 
@@ -297,12 +309,14 @@
 
 .toolkitInner {
     position: absolute;
-    top: 50px;
+    top: 60px;
     left: 50%;
     transform: translateX(-50%);
     width: auto;
     height: auto;
-    max-width: 85%;
+    max-width: 90%;
+    max-height: 45%;
+    object-fit: contain;
     pointer-events: none;
     z-index: 1;
 }
@@ -312,12 +326,14 @@
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 32px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.6) 70%, transparent 100%);
+
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.7) 60%, rgba(0, 0, 0, 0.3) 80%, transparent 100%);
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
     z-index: 2;
+    border-radius: 0 0 28px 28px;
+    height: 50%;
     border-radius: 0 0 24px 24px;
 }
 
@@ -330,17 +346,20 @@
 }
 
 .toolkitTitle {
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 700;
     color: #ffffff;
     margin: 0;
+
     line-height: 1.2;
 }
 
 .toolkitDesc {
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.5;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0;
+    margin-bottom: 8px;
     margin: 0;
 }
 
@@ -352,70 +371,68 @@
 
 .downloadButton,
 .viewButton {
-    padding: 12px 24px;
-    border-radius: 24px;
-    font-size: 14px;
+    padding: 14px 28px;
+    border-radius: 28px;
+    font-size: 15px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s;
     border: none;
+    white-space: nowrap;
 }
 
 .downloadButton {
-    background: #ffffff;
-    color: #1a4d3a;
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    backdrop-filter: blur(10px);
 }
 
 .downloadButton:hover {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.25);
     transform: translateY(-2px);
 }
 
 .viewButton {
-    background: transparent;
-    color: #ffffff;
-    border: 2px solid #ffffff;
-}
-
-.viewButton:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-2px);
+    background: #ffffff;
+    color: #1a4d3a;
 }
 
 /* Next Chapter Card */
 .nextChapterCard {
-    min-width: 300px;
+    min-width: 250px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px;
+    padding: 40px 20px;
 }
 
 .nextChapterButton {
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding: 20px 40px;
-    background: rgba(26, 77, 58, 0.9);
+    gap: 12px;
+    padding: 18px 36px;
+    background: rgba(26, 77, 58, 0.95);
     color: #ffffff;
     border: none;
     border-radius: 50px;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(26, 77, 58, 0.3);
 }
 
 .nextChapterButton:hover {
     background: #1a4d3a;
-    transform: translateX(5px);
+    transform: translateX(8px);
+    box-shadow: 0 6px 20px rgba(26, 77, 58, 0.4);
 }
 
 .nextArrow {
-    font-size: 24px;
-    transition: transform 0.3s;
+    font-size: 20px;
+    transition: transform 0.3s ease;
 }
 
 .nextChapterButton:hover .nextArrow {
-    transform: translateX(5px);
+    transform: translateX(6px);
 }
