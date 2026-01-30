@@ -457,7 +457,7 @@ export default function Home() {
                                   This chapter helps you map your existing network so fundraising starts<br />
                                   with relationships, not cold outreach.
                                 </h1>
-                                <p className={styles.ch1Instruction}>Select one of the two options to reveal the right way</p>
+                                <p className={`${styles.ch1Instruction} ${styles.desktopOnly}`}>Select one of the two options to reveal the right way</p>
                               </>
                             )}
                           </div>
@@ -599,6 +599,9 @@ export default function Home() {
                             </div>
                           ) : (
                             <div className={styles.scenarioContainer}>
+                              <p className={`${styles.ch1Instruction} ${styles.mobileOnly}`} style={{ order: 2, width: '100%', textAlign: 'center', margin: '20px 0', color: '#fff' }}>
+                                Select one of the two options to reveal the right way
+                              </p>
                               {/* Option A */}
                               <motion.div
                                 className={styles.optionColumnLeft}
@@ -1777,10 +1780,10 @@ export default function Home() {
         <TabsSection
           activeChapter={activeChapter}
           onTabClick={(chapterId) => {
-            setActiveChapter(chapterId)
             if (chapterId === 5) {
               bonusSectionRef.current?.scrollIntoView({ behavior: 'smooth' })
             } else {
+              setActiveChapter(chapterId)
               chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' })
             }
           }}
@@ -1803,14 +1806,30 @@ export default function Home() {
               className={styles.bonusFlowerDot}
             />
             <p className={styles.bonusLabel}>BONUS CHAPTER</p>
-            <h2 className={styles.bonusTitle}>
+            {/* Desktop Title */}
+            <h2 className={`${styles.bonusTitle} ${styles.desktopOnly}`}>
               <span className={styles.bonusTitleHighlight}>No single team</span> owns<br />
               the donor experience
             </h2>
-            <p className={styles.bonusText}>
+            {/* Mobile Title with specific breaks */}
+            <h2 className={`${styles.bonusTitle} ${styles.mobileOnly}`}>
+              <span className={styles.bonusTitleHighlight}>No single team</span><br />
+              owns the donor<br />
+              experience
+            </h2>
+
+            {/* Desktop Text */}
+            <p className={`${styles.bonusText} ${styles.desktopOnly}`}>
               As supporters move across stages, effective coordination between<br />
               programme, communications, and fundraising teams ensures consistency,<br />
               continuity, and trust.
+            </p>
+            {/* Mobile Text with specific breaks */}
+            <p className={`${styles.bonusText} ${styles.mobileOnly}`}>
+              As supporters move across stages, effective<br />
+              coordination between programme,<br />
+              communications, and fundraising teams<br />
+              ensures consistency, continuity, and trust.
             </p>
             <div className={styles.bonusCallout}>
               {/* <span className={styles.bonusDot}></span> */}
@@ -1821,7 +1840,12 @@ export default function Home() {
             <img
               src="/assets/Bonus_flp.png"
               alt="Stewardship is a team effort"
-              className={styles.bonusCardImage}
+              className={`${styles.bonusCardImage} ${styles.desktopOnly}`}
+            />
+            <img
+              src="/assets/mobilee_bonus_card.png"
+              alt="Stewardship is a team effort"
+              className={`${styles.bonusCardImage} ${styles.mobileOnly}`}
             />
             <div className={styles.bonusDotsPattern}>
               <img
@@ -1846,19 +1870,24 @@ export default function Home() {
         <div className={styles.downloadContent}>
           {/* Decorative Petals */}
           <img
-            src="/assets/download_section_Petals.svg"
+            src="/assets/download_petal.svg"
             alt=""
             className={styles.downloadPetal1}
           />
           <img
-            src="/assets/download_section_Petals.svg"
+            src="/assets/download_petal.svg"
             alt=""
             className={styles.downloadPetal2}
           />
           <img
-            src="/assets/download_section_Petals.svg"
+            src="/assets/download_petal.svg"
             alt=""
             className={styles.downloadPetal3}
+          />
+          <img
+            src="/assets/download_petal.svg"
+            alt=""
+            className={styles.downloadPetal4}
           />
 
           {/* Decorative Balls */}
@@ -1874,7 +1903,7 @@ export default function Home() {
           />
 
           {/* Decorative Sticks */}
-          <img
+          {/* <img
             src="/assets/download_petal_stick.svg"
             alt=""
             className={styles.downloadStick1}
@@ -1893,31 +1922,34 @@ export default function Home() {
             src="/assets/download_petal_stick.svg"
             alt=""
             className={styles.downloadStick4}
-          />
+          /> */}
 
 
           {/* Center Card */}
           <div className={styles.downloadCard}>
             <div className={styles.downloadIcons}>
               <img
-                src="/assets/icons_download.svg"
+                src="/assets/downloas_icons.png"
                 alt="Download Icons"
                 className={styles.downloadIconsImage}
               />
             </div>
-            <h2 className={styles.downloadTitle}>Download the complete fundraising set</h2>
-            <p className={styles.downloadDescription}>
-              All the tools in one place to start building a structured, relationship-led approach<br />
-              to engaging everyday givers – at your own pace, and with the resources that fit<br />
-              your organisation best.
-            </p>
-            <div className={styles.downloadButtons}>
-              <button className={styles.downloadAllBtn}>
-                <img src="/assets/download_all.svg" alt="Download all" style={{ height: '56px', width: 'auto' }} />
-              </button>
-              <button className={styles.viewAllBtn}>
-                <img src="/assets/view_all.svg" alt="View all" style={{ height: '56px', width: 'auto' }} />
-              </button>
+
+            <div className={styles.downloadInfo}>
+              <h2 className={styles.downloadTitle}>Download the complete fundraising set</h2>
+              <p className={styles.downloadDescription}>
+                All the tools in one place to start building a structured, relationship-led approach<br />
+                to engaging everyday givers – at your own pace, and with the resources that fit<br />
+                your organisation best.
+              </p>
+              <div className={styles.downloadButtons}>
+                <button className={styles.downloadAllBtn}>
+                  <img src="/assets/download_all.svg" alt="Download all" className={styles.downloadAllImage} />
+                </button>
+                <button className={styles.viewAllBtn}>
+                  <img src="/assets/view_doanload.svg" alt="View all" className={styles.viewAllImage} />
+                </button>
+              </div>
             </div>
           </div>
 
@@ -1946,9 +1978,14 @@ export default function Home() {
               onMouseLeave={() => setIsExplore1Hovered(false)}
             />
             <img
-              src={isExplore1Hovered ? "/assets/explore_hover_intro.png" : "/assets/explore_introduction.png"}
+              src={isExplore1Hovered ? "/assets/intro_hover.png" : "/assets/explore_introduction.png"}
               alt="Introduction"
-              className={styles.exploreCardImage}
+              className={`${styles.exploreCardImage} ${styles.desktopOnly}`}
+            />
+            <img
+              src="/assets/mobile_explore_intro.svg"
+              alt="Introduction Mobile"
+              className={`${styles.exploreCardImage} ${styles.mobileOnly}`}
             />
           </div>
 
@@ -1963,9 +2000,14 @@ export default function Home() {
               onMouseLeave={() => setIsExplore2Hovered(false)}
             />
             <img
-              src={isExplore2Hovered ? "/assets/explore_hover_volunteer.png" : "/assets/explore_volunteer_engagement.png"}
+              src={isExplore2Hovered ? "/assets/volunteer_hover.png" : "/assets/explore_volunteer_engagement.png"}
               alt="Volunteer Engagement"
-              className={styles.exploreCardImage}
+              className={`${styles.exploreCardImage} ${styles.desktopOnly}`}
+            />
+            <img
+              src="/assets/mobile_explore_vol.svg"
+              alt="Volunteer Engagement Mobile"
+              className={`${styles.exploreCardImage} ${styles.mobileOnly}`}
             />
           </div>
         </div>
@@ -1988,15 +2030,13 @@ export default function Home() {
               building the infrastructure for everyday generosity.
             </p>
 
-            <div className={styles.footerMapContainer}>
-              {/* India Map Image */}
-              <img
-                src="/assets/based_in_india.png"
-                alt="Based in India Map"
-                className={styles.footerMapImage}
-              />
-              <p className={styles.footerLocationText}>Based in India, working nationwide</p>
-            </div>
+            {/* India Map Image */}
+            <img
+              src="/assets/map.png"
+              alt="Based in India Map"
+              className={styles.footerMapImage}
+            />
+            <p className={styles.footerLocationText}>Based in India, working nationwide</p>
           </div>
 
           {/* RIGHT COLUMN: Content */}
@@ -2005,7 +2045,9 @@ export default function Home() {
             {/* ROW 1: Get Involved Form */}
             <div className={styles.getInvolvedRow}>
               <p className={styles.getInvolvedLabel}>GET INVOLVED</p>
-              <div className={styles.getInvolvedForm}>
+
+              {/* DESKTOP VERSION (3 Lines) */}
+              <div className={`${styles.getInvolvedForm} ${styles.footerFormDesktop}`}>
                 <div className={styles.formLine}>
                   Hi, I'm <input type="text" placeholder="Merlyn Fernandes" className={styles.inlineInput} />, I'm from <input type="text" placeholder="Giving Together Foundation" className={styles.inlineInput} />.
                 </div>
@@ -2016,6 +2058,26 @@ export default function Home() {
                   I'm available on <input type="email" placeholder="m.fernandes@email.com" className={styles.inlineInput} /> if you need to reach out to me for updates & details.
                 </div>
               </div>
+
+              {/* MOBILE VERSION (5 Lines) */}
+              <div className={`${styles.getInvolvedForm} ${styles.footerFormMobile}`}>
+                <div className={styles.formLine}>
+                  Hi, I'm <input type="text" placeholder="your name" className={`${styles.inlineInput} ${styles.inputName}`} /> ,
+                </div>
+                <div className={styles.formLine}>
+                  I'm from <input type="text" placeholder="name of your organisation" className={`${styles.inlineInput} ${styles.inputOrg}`} /> .
+                </div>
+                <div className={styles.formLine}>
+                  I'd love to be a part of Giving Together Foundation's
+                </div>
+                <div className={styles.formLine}>
+                  initiatives. I'm available on <input type="email" placeholder="your email address" className={`${styles.inlineInput} ${styles.inputEmail}`} />
+                </div>
+                <div className={styles.formLine}>
+                  if you need to reach out to me for updates & details.
+                </div>
+              </div>
+
               <button className={styles.subscribeBtn}>
                 Subscribe <span className={styles.btnArrow}>→</span>
               </button>
@@ -2066,8 +2128,6 @@ export default function Home() {
 
         </div>
         {/* Decorative Circles */}
-        <div className={styles.footerDecorCircle1}></div>
-        <div className={styles.footerDecorCircle2}></div>
 
         {/* Footer Background Pattern */}
         <img

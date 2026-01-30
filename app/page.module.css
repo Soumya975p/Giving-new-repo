@@ -6,10 +6,14 @@
   overflow-x: hidden;
   scroll-behavior: smooth;
   scrollbar-width: none;
-  /* Firefox */
-  /* -ms-overflow-style: none; */
-  /* IE/Edge */
-  /* background: #12363B; */
+}
+
+.desktopOnly {
+  display: block;
+}
+
+.mobileOnly {
+  display: none;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -63,10 +67,7 @@
   height: 35;
   top: 4px;
   left: 305px;
-  angle: 0 deg;
   opacity: 1;
-
-
 }
 
 .fieldGuide {
@@ -81,6 +82,7 @@
       #d349ae 0%,
       #13d9e8 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -1711,7 +1713,7 @@
 
 /* Bonus Chapter Section */
 .bonusSection {
-  background: #0d3b3f;
+  background: #12363B;
   padding: 100px 0;
   position: relative;
   overflow: hidden;
@@ -1725,7 +1727,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 80px;
-  padding: 0 40px;
+  padding: 0 0px;
 }
 
 .bonusLeft {
@@ -1750,7 +1752,7 @@
   transform: translate(-50%, -50%);
   width: 20px;
   height: 20px;
-  background: #0d3b3f;
+  background: #12363B;
   border-radius: 2px;
 }
 
@@ -1774,7 +1776,7 @@
 }
 
 .bonusTitleHighlight {
-  fontcolor: white;
+  color: white;
 }
 
 .bonusText {
@@ -2315,7 +2317,7 @@
   /* margin: -100px auto 0; */
   text-align: center;
   position: relative;
-  padding-bottom: 100px;
+  padding-bottom: 0px;
   z-index: 5;
 }
 
@@ -3482,7 +3484,7 @@
 
 /* Bonus Chapter Section */
 .bonusSection {
-  background: #0d3b3f;
+  background: #12363B;
   padding: 100px 0;
   position: relative;
   overflow: hidden;
@@ -3496,7 +3498,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 80px;
-  padding: 0 40px;
+  padding: 0 00px;
 }
 
 .bonusLeft {
@@ -5557,7 +5559,7 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background: #0d3b3f;
+  background: #12363B;
   /* Matched with bonusSection */
   display: flex;
   align-items: center;
@@ -5565,57 +5567,32 @@
   padding: 100px 20px 300px;
   /* Increased bottom padding */
   overflow: hidden;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
 }
 
 .downloadCard {
   position: relative;
-  width: 800px;
-  /* USER EDIT: Set exact width of the card here */
-  height: 350px;
-  /* USER EDIT: Set exact height of the card here (was auto) */
+  width: 950px;
+  height: auto;
+  min-height: 380px;
   max-width: 95%;
-  /* Prevent overflow on small screens */
   margin: 0 auto;
-  /* Centers the card horizontally */
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  /* Centers content vertically in the card */
+  flex-direction: row;
+  align-items: center;
+  gap: 60px;
   background: linear-gradient(to right, #96B600 0%, #C9CD33 50%, #F0DF5B 100%);
   border-radius: 40px;
-  padding: 80px 100px;
+  padding: 80px 80px;
   z-index: 100;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-  /* Add noise texture effect if possible, otherwise simple gradient */
-  /* background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E"), linear-gradient(135deg, #8ba83e 0%, #689f38 100%); */
   overflow: hidden;
+  max-height: 400px;
 }
 
-.downloadCard::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 400px;
-  height: 300px;
-  z-index: 1;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.4'/%3E%3C/svg%3E");
-  opacity: 0.6;
-  mix-blend-mode: overlay;
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    repeating-radial-gradient(circle at 0 0,
-      rgba(11, 48, 52, 0.15) 0,
-      rgba(11, 48, 52, 0.15) 1px,
-      rgba(255, 255, 255, 0.25) 1px,
-      rgba(255, 255, 255, 0.25) 2px);
-  mix-blend-mode: overlay;
-  opacity: 1;
-  pointer-events: none;
-}
 
 /* Background Image */
 .downloadBackgroundImage {
@@ -5643,62 +5620,62 @@
 
 .downloadContent {
   position: relative;
-  z-index: 2;
+  z-index: 30;
   width: 100%;
   display: flex;
   justify-content: center;
   right: 10px;
 }
 
-.downloadHeader {
-  display: flex;
-  align-items: flex-start;
-  gap: 30px;
-  margin-bottom: 30px;
-}
-
-/* New Icon Styles */
-.downloadIconsImage {
-  width: 60px;
-  height: 60px;
-  display: block;
-  position: absolute;
-  /* Changed to absolute so icons don't affect title positioning */
-  top: 100px;
-  left: -65px;
-}
-
 .downloadIcons {
-  margin-bottom: 30px;
-  padding-left: 0;
-  /* USER EDIT: Removed padding to allow free icon movement */
+  position: relative;
+  flex-shrink: 0;
+  /* USER ADJUST: top, bottom, left, right */
+  top: 0;
+  left: 0;
+}
+
+.downloadIconsImage {
+  position: relative;
+  display: block;
+  /* USER ADJUST: width, height, top, bottom, left, right */
+  width: 80px;
+  height: auto;
+  top: -140px;
+  left: 0;
+}
+
+.downloadInfo {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
 }
 
 .downloadTitle {
   font-family: 'Zalando Sans Expanded', sans-serif;
-  font-size: 38px;
+  font-size: 45px;
   font-weight: 300;
-  line-height: 1.1;
+  line-height: 0.95;
   color: white;
-  margin: 0;
+  margin: 0 0 40px 0;
+  letter-spacing: -0.02em;
+  transform: translateY(20px);
 }
 
 .downloadDescription {
   font-family: 'DM Sans', sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.9);
-  max-width: 600px;
-  margin-bottom: 50px;
+  font-size: 22px;
+  line-height: 1.4;
+  color: white;
+  max-width: 750px;
+  margin-bottom: 45px;
   font-weight: 400;
-  /* padding-left: 80px; */
-  /* Align with title */
+  opacity: 0.95;
 }
 
 .downloadButtons {
   display: flex;
   gap: 20px;
-  padding-left: 80px;
   align-items: center;
 }
 
@@ -5708,12 +5685,27 @@
   padding: 0;
   cursor: pointer;
   display: flex;
-  transition: transform 0.3s ease;
-  transform: translate(10px, -22px);
+  align-items: center;
+  transition: all 0.3s ease;
+  position: relative;
+  /* USER ADJUST: top, bottom, left, right */
+  top: 0;
+  left: 0;
 }
 
 .downloadAllBtn:hover {
-  transform: scale(1.05) translate(10px, -22px);
+  transform: scale(1.05);
+}
+
+.downloadAllImage {
+  /* USER ADJUST: width, height */
+  height: 56px;
+  width: auto;
+}
+
+.diamond {
+  font-size: 14px;
+  color: #fff;
 }
 
 .viewAllBtn {
@@ -5722,13 +5714,24 @@
   padding: 0;
   cursor: pointer;
   display: flex;
-  transition: transform 0.3s ease;
-  transform: translate(10px, -22px);
+  align-items: center;
+  transition: all 0.3s ease;
+  position: relative;
+  /* USER ADJUST: top, bottom, left, right */
+  top: 0;
+  left: 0;
 }
 
 .viewAllBtn:hover {
-  transform: scale(1.05) translate(10px, -22px);
+  transform: scale(1.05);
 }
+
+.viewAllImage {
+  /* USER ADJUST: width, height */
+  height: 56px;
+  width: auto;
+}
+
 
 
 
@@ -5836,34 +5839,36 @@
 
 @media (max-width: 1024px) {
   .downloadCard {
-    padding: 60px 40px;
-    width: 90%;
-  }
-
-  /* Adjust background image for mobile */
-  .downloadBackgroundImage {
-    width: 200%;
-    min-width: unset;
-    opacity: 0.2;
-  }
-
-  .downloadHeader {
+    padding: 60px 20px;
+    width: 95%;
     flex-direction: column;
-    gap: 20px;
+    text-align: center;
+    gap: 30px;
+    min-height: auto;
   }
 
-  .downloadIcons {
-    padding-left: 0;
-    margin-bottom: 20px;
+  .downloadInfo {
+    align-items: center;
+    text-align: center;
   }
 
   .downloadTitle {
-    font-size: 40px;
+    font-size: 36px;
+    margin-bottom: 20px;
   }
 
-  .downloadDescription,
-  .downloadActions {
-    padding-left: 0;
+  .downloadDescription {
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+
+  .downloadButtons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .downloadIconsImage {
+    width: 80px;
   }
 
   /* Fade out decorations on smaller screens */
@@ -5876,7 +5881,7 @@
 .exploreSection {
   width: 100%;
   min-height: 80vh;
-  background: #0d3b3f;
+  background: #12363B;
   /* Matched with bonusSection */
   /* Dark teal background */
   padding: 100px 40px;
@@ -5912,15 +5917,15 @@
 
 .exploreGrid {
   position: relative;
-  width: 1299px;
-  height: 648.5px;
+  width: 1000px;
+  height: 500px;
   margin-top: 0px;
 }
 
 .exploreCardBase {
   position: absolute;
-  width: 590px;
-  height: 628px;
+  width: 450px;
+  height: 480px;
   opacity: 1;
   transition: transform 0.3s ease;
 }
@@ -5942,7 +5947,7 @@
 
 .exploreCard2 {
   top: 20.5px;
-  left: 709px;
+  left: 550px;
 }
 
 .exploreCardImage {
@@ -5953,8 +5958,24 @@
 
 
 @media (max-width: 1024px) {
+  .desktopOnly {
+    display: none !important;
+  }
+
+  .mobileOnly {
+    display: block !important;
+  }
+
+  .hoverTrigger {
+    display: none;
+  }
+
   .exploreSection {
     padding: 60px 20px;
+  }
+
+  .exploreHeader {
+    margin-bottom: 15px;
   }
 
   .exploreGrid {
@@ -5969,7 +5990,7 @@
   .exploreCardBase {
     position: relative;
     width: 100%;
-    max-width: 590px;
+    max-width: 350px;
     height: auto;
     top: 0 !important;
     left: 0 !important;
@@ -6021,6 +6042,9 @@
 
   .downloadButtons {
     justify-content: flex-start;
+    flex-direction: row;
+    gap: 10px;
+    transform: translateY(-10px);
   }
 
   /* Ensure background fits nicely */
@@ -6036,7 +6060,7 @@
 
 .footerSection {
   width: 100%;
-  background: linear-gradient(180deg, #0d3b3f 0%, #041A1D);
+  background: linear-gradient(180deg, #041A1D 0%, #041A1D);
   /* Seamless dark teal gradient */
   padding: 80px 100px 170px;
   /* Increased bottom padding for background image space */
@@ -6126,9 +6150,6 @@
 
 
 /* Map Area */
-.footerMapContainer {
-  /* margin-top: auto; */
-}
 
 .footerMapPlaceholder {
   width: 200px;
@@ -6183,17 +6204,28 @@
 .getInvolvedForm {
   font-family: 'DM Sans', sans-serif;
   font-weight: 500;
-  font-size: 20px;
-  line-height: 140%;
-  letter-spacing: -0.04em;
   color: white;
 }
 
-.formLine {
+.footerFormDesktop {
+  display: block;
+}
+
+.footerFormMobile {
+  display: none;
+}
+
+.getInvolvedForm.footerFormDesktop {
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: -0.04em;
+}
+
+.footerFormDesktop .formLine {
   margin-bottom: 5px;
 }
 
-.inlineInput {
+.footerFormDesktop .inlineInput {
   background: transparent;
   border: none;
   font-family: 'DM Sans', sans-serif;
@@ -6206,6 +6238,16 @@
   border-bottom: 1px solid rgba(30, 181, 154, 0.3);
   padding: 0 5px;
   width: fit-content;
+}
+
+.inputName,
+.inputOrg,
+.inputEmail {
+  width: auto;
+}
+
+.inlineInput::placeholder {
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .inlineInput:focus {
@@ -6231,6 +6273,10 @@
   padding: 0;
 }
 
+.subscribeBtn:hover {
+  opacity: 1;
+}
+
 .btnArrow {
   width: 34.5px;
   height: 24px;
@@ -6244,6 +6290,10 @@
   padding-bottom: 2px;
   position: relative;
   top: 2px;
+}
+
+.subscribeBtn:hover .btnArrow {
+  transform: none;
 }
 
 
@@ -6327,35 +6377,13 @@
   margin-top: 0;
 }
 
-/* Decorations */
-.footerDecorCircle1 {
-  position: absolute;
-  bottom: -50px;
-  right: 10%;
-  width: 150px;
-  height: 150px;
-  border: 1px solid rgba(80, 227, 194, 0.1);
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.footerDecorCircle2 {
-  position: absolute;
-  bottom: 80px;
-  right: 18%;
-  width: 12px;
-  height: 12px;
-  background: #11383d;
-  /* Slightly lighter dot */
-  border-radius: 50%;
-  pointer-events: none;
-}
 
 /* Footer Background Pattern */
 .footerBackgroundPattern {
   position: absolute;
   bottom: 0;
   left: 0;
+  /* USER ADJUST: width, height, top, bottom, left, right */
   width: 100%;
   height: auto;
   z-index: 0;
@@ -6378,6 +6406,27 @@
   .footerRightColumn {
     width: 100%;
     align-items: flex-start;
+  }
+
+  .footerDescription {
+    font-size: 18px;
+    /* Sync with PC */
+    max-width: 100%;
+  }
+
+  .footerLogoTitle {
+    font-size: 24px;
+    /* Sync with PC */
+  }
+
+  .getInvolvedForm {
+    font-size: 20px;
+    /* Sync with PC */
+  }
+
+  .inlineInput {
+    font-size: 20px;
+    /* Sync with PC */
   }
 
   .footerLinksGrid {
@@ -6406,7 +6455,6 @@
   }
 
   .footerGridCol {
-    /* border-left: 2px solid #0FB8C5 !important; - Removed to respect inline styles (Email has no border) */
     padding-left: 20px;
   }
 
@@ -6415,6 +6463,15 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .footerBackgroundPattern {
+    /* USER ADJUST: width, height, top, bottom for Mobile */
+    width: 250% !important;
+    height: auto !important;
+    bottom: 20px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
   }
 }
 
@@ -6897,16 +6954,6 @@
   margin-bottom: 16px;
 }
 
-/* Footer Background Pattern */
-.footerBackgroundPattern {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-  pointer-events: none;
-  z-index: 0;
-}
 
 /* =========================================
    DOWNLOAD SECTION DECORATIONS
@@ -6916,7 +6963,7 @@
 .downloadPetal1 {
   position: absolute;
   /* top: 50px; */
-  bottom: 48px;
+  bottom: -74px;
   /* left: 50px; */
   right: 120px;
   width: 20px;
@@ -6928,7 +6975,7 @@
 .downloadPetal2 {
   position: absolute;
   /* top: 200px; */
-  bottom: -10px;
+  bottom: -130px;
   /* left: 100px; */
   right: 155px;
   width: 20px;
@@ -6940,7 +6987,7 @@
 .downloadPetal3 {
   position: absolute;
   /* top: 80px; */
-  bottom: -50px;
+  bottom: -192px;
   /* left: auto; */
   right: 85px;
   width: 20px;
@@ -6948,10 +6995,20 @@
   pointer-events: none;
 }
 
+.downloadPetal4 {
+  position: absolute;
+  bottom: -50%;
+  right: 85.2%;
+  width: 13px;
+  height: auto;
+  z-index: 35;
+  pointer-events: none;
+}
+
 /* Ball 1 - Left side */
 .downloadBall1 {
   position: absolute;
-  top: 118px;
+  top: 42%;
   bottom: auto;
   /* left: 30px; */
   right: 125px;
@@ -6963,7 +7020,7 @@
 /* Ball 2 - Right side */
 .downloadBall2 {
   position: absolute;
-  top: 178px;
+  top: 56%;
   bottom: auto;
   left: auto;
   right: 150px;
@@ -7085,23 +7142,259 @@
   .downloadSection {
     padding-left: 0;
     padding-right: 0;
+    padding-bottom: 200px;
     overflow: visible;
   }
 
+  .downloadContent {
+    right: 0 !important;
+  }
+
   .downloadCard {
-    width: 100vw !important;
-    max-width: 100vw !important;
-    border-radius: 0;
-    margin-left: 0;
-    margin-right: 0;
+    width: 100% !important;
+    height: 441px !important;
+    max-width: 100% !important;
+    border-radius: 20px !important;
+    padding: 40px 23px !important;
+    margin: 0 !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+    gap: 10px !important;
+    min-height: unset !important;
+    max-height: unset !important;
+  }
+
+  .downloadIconsImage {
+    width: 60px !important;
+    height: auto !important;
+    top: 0 !important;
+    left: 0 !important;
+    margin-bottom: 20px !important;
+  }
+
+  .downloadInfo {
+    text-align: left !important;
+  }
+
+  .downloadTitle {
+    font-size: 38px !important;
+    line-height: 1.1 !important;
+    margin: 0 0 15px 0 !important;
+    transform: none !important;
+    text-align: left !important;
+  }
+
+  .downloadDescription {
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    margin: 0 0 30px 0 !important;
+    text-align: left !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .downloadAllImage,
+  .viewAllImage {
+    height: 48px !important;
   }
 
   .downloadBackgroundImage {
-    width: 386px !important;
-    height: 275px !important;
-    transform: rotate(0deg) !important;
+    width: 250% !important;
+    height: auto !important;
+    position: absolute !important;
+    bottom: 30px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
     opacity: 1 !important;
-    top: 2550px !important;
+    z-index: 5 !important;
+    object-fit: contain !important;
+  }
+
+  .downloadPetal1,
+  .downloadPetal2,
+  .downloadPetal3,
+  .downloadPetal4,
+  .downloadBall1,
+  .downloadBall2 {
+    display: none !important;
+  }
+
+  /* Get Involved Form - Mobile Structure Toggling */
+  .footerFormDesktop {
+    display: none !important;
+  }
+
+  .footerFormMobile {
+    display: block !important;
+  }
+
+  /* Mobile Refinements applying only to the Mobile structure */
+  .footerFormMobile {
+    font-size: 16px !important;
+    /* Reduced for better in-line fit */
+    line-height: 160% !important;
+    letter-spacing: -0.01em !important;
+    color: white !important;
+  }
+
+  .footerFormMobile .formLine {
+    margin-bottom: 12px !important;
+    white-space: nowrap !important;
+    /* Prevent wrapping within lines */
+  }
+
+  .footerFormMobile .inlineInput {
+    font-size: 16px !important;
+    color: #6A8B8C !important;
+    border: none !important;
+    /* Ensure no borders */
+    border-bottom: 1px solid #1EB5BA !important;
+    background: transparent !important;
+    -webkit-text-fill-color: initial !important;
+    padding: 2px 0 !important;
+    height: auto !important;
+  }
+
+  .footerFormMobile .inlineInput::placeholder {
+    color: #6A8B8C !important;
+    opacity: 0.8 !important;
+  }
+
+  .footerFormMobile .inputName {
+    width: 120px !important;
+  }
+
+  .footerFormMobile .inputOrg {
+    width: 200px !important;
+  }
+
+  .footerFormMobile .inputEmail {
+    width: 160px !important;
+  }
+
+  .subscribeBtn {
+    margin-top: -34px !important;
+    color: #1EB5BA !important;
+    font-size: 22px !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  .btnArrow {
+    width: 45px !important;
+    height: 28px !important;
+    background: #1EB5BA !important;
+    color: #041A1D !important;
+    border-radius: 20px !important;
+    font-size: 18px !important;
+    top: 0 !important;
+  }
+
+  .subscribeBtn:hover .btnArrow {
+    transform: translateX(5px) !important;
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* Bonus Section - Mobile Specifics */
+  .bonusSection {
+    padding: 60px 24px;
+    background: #12363B;
+    /* Darker background based on reference */
+  }
+
+  .bonusContent {
+    flex-direction: column;
+    gap: 40px;
+    padding: 0;
+  }
+
+  .bonusLeft {
+    text-align: left;
+    order: 1;
+    right: -15%;
+    /* Text first */
+  }
+
+  .bonusRight {
+    order: 2;
+    /* Image second */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+
+  .bonusCardImage {
+    width: 100%;
+    max-width: 320px;
+    /* Adjust based on preferred card size */
+    height: auto;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
+  }
+
+  .bonusTitle {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+
+  .bonusText {
+    font-size: 14px;
+    margin-bottom: 22px;
+  }
+
+  .bonusDiamond {
+    margin-bottom: 20px;
+  }
+
+  /* Restore background elements on mobile */
+  .bonusDotsPattern {
+    display: block;
+    position: absolute;
+    top: auto;
+    bottom: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.5;
+    /* Optional: Adjust opacity if needed to match reference visual weight */
+    pointer-events: none;
+  }
+
+
+  .bonusDotsImage {
+    width: 109%;
+    height: 155%;
+    object-fit: contain;
+    /* or cover, depending on desired effect. Desktop uses something specific? */
+  }
+
+  /* Mobile Flower & Dot Positioning (Moved from global to protect desktop) */
+  .bonusFlowerImage {
+    position: absolute;
+    top: -15%;
+    bottom: auto;
+    left: -15%;
+    right: auto;
+    width: 1190px;
+    /* Kept from user edit, scaling handled by viewport or transform if needed */
+    height: 780px;
+    transform: scale(0.6);
+    /* Slightly scale down to fit context */
+    transform-origin: top left;
+  }
+
+  .bonusFlowerDot {
+    top: 72%;
+    left: -11%;
+    width: 20px;
+    height: 97px;
+    z-index: 2;
   }
 }
 
@@ -7116,6 +7409,8 @@
   margin-top: 20px;
   position: relative;
 }
+
+
 
 .optionColumnLeft,
 .optionColumnRight {
@@ -7169,6 +7464,73 @@
   letter-spacing: -0.03em;
   color: #1a4d3a;
   text-align: inherit;
+}
+
+@media (max-width: 768px) {
+  .scenarioContainer {
+    flex-direction: column;
+    margin-top: -40px;
+    gap: 20px;
+  }
+
+  .centerCard {
+    width: 100%;
+    max-width: 240px !important;
+    /* Decrease size for mobile from 300px */
+    height: auto;
+    order: 1;
+    margin-bottom: 20px;
+    transform: none !important;
+  }
+
+  .optionColumnLeft,
+  .optionColumnRight {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    align-items: flex-start !important;
+    padding: 20px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+    border-radius: 12px;
+    margin-top: 0 !important;
+    order: 3;
+    /* Options after card (order 1) and text (order 2) */
+    text-align: left !important;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .optionColumnRight {
+    order: 4;
+    /* After left option (order 3) */
+    align-items: flex-start !important;
+  }
+
+  .optionLabel {
+    color: #64e3c9;
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+
+  .optionDesc {
+    color: white;
+    font-size: 18px;
+    line-height: 1.3;
+  }
+
+  .hoverFlowerLeftMain,
+  .hoverFlowerLeftmost,
+  .hoverFlowerMiddle,
+  .hoverFlowerRightmost,
+  .hoverPetal,
+  .hoverFly,
+  .hoverFlowerRightMain,
+  .hoverFlowerRightmostB,
+  .hoverFlowerMiddleB,
+  .hoverFlowerLeftmostB,
+  .hoverPetalB,
+  .hoverFlyB {
+    display: none !important;
+  }
 }
 
 /* Hover Decorations */
