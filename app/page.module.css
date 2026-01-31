@@ -1,4 +1,4 @@
-/* Page Wrapper - Scrollable */
+﻿/* Page Wrapper - Scrollable */
 .pageWrapper {
   width: 100%;
   height: 100vh;
@@ -77,6 +77,28 @@
   /* Changed from fixed width to accommodate just the icon */
   opacity: 1;
   pointer-events: auto;
+}
+
+.menuSvg {
+  width: 250px;
+  height: auto;
+  cursor: pointer;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .headerRight {
+    top: 20px;
+    right: 20px;
+  }
+
+  .menuSvg {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    object-position: right;
+    border-radius: 6px;
+  }
 }
 
 .fieldGuide {
@@ -198,7 +220,6 @@
   pointer-events: none;
   opacity: 1;
   transition: all 0.3s ease;
-  margin: 0;
 }
 
 /* Mobile Hero Background - Initially hidden */
@@ -288,10 +309,11 @@
 }
 
 .heroRight {
-  max-width: 380px;
-  padding-top: 80px;
+  max-width: 20vw;
+  padding-top: 20vh;
   position: relative;
   z-index: 10;
+  margin-top: -10%;
 }
 
 .heroSubtitle {
@@ -400,7 +422,7 @@
   /* Show hero.png on mobile */
   .heroImageMobile {
     display: block;
-    width: 250%;
+    width: 270%;
     /* max-width: 100%; */
     height: auto;
     order: 2;
@@ -409,10 +431,10 @@
     object-fit: contain;
     z-index: 5;
     right: -79%;
-    position: absolute;
+    position: relative;
     margin-bottom: 10px;
     /* bottom: 2vh; */
-    transform: translateY(10vh);
+    transform: translateX(-112vw);
   }
 
   .heroBackgroundSvg {
@@ -430,7 +452,7 @@
   .heroRight {
     width: 100% !important;
     max-width: 100% !important;
-    margin-top: 45px !important;
+    margin-top: -60% !important;
     padding-left: 0 !important;
     order: 3;
     text-align: left !important;
@@ -438,21 +460,21 @@
     flex-direction: column;
     align-items: flex-start !important;
     /* Third: Content */
-    transform: translateY(50vh);
+    position: relative;
     margin-bottom: 100px;
   }
 
   .mobileHeroBackground {
     display: block !important;
     position: relative;
-    width: 150%;
+    width: 118%;
     height: auto;
     order: 4;
     /* Fourth: Mobile background SVG at bottom */
     margin: 30px 0 0 0;
     z-index: 5;
-    right: 5vh;
-    margin-top: -10vh;
+    right: 7vh;
+    margin-top: -22vh;
   }
 
   /* Mobile title adjustments */
@@ -2150,7 +2172,7 @@
   position: fixed;
   right: 40px;
   top: 4%;
-  z-index: 9999;
+  z-index: 99998;
   display: flex;
   align-items: center;
   gap: 14px;
@@ -2285,8 +2307,8 @@
 }
 
 .heroRight {
-  max-width: 380px;
-  padding-top: 80px;
+  max-width: 20vw;
+  padding-top: 20vh;
   position: relative;
   z-index: 10;
 }
@@ -5733,7 +5755,8 @@
   width: 80px;
   height: auto;
   top: -90px;
-  left: -10px;
+  left: -30px;
+  margin-top: 10px;
 }
 
 .downloadInfo {
@@ -6020,9 +6043,7 @@
   width: 450px;
   height: 480px;
   opacity: 1;
-  transition: transform 0.3s ease;
   overflow: visible;
-  /* Ensure scaled content isn't clipped */
 }
 
 .hoverTrigger {
@@ -6042,7 +6063,7 @@
 }
 
 .exploreCard2 {
-  top: 20.5px;
+  top: 0;
   left: 550px;
 }
 
@@ -6057,13 +6078,11 @@
 
 .exploreHoverImage {
   position: absolute;
-  top: 0;
+  top: auto;
+  bottom: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: left bottom;
-  /* Align visuals with transform origin */
+  height: auto;
   z-index: 10;
   pointer-events: none;
 }
@@ -7809,6 +7828,7 @@
     line-height: 1.3;
   }
 
+  /* 
   .hoverFlowerLeftMain,
   .hoverFlowerLeftmost,
   .hoverFlowerMiddle,
@@ -7822,6 +7842,41 @@
   .hoverPetalB,
   .hoverFlyB {
     display: none !important;
+  } */
+}
+
+@media (max-width: 768px) {
+  .chapterGrid {
+    width: 100vw;
+    flex-direction: row;
+    /* Horizontal */
+    margin: 0;
+    margin-top: 50px;
+    border-top: none;
+    background: transparent;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .chapterGrid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gridColumn {
+    width: 100vw;
+    flex: 0 0 100vw;
+    /* Fix width to 100vw and prevent shrinking */
+    border-right: 1px solid rgba(80, 227, 194, 0.2);
+    border-bottom: none;
+    padding: 60px 20px;
+    background: #12363b;
+    scroll-snap-align: start;
+  }
+
+  .gridColumn:last-child {
+    border-right: none;
   }
 }
 
@@ -8138,13 +8193,15 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: transparent;
-  z-index: 10000;
+  background: rgba(18, 54, 59, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 99999;
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
   padding: 0;
-  pointer-events: none;
+  pointer-events: auto;
 }
 
 .menuContent {
@@ -8152,9 +8209,9 @@
   height: auto;
   min-height: 583px;
   max-height: 90vh;
-  background: rgba(18, 54, 59, 0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(18, 54, 59, 0.85);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
   display: flex;
   flex-direction: column;
   overflow-y: auto;
@@ -8166,6 +8223,7 @@
   margin-top: 80px;
   margin-right: 20px;
   transition: height 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .menuContent::-webkit-scrollbar {
@@ -8472,5 +8530,11 @@
 
   .chapterSubItem {
     font-size: 13px;
+  }
+}
+
+@media (max-width: 450px) {
+  .bonusCalloutText {
+    max-width: 338px;
   }
 }

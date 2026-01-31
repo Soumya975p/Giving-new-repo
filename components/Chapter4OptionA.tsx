@@ -10,105 +10,129 @@ interface Chapter4OptionAProps {
 
 export default function Chapter4OptionA({ onBack, onNext, embedded = false }: Chapter4OptionAProps) {
     return (
-        <div className={`${styles.wrapper} ${embedded ? styles.embedded : ''}`}>
-            {/* Back Button - only show when not embedded */}
-            {!embedded && (
+        <div className={styles.optionContentWrapper}>
+            {/* Sticky Header */}
+            <div className={`${styles.stickyHeader} ${embedded ? styles.embeddedHeader : ''}`}>
                 <button className={styles.backButton} onClick={onBack}>
                     <ArrowLeft size={16} />
                     <span>Back to scenario</span>
                 </button>
-            )}
 
-            {/* Header Content - only show when not embedded */}
-            {!embedded && (
-                <div className={styles.headerSection}>
-                    <h4 className={styles.headerLabel}>CHAPTER IV: DONORS TO CHAMPIONS</h4>
-                    <p className={styles.headerText}>
-                        When relationships are nurtured well, supporters deepen their involvement.
-                        This chapter explores how donors grow into champions.
-                    </p>
+                {!embedded && (
+                    <div className={styles.headerContent}>
+                        <h4 className={styles.headerLabel}>CHAPTER IV: DONORS TO CHAMPIONS</h4>
+                        <p className={styles.headerText}>
+                            When relationships are nurtured well, supporters deepen their involvement.
+                            This chapter explores how donors grow into champions.
+                        </p>
+                    </div>
+                )}
+
+                <div className={styles.scrollToggle}>
+                    <img src="/assets/scroll.svg" alt="Scroll" />
                 </div>
-            )}
+            </div>
 
-            {/* Horizontal Scroll Container */}
-            <div className={`${styles.horizontalScrollContainer} ${embedded ? styles.embeddedScroll : ''}`}>
+            <div className={styles.horizontalScrollContainer}>
                 <div className={styles.scrollContent}>
-                    {/* Card 1 - Main Content */}
+                    {/* Card 1 - Story Card */}
                     <div className={styles.contentCard}>
-                        <div className={styles.titleWrapper}>
-                            <img
-                                src="/assets/ch4_c1.png"
-                                alt=""
-                                className={styles.ch4C1}
-                            />
-                            <h2 className={styles.mainHeading}>You've unlocked growth!</h2>
-                        </div>
-                        <p className={styles.mainText}>
+                        <img
+                            src="/assets/ch4_c1.png"
+                            alt="Decoration"
+                            className={styles.flowerDecoration}
+                        />
+                        <h3 className={styles.storyTitle}>You've unlocked growth!</h3>
+                        <p className={styles.storyText}>
                             Nidhi increases her contribution to ₹4,000 and shares the campaign
                             with her network. A friend donates ₹2,000 based on her recommendation.
                         </p>
                     </div>
 
+                    {/* Grouped cards for precise 20px gap control */}
+                    <div className={styles.cardsGrouping}>
+                        {/* Card 2 - Three Info Divisions */}
+                        <div className={styles.contentCard}>
+                            {/* Decorative images moved inside Card 2 */}
+                            <img src="/assets/ch4_c2.png" alt="" className={styles.floatingDecor1} />
+                            {/* <img src="/assets/ch4_c3.png" alt="" className={styles.floatingDecor2} />
+                            <img src="/assets/ch4_c4.png" alt="" className={styles.floatingDecor3} /> */}
 
+                            {/* Division 1 - Main heading */}
+                            <div className={styles.infoDiv1}>
+                                <div className={styles.divContent1}>
+                                    <span className={styles.studyLabel}>WHAT CHANGES INTERNALLY</span>
+                                    <p className={styles.divText1}>
+                                        Nidhi moves into a High Potential donor segment.
+                                    </p>
+                                </div>
+                            </div>
 
-                    {/* Card 2 - What Changes Internally */}
-                    <div className={styles.contentCard}>
-                        <img src="/assets/ch4_c2.png" alt="" className={styles.ch4C2} />
-                        <img src="/assets/ch4_c3.png" alt="" className={styles.ch4C3} />
-                        <img src="/assets/ch4_c4.png" alt="" className={styles.ch4C4} />
+                            {/* Division 2 */}
+                            <div className={styles.infoDiv2}>
+                                <p className={styles.divText2}>
+                                    Her repeat donation improves retention metrics
+                                </p>
+                            </div>
 
-                        <div className={styles.infoBlock1}>
-                            <span className={styles.sectionLabel}>WHAT CHANGES INTERNALLY</span>
-                            <h3 className={styles.sectionTitle}>
-                                Nidhi moves into a High Potential donor segment.
-                            </h3>
-                        </div>
-                        <div className={styles.infoBlock2}>
-                            <p className={styles.infoText}>Her repeat donation improves retention metrics</p>
-                        </div>
-                        <div className={styles.infoBlock3}>
-                            <p className={styles.infoText}>Network referrals expand reach without cold outreach</p>
-                        </div>
-                    </div>
-
-
-
-                    {/* Card 3 - Why This Works */}
-                    <div className={styles.contentCard}>
-                        <div className={styles.whySection}>
-                            <span className={styles.sectionLabel}>WHY THIS WORKS</span>
-                            <h3 className={styles.sectionTitle}>
-                                Donors who feel valued don't just give more they bring others with them.
-                            </h3>
-                            <div className={styles.toolkitPrompt}>
-
-                                <p className={styles.toolkitPromptText}>
-                                    We have two toolkits to help you track donor engagement and how to grow your network
+                            {/* Division 3 */}
+                            <div className={styles.infoDiv3}>
+                                <p className={styles.divText3}>
+                                    Network referrals expand reach without cold outreach
                                 </p>
                             </div>
                         </div>
-                    </div>
 
+                        {/* Card 3 - Why This Works + Toolkit Intro */}
+                        <div className={styles.contentCard}>
+                            <img
+                                src="/assets/ch4_c5.png"
+                                alt=""
+                                className={styles.card3Decor}
+                            />
 
+                            <div className={styles.whySection}>
+                                <span className={styles.whyLabel}>WHY THIS WORKS</span>
+                                <p className={styles.whyText}>
+                                    Donors who feel valued don't just give more —
+                                    they bring others with them.
+                                </p>
+                            </div>
 
+                            <div className={styles.toolkitIntro}>
 
-
-                    {/* Next Chapter Button */}
-                    {onNext && (
-                        <div className={styles.nextChapterCard}>
-                            <button className={styles.nextChapterButton} onClick={onNext}>
-                                <span>Next Chapter</span>
-                                <span className={styles.nextArrow}>→</span>
-                            </button>
+                                <p className={styles.toolkitIntroText}>
+                                    We have two toolkits to help you track
+                                    donor engagement and how to grow
+                                    your network
+                                </p>
+                            </div>
                         </div>
-                    )}
+
+                        {/* Toolkit Card 1 */}
+                        <div className={styles.toolkitCard}>
+                            <img src="/assets/toolkit_ch4_1.png" alt="Card background" className={styles.toolkitBg} />
+                        </div>
+
+                        {/* Toolkit Card 2 */}
+                        <div className={styles.toolkitCard}>
+                            <img src="/assets/toolkit_ch4_2.png" alt="Card background" className={styles.toolkitBg} />
+                        </div>
+
+                        {/* Next Chapter Button */}
+                        {onNext && (
+                            <div className={styles.nextChapterCard}>
+                                <img
+                                    src="/assets/next_chapter_button.svg"
+                                    alt="Next chapter"
+                                    className={styles.nextChapterImage}
+                                    onClick={onNext}
+                                />
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
-
-            {/* Decoration Images - Absolute Positioned */}
-            <img src="/assets/ch4_c5.png" alt="" className={styles.ch4C5} />
-            <img src="/assets/ch4_fill.png" alt="" className={styles.ch4Fill} />
-            <img src="/assets/ch4_hollow.png" alt="" className={styles.ch4Hollow} />
         </div>
     );
 }
