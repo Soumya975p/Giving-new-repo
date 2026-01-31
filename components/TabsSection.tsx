@@ -10,11 +10,41 @@ const TabsSection: React.FC<TabsSectionProps> = ({ activeChapter, onTabClick }) 
     const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
     const tabs = [
-        { id: 1, svg: '/assets/ch_1_tab.svg', label: 'I. Network Expansion', fullLabel: 'Chapter I : Tilling the Soil' },
-        { id: 2, svg: '/assets/ch_2_tab.svg', label: 'II. First Donation', fullLabel: 'Chapter II : The Planting' },
-        { id: 3, svg: '/assets/ch_3_tab.svg', label: 'III. Stewarding Donors', fullLabel: 'Chapter III : The Nurturing' },
-        { id: 4, svg: '/assets/ch_4_tab.svg', label: 'IV. Donors to Champions', fullLabel: 'Chapter IV : Growth' },
-        { id: 5, svg: '/assets/ch_5_tab.svg', label: 'V. Bonus Chapter', fullLabel: 'Chapter V : Bonus Chapter' }
+        {
+            id: 1,
+            svg: '/assets/ch_1_tab.svg',
+            label: 'I. Network Expansion',
+            fullLabel: 'Chapter I : Tilling the Soil',
+            gradient: 'linear-gradient(90deg, #0FB8C5 0%, #93CD4D 100%)'
+        },
+        {
+            id: 2,
+            svg: '/assets/ch_2_tab.svg',
+            label: 'II. First Donation',
+            fullLabel: 'Chapter II : The Planting',
+            gradient: 'linear-gradient(45deg, #D349AE 0%, #0FB8C5 50%, #1BD5E4 100%)'
+        },
+        {
+            id: 3,
+            svg: '/assets/ch_3_tab.svg',
+            label: 'III. Stewarding Donors',
+            fullLabel: 'Chapter III : The Nurturing',
+            gradient: 'radial-gradient(circle at bottom right, #FFCD86 10% , #13D9E8 )'
+        },
+        {
+            id: 4,
+            svg: '/assets/ch_4_tab.svg',
+            label: 'IV. Donors to Champions',
+            fullLabel: 'Chapter IV : Growth',
+            gradient: 'linear-gradient(180deg, #FFEF3D 0%, #DCD647 20%, #C9CD33 40%, #8DA806 60%, #86A401 80%, #315900 100%)'
+        },
+        {
+            id: 5,
+            svg: '/assets/ch_5_tab.svg',
+            label: 'V. Bonus Chapter',
+            fullLabel: 'Chapter V : Bonus Chapter',
+            gradient: 'linear-gradient(135deg, #0FB8C5 0%, #93CD4D 100%)'
+        }
     ];
 
     const activeTabLabel = tabs.find(t => t.id === activeChapter)?.label || 'Select a chapter';
@@ -29,10 +59,31 @@ const TabsSection: React.FC<TabsSectionProps> = ({ activeChapter, onTabClick }) 
                         className={`${styles.tab} ${activeChapter === tab.id ? styles.activeTab : ''}`}
                         onClick={() => onTabClick(tab.id)}
                     >
+                        {activeChapter === tab.id && (
+                            <div
+                                style={{
+                                    position: 'absolute',
+                                    top: 0,
+                                    left: 0,
+                                    width: '100%',
+                                    height: '100%',
+                                    background: tab.gradient,
+                                    maskImage: `url('${tab.svg}')`,
+                                    WebkitMaskImage: `url('${tab.svg}')`,
+                                    maskSize: 'cover',
+                                    WebkitMaskSize: 'cover',
+                                    maskRepeat: 'no-repeat',
+                                    WebkitMaskRepeat: 'no-repeat',
+                                    pointerEvents: 'none',
+                                    zIndex: 1
+                                }}
+                            />
+                        )}
                         <img
                             src={tab.svg}
                             alt={tab.label}
                             className={styles.tabImage}
+                            style={{ opacity: activeChapter === tab.id ? 0 : 1 }}
                             onClick={(e) => {
                                 e.stopPropagation();
                                 onTabClick(tab.id);

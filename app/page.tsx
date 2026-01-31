@@ -258,217 +258,6 @@ export default function Home() {
           </div>
         </header>
 
-        {/* Menu Overlay */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              className={styles.menuOverlay}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <motion.div
-                className={styles.menuContent}
-                initial={{ y: -20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -20, opacity: 0 }}
-                transition={{ duration: 0.3, delay: 0.1 }}
-                onClick={(e) => e.stopPropagation()}
-              >
-
-                <div className={styles.menuBody}>
-                  <div className={styles.menuLeft}>
-                    <div className={styles.menuSection}>
-                      <button className={styles.menuSectionTitle}>Introduction</button>
-                    </div>
-
-                    <div className={styles.menuSection}>
-                      <button
-                        className={`${styles.menuSectionTitle} ${styles.withBullet}`}
-                        onClick={() => setIsFundraisingExpanded(!isFundraisingExpanded)}
-                      >
-                        <span className={styles.bullet}>◆</span>
-                        <span>Fundraising</span>
-                        <span className={styles.expandIcon}>{isFundraisingExpanded ? '−' : '+'}</span>
-                      </button>
-                    </div>
-
-                    <div className={styles.menuSection}>
-                      <button className={styles.menuSectionTitle}>Volunteer Engagement</button>
-                    </div>
-                  </div>
-
-                  <div className={styles.menuRight}>
-                    <div className={styles.chaptersList}>
-                      {/* Chapter 1 */}
-                      <div className={styles.chapterItem}>
-                        <button
-                          className={styles.chapterButton}
-                          onClick={() => {
-                            setActiveChapter(1);
-                            chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
-                          }}
-                        >
-                          <div className={styles.chapterInfo}>
-                            <div className={styles.chapterLabel}>CH. I : TILLING THE SOIL</div>
-                            <div className={styles.chapterTitle}>Network Expansion</div>
-                          </div>
-                          <button
-                            className={styles.chapterExpand}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setExpandedChapter(expandedChapter === 1 ? null : 1);
-                            }}
-                          >
-                            {expandedChapter === 1 ? '−' : '+'}
-                          </button>
-                        </button>
-                        {expandedChapter === 1 && (
-                          <div className={styles.chapterExpandedContent}>
-                            <a href="#" className={styles.chapterSubItem}>Network Mapping</a>
-                            <a href="#" className={styles.chapterSubItem}>Stakeholder Analysis</a>
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Chapter 2 */}
-                      <div className={styles.chapterItem}>
-                        <button
-                          className={styles.chapterButton}
-                          onClick={() => {
-                            setActiveChapter(2);
-                            chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
-                          }}
-                        >
-                          <div className={styles.chapterInfo}>
-                            <div className={styles.chapterLabel}>CH. II : THE PLANTING</div>
-                            <div className={styles.chapterTitle}>First Donation</div>
-                          </div>
-                          <button
-                            className={styles.chapterExpand}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setExpandedChapter(expandedChapter === 2 ? null : 2);
-                            }}
-                          >
-                            {expandedChapter === 2 ? '−' : '+'}
-                          </button>
-                        </button>
-                        {expandedChapter === 2 && (
-                          <div className={styles.chapterExpandedContent}>
-                            <a href="#" className={styles.chapterSubItem}>First Contact Template</a>
-                            <a href="#" className={styles.chapterSubItem}>Donation Receipt</a>
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Chapter 3 */}
-                      <div className={styles.chapterItem}>
-                        <button
-                          className={styles.chapterButton}
-                          onClick={() => {
-                            setActiveChapter(3);
-                            chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
-                          }}
-                        >
-                          <div className={styles.chapterInfo}>
-                            <div className={styles.chapterLabel}>CHAPTER III: THE NURTURING</div>
-                            <div className={styles.chapterTitle}>Stewarding Donors</div>
-                          </div>
-                          <button
-                            className={styles.chapterExpand}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setExpandedChapter(expandedChapter === 3 ? null : 3);
-                            }}
-                          >
-                            {expandedChapter === 3 ? '−' : '+'}
-                          </button>
-                        </button>
-                        {expandedChapter === 3 && (
-                          <div className={styles.chapterExpandedContent}>
-                            <a href="#" className={styles.chapterSubItem}>Segmentation & Profiling</a>
-                            <a href="#" className={styles.chapterSubItem}>The Storytelling Bank</a>
-                            <a href="#" className={styles.chapterSubItem}>The Communications Calendar</a>
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Chapter 4 */}
-                      <div className={styles.chapterItem}>
-                        <button
-                          className={styles.chapterButton}
-                          onClick={() => {
-                            setActiveChapter(4);
-                            chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
-                          }}
-                        >
-                          <div className={styles.chapterInfo}>
-                            <div className={styles.chapterLabel}>CHAPTER IV: GROWTH</div>
-                            <div className={styles.chapterTitle}>Donors to Champions</div>
-                          </div>
-                          <button
-                            className={styles.chapterExpand}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setExpandedChapter(expandedChapter === 4 ? null : 4);
-                            }}
-                          >
-                            {expandedChapter === 4 ? '−' : '+'}
-                          </button>
-                        </button>
-                        {expandedChapter === 4 && (
-                          <div className={styles.chapterExpandedContent}>
-                            <a href="#" className={styles.chapterSubItem}>Champion Engagement Plan</a>
-                            <a href="#" className={styles.chapterSubItem}>Recognition Strategy</a>
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Chapter 5 - Bonus */}
-                      <div className={styles.chapterItem}>
-                        <button
-                          className={styles.chapterButton}
-                          onClick={() => {
-                            bonusSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
-                          }}
-                        >
-                          <div className={styles.chapterInfo}>
-                            <div className={styles.chapterLabel}>CH. V : BONUS CHAPTER</div>
-                            <div className={styles.chapterTitle}>Getting Your Team On Board</div>
-                          </div>
-                          <button
-                            className={styles.chapterExpand}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setExpandedChapter(expandedChapter === 5 ? null : 5);
-                            }}
-                          >
-                            {expandedChapter === 5 ? '−' : '+'}
-                          </button>
-                        </button>
-                        {expandedChapter === 5 && (
-                          <div className={styles.chapterExpandedContent}>
-                            <a href="#" className={styles.chapterSubItem}>Team Alignment Workshop</a>
-                            <a href="#" className={styles.chapterSubItem}>Internal Communication</a>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    <button className={styles.downloadAllButton}>
-                      <span className={styles.downloadAllTitle}>All Fundraising toolkits</span>
-                      <span className={styles.downloadAllSubtitle}>↓ DOWNLOAD ALL</span>
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
         {/* Hero Content */}
         <div className={styles.heroContent}>
           <div className={styles.heroLeft}>
@@ -1772,11 +1561,8 @@ export default function Home() {
 
 
                               {/* Option A */}
-                              <motion.div
+                              <div
                                 className={styles.optionColumnLeft}
-                                initial="rest"
-                                whileHover="hover"
-                                animate="rest"
                                 onClick={() => setSelectedOption('A')}
                                 style={{ cursor: 'pointer' }}
                               >
@@ -1787,9 +1573,8 @@ export default function Home() {
                                   standard appeal
                                 </p>
 
-                                {/* Animated CTA */}
-                                <motion.div
-                                  variants={ctaVariants}
+                                {/* Static CTA */}
+                                <div
                                   style={{
                                     marginTop: '24px',
                                     display: 'flex',
@@ -1799,16 +1584,16 @@ export default function Home() {
                                     fontWeight: 500
                                   }}
                                 >
-                                  <motion.div variants={arrowVariants}>
+                                  <div>
                                     <ArrowRight style={{ width: '20px', height: '20px' }} />
-                                  </motion.div>
+                                  </div>
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
                                   }}>Choose Option</span>
-                                </motion.div>
-                              </motion.div>
+                                </div>
+                              </div>
 
                               {/* Center Card */}
                               <div className={styles.centerCard} ref={(el) => { centerCardRefs.current[3] = el }}>
@@ -1820,11 +1605,8 @@ export default function Home() {
                               </div>
 
                               {/* Option B */}
-                              <motion.div
+                              <div
                                 className={styles.optionColumnRight}
-                                initial="rest"
-                                whileHover="hover"
-                                animate="rest"
                                 onClick={() => setSelectedOption('B')}
                                 style={{ cursor: 'pointer' }}
                               >
@@ -1835,9 +1617,8 @@ export default function Home() {
                                   with her network
                                 </p>
 
-                                {/* Animated CTA */}
-                                <motion.div
-                                  variants={ctaVariants}
+                                {/* Static CTA */}
+                                <div
                                   style={{
                                     marginTop: '24px',
                                     display: 'flex',
@@ -1848,16 +1629,16 @@ export default function Home() {
                                     flexDirection: 'row-reverse'
                                   }}
                                 >
-                                  <motion.div variants={arrowLeftVariants}>
+                                  <div>
                                     <ArrowLeft style={{ width: '20px', height: '20px' }} />
-                                  </motion.div>
+                                  </div>
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
                                   }}>Choose Option</span>
-                                </motion.div>
-                              </motion.div>
+                                </div>
+                              </div>
 
                             </div>
                           )}
@@ -2142,10 +1923,8 @@ export default function Home() {
             />
           )}
 
-          {/* Folder Card 1 */}
           <div
             className={`${styles.exploreCardBase} ${styles.exploreCard1}`}
-            style={{ transform: isExplore1Hovered ? 'translateY(-10px)' : 'none' }}
           >
             <div
               className={styles.hoverTrigger}
@@ -2160,24 +1939,17 @@ export default function Home() {
             />
             {/* Desktop Version */}
             <div className={styles.desktopOnly}>
-              <motion.img
+              <img
                 src="/assets/explore_introduction.png"
                 alt="Introduction"
                 className={styles.exploreCardImage}
-                animate={{ opacity: isExplore1Hovered ? 0 : 1 }}
-                transition={{ duration: 0.3 }}
+                style={{ opacity: isExplore1Hovered ? 0 : 1 }}
               />
-              <motion.img
+              <img
                 src="/assets/intro_hover.png"
                 alt="Introduction Hover"
                 className={styles.exploreHoverImage}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{
-                  opacity: isExplore1Hovered ? 1 : 0,
-                  scale: isExplore1Hovered ? 1 : 0.95
-                }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
-                style={{ transformOrigin: 'bottom left' }}
+                style={{ opacity: isExplore1Hovered ? 1 : 0 }}
               />
             </div>
             {/* Mobile Version - Static */}
@@ -2188,10 +1960,8 @@ export default function Home() {
             />
           </div>
 
-          {/* Folder Card 2 */}
           <div
             className={`${styles.exploreCardBase} ${styles.exploreCard2}`}
-            style={{ transform: isExplore2Hovered ? 'translateY(-10px)' : 'none' }}
           >
             <div
               className={styles.hoverTrigger}
@@ -2206,24 +1976,17 @@ export default function Home() {
             />
             {/* Desktop Version */}
             <div className={styles.desktopOnly}>
-              <motion.img
+              <img
                 src="/assets/explore_volunteer_engagement.png"
                 alt="Volunteer Engagement"
                 className={styles.exploreCardImage}
-                animate={{ opacity: isExplore2Hovered ? 0 : 1 }}
-                transition={{ duration: 0.3 }}
+                style={{ opacity: isExplore2Hovered ? 0 : 1 }}
               />
-              <motion.img
+              <img
                 src="/assets/volunteer_hover.png"
                 alt="Volunteer Engagement Hover"
                 className={styles.exploreHoverImage}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{
-                  opacity: isExplore2Hovered ? 1 : 0,
-                  scale: isExplore2Hovered ? 1 : 0.95
-                }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
-                style={{ transformOrigin: 'bottom left' }}
+                style={{ opacity: isExplore2Hovered ? 1 : 0 }}
               />
             </div>
             {/* Mobile Version - Static */}
@@ -2359,6 +2122,217 @@ export default function Home() {
           className={styles.footerBackgroundPattern}
         />
       </footer>
+
+      {/* Menu Overlay - Placed at root level for proper z-index stacking */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            className={styles.menuOverlay}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <motion.div
+              className={styles.menuContent}
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -20, opacity: 0 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+
+              <div className={styles.menuBody}>
+                <div className={styles.menuLeft}>
+                  <div className={styles.menuSection}>
+                    <button className={styles.menuSectionTitle}>Introduction</button>
+                  </div>
+
+                  <div className={styles.menuSection}>
+                    <button
+                      className={`${styles.menuSectionTitle} ${styles.withBullet}`}
+                      onClick={() => setIsFundraisingExpanded(!isFundraisingExpanded)}
+                    >
+                      <span className={styles.bullet}>◆</span>
+                      <span>Fundraising</span>
+                      <span className={styles.expandIcon}>{isFundraisingExpanded ? '−' : '+'}</span>
+                    </button>
+                  </div>
+
+                  <div className={styles.menuSection}>
+                    <button className={styles.menuSectionTitle}>Volunteer Engagement</button>
+                  </div>
+                </div>
+
+                <div className={styles.menuRight}>
+                  <div className={styles.chaptersList}>
+                    {/* Chapter 1 */}
+                    <div className={styles.chapterItem}>
+                      <button
+                        className={styles.chapterButton}
+                        onClick={() => {
+                          setActiveChapter(1);
+                          chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                      >
+                        <div className={styles.chapterInfo}>
+                          <div className={styles.chapterLabel}>CH. I : TILLING THE SOIL</div>
+                          <div className={styles.chapterTitle}>Network Expansion</div>
+                        </div>
+                        <button
+                          className={styles.chapterExpand}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setExpandedChapter(expandedChapter === 1 ? null : 1);
+                          }}
+                        >
+                          {expandedChapter === 1 ? '−' : '+'}
+                        </button>
+                      </button>
+                      {expandedChapter === 1 && (
+                        <div className={styles.chapterExpandedContent}>
+                          <a href="#" className={styles.chapterSubItem}>Network Mapping</a>
+                          <a href="#" className={styles.chapterSubItem}>Stakeholder Analysis</a>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Chapter 2 */}
+                    <div className={styles.chapterItem}>
+                      <button
+                        className={styles.chapterButton}
+                        onClick={() => {
+                          setActiveChapter(2);
+                          chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                      >
+                        <div className={styles.chapterInfo}>
+                          <div className={styles.chapterLabel}>CH. II : THE PLANTING</div>
+                          <div className={styles.chapterTitle}>First Donation</div>
+                        </div>
+                        <button
+                          className={styles.chapterExpand}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setExpandedChapter(expandedChapter === 2 ? null : 2);
+                          }}
+                        >
+                          {expandedChapter === 2 ? '−' : '+'}
+                        </button>
+                      </button>
+                      {expandedChapter === 2 && (
+                        <div className={styles.chapterExpandedContent}>
+                          <a href="#" className={styles.chapterSubItem}>First Contact Template</a>
+                          <a href="#" className={styles.chapterSubItem}>Donation Receipt</a>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Chapter 3 */}
+                    <div className={styles.chapterItem}>
+                      <button
+                        className={styles.chapterButton}
+                        onClick={() => {
+                          setActiveChapter(3);
+                          chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                      >
+                        <div className={styles.chapterInfo}>
+                          <div className={styles.chapterLabel}>CHAPTER III: THE NURTURING</div>
+                          <div className={styles.chapterTitle}>Stewarding Donors</div>
+                        </div>
+                        <button
+                          className={styles.chapterExpand}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setExpandedChapter(expandedChapter === 3 ? null : 3);
+                          }}
+                        >
+                          {expandedChapter === 3 ? '−' : '+'}
+                        </button>
+                      </button>
+                      {expandedChapter === 3 && (
+                        <div className={styles.chapterExpandedContent}>
+                          <a href="#" className={styles.chapterSubItem}>Segmentation & Profiling</a>
+                          <a href="#" className={styles.chapterSubItem}>The Storytelling Bank</a>
+                          <a href="#" className={styles.chapterSubItem}>The Communications Calendar</a>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Chapter 4 */}
+                    <div className={styles.chapterItem}>
+                      <button
+                        className={styles.chapterButton}
+                        onClick={() => {
+                          setActiveChapter(4);
+                          chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                      >
+                        <div className={styles.chapterInfo}>
+                          <div className={styles.chapterLabel}>CHAPTER IV: GROWTH</div>
+                          <div className={styles.chapterTitle}>Donors to Champions</div>
+                        </div>
+                        <button
+                          className={styles.chapterExpand}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setExpandedChapter(expandedChapter === 4 ? null : 4);
+                          }}
+                        >
+                          {expandedChapter === 4 ? '−' : '+'}
+                        </button>
+                      </button>
+                      {expandedChapter === 4 && (
+                        <div className={styles.chapterExpandedContent}>
+                          <a href="#" className={styles.chapterSubItem}>Champion Engagement Plan</a>
+                          <a href="#" className={styles.chapterSubItem}>Recognition Strategy</a>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Chapter 5 - Bonus */}
+                    <div className={styles.chapterItem}>
+                      <button
+                        className={styles.chapterButton}
+                        onClick={() => {
+                          bonusSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                      >
+                        <div className={styles.chapterInfo}>
+                          <div className={styles.chapterLabel}>CH. V : BONUS CHAPTER</div>
+                          <div className={styles.chapterTitle}>Getting Your Team On Board</div>
+                        </div>
+                        <button
+                          className={styles.chapterExpand}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setExpandedChapter(expandedChapter === 5 ? null : 5);
+                          }}
+                        >
+                          {expandedChapter === 5 ? '−' : '+'}
+                        </button>
+                      </button>
+                      {expandedChapter === 5 && (
+                        <div className={styles.chapterExpandedContent}>
+                          <a href="#" className={styles.chapterSubItem}>Team Alignment Workshop</a>
+                          <a href="#" className={styles.chapterSubItem}>Internal Communication</a>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  <button className={styles.downloadAllButton}>
+                    <span className={styles.downloadAllTitle}>All Fundraising toolkits</span>
+                    <span className={styles.downloadAllSubtitle}>↓ DOWNLOAD ALL</span>
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div >
   )
 }
