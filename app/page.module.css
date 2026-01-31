@@ -359,12 +359,22 @@
   border: none;
   padding: 0;
   cursor: pointer;
-  /* No hover effects or transitions */
+  outline: none;
+  box-shadow: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.startButton:focus,
+.startButton:active,
+.startButton:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
 }
 
 .startButton:hover {
-  /* No hover effect */
   background: transparent;
+  outline: none;
 }
 
 .startButton::before {
