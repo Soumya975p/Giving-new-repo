@@ -129,8 +129,6 @@ export default function Home() {
   const [isCh2OptionBHovered, setIsCh2OptionBHovered] = useState(false)
   const [isCh3OptionAHovered, setIsCh3OptionAHovered] = useState(false)
   const [isCh3OptionBHovered, setIsCh3OptionBHovered] = useState(false)
-  const [isCh4OptionAHovered, setIsCh4OptionAHovered] = useState(false)
-  const [isCh4OptionBHovered, setIsCh4OptionBHovered] = useState(false)
   const [isExplore1Hovered, setIsExplore1Hovered] = useState(false)
   const [isExplore2Hovered, setIsExplore2Hovered] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -1536,54 +1534,36 @@ export default function Home() {
                           </div>
 
                           {selectedOption === 'A' ? (
-                            <div style={{ flex: 1, width: '100%', position: 'relative' }}>
-                              <OptionContent
-                                embedded={true}
-                                chapterTitle="CHAPTER III: STEWARDING DONORS"
-                                chapterSubtitle="Staying connected after the first gift builds trust. This chapter focuses on how consistent, non-ask engagement helps donors feel involved and valued."
-                                backgroundColor="transparent"
-                                onBack={() => setSelectedOption(null)}
-                                onNext={handleNextChapter}
-                                customStyles={chapter3StylesA}
-                                contentCards={[
-                                  {
-                                    id: 1,
-                                    type: 'text',
-                                    floatingTextLabel: "UDARTA:EG STUDY SHOWS",
-                                    floatingText: "When communication is purely transactional, donors feel like ATM machines.",
-                                    decorationType: 'flower',
-                                    label: '',
-                                    title: 'Transactional outreach causes attrition',
-                                    content: 'Donors who only hear from you when you need money are 3x more likely to stop supporting within the first year.',
-                                    showStatBelow: true,
-                                    statLabel: 'DID YOU KNOW?',
-                                    stat: '70%',
-                                    statDescription: 'of donors who stop giving cite a lack of meaningful connection or information about their impact as the primary reason.',
-                                    statBoxTransparent: true
-                                  },
-                                  {
-                                    id: 2,
-                                    type: 'text',
-                                    floatingText: "Instead, the relationship goes cold. Nidhi feels unappreciated and eventually stops giving.",
-                                    decorationType: 'circle',
-                                    label: '',
-                                    title: '',
-                                    content: '',
-                                    showStatBelow: true,
-                                    statLabel: 'UDARTA:EG STUDY SHOWS',
-                                    stat: '',
-                                    statDescription: 'Lack of post-donation engagement leads to a significant decrease in donor lifetime value.'
-                                  },
-                                  {
-                                    id: 3,
-                                    type: 'toolkit',
-                                    toolkitLabel: 'TOOLKIT #3',
-                                    toolkitTitle: 'Engagement Calendar',
-                                    toolkitDescription: 'How to organize your communications to stay top-of-mind without being intrusive.',
-                                    toolkitImage: '/assets/toolkit_55.svg'
-                                  }
-                                ]}
-                              />
+                            <div style={{
+                              position: 'fixed',
+                              top: '40px',
+                              left: 0,
+                              right: 0,
+                              display: 'flex',
+                              justifyContent: 'center',
+                              zIndex: 10000,
+                              pointerEvents: 'none'
+                            }}>
+                              <button
+                                onClick={() => setSelectedOption(null)}
+                                style={{
+                                  pointerEvents: 'auto',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  gap: '8px',
+                                  background: 'transparent',
+                                  border: 'none',
+                                  color: '#1a4d3a',
+                                  fontFamily: 'DM Sans, sans-serif',
+                                  fontSize: '14px',
+                                  fontWeight: 500,
+                                  cursor: 'pointer',
+                                  padding: 0
+                                }}
+                              >
+                                <ArrowLeft size={16} />
+                                <span>Back to scenario</span>
+                              </button>
                             </div>
                           ) : selectedOption === 'B' ? (
                             // Chapter 3 Option B Content (without header, header is above)
@@ -1754,71 +1734,36 @@ export default function Home() {
                               onNext={handleNextChapter}
                             />
                           ) : selectedOption === 'B' ? (
-                            <div style={{ flex: 1, width: '100%', position: 'relative' }}>
-                              <OptionContent
-                                embedded={true}
-                                chapterTitle="CHAPTER IV: DONORS TO CHAMPIONS"
-                                chapterSubtitle="When relationships are nurtured well, supporters deepen their involvement. This chapter explores how donors grow into champions."
-                                backgroundColor="transparent"
-                                onBack={() => setSelectedOption(null)}
-                                onNext={handleNextChapter}
-                                customStyles={chapter4StylesB}
-                                contentCards={[
-                                  {
-                                    id: 1,
-                                    type: 'text',
-                                    floatingText: (
-                                      <>
-                                        <h2 style={{ fontSize: '28px', color: '#1a4d3a', margin: '0 0 10px 0', lineHeight: '1.2' }}>Treating Nidhi like any other donor risks losing momentum.</h2>
-                                        <p style={{ fontSize: '16px', color: '#1a4d3a', lineHeight: '1.5' }}>
-                                          By sending a standard appeal, you fail to acknowledge her unique history and potential to champion your cause.
-                                        </p>
-                                      </>
-                                    ),
-                                    decorationImages: [
-                                      '/assets/chapter_1/fly_left_optionA.svg',
-                                      '/assets/flower_chapter_4.svg'
-                                    ],
-                                    label: 'MISSED OPPORTUNITY',
-                                    title: 'Growth Stalls',
-                                    content: 'Without personalized engagement, she contributes less than her potential.',
-                                    showStatBelow: true,
-                                    statLabel: 'DID YOU KNOW?',
-                                    stat: '53%',
-                                    statDescription: 'of donors leave due to poor communication, including not feeling recognized.',
-                                    transparentBackground: true
-                                  },
-                                  {
-                                    id: 2,
-                                    type: 'text',
-                                    floatingText: (
-                                      <div style={{ paddingLeft: '20px', borderLeft: '3px solid #D4E157' }}>
-                                        <span style={{ display: 'block', fontSize: '10px', fontWeight: 'bold', letterSpacing: '1px', color: 'rgba(255,255,255,0.8)', marginBottom: '8px', textTransform: 'uppercase' }}>THE RESULT</span>
-                                        <h3 style={{ fontSize: '20px', color: '#1a4d3a', marginBottom: '15px' }}>She remains a one-time donor or drifts away completely.</h3>
-                                      </div>
-                                    ),
-                                    decorationImages: ['/assets/chapter_2_column2_1.svg'],
-                                    label: '',
-                                    title: '',
-                                    content: '',
-                                    transparentBackground: true
-                                  },
-                                  {
-                                    id: 3,
-                                    type: 'toolkit',
-                                    toolkitTitle: 'Donor Engagement Dashboard',
-                                    toolkitDescription: 'A one stop shop to show you how well your organisation is retaining and engaging its everyday givers.',
-                                    toolkitImage: '/assets/toolkit66.svg'
-                                  },
-                                  {
-                                    id: 4,
-                                    type: 'toolkit',
-                                    toolkitTitle: 'Supporter-Led Fundraising',
-                                    toolkitDescription: 'A powerful toolkit to grow your network by creating champions for your cause.',
-                                    toolkitImage: '/assets/toolkit_77.svg'
-                                  }
-                                ]}
-                              />
+                            <div style={{
+                              position: 'fixed',
+                              top: '40px',
+                              left: 0,
+                              right: 0,
+                              display: 'flex',
+                              justifyContent: 'center',
+                              zIndex: 10000,
+                              pointerEvents: 'none'
+                            }}>
+                              <button
+                                onClick={() => setSelectedOption(null)}
+                                style={{
+                                  pointerEvents: 'auto',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  gap: '8px',
+                                  background: 'transparent',
+                                  border: 'none',
+                                  color: '#1a4d3a',
+                                  fontFamily: 'DM Sans, sans-serif',
+                                  fontSize: '14px',
+                                  fontWeight: 500,
+                                  cursor: 'pointer',
+                                  padding: 0
+                                }}
+                              >
+                                <ArrowLeft size={16} />
+                                <span>Back to scenario</span>
+                              </button>
                             </div>
                           ) : (
                             // Chapter 4 Default View - Scenario Cards
@@ -1832,19 +1777,6 @@ export default function Home() {
                                 initial="rest"
                                 whileHover="hover"
                                 animate="rest"
-                                onMouseEnter={() => {
-                                  setIsCh4OptionAHovered(true);
-                                  const card = centerCardRefs.current[3];
-                                  if (card) {
-                                    card.style.transformOrigin = 'bottom left';
-                                    card.style.transform = 'rotate(-15deg)';
-                                  }
-                                }}
-                                onMouseLeave={() => {
-                                  setIsCh4OptionAHovered(false);
-                                  const card = centerCardRefs.current[3];
-                                  if (card) card.style.transform = 'rotate(0deg)';
-                                }}
                                 onClick={() => setSelectedOption('A')}
                                 style={{ cursor: 'pointer' }}
                               >
@@ -1893,19 +1825,6 @@ export default function Home() {
                                 initial="rest"
                                 whileHover="hover"
                                 animate="rest"
-                                onMouseEnter={() => {
-                                  setIsCh4OptionBHovered(true);
-                                  const card = centerCardRefs.current[3];
-                                  if (card) {
-                                    card.style.transformOrigin = 'bottom right';
-                                    card.style.transform = 'rotate(15deg)';
-                                  }
-                                }}
-                                onMouseLeave={() => {
-                                  setIsCh4OptionBHovered(false);
-                                  const card = centerCardRefs.current[3];
-                                  if (card) card.style.transform = 'rotate(0deg)';
-                                }}
                                 onClick={() => setSelectedOption('B')}
                                 style={{ cursor: 'pointer' }}
                               >
@@ -1940,43 +1859,6 @@ export default function Home() {
                                 </motion.div>
                               </motion.div>
 
-                              {/* Chapter 4 Hover Decorations */}
-                              <AnimatePresence>
-                                {(isCh4OptionAHovered || isCh4OptionBHovered) && (
-                                  <>
-                                    <motion.img
-                                      key="ch4-fly"
-                                      src="/assets/chapter4/hover_fly_ch4.svg"
-                                      alt=""
-                                      className={styles.ch4HoverFly}
-                                      initial={{ opacity: 0, x: isCh4OptionAHovered ? -50 : 50 }}
-                                      animate={{ opacity: 1, x: 0 }}
-                                      exit={{ opacity: 0, x: isCh4OptionAHovered ? -50 : 50 }}
-                                      transition={{ duration: 0.5 }}
-                                    />
-                                    <motion.img
-                                      key="ch4-circle-fill"
-                                      src="/assets/chapter4/hover_fill_circle_ch4.svg"
-                                      alt=""
-                                      className={styles.ch4HoverCircleFill}
-                                      initial={{ opacity: 0, scale: 0.5 }}
-                                      animate={{ opacity: 1, scale: 1 }}
-                                      exit={{ opacity: 0, scale: 0.5 }}
-                                      transition={{ duration: 0.3, delay: 0.1 }}
-                                    />
-                                    <motion.img
-                                      key="ch4-circle-hollow"
-                                      src="/assets/chapter4/hover_hollow_ch4.svg"
-                                      alt=""
-                                      className={styles.ch4HoverCircleHollow}
-                                      initial={{ opacity: 0, scale: 0.5 }}
-                                      animate={{ opacity: 1, scale: 1 }}
-                                      exit={{ opacity: 0, scale: 0.5 }}
-                                      transition={{ duration: 0.3, delay: 0.2 }}
-                                    />
-                                  </>
-                                )}
-                              </AnimatePresence>
                             </div>
                           )}
                         </div>
