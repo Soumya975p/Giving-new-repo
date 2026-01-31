@@ -9,10 +9,16 @@
 }
 
 .desktopOnly {
-  display: block;
+  display: block !important;
 }
 
 .mobileOnly {
+  display: none !important;
+}
+
+/* Hero Image Mobile - Hidden on desktop, visible on mobile */
+.heroImageMobile,
+.mobileHeroBackground {
   display: none;
 }
 
@@ -59,15 +65,18 @@
 }
 
 .headerRight {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  z-index: 1001;
+  /* Above almost everything else */
   display: flex;
   align-items: center;
   gap: 20px;
-  width: 350px;
-  /* width: 274; */
-  height: 35;
-  top: 4px;
-  left: 305px;
+  width: auto;
+  /* Changed from fixed width to accommodate just the icon */
   opacity: 1;
+  pointer-events: auto;
 }
 
 .fieldGuide {
@@ -84,6 +93,31 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.fieldGuideButton {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 140%;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 8px 12px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.fieldGuideButton:hover {
+  opacity: 0.8;
+}
+
+.fieldGuideButtonActive {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
 }
 
 .menuButton span {
@@ -232,17 +266,24 @@
   .heroBackgroundSvg {
     width: 100vw;
     bottom: 10vh;
-    opacity: 0.6;
+    opacity: 0.4;
     /* Fade out slightly to improve text readability */
   }
 }
 
 @media (max-width: 768px) {
   .heroBackgroundSvg {
-    width: 100vw;
-    bottom: 0;
-    opacity: 0.2;
-    /* Fade substantially on mobile */
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroBackgroundSvg {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
   }
 }
 
@@ -296,11 +337,11 @@
   border: none;
   padding: 0;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  /* No hover effects or transitions */
 }
 
 .startButton:hover {
-  transform: scale(1.05);
+  /* No hover effect */
   background: transparent;
 }
 
@@ -333,54 +374,52 @@
   flex-shrink: 0;
 }
 
-.startButton:hover {
-  background: rgba(255, 255, 255, 0.05);
-}
-
 /* Mobile Layout adjustments */
 @media (max-width: 768px) {
   .heroContent {
     flex-direction: column;
-    padding: 20px 30px;
+    padding: 20px 24px;
+    /* Reduced side padding slightly */
     align-items: flex-start;
     /* Left align everything */
-    text-align: left;
-    gap: 30px;
+    text-align: left !important;
+    gap: 0;
   }
 
   .heroLeft {
     width: 100%;
-    margin-bottom: 0;
+    margin-bottom: 15px;
     order: 1;
     /* First: Title */
   }
 
   .scrollIndicator {
-    display: flex;
-    margin-top: 20px;
+    display: none;
   }
 
-  .mobileHeroBackground {
+  /* Show hero.png on mobile */
+  .heroImageMobile {
     display: block;
-    position: relative;
-    top: 0;
-    left: 0;
-    right: auto;
-    bottom: auto;
-    width: 100%;
+    width: 250%;
+    /* max-width: 100%; */
     height: auto;
-    max-width: 350px;
-    /* kept for sanity, user can override */
-    margin: 0 auto;
     order: 2;
-    /* Second: Image */
-    transform: scale(1.1);
+    /* Second: Hero.png Image */
+    margin: 20px 0;
+    object-fit: contain;
     z-index: 5;
+    right: -79%;
+    position: absolute;
+    margin-bottom: 10px;
+    /* bottom: 2vh; */
+    transform: translateY(10vh);
   }
 
   .heroBackgroundSvg {
-    display: none;
+    display: none !important;
     /* Hide desktop background */
+    visibility: hidden !important;
+    opacity: 0 !important;
   }
 
   /* Dots pattern removal on mobile if needed, or adjust z-index */
@@ -389,33 +428,59 @@
   }
 
   .heroRight {
-    width: 100%;
-    max-width: 100%;
-    padding-top: 20px;
-    padding-left: 0;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 45px !important;
+    padding-left: 0 !important;
     order: 3;
+    text-align: left !important;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start !important;
     /* Third: Content */
   }
 
+  .mobileHeroBackground {
+    display: block !important;
+    position: relative;
+    width: 150%;
+    height: auto;
+    order: 4;
+    /* Fourth: Mobile background SVG at bottom */
+    margin: 30px 0 0 0;
+    z-index: 5;
+    right: 5vh;
+    margin-top: -10vh;
+  }
+
   /* Mobile title adjustments */
+  .heroTitle,
   .titleLine1,
   .titleLine2 {
-    font-size: 52px;
-    /* Smaller title on mobile */
-    text-align: left;
+    font-size: 11vw !important;
+    /* Adjusted title size for mobile to fit screen */
+    text-align: left !important;
+    line-height: 0.95;
+    width: 100%;
+    display: block;
+    margin-left: 0 !important;
+    transform: translateX(-5%);
   }
 
   .heroSubtitle {
-    text-align: left;
-    margin-bottom: 15px;
-    font-size: 24px;
+    text-align: left !important;
+    margin-bottom: 16px;
+    font-size: 22px;
+    line-height: 1.3;
+    width: 100%;
   }
 
   .heroDescription {
-    text-align: left;
-    font-size: 16px;
+    text-align: left !important;
+    font-size: 15px;
     line-height: 1.6;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
+    width: 100%;
   }
 
   /* Pill button style for start button on mobile */
@@ -427,6 +492,15 @@
     border: none;
     border-radius: 0;
     padding: 0;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    align-self: flex-start !important;
+    /* Force left alignment */
+  }
+
+  .startButtonImage {
+    height: 48px;
+    width: auto;
   }
 
 }
@@ -455,6 +529,7 @@
   position: relative;
   padding-bottom: 0px;
   z-index: 5;
+
 }
 
 .cultivationLabel {
@@ -1374,6 +1449,7 @@
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.7);
   margin-bottom: 30px;
+  text-wrap: balance;
 }
 
 .footerMap {
@@ -1721,7 +1797,7 @@
 }
 
 .bonusContent {
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -2072,13 +2148,14 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 10px 14px;
+  /* padding: 10px 14px; */
   /*   background: rgba(10, 25, 30, 0.55 */
   ;
   backdrop-filter: blur(54px);
   -webkit-backdrop-filter: blur(54px);
 
   border-radius: 14px;
+  top: 4%;
 
 
 }
@@ -2248,35 +2325,7 @@
   font-weight: 600;
 }
 
-.startButton {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 200px;
-  /* As specified */
-  height: 56px;
-  /* As specified */
-  background: transparent;
-  /* border: 2px solid rgba(255, 255, 255, 0.4); */
-  border: linear-gradient(90deg,
-      #07595F 0%,
-      #0FB8C5 100%);
-  backdrop-filter: blur(54px);
-  -webkit-backdrop-filter: blur(54px);
-
-  /* border-width: 2px */
-  border-radius: 60px;
-  /* As specified */
-  padding: 0 20px;
-  /* Horizontal padding, height is fixed */
-  color: white;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  opacity: 1;
-}
+.startButton {}
 
 .buttonArrow {
   background: #3dd9c4;
@@ -3492,7 +3541,7 @@
 }
 
 .bonusContent {
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -3504,6 +3553,7 @@
 .bonusLeft {
   flex: 1;
   position: relative;
+  left: 10%;
 }
 
 .bonusFlowerImage {
@@ -3586,6 +3636,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
 }
 
 .bonusCard {
@@ -3667,7 +3718,7 @@
   width: 80%;
   height: 80%;
   top: 200px;
-  left: 300px;
+  left: 40%;
   right: 100px;
   pointer-events: none;
   z-index: 1;
@@ -3856,30 +3907,63 @@
 .navLeft {
   display: flex;
   align-items: center;
-  gap: 15px;
-  padding: 10px 24px;
+  /* padding: 4px; */
+  /* Reduced padding since buttons have their own */
   background: rgba(26, 77, 58, 0.4);
   backdrop-filter: blur(8px);
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.navArrow {
-  font-size: 16px;
+.navButton {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
   color: white;
+  gap: 8px;
+}
+
+.navButton:hover {
+  background: #0A1731 !important;
+}
+
+.navArrowIcon {
+  width: 10px;
+  height: 13px;
+  margin-left: 4px;
+  flex-shrink: 0;
+  stroke: white;
+  /* Default color */
+  transition: stroke 0.3s ease;
+}
+
+/* Specific hover for the first button's arrow */
+.navButton:hover .navArrowIcon,
+.navButton:hover .navArrowIcon path {
+  stroke: url(#navArrowGradient) !important;
 }
 
 .navText {
   font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
   font-weight: 500;
+  font-size: 12px;
+  line-height: 140%;
+  letter-spacing: -0.02em;
   color: white;
-  cursor: pointer;
+  text-transform: none;
+  /* User specified casing in text usually, but ensuring default */
 }
 
 .navDivider {
-  color: rgba(255, 255, 255, 0.4);
-  margin: 0 5px;
+  color: rgba(255, 255, 255, 0.2);
+  margin: 0 4px;
+  font-size: 14px;
+  pointer-events: none;
 }
 
 /* Chapters Section Container - for height management */
@@ -4712,7 +4796,7 @@
   font-weight: 600;
   line-height: 140%;
   letter-spacing: 0.1em;
-  color: #1a4d3a;
+  color: #38F1FF;
   opacity: 0.6;
   text-transform: uppercase;
   margin-bottom: 5px;
@@ -5303,7 +5387,7 @@
   .chapter1Header {
     width: 100%;
     text-align: left;
-    margin-bottom: 10px;
+    margin-bottom: -100px;
     padding: 0 4px;
     flex-shrink: 0;
   }
@@ -5513,8 +5597,11 @@
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    padding: 0 20px 20px;
-    gap: 16px;
+    padding: 0;
+    gap: 0;
+    border-top: 1px solid rgba(80, 227, 194, 0.3);
+    border-bottom: 1px solid rgba(80, 227, 194, 0.3);
+    background-color: #12363B;
   }
 
   .chapterGrid::-webkit-scrollbar {
@@ -5526,11 +5613,11 @@
     min-width: 280px;
     max-width: 320px;
     scroll-snap-align: center;
-    border-right: none;
-    border: 1px solid rgba(80, 227, 194, 0.3);
-    border-radius: 16px;
+    border: none;
+    border-right: 1px solid rgba(80, 227, 194, 0.3);
+    border-radius: 0;
     padding: 30px 20px;
-    background: rgba(18, 54, 59, 0.8);
+    background: transparent;
   }
 
   .gridColumn:last-child {
@@ -5577,20 +5664,21 @@
   position: relative;
   width: 950px;
   height: auto;
-  min-height: 380px;
+  /* min-height: 380px; */
   max-width: 95%;
   margin: 0 auto;
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 60px;
+  gap: 30px;
   background: linear-gradient(to right, #96B600 0%, #C9CD33 50%, #F0DF5B 100%);
   border-radius: 40px;
   padding: 80px 80px;
   z-index: 100;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
   overflow: hidden;
-  max-height: 400px;
+  max-height: 330px;
+
 }
 
 
@@ -5603,7 +5691,7 @@
   transform: translateX(-50%);
   width: 100%;
   /* USER EDIT: Set width of background image */
-  height: 505px;
+  height: auto;
   /* USER EDIT: Set height of background image (was auto) */
   /* max-width: 1400px; Removed to allow explicit width control */
   min-width: unset;
@@ -5641,8 +5729,8 @@
   /* USER ADJUST: width, height, top, bottom, left, right */
   width: 80px;
   height: auto;
-  top: -140px;
-  left: 0;
+  top: -90px;
+  left: -10px;
 }
 
 .downloadInfo {
@@ -5653,24 +5741,26 @@
 
 .downloadTitle {
   font-family: 'Zalando Sans Expanded', sans-serif;
-  font-size: 45px;
+  font-size: 48px;
   font-weight: 300;
-  line-height: 0.95;
+  line-height: 100%;
   color: white;
-  margin: 0 0 40px 0;
-  letter-spacing: -0.02em;
-  transform: translateY(20px);
+  margin: 0 0 15px 0;
+  letter-spacing: -3%;
+  transform: translateY(-5px);
 }
 
 .downloadDescription {
   font-family: 'DM Sans', sans-serif;
-  font-size: 22px;
-  line-height: 1.4;
+  font-size: 18px;
+  line-height: 150%;
   color: white;
+  font-style: regular;
   max-width: 750px;
-  margin-bottom: 45px;
+  margin-bottom: 15px;
   font-weight: 400;
   opacity: 0.95;
+  letter-spacing: -2%;
 }
 
 .downloadButtons {
@@ -5689,7 +5779,7 @@
   transition: all 0.3s ease;
   position: relative;
   /* USER ADJUST: top, bottom, left, right */
-  top: 0;
+  top: -10px;
   left: 0;
 }
 
@@ -5718,7 +5808,7 @@
   transition: all 0.3s ease;
   position: relative;
   /* USER ADJUST: top, bottom, left, right */
-  top: 0;
+  top: -10px;
   left: 0;
 }
 
@@ -5919,7 +6009,7 @@
   position: relative;
   width: 1000px;
   height: 500px;
-  margin-top: 0px;
+  margin-top: -30px;
 }
 
 .exploreCardBase {
@@ -5928,6 +6018,8 @@
   height: 480px;
   opacity: 1;
   transition: transform 0.3s ease;
+  overflow: visible;
+  /* Ensure scaled content isn't clipped */
 }
 
 .hoverTrigger {
@@ -5935,9 +6027,10 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 401px;
-  z-index: 10;
-  cursor: url('/assets/explore_cursor.svg') 32 13, pointer;
+  height: 402.5px;
+  z-index: 20;
+  /* Above all images */
+  cursor: none !important;
 }
 
 .exploreCard1 {
@@ -5954,6 +6047,22 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+  object-position: left bottom;
+  /* Align visuals with transform origin */
+  display: block;
+}
+
+.exploreHoverImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: left bottom;
+  /* Align visuals with transform origin */
+  z-index: 10;
+  pointer-events: none;
 }
 
 
@@ -5985,6 +6094,7 @@
     flex-direction: column;
     align-items: center;
     gap: 30px;
+    margin-top: 30px;
   }
 
   .exploreCardBase {
@@ -6060,7 +6170,7 @@
 
 .footerSection {
   width: 100%;
-  background: linear-gradient(180deg, #041A1D 0%, #041A1D);
+  background: linear-gradient(180deg, #12363B 0%, #041A1D);
   /* Seamless dark teal gradient */
   padding: 80px 100px 170px;
   /* Increased bottom padding for background image space */
@@ -6185,10 +6295,11 @@
 
 /* GET INVOLVED ROW */
 .getInvolvedRow {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 20px;
+  /* display: flex;
+  flex-direction: column; */
+  /* align-items: flex-start; */
+  gap: 10px;
+  /* Adjusted to 10px as requested */
 }
 
 .getInvolvedLabel {
@@ -6198,13 +6309,14 @@
   letter-spacing: 0.1em;
   color: #38F1FF;
   text-transform: uppercase;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
 
 .getInvolvedForm {
   font-family: 'DM Sans', sans-serif;
   font-weight: 500;
   color: white;
+  max-width: 700px;
 }
 
 .footerFormDesktop {
@@ -6257,7 +6369,8 @@
 
 /* Subscribe Button */
 .subscribeBtn {
-  margin-top: 10px;
+  margin-top: 0px;
+  /* Removed 10px margin */
   display: flex;
   align-items: center;
   gap: 10px;
@@ -6302,7 +6415,7 @@
   display: grid;
   grid-template-columns: 0.8fr 1.2fr 1.5fr;
   /* Adjust ratios */
-  gap: 40px;
+  gap: 10px;
   align-items: start;
 }
 
@@ -6366,7 +6479,8 @@
 }
 
 .contactLink {
-  word-break: break-all;
+  overflow-wrap: anywhere;
+  /* Better for long strings like emails */
   margin-bottom: 10px;
   display: block;
 }
@@ -6393,7 +6507,7 @@
 
 @media (max-width: 1024px) {
   .footerSection {
-    padding: 60px 20px;
+    padding: 130px 20px;
   }
 
   .footerContainer {
@@ -6412,6 +6526,7 @@
     font-size: 18px;
     /* Sync with PC */
     max-width: 100%;
+    text-wrap: balance;
   }
 
   .footerLogoTitle {
@@ -6433,6 +6548,8 @@
     grid-template-columns: 1fr 1fr;
     gap: 30px;
     grid-template-rows: auto auto;
+    width: 100%;
+    /* Ensure full width */
   }
 
   /* Explicit grid placement for mobile layout */
@@ -6474,6 +6591,91 @@
     transform: translateX(-50%) !important;
   }
 }
+
+@media (max-width: 640px) {
+
+  /* Keep two-column layout for footer links on mobile */
+  .footerLinksGrid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 30px 20px;
+  }
+
+  /* Col 1: Home (Top Left) */
+  .footerLinksGrid>div:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+    padding-left: 0;
+  }
+
+  /* Col 2: Reports (Bottom Left) */
+  .footerLinksGrid>div:nth-child(2) {
+    grid-column: 1;
+    grid-row: 2;
+    padding-left: 0;
+  }
+
+  /* Col 3: Email + Address (Right Column) */
+  .footerLinksGrid>div:nth-child(3) {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    padding-left: 0;
+  }
+
+  .footerGridCol {
+    padding-left: 0;
+  }
+
+  .footerColTitle {
+    font-size: clamp(9px, 2.5vw, 11px);
+  }
+
+  .footerLinkList li a,
+  .contactLink,
+  .addressText {
+    font-size: clamp(12px, 3.5vw, 16px);
+  }
+
+  .contactLink {
+    word-break: break-word;
+  }
+
+  /* Responsive footer form styles */
+  .getInvolvedForm {
+    font-size: clamp(12px, 3.5vw, 18px);
+    line-height: 1.6;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .getInvolvedForm .formLine {
+    margin-bottom: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px;
+  }
+
+  .footerFormMobile .inlineInput {
+    font-size: clamp(12px, 3.5vw, 18px);
+    max-width: 100%;
+    width: auto;
+    min-width: 60px;
+    flex-shrink: 1;
+  }
+
+  .getInvolvedLabel {
+    font-size: clamp(9px, 2.5vw, 11px);
+  }
+
+  .subscribeBtn {
+    font-size: clamp(14px, 4vw, 20px);
+    margin-top: 15px;
+  }
+}
+
 
 /* Logo Image Styles */
 .logoImage {
@@ -7008,10 +7210,10 @@
 /* Ball 1 - Left side */
 .downloadBall1 {
   position: absolute;
-  top: 42%;
+  top: 31%;
   bottom: auto;
   /* left: 30px; */
-  right: 125px;
+  right: 8%;
   width: 20px;
   height: auto;
   pointer-events: none;
@@ -7020,10 +7222,10 @@
 /* Ball 2 - Right side */
 .downloadBall2 {
   position: absolute;
-  top: 56%;
+  top: 48%;
   bottom: auto;
   left: auto;
-  right: 150px;
+  right: 10%;
   width: 20px;
   height: auto;
   pointer-events: none;
@@ -7086,25 +7288,20 @@
 /* Cultivation in Action Section - Mobile */
 @media (max-width: 768px) {
 
-  /* Show mobile hero background */
-  .mobileHeroBackground {
-    display: block;
-    width: 100%;
-    height: auto;
-    margin-bottom: 40px;
-  }
+  /* Mobile hero background handled in main mobile styles above */
 
   .heroBottom {
     text-align: left;
-    padding: 0 24px 60px;
+    padding: 0 24px 0;
     margin: 0 auto;
+    margin-top: -15vh;
   }
 
   .cultivationLabel {
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 2px;
-    color: 38F1FF;
+    color: #38F1FF;
     margin-bottom: 24px;
   }
 
@@ -7142,8 +7339,9 @@
   .downloadSection {
     padding-left: 0;
     padding-right: 0;
-    padding-bottom: 200px;
+    padding-bottom: 20px;
     overflow: visible;
+    margin-top: -2vh;
   }
 
   .downloadContent {
@@ -7178,7 +7376,7 @@
   }
 
   .downloadTitle {
-    font-size: 38px !important;
+    font-size: 8vw !important;
     line-height: 1.1 !important;
     margin: 0 0 15px 0 !important;
     transform: none !important;
@@ -7186,7 +7384,7 @@
   }
 
   .downloadDescription {
-    font-size: 14px !important;
+    font-size: 3vw !important;
     line-height: 1.4 !important;
     margin: 0 0 30px 0 !important;
     text-align: left !important;
@@ -7194,9 +7392,27 @@
     padding: 0 !important;
   }
 
+  .downloadDescription br {
+    display: none;
+  }
+
+  .downloadButtons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .downloadAllBtn,
+  .viewAllBtn {
+    padding: 0;
+    border: none;
+    background: transparent;
+  }
+
   .downloadAllImage,
   .viewAllImage {
-    height: 48px !important;
+    height: 36px !important;
+    width: auto !important;
   }
 
   .downloadBackgroundImage {
@@ -7221,6 +7437,10 @@
   }
 
   /* Get Involved Form - Mobile Structure Toggling */
+  .getInvolvedRow {
+    max-width: 450px !important;
+  }
+
   .footerFormDesktop {
     display: none !important;
   }
@@ -7240,8 +7460,10 @@
 
   .footerFormMobile .formLine {
     margin-bottom: 12px !important;
-    white-space: nowrap !important;
-    /* Prevent wrapping within lines */
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: baseline !important;
+    gap: 4px !important;
   }
 
   .footerFormMobile .inlineInput {
@@ -7274,7 +7496,8 @@
   }
 
   .subscribeBtn {
-    margin-top: -34px !important;
+    margin-top: 0px !important;
+    /* Removed extra margin to let container gap handle spacing */
     color: #1EB5BA !important;
     font-size: 22px !important;
     letter-spacing: -0.02em !important;
@@ -7295,11 +7518,64 @@
   }
 }
 
+/* Very small screens - switch to paragraph layout like desktop */
+@media (max-width: 435px) {
+  .getInvolvedRow {
+    max-width: 100% !important;
+    /* Allow it to span full width on very small screens if needed, but the container will be smaller */
+  }
+
+  /* Hide mobile form, show desktop form styled for mobile */
+  .footerFormMobile {
+    display: none !important;
+  }
+
+  .footerFormDesktop {
+    display: block !important;
+    font-size: clamp(12px, 3.5vw, 16px) !important;
+    line-height: 1.6 !important;
+    color: white !important;
+    /* Sync with mobile color */
+  }
+
+  .footerFormDesktop .formLine {
+    display: inline;
+    margin-bottom: 0;
+  }
+
+  .footerFormDesktop .inlineInput {
+    font-size: clamp(12px, 3.5vw, 16px) !important;
+    display: inline;
+    width: auto;
+    min-width: 50px;
+    max-width: 120px;
+    color: #6A8B8C !important;
+    /* Sync with mobile color */
+    border-bottom: 1px solid #1EB5BA !important;
+    /* Sync with mobile border */
+    -webkit-text-fill-color: initial !important;
+    /* Fix for 'hidden' text on small screens */
+  }
+
+  .footerFormDesktop .inlineInput::placeholder {
+    color: #6A8B8C !important;
+    /* Sync with mobile color */
+    opacity: 0.8 !important;
+    -webkit-text-fill-color: initial !important;
+  }
+
+  .getInvolvedForm {
+    display: block;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
 @media (max-width: 768px) {
 
   /* Bonus Section - Mobile Specifics */
   .bonusSection {
-    padding: 60px 24px;
+    padding: 12vh 24px;
     background: #12363B;
     /* Darker background based on reference */
   }
@@ -7308,12 +7584,14 @@
     flex-direction: column;
     gap: 40px;
     padding: 0;
+    background: #12363B;
   }
 
   .bonusLeft {
     text-align: left;
     order: 1;
     right: -15%;
+    background: #12363B;
     /* Text first */
   }
 
@@ -7324,6 +7602,9 @@
     display: flex;
     justify-content: center;
     position: relative;
+    right: 5%;
+    top: 10vh;
+    background: #12363B;
   }
 
   .bonusCardImage {
@@ -7339,15 +7620,22 @@
   .bonusTitle {
     font-size: 30px;
     margin-bottom: 20px;
+    background: #12363B;
   }
 
   .bonusText {
     font-size: 14px;
     margin-bottom: 22px;
+    background: #12363B;
   }
 
   .bonusDiamond {
     margin-bottom: 20px;
+    background: #12363B;
+  }
+
+  .bonusCallout {
+    background: #12363B;
   }
 
   /* Restore background elements on mobile */
@@ -7357,19 +7645,20 @@
     top: auto;
     bottom: 0%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-0%);
     width: 100%;
     height: 100%;
     z-index: 0;
     opacity: 0.5;
     /* Optional: Adjust opacity if needed to match reference visual weight */
     pointer-events: none;
+    background: #12363B;
   }
 
 
   .bonusDotsImage {
-    width: 109%;
-    height: 155%;
+    width: 60%;
+    height: 150%;
     object-fit: contain;
     /* or cover, depending on desired effect. Desktop uses something specific? */
   }
@@ -7834,4 +8123,351 @@
   height: auto;
   pointer-events: none;
   z-index: 7;
+}
+
+/* =========================================
+   MENU OVERLAY STYLES
+   ========================================= */
+
+.menuOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  z-index: 10000;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 0;
+  pointer-events: none;
+}
+
+.menuContent {
+  width: 575px;
+  height: auto;
+  min-height: 583px;
+  max-height: 90vh;
+  background: rgba(18, 54, 59, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  pointer-events: auto;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  margin-top: 80px;
+  margin-right: 20px;
+  transition: height 0.3s ease;
+}
+
+.menuContent::-webkit-scrollbar {
+  display: none;
+}
+
+.menuHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  /* Reduced vertical padding */
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.homeButton {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.7);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px 16px;
+  transition: color 0.3s ease;
+}
+
+.homeButton:hover {
+  color: #ffffff;
+}
+
+.menuTitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+  text-transform: uppercase;
+  flex: 1;
+  text-align: center;
+}
+
+.closeButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeMenuIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.menuBody {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 0;
+  flex: 1;
+  overflow: hidden;
+}
+
+.menuLeft {
+  background: transparent;
+  padding: 24px 16px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.menuSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.menuSectionTitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 10px 0;
+  text-align: left;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.menuSectionTitle:hover {
+  color: #ffffff;
+}
+
+.menuSectionTitle.withBullet {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.bullet {
+  color: #13D9E8;
+  font-size: 12px;
+  width: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.expandIcon {
+  margin-left: auto;
+  font-size: 20px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.menuRight {
+  background: transparent;
+  padding: 24px 20px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.menuRight::-webkit-scrollbar {
+  display: none;
+}
+
+.chaptersList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  /* Reduced vertical gap */
+}
+
+.chapterItem {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 12px;
+  /* Reduced vertical padding */
+}
+
+.chapterButton {
+  width: 100%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  transition: transform 0.2s ease;
+}
+
+.chapterButton:hover {
+  transform: translateX(5px);
+}
+
+.chapterInfo {
+  flex: 1;
+}
+
+.chapterLabel {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: rgba(109, 255, 206, 0.7);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.chapterTitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 1.3;
+}
+
+.chapterExpand {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 300;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  margin-left: 16px;
+}
+
+.chapterExpand:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.downloadAllButton {
+  background: linear-gradient(135deg, #0FB8C5 0%, #68F4FF 100%);
+  border: none;
+  border-radius: 12px;
+  padding: 20px 24px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin-top: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.downloadAllButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(19, 217, 232, 0.3);
+}
+
+.downloadAllTitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: #000000;
+  line-height: 1.2;
+}
+
+.downloadAllSubtitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #000000;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chapterExpandedContent {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 0 0 20px;
+  margin-top: 12px;
+  border-left: 2px solid rgba(109, 255, 206, 0.3);
+  margin-left: 0;
+}
+
+.chapterSubItem {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  padding: 8px 0;
+  transition: color 0.3s ease, padding-left 0.3s ease;
+  cursor: pointer;
+}
+
+.chapterSubItem:hover {
+  color: #ffffff;
+  padding-left: 8px;
+}
+
+/* Mobile Menu Styles */
+@media (max-width: 768px) {
+  .menuBody {
+    grid-template-columns: 1fr;
+  }
+
+  .menuLeft {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 30px 24px;
+  }
+
+  .menuRight {
+    padding: 30px 24px;
+  }
+
+  .chapterLabel {
+    font-size: 9px;
+  }
+
+  .chapterTitle {
+    font-size: 18px;
+  }
+
+  .downloadAllTitle {
+    font-size: 18px;
+  }
+
+  .chapterSubItem {
+    font-size: 13px;
+  }
 }

@@ -11,7 +11,9 @@ import chapter2StylesB from '../components/Chapter2OptionB.module.css'
 import chapter3StylesA from '../components/Chapter3OptionA.module.css'
 import chapter4StylesA from '../components/Chapter4OptionA.module.css'
 import chapter4StylesB from '../components/Chapter4OptionB.module.css'
-import Chapter3OptionB from '../components/Chapter3OptionB'
+import chapter3StylesB from '../components/Chapter3OptionB.module.css'
+// import Chapter3OptionB from '../components/Chapter3OptionB'
+import Chapter4OptionA from '../components/Chapter4OptionA'
 import TabsSection from '../components/TabsSection'
 
 
@@ -132,6 +134,8 @@ export default function Home() {
   const [isExplore1Hovered, setIsExplore1Hovered] = useState(false)
   const [isExplore2Hovered, setIsExplore2Hovered] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isFundraisingExpanded, setIsFundraisingExpanded] = useState(false)
+  const [expandedChapter, setExpandedChapter] = useState<number | null>(null)
   const chapterRefs = useRef<(HTMLDivElement | null)[]>([])
   const activeChapterRef = useRef(activeChapter) // To track active chapter without dependency issues
   const chaptersSectionRef = useRef<HTMLDivElement>(null)
@@ -147,6 +151,10 @@ export default function Home() {
   // State for Custom Grid Cursor
   const [gridCursorPos, setGridCursorPos] = useState({ x: 0, y: 0 });
   const [showGridCursor, setShowGridCursor] = useState(false);
+
+  // State for Custom Explore Cursor
+  const [exploreCursorPos, setExploreCursorPos] = useState({ x: 0, y: 0 });
+  const [showExploreCursor, setShowExploreCursor] = useState(false);
 
   // State for scroll-triggered sticky chapters section
   const [isChaptersSectionSticky, setIsChaptersSectionSticky] = useState(false);
@@ -238,6 +246,11 @@ export default function Home() {
 
   return (
     <div className={`${styles.pageWrapper} ${dmSans.className}`}>
+      {/* Global Sticky Header Right */}
+      <div className={styles.headerRight}>
+        <img src={isMenuOpen ? "/assets/menu_open.svg" : "/assets/menu.svg"} alt="Menu" className={styles.menuSvg} onClick={() => setIsMenuOpen(!isMenuOpen)} />
+      </div>
+
       {/* Hero Section */}
       <section className={styles.heroSection}>
         {/* Header */}
@@ -245,10 +258,6 @@ export default function Home() {
           <div className={styles.logoArea}>
             <img src="/assets/logo_name.svg" alt="Giving Together Foundation" className={styles.logoImage} />
           </div>
-          <div className={styles.headerRight}>
-            <img src="/assets/menu.svg" alt="Menu" className={styles.menuSvg} onClick={() => setIsMenuOpen(!isMenuOpen)} />
-          </div>
-
         </header>
 
         {/* Menu Overlay */}
@@ -270,16 +279,193 @@ export default function Home() {
                 transition={{ duration: 0.3, delay: 0.1 }}
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className={styles.menuHeader}>
-                  <h3 className={styles.menuTitle}>Menu</h3>
-                  <button className={styles.closeButton} onClick={() => setIsMenuOpen(false)}>✕</button>
+
+                <div className={styles.menuBody}>
+                  <div className={styles.menuLeft}>
+                    <div className={styles.menuSection}>
+                      <button className={styles.menuSectionTitle}>Introduction</button>
+                    </div>
+
+                    <div className={styles.menuSection}>
+                      <button
+                        className={`${styles.menuSectionTitle} ${styles.withBullet}`}
+                        onClick={() => setIsFundraisingExpanded(!isFundraisingExpanded)}
+                      >
+                        <span className={styles.bullet}>◆</span>
+                        <span>Fundraising</span>
+                        <span className={styles.expandIcon}>{isFundraisingExpanded ? '−' : '+'}</span>
+                      </button>
+                    </div>
+
+                    <div className={styles.menuSection}>
+                      <button className={styles.menuSectionTitle}>Volunteer Engagement</button>
+                    </div>
+                  </div>
+
+                  <div className={styles.menuRight}>
+                    <div className={styles.chaptersList}>
+                      {/* Chapter 1 */}
+                      <div className={styles.chapterItem}>
+                        <button
+                          className={styles.chapterButton}
+                          onClick={() => {
+                            setActiveChapter(1);
+                            chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+                          }}
+                        >
+                          <div className={styles.chapterInfo}>
+                            <div className={styles.chapterLabel}>CH. I : TILLING THE SOIL</div>
+                            <div className={styles.chapterTitle}>Network Expansion</div>
+                          </div>
+                          <button
+                            className={styles.chapterExpand}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setExpandedChapter(expandedChapter === 1 ? null : 1);
+                            }}
+                          >
+                            {expandedChapter === 1 ? '−' : '+'}
+                          </button>
+                        </button>
+                        {expandedChapter === 1 && (
+                          <div className={styles.chapterExpandedContent}>
+                            <a href="#" className={styles.chapterSubItem}>Network Mapping</a>
+                            <a href="#" className={styles.chapterSubItem}>Stakeholder Analysis</a>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Chapter 2 */}
+                      <div className={styles.chapterItem}>
+                        <button
+                          className={styles.chapterButton}
+                          onClick={() => {
+                            setActiveChapter(2);
+                            chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+                          }}
+                        >
+                          <div className={styles.chapterInfo}>
+                            <div className={styles.chapterLabel}>CH. II : THE PLANTING</div>
+                            <div className={styles.chapterTitle}>First Donation</div>
+                          </div>
+                          <button
+                            className={styles.chapterExpand}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setExpandedChapter(expandedChapter === 2 ? null : 2);
+                            }}
+                          >
+                            {expandedChapter === 2 ? '−' : '+'}
+                          </button>
+                        </button>
+                        {expandedChapter === 2 && (
+                          <div className={styles.chapterExpandedContent}>
+                            <a href="#" className={styles.chapterSubItem}>First Contact Template</a>
+                            <a href="#" className={styles.chapterSubItem}>Donation Receipt</a>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Chapter 3 */}
+                      <div className={styles.chapterItem}>
+                        <button
+                          className={styles.chapterButton}
+                          onClick={() => {
+                            setActiveChapter(3);
+                            chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+                          }}
+                        >
+                          <div className={styles.chapterInfo}>
+                            <div className={styles.chapterLabel}>CHAPTER III: THE NURTURING</div>
+                            <div className={styles.chapterTitle}>Stewarding Donors</div>
+                          </div>
+                          <button
+                            className={styles.chapterExpand}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setExpandedChapter(expandedChapter === 3 ? null : 3);
+                            }}
+                          >
+                            {expandedChapter === 3 ? '−' : '+'}
+                          </button>
+                        </button>
+                        {expandedChapter === 3 && (
+                          <div className={styles.chapterExpandedContent}>
+                            <a href="#" className={styles.chapterSubItem}>Segmentation & Profiling</a>
+                            <a href="#" className={styles.chapterSubItem}>The Storytelling Bank</a>
+                            <a href="#" className={styles.chapterSubItem}>The Communications Calendar</a>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Chapter 4 */}
+                      <div className={styles.chapterItem}>
+                        <button
+                          className={styles.chapterButton}
+                          onClick={() => {
+                            setActiveChapter(4);
+                            chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+                          }}
+                        >
+                          <div className={styles.chapterInfo}>
+                            <div className={styles.chapterLabel}>CHAPTER IV: GROWTH</div>
+                            <div className={styles.chapterTitle}>Donors to Champions</div>
+                          </div>
+                          <button
+                            className={styles.chapterExpand}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setExpandedChapter(expandedChapter === 4 ? null : 4);
+                            }}
+                          >
+                            {expandedChapter === 4 ? '−' : '+'}
+                          </button>
+                        </button>
+                        {expandedChapter === 4 && (
+                          <div className={styles.chapterExpandedContent}>
+                            <a href="#" className={styles.chapterSubItem}>Champion Engagement Plan</a>
+                            <a href="#" className={styles.chapterSubItem}>Recognition Strategy</a>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Chapter 5 - Bonus */}
+                      <div className={styles.chapterItem}>
+                        <button
+                          className={styles.chapterButton}
+                          onClick={() => {
+                            bonusSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+                          }}
+                        >
+                          <div className={styles.chapterInfo}>
+                            <div className={styles.chapterLabel}>CH. V : BONUS CHAPTER</div>
+                            <div className={styles.chapterTitle}>Getting Your Team On Board</div>
+                          </div>
+                          <button
+                            className={styles.chapterExpand}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setExpandedChapter(expandedChapter === 5 ? null : 5);
+                            }}
+                          >
+                            {expandedChapter === 5 ? '−' : '+'}
+                          </button>
+                        </button>
+                        {expandedChapter === 5 && (
+                          <div className={styles.chapterExpandedContent}>
+                            <a href="#" className={styles.chapterSubItem}>Team Alignment Workshop</a>
+                            <a href="#" className={styles.chapterSubItem}>Internal Communication</a>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    <button className={styles.downloadAllButton}>
+                      <span className={styles.downloadAllTitle}>All Fundraising toolkits</span>
+                      <span className={styles.downloadAllSubtitle}>↓ DOWNLOAD ALL</span>
+                    </button>
+                  </div>
                 </div>
-                <nav className={styles.menuNav}>
-                  <a href="#chapters" className={styles.menuLink} onClick={() => setIsMenuOpen(false)}>Chapters</a>
-                  <a href="#toolkits" className={styles.menuLink} onClick={() => setIsMenuOpen(false)}>Toolkits</a>
-                  <a href="#about" className={styles.menuLink} onClick={() => setIsMenuOpen(false)}>About</a>
-                  <a href="#contact" className={styles.menuLink} onClick={() => setIsMenuOpen(false)}>Contact</a>
-                </nav>
               </motion.div>
             </motion.div>
           )}
@@ -298,11 +484,11 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Mobile Background Image - Moved inside heroContent for ordering */}
+          {/* Hero.png Image - Visible on mobile */}
           <img
-            src="/assets/mobile_background_hero.svg"
-            alt=""
-            className={styles.mobileHeroBackground}
+            src="/assets/hero.png"
+            alt="Donor Gardening Tree"
+            className={styles.heroImageMobile}
           />
 
           <div className={styles.heroRight}>
@@ -319,6 +505,13 @@ export default function Home() {
               <img src="/assets/start_button.svg" alt="Start Journey" className={styles.startButtonImage} />
             </button>
           </div>
+
+          {/* Mobile Background Image - Bottom of hero section on mobile */}
+          <img
+            src="/assets/mobile_background_hero.svg"
+            alt=""
+            className={styles.mobileHeroBackground}
+          />
         </div>
 
         {/* Desktop Hero Background - Restored */}
@@ -335,15 +528,15 @@ export default function Home() {
         <div className={styles.heroBottom}>
           <p className={styles.cultivationLabel}>CULTIVATION IN ACTION</p>
           <h2 className={styles.heroBottomTitle}>
-            A <span className={styles.highlight}>step by step guide</span><br />
-            to donor engagement through<br />
-            the journey of <span className={styles.highlight}>Nidhi</span>, our perennial<br />
+            A <span className={styles.highlight}>step by step guide</span> <br />
+            to donor engagement through <br />
+            the journey of <span className={styles.highlight}>Nidhi</span>, our perennial <br />
             supporter.
           </h2>
           <p className={styles.heroBottomDesc}>
-            Follow Nidhi's journey across four chapters to see how everyday giving can grow from a one-time transaction<br />
-            into a lasting relationship. Each chapter blends real-world moments with practical tools to help nonprofits guide<br />
-            donors naturally. Your donors may be at different stages of this journey—explore the chapters in any order that<br />
+            Follow Nidhi's journey across four chapters to see how everyday giving can grow from a one-time transaction <br />
+            into a lasting relationship. Each chapter blends real-world moments with practical tools to help nonprofits guide <br />
+            donors naturally. Your donors may be at different stages of this journey—explore the chapters in any order that <br />
             serves you best.
           </p>
 
@@ -408,10 +601,46 @@ export default function Home() {
         {/* Fixed Top Navigation */}
         <div className={styles.topNavigation}>
           <div className={styles.navLeft}>
-            <span className={styles.navArrow}>↑</span>
-            <span className={styles.navText}>Back to all chapters</span>
+            <button
+              className={`${styles.navButton} ${styles.backToChaptersBtn}`}
+              onClick={() => {
+                // Scroll to top of chapters section
+                chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              <svg
+                className={styles.navArrowIcon}
+                width="10"
+                height="13"
+                viewBox="20 18 10 13"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <defs>
+                  <linearGradient id="navArrowGradient" x1="20" y1="18" x2="30" y2="31" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#0FB8C5" />
+                    <stop offset="100%" stopColor="#93CD4D" />
+                  </linearGradient>
+                </defs>
+                <path d="M20 22.7273L25 18M25 18L30 22.7273M25 18V31" strokeWidth="1.2" />
+              </svg>
+              <span className={styles.navText}>Back to all chapters</span>
+            </button>
             <span className={styles.navDivider}>|</span>
-            <span className={styles.navText}>View all toolkits</span>
+            <button
+              className={styles.navButton}
+              onClick={() => {
+                // For "View all toolkits", we'll scroll to the footer or a toolkits section if exists
+                const footer = document.querySelector('footer');
+                if (footer) {
+                  footer.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                }
+              }}
+            >
+              <span className={styles.navText}>VIEW ALL TOOLKITS</span>
+            </button>
           </div>
         </div>
 
@@ -1359,7 +1588,66 @@ export default function Home() {
                           ) : selectedOption === 'B' ? (
                             // Chapter 3 Option B Content (without header, header is above)
                             <div style={{ flex: 1, width: '100%', position: 'relative' }}>
-                              <Chapter3OptionB onBack={() => setSelectedOption(null)} embedded={true} />
+                              <OptionContent
+                                embedded={true}
+                                chapterTitle="CHAPTER III: STEWARDING DONORS"
+                                chapterSubtitle="Staying connected after the first gift builds trust. This chapter focuses on how consistent, non-ask engagement helps donors feel involved and valued."
+                                backgroundColor="transparent"
+                                onBack={() => setSelectedOption(null)}
+                                onNext={handleNextChapter}
+                                // optionId="ch1OptionA"
+                                customStyles={chapter3StylesB}
+                                contentCards={[
+                                  {
+                                    id: 1,
+                                    type: 'text',
+                                    decorationImages: ['/assets/flower_chapter_4.svg'],
+                                    title: "You're nurturing the relationship!",
+                                    content: "Nidhi receives a photo of the lake being de-silted and understands how her contribution made a difference. Over time, she joins virtual events and stays engaged through regular, meaningful updates."
+                                  },
+                                  {
+                                    id: 2,
+                                    type: 'text',
+                                    decorationImages: ['/assets/chapter_3_middlestick.svg'],
+                                    showStatBelow: true,
+                                    statLabel: "UDARTA:EG STUDY SHOWS",
+                                    stat: "",
+                                    statDescription: "Sharing impact updates is linked to an 11.3 percentage point increase in recurring donors.",
+                                    showStatIcons: false
+                                  },
+                                  {
+                                    id: 3,
+                                    type: 'text',
+                                    decorationImages: [
+                                      '/assets/chapter_1_column2_1.svg',
+                                      '/assets/chapter_3_middlestick.svg'
+                                    ],
+                                    // label: 'WHY THIS WORKS',
+                                    content: "Regular, non-ask touchpoints help donors feel included in the journey – not contacted only when funds are needed.",
+                                    floatingText: (
+                                      <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start', marginTop: '10px' }}>
+                                        <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#93CD4D', flexShrink: 0, marginTop: '4px' }}></div>
+                                        <span>We created three toolkits that will help you identify and activate people, tell better stories and organise your communications calendar</span>
+                                      </div>
+                                    )
+                                  },
+                                  {
+                                    id: 4,
+                                    type: 'toolkit',
+                                    toolkitImage: '/assets/took4.svg'
+                                  },
+                                  {
+                                    id: 5,
+                                    type: 'toolkit',
+                                    toolkitImage: '/assets/tool3.svg'
+                                  },
+                                  {
+                                    id: 6,
+                                    type: 'toolkit',
+                                    toolkitImage: '/assets/tool5.svg'
+                                  }
+                                ]}
+                              />
                             </div>
                           ) : (
                             // Chapter 3 Default View - just render scenario container, header is above
@@ -1460,59 +1748,11 @@ export default function Home() {
                           </div>
 
                           {selectedOption === 'A' ? (
-                            <div style={{ flex: 1, width: '100%', position: 'relative' }}>
-                              <OptionContent
-                                embedded={true}
-                                chapterTitle="CHAPTER IV: DONORS TO CHAMPIONS"
-                                chapterSubtitle="When relationships are nurtured well, supporters deepen their involvement. This chapter explores how donors grow into champions."
-                                backgroundColor="transparent"
-                                onBack={() => setSelectedOption(null)}
-                                onNext={handleNextChapter}
-                                customStyles={chapter4StylesA}
-                                contentCards={[
-                                  {
-                                    id: 1,
-                                    type: 'text',
-                                    floatingTextLabel: "UDARTA:EG STUDY SHOWS",
-                                    floatingText: "You've unlocked growth! Nidhi increases her contribution and shares the campaign with her network.",
-                                    decorationType: 'flower',
-                                    label: 'WHAT CHANGES INTERNALLY',
-                                    title: 'Nidhi moves into a High Potential segment',
-                                    content: 'Her repeat donation improves retention metrics, while network referrals expand reach without cold outreach.',
-                                    showStatBelow: true,
-                                    statLabel: 'UDARTA:EG STUDY SHOWS',
-                                    stat: '4.5x more likely',
-                                    statDescription: 'Donors who are referred by a friend are 4.5 times more likely to convert into long-term supporters.',
-                                    statBoxTransparent: true
-                                  },
-                                  {
-                                    id: 2,
-                                    type: 'text',
-                                    floatingText: "Donors who feel valued don't just give more – they bring others with them.",
-                                    decorationType: 'circle',
-                                    label: 'WHY THIS WORKS',
-                                    title: 'Supporters become Champions',
-                                    content: "When you nurture relationships, you aren't just raising funds; you're building a movement of advocates."
-                                  },
-                                  {
-                                    id: 3,
-                                    type: 'toolkit',
-                                    toolkitLabel: 'TOOLKIT #6',
-                                    toolkitTitle: 'Engagement Tracking',
-                                    toolkitDescription: 'How to monitor and grow your network through champion engagement.',
-                                    toolkitImage: '/assets/toolkit66.svg'
-                                  },
-                                  {
-                                    id: 4,
-                                    type: 'toolkit',
-                                    toolkitLabel: 'TOOLKIT #7',
-                                    toolkitTitle: 'Network Growth',
-                                    toolkitDescription: 'Strategies for activating your donor network to reach new supporters.',
-                                    toolkitImage: '/assets/toolkit_77.svg'
-                                  }
-                                ]}
-                              />
-                            </div>
+                            <Chapter4OptionA
+                              embedded={true}
+                              onBack={() => setSelectedOption(null)}
+                              onNext={handleNextChapter}
+                            />
                           ) : selectedOption === 'B' ? (
                             <div style={{ flex: 1, width: '100%', position: 'relative' }}>
                               <OptionContent
@@ -1527,25 +1767,55 @@ export default function Home() {
                                   {
                                     id: 1,
                                     type: 'text',
-                                    floatingText: "Treating Nidhi like any other donor risks losing the momentum you've built.",
-                                    decorationType: 'flower',
-                                    label: '',
-                                    title: 'Missed opportunity for growth',
-                                    content: 'By sending a standard appeal, you fail to acknowledge her unique history and potential to champion your cause.',
+                                    floatingText: (
+                                      <>
+                                        <h2 style={{ fontSize: '28px', color: '#1a4d3a', margin: '0 0 10px 0', lineHeight: '1.2' }}>Treating Nidhi like any other donor risks losing momentum.</h2>
+                                        <p style={{ fontSize: '16px', color: '#1a4d3a', lineHeight: '1.5' }}>
+                                          By sending a standard appeal, you fail to acknowledge her unique history and potential to champion your cause.
+                                        </p>
+                                      </>
+                                    ),
+                                    decorationImages: [
+                                      '/assets/chapter_1/fly_left_optionA.svg',
+                                      '/assets/flower_chapter_4.svg'
+                                    ],
+                                    label: 'MISSED OPPORTUNITY',
+                                    title: 'Growth Stalls',
+                                    content: 'Without personalized engagement, she contributes less than her potential.',
                                     showStatBelow: true,
                                     statLabel: 'DID YOU KNOW?',
                                     stat: '53%',
-                                    statDescription: 'of donors leave due to poor communication, including not feeling recognized for their specific contributions.',
-                                    statBoxTransparent: true
+                                    statDescription: 'of donors leave due to poor communication, including not feeling recognized.',
+                                    transparentBackground: true
                                   },
                                   {
                                     id: 2,
                                     type: 'text',
-                                    floatingText: "Without personalized engagement, she may remain a one-time donor or drift away entirely.",
-                                    decorationType: 'circle',
+                                    floatingText: (
+                                      <div style={{ paddingLeft: '20px', borderLeft: '3px solid #D4E157' }}>
+                                        <span style={{ display: 'block', fontSize: '10px', fontWeight: 'bold', letterSpacing: '1px', color: 'rgba(255,255,255,0.8)', marginBottom: '8px', textTransform: 'uppercase' }}>THE RESULT</span>
+                                        <h3 style={{ fontSize: '20px', color: '#1a4d3a', marginBottom: '15px' }}>She remains a one-time donor or drifts away completely.</h3>
+                                      </div>
+                                    ),
+                                    decorationImages: ['/assets/chapter_2_column2_1.svg'],
                                     label: '',
                                     title: '',
                                     content: '',
+                                    transparentBackground: true
+                                  },
+                                  {
+                                    id: 3,
+                                    type: 'toolkit',
+                                    toolkitTitle: 'Donor Engagement Dashboard',
+                                    toolkitDescription: 'A one stop shop to show you how well your organisation is retaining and engaging its everyday givers.',
+                                    toolkitImage: '/assets/toolkit66.svg'
+                                  },
+                                  {
+                                    id: 4,
+                                    type: 'toolkit',
+                                    toolkitTitle: 'Supporter-Led Fundraising',
+                                    toolkitDescription: 'A powerful toolkit to grow your network by creating champions for your cause.',
+                                    toolkitImage: '/assets/toolkit_77.svg'
                                   }
                                 ]}
                               />
@@ -1792,7 +2062,7 @@ export default function Home() {
       </section >
 
       {/* Bonus Chapter Section */}
-      < section className={styles.bonusSection} ref={bonusSectionRef} >
+      <section className={styles.bonusSection} ref={bonusSectionRef}>
         <div className={styles.bonusContent}>
           <div className={styles.bonusLeft}>
             <img
@@ -1938,13 +2208,13 @@ export default function Home() {
             <div className={styles.downloadInfo}>
               <h2 className={styles.downloadTitle}>Download the complete fundraising set</h2>
               <p className={styles.downloadDescription}>
-                All the tools in one place to start building a structured, relationship-led approach<br />
-                to engaging everyday givers – at your own pace, and with the resources that fit<br />
+                All the tools in one place to start building a structured, relationship-led approach <br />
+                to engaging everyday givers – at your own pace, and with the resources that fit <br />
                 your organisation best.
               </p>
               <div className={styles.downloadButtons}>
                 <button className={styles.downloadAllBtn}>
-                  <img src="/assets/download_all.svg" alt="Download all" className={styles.downloadAllImage} />
+                  <img src="/assets/download.svg" alt="Download all" className={styles.downloadAllImage} />
                 </button>
                 <button className={styles.viewAllBtn}>
                   <img src="/assets/view_doanload.svg" alt="View all" className={styles.viewAllImage} />
@@ -1966,7 +2236,30 @@ export default function Home() {
           <h2 className={styles.exploreTitle}>Explore the other sections</h2>
         </div>
 
-        <div className={styles.exploreGrid}>
+        <div
+          className={styles.exploreGrid}
+          onMouseMove={(e) => {
+            setExploreCursorPos({ x: e.clientX, y: e.clientY });
+          }}
+        >
+          {/* Custom Explore Cursor Button */}
+          {showExploreCursor && (
+            <img
+              src="/assets/explore.svg"
+              alt=""
+              style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                transform: `translate(${exploreCursorPos.x - 91.4}px, ${exploreCursorPos.y - 28}px)`, // Centered based on 182.79 / 2
+                pointerEvents: 'none',
+                zIndex: 9999,
+                width: '182.79px',
+                height: '56px',
+              }}
+            />
+          )}
+
           {/* Folder Card 1 */}
           <div
             className={`${styles.exploreCardBase} ${styles.exploreCard1}`}
@@ -1974,14 +2267,38 @@ export default function Home() {
           >
             <div
               className={styles.hoverTrigger}
-              onMouseEnter={() => setIsExplore1Hovered(true)}
-              onMouseLeave={() => setIsExplore1Hovered(false)}
+              onMouseEnter={() => {
+                setIsExplore1Hovered(true);
+                setShowExploreCursor(true);
+              }}
+              onMouseLeave={() => {
+                setIsExplore1Hovered(false);
+                setShowExploreCursor(false);
+              }}
             />
-            <img
-              src={isExplore1Hovered ? "/assets/intro_hover.png" : "/assets/explore_introduction.png"}
-              alt="Introduction"
-              className={`${styles.exploreCardImage} ${styles.desktopOnly}`}
-            />
+            {/* Desktop Version */}
+            <div className={styles.desktopOnly}>
+              <motion.img
+                src="/assets/explore_introduction.png"
+                alt="Introduction"
+                className={styles.exploreCardImage}
+                animate={{ opacity: isExplore1Hovered ? 0 : 1 }}
+                transition={{ duration: 0.3 }}
+              />
+              <motion.img
+                src="/assets/intro_hover.png"
+                alt="Introduction Hover"
+                className={styles.exploreHoverImage}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{
+                  opacity: isExplore1Hovered ? 1 : 0,
+                  scale: isExplore1Hovered ? 1 : 0.95
+                }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                style={{ transformOrigin: 'bottom left' }}
+              />
+            </div>
+            {/* Mobile Version - Static */}
             <img
               src="/assets/mobile_explore_intro.svg"
               alt="Introduction Mobile"
@@ -1996,14 +2313,38 @@ export default function Home() {
           >
             <div
               className={styles.hoverTrigger}
-              onMouseEnter={() => setIsExplore2Hovered(true)}
-              onMouseLeave={() => setIsExplore2Hovered(false)}
+              onMouseEnter={() => {
+                setIsExplore2Hovered(true);
+                setShowExploreCursor(true);
+              }}
+              onMouseLeave={() => {
+                setIsExplore2Hovered(false);
+                setShowExploreCursor(false);
+              }}
             />
-            <img
-              src={isExplore2Hovered ? "/assets/volunteer_hover.png" : "/assets/explore_volunteer_engagement.png"}
-              alt="Volunteer Engagement"
-              className={`${styles.exploreCardImage} ${styles.desktopOnly}`}
-            />
+            {/* Desktop Version */}
+            <div className={styles.desktopOnly}>
+              <motion.img
+                src="/assets/explore_volunteer_engagement.png"
+                alt="Volunteer Engagement"
+                className={styles.exploreCardImage}
+                animate={{ opacity: isExplore2Hovered ? 0 : 1 }}
+                transition={{ duration: 0.3 }}
+              />
+              <motion.img
+                src="/assets/volunteer_hover.png"
+                alt="Volunteer Engagement Hover"
+                className={styles.exploreHoverImage}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{
+                  opacity: isExplore2Hovered ? 1 : 0,
+                  scale: isExplore2Hovered ? 1 : 0.95
+                }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                style={{ transformOrigin: 'bottom left' }}
+              />
+            </div>
+            {/* Mobile Version - Static */}
             <img
               src="/assets/mobile_explore_vol.svg"
               alt="Volunteer Engagement Mobile"
@@ -2025,8 +2366,8 @@ export default function Home() {
             </div>
 
             <p className={styles.footerDescription}>
-              Giving Together Foundation (GTF) is an<br />
-              independent, India-led nonprofit committed to<br />
+              Giving Together Foundation (GTF) is an
+              independent, India-led nonprofit committed to
               building the infrastructure for everyday generosity.
             </p>
 
