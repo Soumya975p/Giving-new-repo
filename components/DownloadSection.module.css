@@ -1,0 +1,500 @@
+/* Download Section */
+.downloadSection {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: #12363B;
+    /* Matched with bonusSection */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 20px 300px;
+    /* Increased bottom padding */
+    overflow: hidden;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.downloadCard {
+    position: relative;
+    width: 950px;
+    height: auto;
+    /* min-height: 380px; */
+    max-width: 95%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+    background: linear-gradient(to right, #96B600 0%, #C9CD33 50%, #F0DF5B 100%);
+    border-radius: 40px;
+    padding: 80px 80px;
+    z-index: 100;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    max-height: 330px;
+
+}
+
+
+/* Background Image */
+.downloadBackgroundImage {
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    /* USER EDIT: Set width of background image */
+    height: auto;
+    /* USER EDIT: Set height of background image (was auto) */
+    /* max-width: 1400px; Removed to allow explicit width control */
+    min-width: unset;
+    background-size: cover;
+    /* Optional: ensures image covers dimensions */
+    object-fit: cover;
+    /* For img tag behavior */
+    z-index: 15;
+    /* Higher z-index to appear above card */
+    pointer-events: none;
+    opacity: 1;
+    /* Reset opacity as it might be a solid graphic now */
+}
+
+.downloadContent {
+    position: relative;
+    z-index: 30;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    right: 10px;
+}
+
+.downloadIcons {
+    position: relative;
+    flex-shrink: 0;
+    /* USER ADJUST: top, bottom, left, right */
+    top: 0;
+    left: 0;
+}
+
+.downloadIconsImage {
+    position: relative;
+    display: block;
+    /* USER ADJUST: width, height, top, bottom, left, right */
+    width: 80px;
+    height: auto;
+    top: -90px;
+    left: -30px;
+    margin-top: 10px;
+}
+
+.downloadInfo {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.downloadTitle {
+    font-family: 'Zalando Sans Expanded', sans-serif;
+    font-size: 48px;
+    font-weight: 300;
+    line-height: 100%;
+    color: white;
+    margin: 0 0 15px 0;
+    letter-spacing: -3%;
+    transform: translateY(-5px);
+}
+
+.downloadDescription {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 18px;
+    line-height: 150%;
+    color: white;
+    font-style: regular;
+    max-width: 750px;
+    margin-bottom: 15px;
+    font-weight: 400;
+    opacity: 0.95;
+    letter-spacing: -2%;
+}
+
+.downloadButtons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.downloadAllBtn {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    position: relative;
+    /* USER ADJUST: top, bottom, left, right */
+    top: -10px;
+    left: 0;
+}
+
+.downloadAllBtn:hover {
+    transform: scale(1.05);
+}
+
+.downloadAllImage {
+    /* USER ADJUST: width, height */
+    height: 56px;
+    width: auto;
+}
+
+.diamond {
+    font-size: 14px;
+    color: #fff;
+}
+
+.viewAllBtn {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    position: relative;
+    /* USER ADJUST: top, bottom, left, right */
+    top: -10px;
+    left: 0;
+}
+
+.viewAllBtn:hover {
+    transform: scale(1.05);
+}
+
+.viewAllImage {
+    /* USER ADJUST: width, height */
+    height: 56px;
+    width: auto;
+}
+
+
+
+
+.downloadBtnPrimary:hover,
+.downloadBtnSecondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: white;
+}
+
+.btnIcon {
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.btnArrowCircle {
+    width: 24px;
+    height: 24px;
+    background: white;
+    border-radius: 50%;
+    color: #689f38;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+/* Decorative Elements */
+.leftPlant {
+    position: absolute;
+    left: 15%;
+    top: 40%;
+    /* transform: translateY(-50%); */
+    z-index: 5;
+}
+
+.plantStem {
+    width: 2px;
+    height: 200px;
+    background: #689f38;
+    /* Light green */
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.plantHead {
+    width: 60px;
+    height: 60px;
+    background: #d81b60;
+    /* Pink/Magenta */
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    position: absolute;
+    bottom: 180px;
+    left: -30px;
+    box-shadow: inset -5px -5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.plantSpore {
+    width: 10px;
+    height: 30px;
+    border: 1px solid #aed581;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 240px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Right Plant Decoration */
+.rightPlant {
+    position: absolute;
+    right: 15%;
+    bottom: 20%;
+    /* transform: translateY(0); */
+    z-index: 5;
+    display: flex;
+    align-items: flex-end;
+}
+
+.longStem {
+    width: 20px;
+    height: 300px;
+    background: linear-gradient(to bottom, #8bc34a, #33691e);
+    border-radius: 10px 10px 0 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.longStem::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 6px;
+    height: 6px;
+    background: #cddc39;
+    border-radius: 50%;
+}
+
+/* Dots Pattern */
+/* Removed old bottom dots CSS since removed from markup */
+
+/* =========================================
+   DOWNLOAD SECTION DECORATIONS
+   ========================================= */
+
+/* Petal 1 - Left side */
+.downloadPetal1 {
+    position: absolute;
+    /* top: 50px; */
+    bottom: -74px;
+    /* left: 50px; */
+    right: 120px;
+    width: 20px;
+    height: auto;
+    pointer-events: none;
+}
+
+/* Petal 2 - Left side lower */
+.downloadPetal2 {
+    position: absolute;
+    /* top: 200px; */
+    bottom: -130px;
+    /* left: 100px; */
+    right: 155px;
+    width: 20px;
+    height: auto;
+    pointer-events: none;
+}
+
+/* Petal 3 - Right side */
+.downloadPetal3 {
+    position: absolute;
+    /* top: 80px; */
+    bottom: -192px;
+    /* left: auto; */
+    right: 85px;
+    width: 20px;
+    height: auto;
+    pointer-events: none;
+}
+
+.downloadPetal4 {
+    position: absolute;
+    bottom: -50%;
+    right: 85.2%;
+    width: 13px;
+    height: auto;
+    z-index: 35;
+    pointer-events: none;
+}
+
+/* Ball 1 - Left side */
+.downloadBall1 {
+    position: absolute;
+    top: 31%;
+    bottom: auto;
+    /* left: 30px; */
+    right: 8%;
+    width: 20px;
+    height: auto;
+    pointer-events: none;
+}
+
+/* Ball 2 - Right side */
+.downloadBall2 {
+    position: absolute;
+    top: 48%;
+    bottom: auto;
+    left: auto;
+    right: 10%;
+    width: 20px;
+    height: auto;
+    pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+    .downloadCard {
+        padding: 60px 20px;
+        width: 95%;
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+        min-height: auto;
+    }
+
+    .downloadInfo {
+        align-items: center;
+        text-align: center;
+    }
+
+    .downloadTitle {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    .downloadDescription {
+        font-size: 16px;
+        margin-bottom: 30px;
+    }
+
+    .downloadButtons {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .downloadIconsImage {
+        width: 80px;
+    }
+
+    /* Fade out decorations on smaller screens */
+}
+
+/* Download Section - Mobile Specifics */
+@media (max-width: 768px) {
+    .downloadSection {
+        padding-left: 0;
+        padding-right: 0;
+        padding-bottom: 20px;
+        overflow: visible;
+        margin-top: -2vh;
+    }
+
+    .downloadContent {
+        right: 0 !important;
+    }
+
+    .downloadCard {
+        width: 100% !important;
+        height: 441px !important;
+        max-width: 100% !important;
+        border-radius: 20px !important;
+        padding: 40px 23px !important;
+        margin: 0 !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        text-align: left !important;
+        gap: 10px !important;
+        min-height: unset !important;
+        max-height: unset !important;
+    }
+
+    .downloadIconsImage {
+        width: 60px !important;
+        height: auto !important;
+        top: 0 !important;
+        left: 0 !important;
+        margin-bottom: 20px !important;
+    }
+
+    .downloadInfo {
+        text-align: left !important;
+    }
+
+    .downloadTitle {
+        font-size: 8vw !important;
+        line-height: 1.1 !important;
+        margin: 0 0 15px 0 !important;
+        transform: none !important;
+        text-align: left !important;
+    }
+
+    .downloadDescription {
+        font-size: 3vw !important;
+        line-height: 1.4 !important;
+        margin: 0 0 30px 0 !important;
+        text-align: left !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+    }
+
+    .downloadDescription br {
+        display: none;
+    }
+
+    .downloadButtons {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .downloadAllBtn,
+    .viewAllBtn {
+        padding: 0;
+        border: none;
+        background: transparent;
+    }
+
+    .downloadAllImage,
+    .viewAllImage {
+        height: 36px !important;
+        width: auto !important;
+    }
+
+    .downloadBackgroundImage {
+        width: 250% !important;
+        height: auto !important;
+        position: absolute !important;
+        bottom: 30px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        opacity: 1 !important;
+        z-index: 5 !important;
+        object-fit: contain !important;
+    }
+
+    .downloadPetal1,
+    .downloadPetal2,
+    .downloadPetal3,
+    .downloadPetal4,
+    .downloadBall1,
+    .downloadBall2 {
+        display: none !important;
+    }
+}

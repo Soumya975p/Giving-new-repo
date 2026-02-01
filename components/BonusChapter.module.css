@@ -1,0 +1,350 @@
+/* Desktop/Mobile visibility helpers */
+.desktopOnly {
+    display: block !important;
+}
+
+.mobileOnly {
+    display: none !important;
+}
+
+/* Bonus Chapter Section */
+.bonusSection {
+    background: #12363B;
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+    /* margin-top: 500px; */
+}
+
+.bonusContent {
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 80px;
+    padding: 0 00px;
+}
+
+.bonusLeft {
+    flex: 1;
+    position: relative;
+    left: 10%;
+}
+
+.bonusFlowerImage {
+    position: absolute;
+    top: 35px;
+    bottom: auto;
+    left: -150px;
+    right: auto;
+    width: 900px;
+    height: 340px;
+}
+
+.bonusFlowerDot {
+    position: absolute;
+    top: 220px;
+    left: -70px;
+    width: 20px;
+    height: 97px;
+    z-index: 2;
+}
+
+.bonusLabel {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #38F1FF;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.bonusTitle {
+    font-family: 'Zalando Sans Expanded', sans-serif;
+    font-size: 42px;
+    font-weight: 300;
+    line-height: 1.1;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.bonusTitleHighlight {
+    background: radial-gradient(circle, #0FB8C5 0%, #93CD4D 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.bonusText {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 30px;
+}
+
+.bonusCallout {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* .bonusDot {
+  width: 12px;
+  height: 12px;
+  background: #b8e986;
+  border-radius: 50%;
+  flex-shrink: 0;
+} */
+
+.bonusCalloutText {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    font-style: italic;
+}
+
+.bonusRight {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.bonusCard {
+    width: 350px;
+    height: 450px;
+    background: linear-gradient(135deg, #b8e986 0%, #a8d975 100%);
+    border-radius: 12px;
+    padding: 40px 30px;
+    position: relative;
+    transform: rotate(-5deg);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.bonusCardInner {
+    position: relative;
+    z-index: 2;
+}
+
+.bonusCardTitle {
+    font-family: 'Zalando Sans Expanded', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.bonusCardText {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.bonusCardPattern {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 200px;
+}
+
+.patternCircle {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    opacity: 0.9;
+}
+
+.patternTriangle {
+    position: absolute;
+    top: 40%;
+    left: 45%;
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-bottom: 43px solid #ff8da1;
+    transform: rotate(30deg);
+}
+
+.bonusCardDimensions {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: #e91e8c;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 4px;
+}
+
+.bonusDotsPattern {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    top: 200px;
+    left: 40%;
+    right: 100px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.bonusDotCircle {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    opacity: 0.6;
+}
+
+.bonusDotsImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0.8;
+}
+
+.bonusCardImage {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.3));
+    z-index: 10;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .desktopOnly {
+        display: none !important;
+    }
+
+    .mobileOnly {
+        display: block !important;
+    }
+
+    /* Bonus Section - Mobile Specifics */
+    .bonusSection {
+        padding: 12vh 24px;
+        background: #12363B;
+        /* Darker background based on reference */
+    }
+
+    .bonusContent {
+        flex-direction: column;
+        gap: 40px;
+        padding: 0;
+        background: #12363B;
+    }
+
+    .bonusLeft {
+        text-align: left;
+        order: 1;
+        right: -15%;
+        background: #12363B;
+        /* Text first */
+    }
+
+    .bonusRight {
+        order: 2;
+        /* Image second */
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        right: 5%;
+        top: 10vh;
+        background: #12363B;
+    }
+
+    .bonusCardImage {
+        width: 100%;
+        max-width: 320px;
+        /* Adjust based on preferred card size */
+        height: auto;
+        object-fit: contain;
+        position: relative;
+        z-index: 2;
+    }
+
+    .bonusTitle {
+        font-size: 30px;
+        margin-bottom: 20px;
+        background: #12363B;
+    }
+
+    .bonusText {
+        font-size: 14px;
+        margin-bottom: 22px;
+        background: #12363B;
+    }
+
+    .bonusDiamond {
+        margin-bottom: 20px;
+        background: #12363B;
+    }
+
+    .bonusCallout {
+        background: #12363B;
+    }
+
+    /* Restore background elements on mobile */
+    .bonusDotsPattern {
+        display: block;
+        position: absolute;
+        top: auto;
+        bottom: 0%;
+        left: 50%;
+        transform: translateX(-0%);
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        opacity: 0.5;
+        /* Optional: Adjust opacity if needed to match reference visual weight */
+        pointer-events: none;
+        background: #12363B;
+    }
+
+
+    .bonusDotsImage {
+        width: 60%;
+        height: 150%;
+        object-fit: contain;
+        /* or cover, depending on desired effect. Desktop uses something specific? */
+    }
+
+    /* Mobile Flower & Dot Positioning (Moved from global to protect desktop) */
+    .bonusFlowerImage {
+        position: absolute;
+        top: -15%;
+        bottom: auto;
+        left: -15%;
+        right: auto;
+        width: 1190px;
+        /* Kept from user edit, scaling handled by viewport or transform if needed */
+        height: 780px;
+        transform: scale(0.6);
+        /* Slightly scale down to fit context */
+        transform-origin: top left;
+    }
+
+    .bonusFlowerDot {
+        top: 72%;
+        left: -11%;
+        width: 20px;
+        height: 97px;
+        z-index: 2;
+    }
+}
