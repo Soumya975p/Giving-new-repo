@@ -1,0 +1,623 @@
+/* Footer Section */
+.footerSection {
+  width: 100%;
+  background: linear-gradient(180deg, #12363B 0%, #041A1D);
+  /* Seamless dark teal gradient */
+  padding: 80px 100px 170px;
+  /* Increased bottom padding for background image space */
+  position: relative;
+  overflow: hidden;
+  color: white;
+}
+
+.footerContainer {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 60px;
+  position: relative;
+  z-index: 10;
+}
+
+/* LEFT COLUMN */
+.footerLeftColumn {
+  width: 30%;
+  padding-top: 10px;
+}
+
+.footerLogo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.footerLogoTextGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.footerLogoTitle {
+  font-family: 'Zalando Sans Expanded', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  color: white;
+}
+
+.footerLogoSubtitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  margin-top: 4px;
+  opacity: 0.8;
+  color: white;
+}
+
+.footerDescription {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  /* Regular */
+  font-style: normal;
+  /* Regular */
+  font-size: 18px;
+  line-height: 150%;
+  /* = 1.5 */
+  letter-spacing: -0.02em;
+  /* -2% */
+
+  opacity: 0.9;
+  margin-bottom: 60px;
+  max-width: 405px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Map Area */
+.footerMapPlaceholder {
+  width: 200px;
+  height: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.3;
+  /* Darker look */
+  margin-bottom: 15px;
+  /* Placeholder map shape */
+  background-image: radial-gradient(circle at 30% 50%, rgba(30, 181, 154, 0.4) 0%, transparent 40%),
+    radial-gradient(circle at 70% 60%, rgba(30, 181, 154, 0.4) 0%, transparent 40%);
+}
+
+.footerLocationText {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  opacity: 0.8;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* RIGHT COLUMN */
+.footerRightColumn {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  margin-left: 10px;
+}
+
+/* GET INVOLVED ROW */
+.getInvolvedRow {
+  gap: 10px;
+  /* Adjusted to 10px as requested */
+}
+
+.getInvolvedLabel {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: #38F1FF;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+
+.getInvolvedForm {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  color: white;
+  max-width: 700px;
+}
+
+.footerFormDesktop {
+  display: block;
+}
+
+.footerFormMobile {
+  display: none;
+}
+
+.getInvolvedForm.footerFormDesktop {
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: -0.04em;
+}
+
+.footerFormDesktop .formLine {
+  margin-bottom: 5px;
+}
+
+.footerFormDesktop .inlineInput {
+  background: transparent;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: -0.04em;
+  background: radial-gradient(circle, rgb(15, 184, 197) 0%, rgb(147, 205, 77) 100%) text;
+  -webkit-text-fill-color: transparent;
+  border-bottom: 1px solid rgba(30, 181, 154, 0.3);
+  padding: 0 5px;
+  width: fit-content;
+}
+
+.inputName,
+.inputOrg,
+.inputEmail {
+  width: auto;
+}
+
+.inlineInput::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.inlineInput:focus {
+  outline: none;
+  border-bottom: 1px solid #38F1FF;
+}
+
+/* Subscribe Button */
+.subscribeBtn {
+  margin-top: 0px;
+  /* Removed 10px margin */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  border: none;
+  color: white;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: -0.04em;
+  cursor: pointer;
+  padding: 0;
+}
+
+.subscribeBtn:hover {
+  opacity: 1;
+}
+
+.btnArrow {
+  width: 34.5px;
+  height: 24px;
+  background: white;
+  color: black;
+  border-radius: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  padding-bottom: 2px;
+  position: relative;
+  top: 2px;
+}
+
+.subscribeBtn:hover .btnArrow {
+  transform: none;
+}
+
+/* NAV LINKS GRID */
+.footerLinksGrid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr 1.5fr;
+  /* Adjust ratios */
+  gap: 10px;
+  align-items: start;
+}
+
+.footerGridCol {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* First two columns have inline styles for borderLeft in TSX, or we can add class modifier */
+
+.footerColTitle {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 140%;
+  letter-spacing: 0.1em;
+  color: #38F1FF;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+  margin-top: 0;
+}
+
+.footerLinkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footerLinkList li a,
+.contactLink,
+.addressText {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: -0.04em;
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-decoration: none;
+  transition: color 0.2s;
+  opacity: 0.8;
+  margin-top: 0;
+}
+
+.footerLinkList li a:hover,
+.contactLink:hover {
+  color: #38F1FF !important;
+}
+
+.indentedItem {
+  padding-left: 15px;
+  font-size: 15px;
+  opacity: 0.8;
+}
+
+.arrowItem a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.contactLink {
+  overflow-wrap: anywhere;
+  /* Better for long strings like emails */
+  margin-bottom: 10px;
+  display: block;
+}
+
+.addressBlock {
+  margin-top: 40px;
+}
+
+/* Footer Background Pattern */
+.footerBackgroundPattern {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  /* USER ADJUST: width, height, top, bottom, left, right */
+  width: 100%;
+  height: auto;
+  z-index: 0;
+  pointer-events: none;
+  margin-top: 60px;
+}
+
+/* Logo Image Styles */
+.footerLogoImage {
+  height: 70px;
+  width: auto;
+}
+
+/* Footer Map Image */
+.footerMapImage {
+  width: 150px;
+  height: auto;
+  opacity: 0.6;
+  margin-bottom: 16px;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .footerSection {
+    padding: 130px 20px;
+  }
+
+  .footerContainer {
+    flex-direction: column;
+    padding: 0;
+    gap: 40px;
+  }
+
+  .footerLeftColumn,
+  .footerRightColumn {
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .footerDescription {
+    font-size: 18px;
+    /* Sync with PC */
+    max-width: 100%;
+    text-wrap: balance;
+  }
+
+  .footerLogoTitle {
+    font-size: 24px;
+    /* Sync with PC */
+  }
+
+  .getInvolvedForm {
+    font-size: 20px;
+    /* Sync with PC */
+  }
+
+  .inlineInput {
+    font-size: 20px;
+    /* Sync with PC */
+  }
+
+  .footerLinksGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    grid-template-rows: auto auto;
+    width: 100%;
+    /* Ensure full width */
+  }
+
+  /* Explicit grid placement for mobile layout */
+  /* Col 1: Home (Top Left) */
+  .footerLinksGrid>div:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  /* Col 2: Reports (Bottom Left) */
+  .footerLinksGrid>div:nth-child(2) {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  /* Col 3: Email + Address (Right Column, spanning full height mostly) */
+  .footerLinksGrid>div:nth-child(3) {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+
+  .footerGridCol {
+    padding-left: 20px;
+  }
+
+  .footerBackgroundPattern {
+    /* USER ADJUST: width, height, top, bottom for Mobile */
+    width: 250% !important;
+    height: auto !important;
+    bottom: 20px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .getInvolvedRow {
+    max-width: 450px !important;
+  }
+
+  .footerFormDesktop {
+    display: none !important;
+  }
+
+  .footerFormMobile {
+    display: block !important;
+  }
+
+  /* Mobile Refinements applying only to the Mobile structure */
+  .footerFormMobile {
+    font-size: 16px !important;
+    /* Reduced for better in-line fit */
+    line-height: 160% !important;
+    letter-spacing: -0.01em !important;
+    color: white !important;
+  }
+
+  .footerFormMobile .formLine {
+    margin-bottom: 12px !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: baseline !important;
+    gap: 4px !important;
+  }
+
+  .footerFormMobile .inlineInput {
+    font-size: 16px !important;
+    color: #6A8B8C !important;
+    border: none !important;
+    /* Ensure no borders */
+    border-bottom: 1px solid #1EB5BA !important;
+    background: transparent !important;
+    -webkit-text-fill-color: initial !important;
+    padding: 2px 0 !important;
+    height: auto !important;
+  }
+
+  .footerFormMobile .inlineInput::placeholder {
+    color: #6A8B8C !important;
+    opacity: 0.8 !important;
+  }
+
+  .footerFormMobile .inputName {
+    width: 120px !important;
+  }
+
+  .footerFormMobile .inputOrg {
+    width: 200px !important;
+  }
+
+  .footerFormMobile .inputEmail {
+    width: 160px !important;
+  }
+
+  .subscribeBtn {
+    margin-top: 0px !important;
+    /* Removed extra margin to let container gap handle spacing */
+    color: #1EB5BA !important;
+    font-size: 22px !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  .btnArrow {
+    width: 45px !important;
+    height: 28px !important;
+    background: #1EB5BA !important;
+    color: #041A1D !important;
+    border-radius: 20px !important;
+    font-size: 18px !important;
+    top: 0 !important;
+  }
+
+  .subscribeBtn:hover .btnArrow {
+    transform: translateX(5px) !important;
+  }
+}
+
+@media (max-width: 640px) {
+
+  /* Keep two-column layout for footer links on mobile */
+  .footerLinksGrid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 30px 20px;
+  }
+
+  /* Col 1: Home (Top Left) */
+  .footerLinksGrid>div:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+    padding-left: 0;
+  }
+
+  /* Col 2: Reports (Bottom Left) */
+  .footerLinksGrid>div:nth-child(2) {
+    grid-column: 1;
+    grid-row: 2;
+    padding-left: 0;
+  }
+
+  /* Col 3: Email + Address (Right Column) */
+  .footerLinksGrid>div:nth-child(3) {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    padding-left: 0;
+  }
+
+  .footerGridCol {
+    padding-left: 0;
+  }
+
+  .footerColTitle {
+    font-size: clamp(9px, 2.5vw, 11px);
+  }
+
+  .footerLinkList li a,
+  .contactLink,
+  .addressText {
+    font-size: clamp(12px, 3.5vw, 16px);
+  }
+
+  .contactLink {
+    word-break: break-word;
+  }
+
+  /* Responsive footer form styles */
+  .getInvolvedForm {
+    font-size: clamp(12px, 3.5vw, 18px);
+    line-height: 1.6;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .getInvolvedForm .formLine {
+    margin-bottom: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px;
+  }
+
+  .footerFormMobile .inlineInput {
+    font-size: clamp(12px, 3.5vw, 18px);
+    max-width: 100%;
+    width: auto;
+    min-width: 60px;
+    flex-shrink: 1;
+  }
+
+  .getInvolvedLabel {
+    font-size: clamp(9px, 2.5vw, 11px);
+  }
+
+  .subscribeBtn {
+    font-size: clamp(14px, 4vw, 20px);
+    margin-top: 15px;
+  }
+}
+
+@media (max-width: 435px) {
+  .getInvolvedRow {
+    max-width: 100% !important;
+    /* Allow it to span full width on very small screens if needed, but the container will be smaller */
+  }
+
+  /* Hide mobile form, show desktop form styled for mobile */
+  .footerFormMobile {
+    display: none !important;
+  }
+
+  .footerFormDesktop {
+    display: block !important;
+    font-size: clamp(12px, 3.5vw, 16px) !important;
+    line-height: 1.6 !important;
+    color: white !important;
+    /* Sync with mobile color */
+  }
+
+  .footerFormDesktop .formLine {
+    display: inline;
+    margin-bottom: 0;
+  }
+
+  .footerFormDesktop .inlineInput {
+    font-size: clamp(12px, 3.5vw, 16px) !important;
+    display: inline;
+    width: auto;
+    min-width: 50px;
+    max-width: 120px;
+    color: #6A8B8C !important;
+    /* Sync with mobile color */
+    border-bottom: 1px solid #1EB5BA !important;
+    /* Sync with mobile border */
+    -webkit-text-fill-color: initial !important;
+    /* Fix for 'hidden' text on small screens */
+  }
+
+  .footerFormDesktop .inlineInput::placeholder {
+    color: #6A8B8C !important;
+    /* Sync with mobile color */
+    opacity: 0.8 !important;
+    -webkit-text-fill-color: initial !important;
+  }
+
+  .getInvolvedForm {
+    display: block;
+  }
+}
