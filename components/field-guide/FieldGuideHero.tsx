@@ -19,12 +19,31 @@ export default function FieldGuideHero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
+          {/* Fly Icon - Mobile Only */}
+          <div className={`${styles.flyIcon} m-d-block`}>
+            <img
+              src="/assets/fg-fly-hero.svg"
+              alt="Flying icon"
+              width="32"
+              height="32"
+            />
+          </div>
+
           <h1 className={styles.mainTitle}>
             Unlock the Power of
           </h1>
           <h2 className={styles.mainSubtitle}>
             Everyday <span>Giving</span>
           </h2>
+
+          {/* Mobile Scroll Indicator */}
+          <div className={`${styles.scrollIndicator} m-d-block`}>
+            <img
+              src="/assets/scroll_down.svg"
+              alt="Scroll down"
+              className={styles.scrollArrow}
+            />
+          </div>
         </motion.div>
 
         {/* Right Side */}
@@ -45,21 +64,21 @@ export default function FieldGuideHero() {
             <div className={styles.guideButtons}>
               <button className={styles.guideButton}>
                 <span> <img
-                                  src="/assets/btn-diamond.png"
-                                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                                /> Fundraising  <img
-                                   src="/assets/btn-diamond.png"
-                                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                                /></span>
+                  src="/assets/btn-diamond.png"
+                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                /> Fundraising  <img
+                    src="/assets/btn-diamond.png"
+                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                  /></span>
               </button>
               <button className={styles.guideButton}>
                 <span> <img
-                                   src="/assets/btn-diamond.png"
-                                  style={{ objectFit: 'contain' }}
-                                /> Volunteer Engagement  <img
-                                   src="/assets/btn-diamond.png"
-                                  style={{  objectFit: 'contain' }}
-                                /></span>
+                  src="/assets/btn-diamond.png"
+                  style={{ objectFit: 'contain' }}
+                /> Volunteer Engagement  <img
+                    src="/assets/btn-diamond.png"
+                    style={{ objectFit: 'contain' }}
+                  /></span>
               </button>
             </div>
           </div>
@@ -82,9 +101,9 @@ export default function FieldGuideHero() {
         <img
           src="/assets/fg-unlock-power.png"
           alt="Unlock Power"
-                    className={`${styles.bottomHeroImage} d-d-block`}
+          className={`${styles.bottomHeroImage} d-d-block`}
         />
-          <img
+        <img
           src="/assets/mob-fg-unlock-power.png"
           alt="Unlock Power"
           className={`${styles.bottomHeroImage} m-d-block`}
