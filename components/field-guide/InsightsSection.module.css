@@ -16,8 +16,8 @@
   padding: 24px 40px;
   position: relative;
   overflow: hidden;
-  border-top-left-radius: 750px;
-  border-top-right-radius: 750px;
+  border-top-left-radius: 999px;
+border-top-right-radius: 999px;
   border-bottom-left-radius: 14%;
   border-bottom-right-radius: 14%;
 
@@ -61,8 +61,13 @@ color: #fff;
 
 }
 .insightsSection .gColor{
-color: gradient(108.63% 108.63% at 117.78% 116.39%, #FFCD86 15.38%, #13D9E8 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+    /* background: radial-gradient(circle, #0fb8c5 0, #93cd4d 100%); */
+    background: radial-gradient(108.63% 108.63% at 117.78% 116.39%, #FFCD86 15.38%, #13D9E8 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
 }
 
 /* Top Section - Circle */
@@ -289,7 +294,7 @@ color: gradient(108.63% 108.63% at 117.78% 116.39%, #FFCD86 15.38%, #13D9E8 100%
 
 /* Quote Section */
 .quoteSection {
-  background: #12363B;
+  background: linear-gradient(0deg, #031947 -39.61%, #07424E -6.94%, #033B30 100%);
   border-radius: 80px;
   padding: 160px;
   text-align: center;

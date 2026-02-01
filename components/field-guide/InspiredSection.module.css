@@ -15,8 +15,8 @@ background-position: top center;
   padding: 24px 40px;
   position: relative;
   overflow: hidden;
-  border-top-left-radius: 750px;
-  border-top-right-radius: 750px;
+border-top-left-radius: 999px;
+border-top-right-radius: 999px;
   border-bottom-left-radius: 14%;
   border-bottom-right-radius: 14%;
 
@@ -254,7 +254,8 @@ text-decoration: none;
 
 /* Quote Section */
 .quoteSection {
-  background: #12363B;
+  background: linear-gradient(0deg, #031947 -39.61%, #07424E -6.94%, #033B30 100%);
+  
   border-radius: 80px;
   padding: 160px;
   text-align: center;
