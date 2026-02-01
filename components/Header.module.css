@@ -385,10 +385,25 @@
 .logoImage {
   height: 70px;
   width: auto;
+  display: block;
+}
+
+.logoImageMobile {
+  height: 70px;
+  width: auto;
+  display: none !important;
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
+  .logoImage {
+    display: none !important;
+  }
+
+  .logoImageMobile {
+    display: block !important;
+  }
+
   .headerRight {
     top: 20px;
     right: 20px;
