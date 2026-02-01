@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 import inspiredStyles from './InspiredSection.module.css'
+import styles from './FieldGuideHero.module.css'
+
 
 export default function InspiredSection() {
   const [activeCard, setActiveCard] = useState(0)
@@ -30,6 +32,42 @@ export default function InspiredSection() {
   }
 
   return (
+    <div>
+    <div
+          className={`${styles.rightSide} m-d-block`}
+
+         
+        >
+          <p className={styles.sectionLabel}>UDARTA:EG Action Field Guides</p>
+          <p className={styles.description}>
+            A guide to help nonprofits build reliable funding and engaged volunteer communities using what's already working across India.
+          </p>
+
+          <div className={styles.guidesSection}>
+            <p className={styles.chooseLabel}>CHOOSE A FIELD GUIDE TO EXPLORE <span></span></p>
+            <div className={styles.guideButtons}>
+              <button className={styles.guideButton}>
+                <span> <img
+                                  src="/assets/btn-diamond.png"
+                                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                                /> Fundraising  <img
+                                   src="/assets/btn-diamond.png"
+                                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                                /></span>
+              </button>
+              <button className={styles.guideButton}>
+                <span> <img
+                                   src="/assets/btn-diamond.png"
+                                  style={{ objectFit: 'contain' }}
+                                /> Volunteer Engagement  <img
+                                   src="/assets/btn-diamond.png"
+                                  style={{  objectFit: 'contain' }}
+                                /></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        
     <section className={inspiredStyles.inspiredSection}>
         <div className={inspiredStyles.insCbContainerBg}>
         <div className={inspiredStyles.insCbContainer}>
@@ -140,5 +178,6 @@ insights into simple, usable systems for nonprofits of all sizes.</h3>
       </div>
       </div> 
     </section>
+    </div>
   )
 }

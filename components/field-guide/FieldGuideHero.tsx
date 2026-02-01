@@ -29,7 +29,8 @@ export default function FieldGuideHero() {
 
         {/* Right Side */}
         <motion.div
-          className={styles.rightSide}
+          className={`${styles.rightSide} d-d-block`}
+
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -81,12 +82,12 @@ export default function FieldGuideHero() {
         <img
           src="/assets/fg-unlock-power.png"
           alt="Unlock Power"
-          className={styles.bottomHeroImage}
+                    className={`${styles.bottomHeroImage} d-d-block`}
         />
           <img
-          src="/assets/fg-unlock-power.png"
+          src="/assets/mob-fg-unlock-power.png"
           alt="Unlock Power"
-          className={styles.bottomHeroImage}
+          className={`${styles.bottomHeroImage} m-d-block`}
         />
       </motion.div>
     </motion.section>
