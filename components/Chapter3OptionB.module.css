@@ -329,17 +329,6 @@
     overflow: visible;
 }
 
-/* Background for specific text cards if needed, otherwise transparent */
-/* .textCard {
-    background: #20315B33 20%;
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-} */
-
 .cardTitle {
     font-family: 'DM Sans', sans-serif;
     font-size: 24px;

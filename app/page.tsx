@@ -15,6 +15,9 @@ import chapter3StylesB from '../components/Chapter3OptionB.module.css'
 // import Chapter3OptionB from '../components/Chapter3OptionB'
 import Chapter4OptionA from '../components/Chapter4OptionA'
 import TabsSection from '../components/TabsSection'
+import Footer from '../components/Footer'
+import Explore from '../components/Explore'
+import Header from '../components/Header'
 
 
 const dmSans = DM_Sans({
@@ -129,11 +132,11 @@ export default function Home() {
   const [isCh2OptionBHovered, setIsCh2OptionBHovered] = useState(false)
   const [isCh3OptionAHovered, setIsCh3OptionAHovered] = useState(false)
   const [isCh3OptionBHovered, setIsCh3OptionBHovered] = useState(false)
-  const [isExplore1Hovered, setIsExplore1Hovered] = useState(false)
-  const [isExplore2Hovered, setIsExplore2Hovered] = useState(false)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isFundraisingExpanded, setIsFundraisingExpanded] = useState(false)
-  const [expandedChapter, setExpandedChapter] = useState<number | null>(null)
+  const [isExplore1Hovered, setIsExplore1Hovered] = useState(false) // Moved to Explore component
+  const [isExplore2Hovered, setIsExplore2Hovered] = useState(false) // Moved to Explore component
+  const [isMenuOpen, setIsMenuOpen] = useState(false) // Moved to Header component
+  const [isFundraisingExpanded, setIsFundraisingExpanded] = useState(false) // Moved to Header component
+  const [expandedChapter, setExpandedChapter] = useState<number | null>(null) // Moved to Header component
   const chapterRefs = useRef<(HTMLDivElement | null)[]>([])
   const activeChapterRef = useRef(activeChapter) // To track active chapter without dependency issues
   const chaptersSectionRef = useRef<HTMLDivElement>(null)
@@ -150,9 +153,7 @@ export default function Home() {
   const [gridCursorPos, setGridCursorPos] = useState({ x: 0, y: 0 });
   const [showGridCursor, setShowGridCursor] = useState(false);
 
-  // State for Custom Explore Cursor
-  const [exploreCursorPos, setExploreCursorPos] = useState({ x: 0, y: 0 });
-  const [showExploreCursor, setShowExploreCursor] = useState(false);
+  // Explore cursor states moved to Explore component
 
   // State for scroll-triggered sticky chapters section
   const [isChaptersSectionSticky, setIsChaptersSectionSticky] = useState(false);
@@ -244,19 +245,16 @@ export default function Home() {
 
   return (
     <div className={`${styles.pageWrapper} ${dmSans.className}`}>
-      {/* Global Sticky Header Right */}
-      <div className={styles.headerRight}>
-        <img src={isMenuOpen ? "/assets/menu_open.svg" : "/assets/menu.svg"} alt="Menu" className={styles.menuSvg} onClick={() => setIsMenuOpen(!isMenuOpen)} />
-      </div>
+      {/* Header with Logo and Menu */}
+      <Header
+        activeChapter={activeChapter}
+        setActiveChapter={setActiveChapter}
+        chaptersSectionRef={chaptersSectionRef}
+        bonusSectionRef={bonusSectionRef}
+      />
 
       {/* Hero Section */}
       <section className={styles.heroSection}>
-        {/* Header */}
-        <header className={styles.heroHeader}>
-          <div className={styles.logoArea}>
-            <img src="/assets/logo_name.svg" alt="Giving Together Foundation" className={styles.logoImage} />
-          </div>
-        </header>
 
         {/* Hero Content */}
         <div className={styles.heroContent}>
@@ -1893,446 +1891,10 @@ export default function Home() {
       </section >
 
       {/* Explore Grid Section */}
-      < div className={styles.exploreSection} >
-        <div className={styles.exploreHeader}>
-          <span className={styles.exploreLabel}>FOLLOW ALONG</span>
-          <h2 className={styles.exploreTitle}>Explore the other sections</h2>
-        </div>
-
-        <div
-          className={styles.exploreGrid}
-          onMouseMove={(e) => {
-            setExploreCursorPos({ x: e.clientX, y: e.clientY });
-          }}
-        >
-          {/* Custom Explore Cursor Button */}
-          {showExploreCursor && (
-            <img
-              src="/assets/explore.svg"
-              alt=""
-              style={{
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                transform: `translate(${exploreCursorPos.x - 91.4}px, ${exploreCursorPos.y - 28}px)`, // Centered based on 182.79 / 2
-                pointerEvents: 'none',
-                zIndex: 9999,
-                width: '182.79px',
-                height: '56px',
-              }}
-            />
-          )}
-
-          <div
-            className={`${styles.exploreCardBase} ${styles.exploreCard1}`}
-          >
-            <div
-              className={styles.hoverTrigger}
-              onMouseEnter={() => {
-                setIsExplore1Hovered(true);
-                setShowExploreCursor(true);
-              }}
-              onMouseLeave={() => {
-                setIsExplore1Hovered(false);
-                setShowExploreCursor(false);
-              }}
-            />
-            {/* Desktop Version */}
-            <div className={styles.desktopOnly}>
-              <img
-                src="/assets/explore_introduction.png"
-                alt="Introduction"
-                className={styles.exploreCardImage}
-                style={{ opacity: isExplore1Hovered ? 0 : 1 }}
-              />
-              <img
-                src="/assets/intro_hover.png"
-                alt="Introduction Hover"
-                className={styles.exploreHoverImage}
-                style={{ opacity: isExplore1Hovered ? 1 : 0 }}
-              />
-            </div>
-            {/* Mobile Version - Static */}
-            <img
-              src="/assets/mobile_explore_intro.svg"
-              alt="Introduction Mobile"
-              className={`${styles.exploreCardImage} ${styles.mobileOnly}`}
-            />
-          </div>
-
-          <div
-            className={`${styles.exploreCardBase} ${styles.exploreCard2}`}
-          >
-            <div
-              className={styles.hoverTrigger}
-              onMouseEnter={() => {
-                setIsExplore2Hovered(true);
-                setShowExploreCursor(true);
-              }}
-              onMouseLeave={() => {
-                setIsExplore2Hovered(false);
-                setShowExploreCursor(false);
-              }}
-            />
-            {/* Desktop Version */}
-            <div className={styles.desktopOnly}>
-              <img
-                src="/assets/explore_volunteer_engagement.png"
-                alt="Volunteer Engagement"
-                className={styles.exploreCardImage}
-                style={{ opacity: isExplore2Hovered ? 0 : 1 }}
-              />
-              <img
-                src="/assets/volunteer_hover.png"
-                alt="Volunteer Engagement Hover"
-                className={styles.exploreHoverImage}
-                style={{ opacity: isExplore2Hovered ? 1 : 0 }}
-              />
-            </div>
-            {/* Mobile Version - Static */}
-            <img
-              src="/assets/mobile_explore_vol.svg"
-              alt="Volunteer Engagement Mobile"
-              className={`${styles.exploreCardImage} ${styles.mobileOnly}`}
-            />
-          </div>
-        </div>
-      </div >
+      <Explore />
 
       {/* Footer Section */}
-      {/* Footer Section */}
-      <footer className={styles.footerSection}>
-        <div className={styles.footerContainer}>
-
-          {/* LEFT COLUMN: Brand & Info */}
-          <div className={styles.footerLeftColumn}>
-            <div className={styles.footerLogo}>
-              <img src="/assets/logo_name.svg" alt="Giving Together Foundation" className={styles.footerLogoImage} />
-            </div>
-
-            <p className={styles.footerDescription}>
-              Giving Together Foundation (GTF) is an
-              independent, India-led nonprofit committed to
-              building the infrastructure for everyday generosity.
-            </p>
-
-            {/* India Map Image */}
-            <img
-              src="/assets/map.png"
-              alt="Based in India Map"
-              className={styles.footerMapImage}
-            />
-            <p className={styles.footerLocationText}>Based in India, working nationwide</p>
-          </div>
-
-          {/* RIGHT COLUMN: Content */}
-          <div className={styles.footerRightColumn}>
-
-            {/* ROW 1: Get Involved Form */}
-            <div className={styles.getInvolvedRow}>
-              <p className={styles.getInvolvedLabel}>GET INVOLVED</p>
-
-              {/* DESKTOP VERSION (3 Lines) */}
-              <div className={`${styles.getInvolvedForm} ${styles.footerFormDesktop}`}>
-                <div className={styles.formLine}>
-                  Hi, I'm <input type="text" placeholder="Merlyn Fernandes" className={styles.inlineInput} />, I'm from <input type="text" placeholder="Giving Together Foundation" className={styles.inlineInput} />.
-                </div>
-                <div className={styles.formLine}>
-                  I'd love to be a part of Giving Together Foundation's initiatives.
-                </div>
-                <div className={styles.formLine}>
-                  I'm available on <input type="email" placeholder="m.fernandes@email.com" className={styles.inlineInput} /> if you need to reach out to me for updates & details.
-                </div>
-              </div>
-
-              {/* MOBILE VERSION (5 Lines) */}
-              <div className={`${styles.getInvolvedForm} ${styles.footerFormMobile}`}>
-                <div className={styles.formLine}>
-                  Hi, I'm <input type="text" placeholder="your name" className={`${styles.inlineInput} ${styles.inputName}`} /> ,
-                </div>
-                <div className={styles.formLine}>
-                  I'm from <input type="text" placeholder="name of your organisation" className={`${styles.inlineInput} ${styles.inputOrg}`} /> .
-                </div>
-                <div className={styles.formLine}>
-                  I'd love to be a part of Giving Together Foundation's
-                </div>
-                <div className={styles.formLine}>
-                  initiatives. I'm available on <input type="email" placeholder="your email address" className={`${styles.inlineInput} ${styles.inputEmail}`} />
-                </div>
-                <div className={styles.formLine}>
-                  if you need to reach out to me for updates & details.
-                </div>
-              </div>
-
-              <button className={styles.subscribeBtn}>
-                Subscribe <span className={styles.btnArrow}>→</span>
-              </button>
-            </div>
-
-            {/* ROW 2: Navigation Grid */}
-            <div className={styles.footerLinksGrid}>
-              {/* Col 1: Home */}
-              <div className={styles.footerGridCol}>
-                <p className={styles.footerColTitle}>HOME</p>
-                <ul className={styles.footerLinkList}>
-                  <li><a href="#">Who is this for?</a></li>
-                  <li><a href="#">Tools and toolkits</a></li>
-                </ul>
-              </div>
-
-              {/* Col 2: Reports */}
-              <div className={styles.footerGridCol}>
-                <p className={styles.footerColTitle}>REPORTS & RESOURCES</p>
-                <ul className={styles.footerLinkList}>
-                  <li><a href="#">UDARTA:EG Field Guide</a></li>
-                  <li className={styles.indentedItem}><a href="#">Fundraising</a></li>
-                  <li className={styles.indentedItem}><a href="#">Volunteer Engagement</a></li>
-                  <li className={styles.arrowItem}><a href="#">UDARTA:EG Report ↗</a></li>
-                  <li><a href="#">Donor Motivation</a></li>
-                </ul>
-              </div>
-
-              {/* Col 3: Email */}
-              <div className={styles.footerGridCol}>
-                <p className={styles.footerColTitle}>EMAIL CONTACT</p>
-                <a href="mailto:partnerships@givingtogetherfoundation.org" className={styles.contactLink}>
-                  partnerships@givingtogetherfoundation.org
-                </a>
-
-                {/* Address placed below email in same visual column area usually, or separate */}
-                <div className={styles.addressBlock}>
-                  <p className={styles.footerColTitle} style={{ marginTop: '40px' }}>ADDRESS</p>
-                  <p className={styles.addressText}>
-                    A-89, Ground Floor, Shastri Nagar, North West<br />
-                    Delhi, Delhi 110052, India
-                  </p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-        {/* Decorative Circles */}
-
-        {/* Footer Background Pattern */}
-        <img
-          src="/assets/footer_background.svg"
-          alt=""
-          className={styles.footerBackgroundPattern}
-        />
-      </footer>
-
-      {/* Menu Overlay - Placed at root level for proper z-index stacking */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            className={styles.menuOverlay}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            onClick={() => setIsMenuOpen(false)}
-          >
-            <motion.div
-              className={styles.menuContent}
-              initial={{ y: -20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -20, opacity: 0 }}
-              transition={{ duration: 0.3, delay: 0.1 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-
-              <div className={styles.menuBody}>
-                <div className={styles.menuLeft}>
-                  <div className={styles.menuSection}>
-                    <button className={styles.menuSectionTitle}>Introduction</button>
-                  </div>
-
-                  <div className={styles.menuSection}>
-                    <button
-                      className={`${styles.menuSectionTitle} ${styles.withBullet}`}
-                      onClick={() => setIsFundraisingExpanded(!isFundraisingExpanded)}
-                    >
-                      <span className={styles.bullet}>◆</span>
-                      <span>Fundraising</span>
-                      <span className={styles.expandIcon}>{isFundraisingExpanded ? '−' : '+'}</span>
-                    </button>
-                  </div>
-
-                  <div className={styles.menuSection}>
-                    <button className={styles.menuSectionTitle}>Volunteer Engagement</button>
-                  </div>
-                </div>
-
-                <div className={styles.menuRight}>
-                  <div className={styles.chaptersList}>
-                    {/* Chapter 1 */}
-                    <div className={styles.chapterItem}>
-                      <button
-                        className={styles.chapterButton}
-                        onClick={() => {
-                          setActiveChapter(1);
-                          chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
-                        }}
-                      >
-                        <div className={styles.chapterInfo}>
-                          <div className={styles.chapterLabel}>CH. I : TILLING THE SOIL</div>
-                          <div className={styles.chapterTitle}>Network Expansion</div>
-                        </div>
-                        <button
-                          className={styles.chapterExpand}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setExpandedChapter(expandedChapter === 1 ? null : 1);
-                          }}
-                        >
-                          {expandedChapter === 1 ? '−' : '+'}
-                        </button>
-                      </button>
-                      {expandedChapter === 1 && (
-                        <div className={styles.chapterExpandedContent}>
-                          <a href="#" className={styles.chapterSubItem}>Network Mapping</a>
-                          <a href="#" className={styles.chapterSubItem}>Stakeholder Analysis</a>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Chapter 2 */}
-                    <div className={styles.chapterItem}>
-                      <button
-                        className={styles.chapterButton}
-                        onClick={() => {
-                          setActiveChapter(2);
-                          chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
-                        }}
-                      >
-                        <div className={styles.chapterInfo}>
-                          <div className={styles.chapterLabel}>CH. II : THE PLANTING</div>
-                          <div className={styles.chapterTitle}>First Donation</div>
-                        </div>
-                        <button
-                          className={styles.chapterExpand}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setExpandedChapter(expandedChapter === 2 ? null : 2);
-                          }}
-                        >
-                          {expandedChapter === 2 ? '−' : '+'}
-                        </button>
-                      </button>
-                      {expandedChapter === 2 && (
-                        <div className={styles.chapterExpandedContent}>
-                          <a href="#" className={styles.chapterSubItem}>First Contact Template</a>
-                          <a href="#" className={styles.chapterSubItem}>Donation Receipt</a>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Chapter 3 */}
-                    <div className={styles.chapterItem}>
-                      <button
-                        className={styles.chapterButton}
-                        onClick={() => {
-                          setActiveChapter(3);
-                          chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
-                        }}
-                      >
-                        <div className={styles.chapterInfo}>
-                          <div className={styles.chapterLabel}>CHAPTER III: THE NURTURING</div>
-                          <div className={styles.chapterTitle}>Stewarding Donors</div>
-                        </div>
-                        <button
-                          className={styles.chapterExpand}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setExpandedChapter(expandedChapter === 3 ? null : 3);
-                          }}
-                        >
-                          {expandedChapter === 3 ? '−' : '+'}
-                        </button>
-                      </button>
-                      {expandedChapter === 3 && (
-                        <div className={styles.chapterExpandedContent}>
-                          <a href="#" className={styles.chapterSubItem}>Segmentation & Profiling</a>
-                          <a href="#" className={styles.chapterSubItem}>The Storytelling Bank</a>
-                          <a href="#" className={styles.chapterSubItem}>The Communications Calendar</a>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Chapter 4 */}
-                    <div className={styles.chapterItem}>
-                      <button
-                        className={styles.chapterButton}
-                        onClick={() => {
-                          setActiveChapter(4);
-                          chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
-                        }}
-                      >
-                        <div className={styles.chapterInfo}>
-                          <div className={styles.chapterLabel}>CHAPTER IV: GROWTH</div>
-                          <div className={styles.chapterTitle}>Donors to Champions</div>
-                        </div>
-                        <button
-                          className={styles.chapterExpand}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setExpandedChapter(expandedChapter === 4 ? null : 4);
-                          }}
-                        >
-                          {expandedChapter === 4 ? '−' : '+'}
-                        </button>
-                      </button>
-                      {expandedChapter === 4 && (
-                        <div className={styles.chapterExpandedContent}>
-                          <a href="#" className={styles.chapterSubItem}>Champion Engagement Plan</a>
-                          <a href="#" className={styles.chapterSubItem}>Recognition Strategy</a>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Chapter 5 - Bonus */}
-                    <div className={styles.chapterItem}>
-                      <button
-                        className={styles.chapterButton}
-                        onClick={() => {
-                          bonusSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
-                        }}
-                      >
-                        <div className={styles.chapterInfo}>
-                          <div className={styles.chapterLabel}>CH. V : BONUS CHAPTER</div>
-                          <div className={styles.chapterTitle}>Getting Your Team On Board</div>
-                        </div>
-                        <button
-                          className={styles.chapterExpand}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setExpandedChapter(expandedChapter === 5 ? null : 5);
-                          }}
-                        >
-                          {expandedChapter === 5 ? '−' : '+'}
-                        </button>
-                      </button>
-                      {expandedChapter === 5 && (
-                        <div className={styles.chapterExpandedContent}>
-                          <a href="#" className={styles.chapterSubItem}>Team Alignment Workshop</a>
-                          <a href="#" className={styles.chapterSubItem}>Internal Communication</a>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  <button className={styles.downloadAllButton}>
-                    <span className={styles.downloadAllTitle}>All Fundraising toolkits</span>
-                    <span className={styles.downloadAllSubtitle}>↓ DOWNLOAD ALL</span>
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div >
+      <Footer />
+    </div>
   )
 }

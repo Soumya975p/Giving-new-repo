@@ -378,28 +378,17 @@
 .textCard {
     width: 100%;
     min-height: auto;
-    background: transparent;
-    backdrop-filter: none;
-    border-radius: 0;
-    border: none;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    color: #20315B33 20%;
-    box-shadow: none;
-    min-width: 400px;
-}
-
-.textCard {
-    /* background: linear-gradient(135deg, #4DB6AC 0%, #00897B 100%); */
     background: #20315B33 20%;
+    backdrop-filter: none;
     border-radius: 20px;
+    border: none;
     padding: 30px;
-    box-shadow: none;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    color: white;
+    box-shadow: none;
+    min-width: 400px;
 }
 
 .cardTitle {

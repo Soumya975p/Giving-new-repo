@@ -293,27 +293,16 @@
 .textCard {
     width: 100%;
     min-height: auto;
-    background: transparent;
-    backdrop-filter: none;
-    border-radius: 0;
-    border: none;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    color: #1a4d3a;
-    box-shadow: none;
-    overflow: visible;
-}
-
-.textCard {
     background: #20315B33 20%;
+    backdrop-filter: none;
     border-radius: 20px;
+    border: none;
     padding: 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     gap: 12px;
+    color: #1a4d3a;
+    overflow: visible;
 }
 
 .cardTitle {
@@ -372,7 +361,6 @@
     flex-direction: column;
     align-items: flex-start;
     color: white;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     margin-top: 0;
 }
 
