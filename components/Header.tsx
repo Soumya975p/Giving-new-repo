@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Header.module.css';
 
@@ -19,9 +19,12 @@ export default function Header({
   bonusSectionRef,
 }: HeaderProps) {
   const router = useRouter();
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isFundraisingExpanded, setIsFundraisingExpanded] = useState(false);
   const [expandedChapter, setExpandedChapter] = useState<number | null>(null);
+  
+  const isFieldGuidePage = pathname === '/field-guide';
 
   return (
     <>
@@ -68,14 +71,15 @@ export default function Header({
               <div className={styles.menuBody}>
                 <div className={styles.menuLeft}>
                   <div className={styles.menuSection}>
-                    <button
-                      className={styles.menuSectionTitle}
+                    <button 
+                      className={`${styles.menuSectionTitle} ${isFieldGuidePage ? styles.active : ''}`}
                       onClick={() => {
                         router.push('/field-guide');
                         setIsMenuOpen(false);
                       }}
                     >
-                      Introduction
+                      {isFieldGuidePage && <span className={styles.bullet}>◆</span>}
+                      <span>Introduction</span>
                     </button>
                   </div>
 
