@@ -134,6 +134,8 @@ export default function Home() {
   const [isCh2OptionBHovered, setIsCh2OptionBHovered] = useState(false)
   const [isCh3OptionAHovered, setIsCh3OptionAHovered] = useState(false)
   const [isCh3OptionBHovered, setIsCh3OptionBHovered] = useState(false)
+  const [isCh4OptionAHovered, setIsCh4OptionAHovered] = useState(false)
+  const [isCh4OptionBHovered, setIsCh4OptionBHovered] = useState(false)
   const [isExplore1Hovered, setIsExplore1Hovered] = useState(false) // Moved to Explore component
   const [isExplore2Hovered, setIsExplore2Hovered] = useState(false) // Moved to Explore component
   const [isMenuOpen, setIsMenuOpen] = useState(false) // Moved to Header component
@@ -639,7 +641,7 @@ export default function Home() {
                                   if (card) card.style.transform = 'rotate(0deg)';
                                 }}
                                 onClick={() => setSelectedOption('A')}
-                                style={{ cursor: 'pointer', marginTop: '30px' }}
+                                style={{ cursor: 'pointer' }}
                               >
                                 <span className={styles.optionLabel}>OPTION A</span>
                                 <p className={styles.optionDesc}>
@@ -684,16 +686,6 @@ export default function Home() {
                               <AnimatePresence>
                                 {isOptionAHovered && (
                                   <>
-                                    <motion.img
-                                      key="flower-left-main"
-                                      // src="/assets/chapter_1/flower_left_optionA.svg"
-                                      alt=""
-                                      className={styles.hoverFlowerLeftMain}
-                                      initial={{ opacity: 0, scale: 0.8 }}
-                                      animate={{ opacity: 1, scale: 1 }}
-                                      exit={{ opacity: 0, scale: 0.8 }}
-                                      transition={{ duration: 0.4 }}
-                                    />
                                     <motion.img
                                       key="left-flower"
                                       src="/assets/chapter_1/hover_left_flower_leftmost_ch1.svg"
@@ -1133,7 +1125,7 @@ export default function Home() {
                                     />
                                     <motion.img
                                       key="ch2-fly"
-                                      src="/assets/chapter2/fly_left_optionA_ch2.svg"
+                                      src="/assets/chapter2/hover_fly_left.svg"
                                       alt=""
                                       className={styles.ch2HoverFly}
                                       initial={{ opacity: 0, x: -20 }}
@@ -1143,7 +1135,7 @@ export default function Home() {
                                     />
                                     <motion.img
                                       key="ch2-empty-bubble"
-                                      src="/assets/chapter2/hover_left_bubble_empty_ch2.svg"
+                                      src="/assets/chapter2/empty_bubble.svg"
                                       alt=""
                                       className={styles.ch2HoverEmptyBubble}
                                       initial={{ opacity: 0, scale: 0.8 }}
@@ -1153,7 +1145,7 @@ export default function Home() {
                                     />
                                     <motion.img
                                       key="ch2-filled-bubble"
-                                      src="/assets/chapter2/hover_left_bubble_filled_ch2.svg"
+                                      src="/assets/chapter2/filled_bubble.svg"
                                       alt=""
                                       className={styles.ch2HoverFilledBubble}
                                       initial={{ opacity: 0, scale: 0.8 }}
@@ -1163,7 +1155,7 @@ export default function Home() {
                                     />
                                     <motion.img
                                       key="ch2-image-left"
-                                      src="/assets/chapter2/hover_left_image_1_ch2.svg"
+                                      src="/assets/chapter2/hover_image_left_ch2.svg"
                                       alt=""
                                       className={styles.ch2HoverImageLeft}
                                       initial={{ opacity: 0, y: 10 }}
@@ -1173,7 +1165,7 @@ export default function Home() {
                                     />
                                     <motion.img
                                       key="ch2-image-right"
-                                      src="/assets/chapter2/hover_left_image_2_ch2.svg"
+                                      src="/assets/chapter2/hover_image_right_ch2.svg"
                                       alt=""
                                       className={styles.ch2HoverImageRight}
                                       initial={{ opacity: 0, y: 10 }}
@@ -1183,7 +1175,7 @@ export default function Home() {
                                     />
                                     <motion.img
                                       key="ch2-empty-bubble-2"
-                                      src="/assets/chapter2/hover_left_bubble_empty_ch2.svg"
+                                      src="/assets/chapter2/empty_bubble.svg"
                                       alt=""
                                       className={styles.ch2HoverEmptyBubble2}
                                       initial={{ opacity: 0, scale: 0.8 }}
@@ -1193,7 +1185,7 @@ export default function Home() {
                                     />
                                     <motion.img
                                       key="ch2-filled-bubble-2"
-                                      src="/assets/chapter2/hover_left_bubble_filled_ch2.svg"
+                                      src="/assets/chapter2/filled_bubble.svg"
                                       alt=""
                                       className={styles.ch2HoverFilledBubble2}
                                       initial={{ opacity: 0, scale: 0.8 }}
@@ -1211,7 +1203,7 @@ export default function Home() {
                                   <>
                                     <motion.img
                                       key="ch2-right-fly"
-                                      src="/assets/chapter2/fly_left_optionA_ch2.svg"
+                                      src="/assets/chapter2/hover_fly_right_ch2.svg"
                                       alt=""
                                       className={styles.ch2RightFly}
                                       initial={{ opacity: 0, x: 20 }}
@@ -1221,7 +1213,7 @@ export default function Home() {
                                     />
                                     <motion.img
                                       key="ch2-right-image"
-                                      src="/assets/chapter2/hover_right_image_ch2.svg"
+                                      src="/assets/chapter2/hover_image_right_ch2.svg"
                                       alt=""
                                       className={styles.ch2RightImage}
                                       initial={{ opacity: 0, scale: 0.8 }}
@@ -1231,7 +1223,7 @@ export default function Home() {
                                     />
                                     <motion.img
                                       key="ch2-right-petal-1"
-                                      src="/assets/chapter2/hover_right_petal_1_ch2.svg"
+                                      src="/assets/chapter2/hover_right_flower_petal1_ch2.svg"
                                       alt=""
                                       className={styles.ch2RightFlowerPetal1}
                                       initial={{ opacity: 0, x: 10, y: 5 }}
@@ -1241,7 +1233,7 @@ export default function Home() {
                                     />
                                     <motion.img
                                       key="ch2-right-petal-2"
-                                      src="/assets/chapter2/hover_right_petal_2_ch2.svg"
+                                      src="/assets/chapter2/hover_right_flower_petal2_ch2.svg"
                                       alt=""
                                       className={styles.ch2RightFlowerPetal2}
                                       initial={{ opacity: 0, x: 10, y: 5 }}
@@ -1251,7 +1243,7 @@ export default function Home() {
                                     />
                                     <motion.img
                                       key="ch2-right-petal-3"
-                                      src="/assets/chapter2/hover_right_petal_3_ch2.svg"
+                                      src="/assets/chapter2/hover_right_flower_petal3_ch2.svg"
                                       alt=""
                                       className={styles.ch2RightFlowerPetal3}
                                       initial={{ opacity: 0, x: 10, y: 5 }}
@@ -1261,7 +1253,7 @@ export default function Home() {
                                     />
                                     <motion.img
                                       key="ch2-right-flower-1"
-                                      src="/assets/chapter2/hover_right_flower_1_ch2.svg"
+                                      src="/assets/chapter2/hover_right_flower1_ch2.svg"
                                       alt=""
                                       className={styles.ch2RightFlower1}
                                       initial={{ opacity: 0, y: 20 }}
@@ -1271,7 +1263,7 @@ export default function Home() {
                                     />
                                     <motion.img
                                       key="ch2-right-half-bottom"
-                                      src="/assets/chapter2/hover_right_half_circle_bottom_ch2.svg"
+                                      src="/assets/chapter2/hover_right_halfbottom_ch2.svg"
                                       alt=""
                                       className={styles.ch2RightHalfBottom}
                                       initial={{ opacity: 0, scale: 0.8 }}
@@ -1281,7 +1273,7 @@ export default function Home() {
                                     />
                                     <motion.img
                                       key="ch2-right-half-top"
-                                      src="/assets/chapter2/hover_right_half_circle_top_ch2.svg"
+                                      src="/assets/chapter2/hover_right_halftop_ch2.svg"
                                       alt=""
                                       className={styles.ch2RightHalfTop}
                                       initial={{ opacity: 0, scale: 0.8 }}
@@ -1422,8 +1414,24 @@ export default function Home() {
                             // Chapter 3 Default View - just render scenario container, header is above
                             <div className={styles.scenarioContainer} style={{ marginTop: '10px' }}>
                               {/* Option A */}
-                              <div
+                              <motion.div
                                 className={styles.optionColumnLeft}
+                                initial="rest"
+                                whileHover="hover"
+                                animate="rest"
+                                onMouseEnter={() => {
+                                  setIsCh3OptionAHovered(true);
+                                  const card = centerCardRefs.current[2];
+                                  if (card) {
+                                    card.style.transformOrigin = 'bottom left';
+                                    card.style.transform = 'rotate(-15deg)';
+                                  }
+                                }}
+                                onMouseLeave={() => {
+                                  setIsCh3OptionAHovered(false);
+                                  const card = centerCardRefs.current[2];
+                                  if (card) card.style.transform = 'rotate(0deg)';
+                                }}
                                 onClick={() => setSelectedOption('A')}
                                 style={{ cursor: 'pointer' }}
                               >
@@ -1433,8 +1441,9 @@ export default function Home() {
                                   you need funds again
                                 </p>
 
-                                {/* CTA */}
-                                <div
+                                {/* Animated CTA */}
+                                <motion.div
+                                  variants={ctaVariants}
                                   style={{
                                     marginTop: '24px',
                                     display: 'flex',
@@ -1444,14 +1453,16 @@ export default function Home() {
                                     fontWeight: 500
                                   }}
                                 >
-                                  <ArrowRight style={{ width: '20px', height: '20px' }} />
+                                  <motion.div variants={arrowVariants}>
+                                    <ArrowRight style={{ width: '20px', height: '20px' }} />
+                                  </motion.div>
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
                                   }}>Choose Option</span>
-                                </div>
-                              </div>
+                                </motion.div>
+                              </motion.div>
 
                               {/* Center Card */}
                               <div className={styles.centerCard} ref={(el) => { centerCardRefs.current[2] = el }}>
@@ -1462,9 +1473,63 @@ export default function Home() {
                                 />
                               </div>
 
+                              {/* Chapter 3 Option A Hover Decorations */}
+                              <AnimatePresence>
+                                {isCh3OptionAHovered && (
+                                  <>
+                                    {/* <motion.img
+                                      key="ch3-left-fly"
+                                      src="/assets/chapter3/hover_fly_ch3.svg"
+                                      alt=""
+                                      className={styles.ch3LeftFly}
+                                      initial={{ opacity: 0, x: -20 }}
+                                      animate={{ opacity: 1, x: 0 }}
+                                      exit={{ opacity: 0, x: -20 }}
+                                      transition={{ duration: 0.5 }}
+                                    /> */}
+                                    {/* <motion.img
+                                      key="ch3-left-flower"
+                                      src="/assets/chapter3/hover_left_flower_ch3.svg"
+                                      alt=""
+                                      className={styles.ch3LeftFlowerA}
+                                      initial={{ opacity: 0, y: 20 }}
+                                      animate={{ opacity: 1, y: 0 }}
+                                      exit={{ opacity: 0, y: 20 }}
+                                      transition={{ duration: 0.4, delay: 0.1 }}
+                                    /> */}
+                                    {/* <motion.img
+                                      key="ch3-left-diamond"
+                                      src="/assets/chapter3/hover_diamond_bottom_ch3.svg"
+                                      alt=""
+                                      className={styles.ch3LeftDiamond}
+                                      initial={{ opacity: 0, scale: 0.8 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      exit={{ opacity: 0, scale: 0.8 }}
+                                      transition={{ duration: 0.3, delay: 0.15 }}
+                                    /> */}
+                                  </>
+                                )}
+                              </AnimatePresence>
+
                               {/* Option B */}
-                              <div
+                              <motion.div
                                 className={styles.optionColumnRight}
+                                initial="rest"
+                                whileHover="hover"
+                                animate="rest"
+                                onMouseEnter={() => {
+                                  setIsCh3OptionBHovered(true);
+                                  const card = centerCardRefs.current[2];
+                                  if (card) {
+                                    card.style.transformOrigin = 'bottom right';
+                                    card.style.transform = 'rotate(15deg)';
+                                  }
+                                }}
+                                onMouseLeave={() => {
+                                  setIsCh3OptionBHovered(false);
+                                  const card = centerCardRefs.current[2];
+                                  if (card) card.style.transform = 'rotate(0deg)';
+                                }}
                                 onClick={() => setSelectedOption('B')}
                                 style={{ cursor: 'pointer' }}
                               >
@@ -1477,8 +1542,9 @@ export default function Home() {
                                   money
                                 </p>
 
-                                {/* CTA */}
-                                <div
+                                {/* Animated CTA */}
+                                <motion.div
+                                  variants={ctaVariants}
                                   style={{
                                     marginTop: '24px',
                                     display: 'flex',
@@ -1489,14 +1555,74 @@ export default function Home() {
                                     flexDirection: 'row-reverse'
                                   }}
                                 >
-                                  <ArrowLeft style={{ width: '20px', height: '20px' }} />
+                                  <motion.div variants={arrowLeftVariants}>
+                                    <ArrowLeft style={{ width: '20px', height: '20px' }} />
+                                  </motion.div>
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
                                   }}>Choose Option</span>
-                                </div>
-                              </div>
+                                </motion.div>
+                              </motion.div>
+
+                              {/* Chapter 3 Option B Hover Decorations */}
+                              <AnimatePresence>
+                                {isCh3OptionBHovered && (
+                                  <>
+                                    <motion.img
+                                      key="ch3-right-fly"
+                                      src="/assets/chapter3/hover_fly_ch3.svg"
+                                      alt=""
+                                      className={styles.ch3RightFly}
+                                      initial={{ opacity: 0, x: 20 }}
+                                      animate={{ opacity: 1, x: 0 }}
+                                      exit={{ opacity: 0, x: 20 }}
+                                      transition={{ duration: 0.5 }}
+                                    />
+                                    <motion.img
+                                      key="ch3-right-flower"
+                                      src="/assets/chapter3/hover_right_flower_ch3.svg"
+                                      alt=""
+                                      className={styles.ch3RightFlower}
+                                      initial={{ opacity: 0, y: 20 }}
+                                      animate={{ opacity: 1, y: 0 }}
+                                      exit={{ opacity: 0, y: 20 }}
+                                      transition={{ duration: 0.4, delay: 0.1 }}
+                                    />
+                                    <motion.img
+                                      key="ch3-diamond-bottom"
+                                      src="/assets/chapter3/hover_diamond_bottom_ch3.svg"
+                                      alt=""
+                                      className={styles.ch3DiamondBottom}
+                                      initial={{ opacity: 0, scale: 0.8 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      exit={{ opacity: 0, scale: 0.8 }}
+                                      transition={{ duration: 0.3, delay: 0.15 }}
+                                    />
+                                    <motion.img
+                                      key="ch3-top-section"
+                                      src="/assets/chapter3/hover_topsection_ch3.svg"
+                                      alt=""
+                                      className={styles.ch3TopSection}
+                                      initial={{ opacity: 0, y: -10 }}
+                                      animate={{ opacity: 1, y: 0 }}
+                                      exit={{ opacity: 0, y: -10 }}
+                                      transition={{ duration: 0.4, delay: 0.2 }}
+                                    />
+                                    <motion.img
+                                      key="ch3-left-flower"
+                                      src="/assets/chapter3/hover_left_flower_ch3.svg"
+                                      alt=""
+                                      className={styles.ch3LeftFlower}
+                                      initial={{ opacity: 0, y: 10 }}
+                                      animate={{ opacity: 1, y: 0 }}
+                                      exit={{ opacity: 0, y: 10 }}
+                                      transition={{ duration: 0.4, delay: 0.25 }}
+                                    />
+                                  </>
+                                )}
+                              </AnimatePresence>
                             </div>
                           )}
                         </div>
@@ -1561,8 +1687,24 @@ export default function Home() {
 
 
                               {/* Option A */}
-                              <div
+                              <motion.div
                                 className={styles.optionColumnLeft}
+                                initial="rest"
+                                whileHover="hover"
+                                animate="rest"
+                                onMouseEnter={() => {
+                                  setIsCh4OptionAHovered(true);
+                                  const card = centerCardRefs.current[3];
+                                  if (card) {
+                                    card.style.transformOrigin = 'bottom left';
+                                    card.style.transform = 'rotate(-15deg)';
+                                  }
+                                }}
+                                onMouseLeave={() => {
+                                  setIsCh4OptionAHovered(false);
+                                  const card = centerCardRefs.current[3];
+                                  if (card) card.style.transform = 'rotate(0deg)';
+                                }}
                                 onClick={() => setSelectedOption('A')}
                                 style={{ cursor: 'pointer' }}
                               >
@@ -1573,8 +1715,9 @@ export default function Home() {
                                   standard appeal
                                 </p>
 
-                                {/* Static CTA */}
-                                <div
+                                {/* Animated CTA */}
+                                <motion.div
+                                  variants={ctaVariants}
                                   style={{
                                     marginTop: '24px',
                                     display: 'flex',
@@ -1584,16 +1727,16 @@ export default function Home() {
                                     fontWeight: 500
                                   }}
                                 >
-                                  <div>
+                                  <motion.div variants={arrowVariants}>
                                     <ArrowRight style={{ width: '20px', height: '20px' }} />
-                                  </div>
+                                  </motion.div>
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
                                   }}>Choose Option</span>
-                                </div>
-                              </div>
+                                </motion.div>
+                              </motion.div>
 
                               {/* Center Card */}
                               <div className={styles.centerCard} ref={(el) => { centerCardRefs.current[3] = el }}>
@@ -1604,9 +1747,83 @@ export default function Home() {
                                 />
                               </div>
 
+                              {/* Chapter 4 Option A Hover Decorations */}
+                              <AnimatePresence>
+                                {isCh4OptionAHovered && (
+                                  <>
+                                    <motion.img
+                                      key="ch4-left-fly"
+                                      src="/assets/chapter4/hover_fly_ch4.svg"
+                                      alt=""
+                                      className={styles.ch4LeftFly}
+                                      initial={{ opacity: 0, x: -20 }}
+                                      animate={{ opacity: 1, x: 0 }}
+                                      exit={{ opacity: 0, x: -20 }}
+                                      transition={{ duration: 0.5 }}
+                                    />
+                                    <motion.img
+                                      key="ch4-left-hollow"
+                                      src="/assets/chapter4/hover_hollow_ch4.svg"
+                                      alt=""
+                                      className={styles.ch4LeftHollow}
+                                      initial={{ opacity: 0, scale: 0.8 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      exit={{ opacity: 0, scale: 0.8 }}
+                                      transition={{ duration: 0.4, delay: 0.1 }}
+                                    />
+                                    <motion.img
+                                      key="ch4-left-fill"
+                                      src="/assets/chapter4/hover_fill_circle_ch4.svg"
+                                      alt=""
+                                      className={styles.ch4LeftFill}
+                                      initial={{ opacity: 0, scale: 0.8 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      exit={{ opacity: 0, scale: 0.8 }}
+                                      transition={{ duration: 0.3, delay: 0.15 }}
+                                    />
+                                    <motion.img
+                                      key="ch4-left-hollow-2"
+                                      src="/assets/chapter4/hover_hollow_ch4.svg"
+                                      alt=""
+                                      className={styles.ch4LeftHollow2}
+                                      initial={{ opacity: 0, scale: 0.8 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      exit={{ opacity: 0, scale: 0.8 }}
+                                      transition={{ duration: 0.4, delay: 0.2 }}
+                                    />
+                                    <motion.img
+                                      key="ch4-left-fill-2"
+                                      src="/assets/chapter4/hover_fill_circle_ch4.svg"
+                                      alt=""
+                                      className={styles.ch4LeftFill2}
+                                      initial={{ opacity: 0, scale: 0.8 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      exit={{ opacity: 0, scale: 0.8 }}
+                                      transition={{ duration: 0.3, delay: 0.25 }}
+                                    />
+                                  </>
+                                )}
+                              </AnimatePresence>
+
                               {/* Option B */}
-                              <div
+                              <motion.div
                                 className={styles.optionColumnRight}
+                                initial="rest"
+                                whileHover="hover"
+                                animate="rest"
+                                onMouseEnter={() => {
+                                  setIsCh4OptionBHovered(true);
+                                  const card = centerCardRefs.current[3];
+                                  if (card) {
+                                    card.style.transformOrigin = 'bottom right';
+                                    card.style.transform = 'rotate(15deg)';
+                                  }
+                                }}
+                                onMouseLeave={() => {
+                                  setIsCh4OptionBHovered(false);
+                                  const card = centerCardRefs.current[3];
+                                  if (card) card.style.transform = 'rotate(0deg)';
+                                }}
                                 onClick={() => setSelectedOption('B')}
                                 style={{ cursor: 'pointer' }}
                               >
@@ -1617,8 +1834,9 @@ export default function Home() {
                                   with her network
                                 </p>
 
-                                {/* Static CTA */}
-                                <div
+                                {/* Animated CTA */}
+                                <motion.div
+                                  variants={ctaVariants}
                                   style={{
                                     marginTop: '24px',
                                     display: 'flex',
@@ -1629,16 +1847,74 @@ export default function Home() {
                                     flexDirection: 'row-reverse'
                                   }}
                                 >
-                                  <div>
+                                  <motion.div variants={arrowLeftVariants}>
                                     <ArrowLeft style={{ width: '20px', height: '20px' }} />
-                                  </div>
+                                  </motion.div>
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
                                   }}>Choose Option</span>
-                                </div>
-                              </div>
+                                </motion.div>
+                              </motion.div>
+
+                              {/* Chapter 4 Option B Hover Decorations */}
+                              <AnimatePresence>
+                                {isCh4OptionBHovered && (
+                                  <>
+                                    <motion.img
+                                      key="ch4-right-fly"
+                                      src="/assets/chapter4/hover_fly_ch4.svg"
+                                      alt=""
+                                      className={styles.ch4RightFly}
+                                      initial={{ opacity: 0, x: 20 }}
+                                      animate={{ opacity: 1, x: 0 }}
+                                      exit={{ opacity: 0, x: 20 }}
+                                      transition={{ duration: 0.5 }}
+                                    />
+                                    <motion.img
+                                      key="ch4-right-hollow"
+                                      src="/assets/chapter4/hover_hollow_ch4.svg"
+                                      alt=""
+                                      className={styles.ch4RightHollow}
+                                      initial={{ opacity: 0, scale: 0.8 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      exit={{ opacity: 0, scale: 0.8 }}
+                                      transition={{ duration: 0.4, delay: 0.1 }}
+                                    />
+                                    <motion.img
+                                      key="ch4-right-fill"
+                                      src="/assets/chapter4/hover_fill_circle_ch4.svg"
+                                      alt=""
+                                      className={styles.ch4RightFill}
+                                      initial={{ opacity: 0, scale: 0.8 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      exit={{ opacity: 0, scale: 0.8 }}
+                                      transition={{ duration: 0.3, delay: 0.15 }}
+                                    />
+                                    <motion.img
+                                      key="ch4-right-hollow-2"
+                                      src="/assets/chapter4/hover_hollow_ch4.svg"
+                                      alt=""
+                                      className={styles.ch4RightHollow2}
+                                      initial={{ opacity: 0, scale: 0.8 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      exit={{ opacity: 0, scale: 0.8 }}
+                                      transition={{ duration: 0.4, delay: 0.2 }}
+                                    />
+                                    <motion.img
+                                      key="ch4-right-fill-2"
+                                      src="/assets/chapter4/hover_fill_circle_ch4.svg"
+                                      alt=""
+                                      className={styles.ch4RightFill2}
+                                      initial={{ opacity: 0, scale: 0.8 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      exit={{ opacity: 0, scale: 0.8 }}
+                                      transition={{ duration: 0.3, delay: 0.25 }}
+                                    />
+                                  </>
+                                )}
+                              </AnimatePresence>
 
                             </div>
                           )}
