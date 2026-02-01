@@ -140,19 +140,19 @@
   }
 
   .toolCard:nth-child(4) {
-    grid-column: 1 / 3 !important;
+    grid-column: 5/2 !important;
   }
 
   .toolCard:nth-child(5) {
-    grid-column: 2 / 4 !important;
+    grid-column: 5/2 !important;
   }
 
   .toolCard:nth-child(6) {
-    grid-column: 3 / 5 !important;
+    grid-column: 5/2 !important;
   }
 
   .toolCard:nth-child(7) {
-    grid-column: 4 / 5 !important;
+    grid-column: 5/2 !important;
   }
 }
 
@@ -196,15 +196,13 @@
     font-size: 15px;
     line-height: 150%;
   }
-}
-
-@media (max-width: 480px) {
   .toolsSection {
     padding: 50px 16px;
   }
 
   .topBox {
     padding: 24px 20px;
+    width: 100%;
   }
 
   .mainText {
@@ -219,4 +217,8 @@
   .cardText {
     font-size: 14px;
   }
+}
+
+@media (max-width: 480px) {
+  
 }

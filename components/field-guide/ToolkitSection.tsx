@@ -38,7 +38,7 @@ export default function ToolkitSection() {
 
           {/* Circle 2 */}
           <div
-            className={`${styles.circle} ${activeCircle === 1 ? styles.circleVisible : styles.circleHidden}`}
+            className={`${styles.circle} ${styles.circle2} ${activeCircle === 1 ? styles.circleVisible : styles.circleHidden}`}
             onClick={() => handleCircleClick(1)}
           >
             <div className={styles.circleContent}>
@@ -52,7 +52,7 @@ export default function ToolkitSection() {
 
           {/* Circle 3 */}
           <div
-            className={`${styles.circle} ${activeCircle === 2 ? styles.circleVisible : styles.circleHidden}`}
+            className={`${styles.circle} ${styles.circle3} ${activeCircle === 2 ? styles.circleVisible : styles.circleHidden}`}
             onClick={() => handleCircleClick(2)}
           >
             <div className={styles.circleContent}>

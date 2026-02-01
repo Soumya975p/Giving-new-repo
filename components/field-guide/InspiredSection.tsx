@@ -79,7 +79,7 @@ export default function InspiredSection() {
 
             {/* Mobile Image - shown between text sections on mobile */}
             <div className={`${inspiredStyles.insCbMobileImage} m-d-block`}>
-              <img src="/assets/inscbbtmbg.png" alt="Inspired section illustration" />
+              <img src="/assets/mob-inscbbtmbg.png" alt="Inspired section illustration" />
             </div>
 
             <div className={inspiredStyles.insCbBtm}>

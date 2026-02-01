@@ -21,7 +21,7 @@
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.15em;
-  color: #1eb59a;
+  color: #38F1FF;
   text-transform: uppercase;
   margin-bottom: 20px;
 }
@@ -154,20 +154,24 @@
 
   .container {
     max-width: 100%;
-    padding: 0 16px;
+    padding: 0 0px;
   }
 
   .label {
-    font-size: 10px;
+    font-size: 13px;
+    margin-bottom: 20px;
   }
 
   .title {
-    font-size: 28px;
-    margin-bottom: 16px;
+font-size: 24px;
+        max-width: 175px;
+        margin: auto;
+        margin-bottom: 20px;
   }
 
   .subtitle {
     font-size: 16px;
+    line-height: 130%;
   }
 
   /* Mobile - stacked circles with click-to-reveal */
@@ -175,25 +179,54 @@
     flex-direction: column;
     gap: 60px;
     margin-top: 40px;
+    min-height: 450px;
+    padding: 0px;
+    width: 100%;
+    max-width: calc(100vw - 0px);
+    aspect-ratio: 1;
+    margin-left: auto;
+    margin-right: auto;
+    border-top-left-radius: 170px !important;
+    border-top-right-radius: 170px !important;
+    border-bottom-left-radius: 170px !important;
+    border-bottom-right-radius: 170px !important;
+    justify-content: flex-start;
+        padding-top: 25px !important;
   }
 
   .circle {
-    width: 280px;
-    height: 280px;
+    width: 90%;
+    height: auto;
+    aspect-ratio: 1;
+    max-width: 100%;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-  }
+    position: absolute !important;
 
+  }
+  .circleVisible{
+    z-index: 9999 !important;
+  }
+  .circle2{
+    margin-top: 40px !important;
+    z-index: 2;
+  }
+  .circle3{
+    margin-top: 80px !important;
+    z-index: 1;
+  }
   .circleContent {
     padding: 30px;
   }
 
   .circleHidden {
-    opacity: 0;
-    border: 3px solid #93CD4D;
+  /* opacity: 0; */
+  }
+  .circleHidden {
+    border: 1px solid #ABE46778;
     background: transparent;
     pointer-events: auto;
   }
@@ -205,13 +238,15 @@
   .circleText {
     font-size: 15px;
     line-height: 150%;
+  } 
+   .toolkitSection {
+    padding: 150px 0px;
+    min-height: 700px;
   }
 }
 
 @media (max-width: 480px) {
-  .toolkitSection {
-    padding: 50px 16px;
-  }
+
 
   .title {
     font-size: 24px;
@@ -222,8 +257,10 @@
   }
 
   .circle {
-    width: 260px;
-    height: 260px;
+    width: 90%;
+    height: auto;
+    aspect-ratio: 1;
+    max-width: 100%;
   }
 
   .circleContent {

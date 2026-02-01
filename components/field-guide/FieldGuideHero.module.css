@@ -329,7 +329,7 @@
 
   .rightSide {
     max-width: 100%;
-    padding-top: 0;
+    padding: 21px 16px 100px 16px;
   }
 
   .mainSubtitle {
@@ -406,13 +406,13 @@
   }
 
   .sectionLabel {
-    font-size: 20px;
+    font-size: 24px;
     margin-bottom: 8px;
     line-height: 120%;
   }
 
   .description {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 150%;
     margin-bottom: 24px;
   }
@@ -422,7 +422,7 @@
   }
 
   .chooseLabel {
-    font-size: 10px;
+    font-size: 13px;
     margin-bottom: 16px;
     justify-content: center;
   }
@@ -464,45 +464,13 @@
     height: auto;
     position: relative;
   }
-}
-
-@media (max-width: 480px) {
-  .heroSection {
-    padding-top: 100px;
+  .guideButton{
+    font-size: 16px;
   }
+  .FieldGuideHero img.m-d-block {
+    margin: 0px -17px;
+    width: calc(100% + 34px) !important;
 
-  .heroContent {
-    padding: 20px 16px;
-  }
-
-  .leftSide {
-    margin-bottom: 20px;
-  }
-
-  .mainTitle {
-    font-size: 10px;
-  }
-
-  .mainSubtitle {
-    font-size: 32px;
-  }
-
-  .sectionLabel {
-    font-size: 18px;
-  }
-
-  .description {
-    font-size: 13px;
-  }
-
-  .guideButton {
-    font-size: 12px;
-    padding: 10px 16px;
-    height: 44px;
-  }
-
-  .bottomImageContainer {
-    min-height: 240px;
-    padding: 0 16px;
   }
 }
+
