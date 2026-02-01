@@ -18,6 +18,8 @@ import TabsSection from '../components/TabsSection'
 import Footer from '../components/Footer'
 import Explore from '../components/Explore'
 import Header from '../components/Header'
+import BonusChapter from '../components/BonusChapter'
+import DownloadSection from '../components/DownloadSection'
 
 
 const dmSans = DM_Sans({
@@ -222,7 +224,7 @@ export default function Home() {
       (entries) => {
         entries.forEach((entry) => {
           // When 10% of section is visible, trigger sticky
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.4) {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.1) {
             setIsChaptersSectionSticky(true);
             // Scroll the section into full view
             chaptersSection.scrollIntoView({ behavior: 'smooth' });
@@ -230,7 +232,7 @@ export default function Home() {
         });
       },
       {
-        threshold: 0.4, // Trigger when 40% visible
+        threshold: 0.1, // Trigger when 10% visible
         rootMargin: '0px'
       }
     );
@@ -1723,172 +1725,10 @@ export default function Home() {
       </section >
 
       {/* Bonus Chapter Section */}
-      <section className={styles.bonusSection} ref={bonusSectionRef}>
-        <div className={styles.bonusContent}>
-          <div className={styles.bonusLeft}>
-            <img
-              src="/assets/bonus_chapter_flower.svg"
-              alt=""
-              className={styles.bonusFlowerImage}
-            />
-            <img
-              src="/assets/bonus_dot.svg"
-              alt=""
-              className={styles.bonusFlowerDot}
-            />
-            <p className={styles.bonusLabel}>BONUS CHAPTER</p>
-            {/* Desktop Title */}
-            <h2 className={`${styles.bonusTitle} ${styles.desktopOnly}`}>
-              <span className={styles.bonusTitleHighlight}>No single team</span> owns<br />
-              the donor experience
-            </h2>
-            {/* Mobile Title with specific breaks */}
-            <h2 className={`${styles.bonusTitle} ${styles.mobileOnly}`}>
-              <span className={styles.bonusTitleHighlight}>No single team</span><br />
-              owns the donor<br />
-              experience
-            </h2>
-
-            {/* Desktop Text */}
-            <p className={`${styles.bonusText} ${styles.desktopOnly}`}>
-              As supporters move across stages, effective coordination between<br />
-              programme, communications, and fundraising teams ensures consistency,<br />
-              continuity, and trust.
-            </p>
-            {/* Mobile Text with specific breaks */}
-            <p className={`${styles.bonusText} ${styles.mobileOnly}`}>
-              As supporters move across stages, effective<br />
-              coordination between programme,<br />
-              communications, and fundraising teams<br />
-              ensures consistency, continuity, and trust.
-            </p>
-            <div className={styles.bonusCallout}>
-              {/* <span className={styles.bonusDot}></span> */}
-              <span className={styles.bonusCalloutText}>Check the toolkit to learn how to build this alignment.</span>
-            </div>
-          </div>
-          <div className={styles.bonusRight}>
-            <img
-              src="/assets/Bonus_flp.png"
-              alt="Stewardship is a team effort"
-              className={`${styles.bonusCardImage} ${styles.desktopOnly}`}
-            />
-            <img
-              src="/assets/mobilee_bonus_card.png"
-              alt="Stewardship is a team effort"
-              className={`${styles.bonusCardImage} ${styles.mobileOnly}`}
-            />
-            <div className={styles.bonusDotsPattern}>
-              <img
-                src="/assets/bonus_background.png"
-                alt=""
-                className={styles.bonusDotsImage}
-              />
-            </div>
-          </div>
-        </div>
-      </section >
+      <BonusChapter ref={bonusSectionRef} />
 
       {/* Download Section */}
-      < section className={styles.downloadSection} >
-        {/* Background Image */}
-        < img
-          src="/assets/download_background.svg"
-          alt=""
-          className={styles.downloadBackgroundImage}
-        />
-
-        <div className={styles.downloadContent}>
-          {/* Decorative Petals */}
-          <img
-            src="/assets/download_petal.svg"
-            alt=""
-            className={styles.downloadPetal1}
-          />
-          <img
-            src="/assets/download_petal.svg"
-            alt=""
-            className={styles.downloadPetal2}
-          />
-          <img
-            src="/assets/download_petal.svg"
-            alt=""
-            className={styles.downloadPetal3}
-          />
-          <img
-            src="/assets/download_petal.svg"
-            alt=""
-            className={styles.downloadPetal4}
-          />
-
-          {/* Decorative Balls */}
-          <img
-            src="/assets/download_section_ball.svg"
-            alt=""
-            className={styles.downloadBall1}
-          />
-          <img
-            src="/assets/download_section_ball.svg"
-            alt=""
-            className={styles.downloadBall2}
-          />
-
-          {/* Decorative Sticks */}
-          {/* <img
-            src="/assets/download_petal_stick.svg"
-            alt=""
-            className={styles.downloadStick1}
-          />
-          <img
-            src="/assets/download_petal_stick.svg"
-            alt=""
-            className={styles.downloadStick2}
-          />
-          <img
-            src="/assets/download_petal_stick.svg"
-            alt=""
-            className={styles.downloadStick3}
-          />
-          <img
-            src="/assets/download_petal_stick.svg"
-            alt=""
-            className={styles.downloadStick4}
-          /> */}
-
-
-          {/* Center Card */}
-          <div className={styles.downloadCard}>
-            <div className={styles.downloadIcons}>
-              <img
-                src="/assets/downloas_icons.png"
-                alt="Download Icons"
-                className={styles.downloadIconsImage}
-              />
-            </div>
-
-            <div className={styles.downloadInfo}>
-              <h2 className={styles.downloadTitle}>Download the complete fundraising set</h2>
-              <p className={styles.downloadDescription}>
-                All the tools in one place to start building a structured, relationship-led approach <br />
-                to engaging everyday givers – at your own pace, and with the resources that fit <br />
-                your organisation best.
-              </p>
-              <div className={styles.downloadButtons}>
-                <button className={styles.downloadAllBtn}>
-                  <img src="/assets/download.svg" alt="Download all" className={styles.downloadAllImage} />
-                </button>
-                <button className={styles.viewAllBtn}>
-                  <img src="/assets/view_doanload.svg" alt="View all" className={styles.viewAllImage} />
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Right decorative plant */}
-
-        </div>
-
-      </section >
+      <DownloadSection />
 
       {/* Explore Grid Section */}
       <Explore />
