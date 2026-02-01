@@ -1,0 +1,222 @@
+.toolsSection {
+  position: relative;
+  width: 100%;
+  padding: 120px 40px;
+  background: linear-gradient(180deg, #2d5a5f 0%, #1a3d42 100%);
+  overflow: hidden;
+}
+
+/* Grid Background */
+.gridBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(to right, rgba(15, 184, 197, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 184, 197, 0.15) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+/* Top Box */
+.topBox {
+  border-radius: 16px;
+  text-align: center;
+  margin-bottom: 80px;
+  width: 50%;
+  margin: auto;
+  margin-bottom: 100px;
+}
+
+.mainText {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 140%;
+  color: white;
+  margin: 0 0 40px 0;
+}
+
+.subLabel {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #1eb59a;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* Tools Grid */
+.toolsGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 30px;
+  position: relative;
+}
+
+.toolCard {
+  border-radius: 12px;
+  padding: 40px;
+  position: relative;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cardText {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  line-height: 150%;
+  color: white;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+}
+
+/* Decorative Elements */
+.decorCircle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  position: absolute;
+  top: -20px;
+  left: 30px;
+  z-index: 1;
+}
+
+.decorDiamond {
+  width: 50px;
+  height: 50px;
+  background: #D349AE;
+  transform: rotate(45deg);
+  position: absolute;
+  top: -15px;
+  left: 30px;
+  z-index: 1;
+}
+
+.decorSquare1,
+.decorSquare2,
+.decorSquare3 {
+  width: 20px;
+  height: 20px;
+  background: #FFEB3B;
+  position: absolute;
+  z-index: 5;
+}
+
+.decorSquare1 {
+  top: -80px;
+  left: 10%;
+}
+
+.decorSquare2 {
+  top: 50%;
+  right: 5%;
+}
+
+.decorSquare3 {
+  bottom: -60px;
+  left: 5%;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .toolsGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .toolCard:nth-child(4) {
+    grid-column: 1 / 3 !important;
+  }
+
+  .toolCard:nth-child(5) {
+    grid-column: 2 / 4 !important;
+  }
+
+  .toolCard:nth-child(6) {
+    grid-column: 3 / 5 !important;
+  }
+
+  .toolCard:nth-child(7) {
+    grid-column: 4 / 5 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .toolsSection {
+    padding: 60px 20px;
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 0 16px;
+  }
+
+  .topBox {
+    padding: 30px 24px;
+    margin-bottom: 30px;
+  }
+
+  .label {
+    font-size: 10px;
+  }
+
+  .mainText {
+    font-size: 20px;
+    line-height: 140%;
+  }
+
+  .toolsGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .toolCard {
+    grid-column: 1 / 2 !important;
+    grid-row: auto !important;
+    min-height: 140px;
+    padding: 24px 20px;
+  }
+
+  .cardText {
+    font-size: 15px;
+    line-height: 150%;
+  }
+}
+
+@media (max-width: 480px) {
+  .toolsSection {
+    padding: 50px 16px;
+  }
+
+  .topBox {
+    padding: 24px 20px;
+  }
+
+  .mainText {
+    font-size: 18px;
+  }
+
+  .toolCard {
+    min-height: 120px;
+    padding: 20px 16px;
+  }
+
+  .cardText {
+    font-size: 14px;
+  }
+}
