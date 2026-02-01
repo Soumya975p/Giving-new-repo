@@ -2763,8 +2763,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 40px;
-  top: 120px;
+  padding: 0 10px;
+  /* top: 120px; */
 }
 
 .chapterLabel {
@@ -4050,12 +4050,12 @@
 .chapter1Header {
   width: 996px;
   text-align: center;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
   /* Reduced from 50px */
   position: relative;
   z-index: 10;
   padding: 0 10px;
-  top: 120px;
+  top: 8%;
   /* Reduced side padding slightly */
 }
 
@@ -4064,7 +4064,7 @@
   font-size: 16px;
   /* Slightly smaller */
   font-weight: 700;
-  line-height: 140%;
+  /* line-height: 140%; */
   letter-spacing: 0.1em;
   color: #1a4d3a;
   text-transform: uppercase;
@@ -4079,11 +4079,11 @@
   font-size: 28px;
   /* Reduced from 28px to save significant space */
   font-weight: 500;
-  line-height: 130%;
+  /* line-height: 130%; */
   letter-spacing: -0.03em;
   color: #1a4d3a;
   text-align: center;
-  margin-bottom: 125px;
+  margin-bottom: 5%;
   /* Reduced from 20px */
   max-width: 1000px;
   margin-left: auto;
@@ -4098,7 +4098,7 @@
   margin: 0 auto;
   position: relative;
   z-index: 20;
-  margin-bottom: 30px;
+  margin-bottom: 3%;
   /* Increased spacing to avoid overlap */
 }
 
@@ -4115,10 +4115,10 @@
   width: 100%;
   max-width: 1250px;
   /* Increased from 1100px */
-  margin-top: 20px;
+  /* margin-top: 20px; */
   /* Positive margin to prevent overlapping */
   position: relative;
-  top: 120px;
+  top: 10%;
 }
 
 /* Hover Decorations for Chapter 1 Option A */
@@ -4186,9 +4186,9 @@
 /* Hover Decorations for Chapter 1 Option B (Right Side) */
 .hoverRightFlowerTop {
   position: absolute;
-  top: 250px;
-  right: -30px;
-  width: 200px;
+  bottom: 0vh;
+  right: -10vw;
+  width: 150px;
   height: auto;
   pointer-events: none;
   z-index: 5;
@@ -4219,7 +4219,7 @@
   position: absolute;
   bottom: -60px;
   left: -70px;
-  width: 150px;
+  width: 100px;
   height: auto;
   pointer-events: none;
   z-index: 5;
@@ -4318,7 +4318,7 @@
 
 .ch2RightFlowerPetal1 {
   position: absolute;
-  top: 0px;
+  bottom: 40vh;
   right: 30px;
   width: 70px;
   height: auto;
@@ -4755,6 +4755,37 @@
   transform: translateX(4px);
 }
 
+/* Chapter 3 Hover Decorations - Option A (Left Side) */
+.ch3LeftFly {
+  position: absolute;
+  top: -80px;
+  left: 350px;
+  width: 50px;
+  height: auto;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.ch3LeftFlowerA {
+  position: absolute;
+  bottom: 0vh;
+  right: -0vw;
+  width: 70px;
+  height: auto;
+  pointer-events: none;
+  z-index: 7;
+}
+
+.ch3LeftDiamond {
+  position: absolute;
+  bottom: -40px;
+  left: -60px;
+  width: 200px;
+  height: auto;
+  pointer-events: none;
+  z-index: 5;
+}
+
 /* Chapter 3 Hover Decorations - Option B (Right Side) */
 .ch3RightFly {
   position: absolute;
@@ -4768,8 +4799,8 @@
 
 .ch3RightFlower {
   position: absolute;
-  bottom: -10px;
-  right: -65px;
+  bottom: 0vh;
+  right: 10vw;
   width: 70px;
   height: auto;
   pointer-events: none;
@@ -4805,6 +4836,108 @@
   height: auto;
   pointer-events: none;
   z-index: 7;
+}
+
+/* Chapter 4 Hover Decorations - Option A (Left Side) */
+.ch4LeftFly {
+  position: absolute;
+  top: -80px;
+  left: 350px;
+  width: 50px;
+  height: auto;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.ch4LeftHollow {
+  position: absolute;
+  top: -vh;
+  left: -65px;
+  width: 70px;
+  height: auto;
+  pointer-events: none;
+  z-index: 7;
+}
+
+.ch4LeftFill {
+  position: absolute;
+  bottom: -40px;
+  left: -30px;
+  width: 60px;
+  height: auto;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.ch4LeftHollow2 {
+  position: absolute;
+  bottom: 150px;
+  left: 20px;
+  width: 50px;
+  height: auto;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.ch4LeftFill2 {
+  position: absolute;
+  bottom: 180px;
+  left: 5px;
+  width: 45px;
+  height: auto;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Chapter 4 Hover Decorations - Option B (Right Side) */
+.ch4RightFly {
+  position: absolute;
+  top: -80px;
+  right: 350px;
+  width: 50px;
+  height: auto;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.ch4RightHollow {
+  position: absolute;
+  bottom: -10px;
+  right: -65px;
+  width: 70px;
+  height: auto;
+  pointer-events: none;
+  z-index: 7;
+}
+
+.ch4RightFill {
+  position: absolute;
+  bottom: -40px;
+  right: -30px;
+  width: 60px;
+  height: auto;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.ch4RightHollow2 {
+  position: absolute;
+  bottom: 150px;
+  right: 20px;
+  width: 50px;
+  height: auto;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.ch4RightFill2 {
+  position: absolute;
+  bottom: 180px;
+  right: 5px;
+  width: 45px;
+  height: auto;
+  pointer-events: none;
+  z-index: 3;
 }
 
 /* Side Options */
@@ -7722,7 +7855,7 @@
 /* --- Extracted Scenario & Card Animations --- */
 .scenarioContainer {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   gap: 40px;
   width: 100%;
@@ -7751,7 +7884,7 @@
 
 .centerCard {
   width: 320px;
-  height: 380px;
+  height: 350px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7893,10 +8026,10 @@
 /* Hover Decorations */
 .hoverFlowerLeftmost {
   position: absolute;
-  bottom: -225px;
-  left: -45px;
-  width: 125px;
-  height: 400px;
+  bottom: 0vh;
+  left: -5%;
+  width: 100px;
+  height: 200px;
   pointer-events: none;
   z-index: 5;
   transform: translateX(-100px);
@@ -7904,9 +8037,9 @@
 
 .hoverFlowerMiddle {
   position: absolute;
-  bottom: -150px;
-  left: 90px;
-  width: 60px;
+  bottom: -0vh;
+  left: 7%;
+  width: 40px;
   height: auto;
   pointer-events: none;
   z-index: 6;
@@ -7914,9 +8047,9 @@
 
 .hoverFlowerRightmost {
   position: absolute;
-  bottom: -100px;
-  left: 180px;
-  width: 50px;
+  bottom: -0vh;
+  left: 10%;
+  width: 40px;
   height: auto;
   pointer-events: none;
   z-index: 7;
@@ -7924,8 +8057,8 @@
 
 .hoverPetal {
   position: absolute;
-  top: -60px;
-  left: -100px;
+  top: -50%;
+  left: 0vw;
   width: 250px;
   height: auto;
   pointer-events: none;
@@ -7944,9 +8077,9 @@
 
 .hoverRightFlowerTop {
   position: absolute;
-  top: 250px;
-  right: -30px;
-  width: 200px;
+  bottom: 0vh;
+  right: 2vw;
+  width: 150px;
   height: auto;
   pointer-events: none;
   z-index: 5;
@@ -7954,9 +8087,9 @@
 
 .hoverRightFlowerBottom {
   position: absolute;
-  bottom: -20px;
-  right: 150px;
-  width: 150px;
+  bottom: 11.5vh;
+  right: 11vw;
+  width: 100px;
   height: auto;
   pointer-events: none;
   z-index: 6;
@@ -7974,8 +8107,8 @@
 
 .ch2HoverLamp {
   position: absolute;
-  bottom: -60px;
-  left: -70px;
+  bottom: 0vh;
+  left: 1vw;
   width: 150px;
   height: auto;
   pointer-events: none;
@@ -8014,9 +8147,9 @@
 
 .ch2HoverImageLeft {
   position: absolute;
-  bottom: -120px;
-  left: 10px;
-  width: 80px;
+  bottom: 0vh;
+  left: 8vw;
+  width: 60px;
   height: auto;
   pointer-events: none;
   z-index: 6;
@@ -8024,9 +8157,9 @@
 
 .ch2HoverImageRight {
   position: absolute;
-  bottom: -70px;
-  left: 100px;
-  width: 80px;
+  bottom: -0vh;
+  left: 12vw;
+  width: 60px;
   height: auto;
   pointer-events: none;
   z-index: 5;
@@ -8063,19 +8196,13 @@
 }
 
 .ch2RightImage {
-  position: absolute;
-  top: 50px;
-  right: -30px;
-  width: 80px;
-  height: auto;
-  pointer-events: none;
-  z-index: 5;
+  visibility: hidden;
 }
 
 .ch2RightFlowerPetal1 {
   position: absolute;
-  top: 0px;
-  right: 30px;
+  bottom: 40vh;
+  right: 0vw;
   width: 70px;
   height: auto;
   pointer-events: none;
@@ -8104,8 +8231,8 @@
 
 .ch2RightFlower1 {
   position: absolute;
-  bottom: -100px;
-  right: -20px;
+  bottom: -8vh;
+  right: 5w;
   width: 110px;
   height: auto;
   pointer-events: none;
@@ -8154,8 +8281,8 @@
 
 .ch3RightFlower {
   position: absolute;
-  bottom: -10px;
-  right: -65px;
+  bottom: 0vh;
+  right: 0vw;
   width: 70px;
   height: auto;
   pointer-events: none;
@@ -8165,8 +8292,8 @@
 
 .ch3DiamondBottom {
   position: absolute;
-  bottom: -40px;
-  right: -60px;
+  bottom: 3vh;
+  right: 0vw;
   width: 200px;
   height: auto;
   pointer-events: none;
@@ -8175,8 +8302,8 @@
 
 .ch3TopSection {
   position: absolute;
-  top: -90px;
-  right: -120px;
+  top: -20vh;
+  right: 0vw;
   width: 250px;
   height: auto;
   pointer-events: none;
@@ -8185,8 +8312,8 @@
 
 .ch3LeftFlower {
   position: absolute;
-  bottom: -120px;
-  right: 60px;
+  bottom: -1vh;
+  right: 8vw;
   width: 70px;
   height: auto;
   pointer-events: none;

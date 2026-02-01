@@ -46,6 +46,11 @@ export default function Header({
             alt="Giving Together Foundation"
             className={styles.logoImage}
           />
+          <img
+            src="/assets/logo_mobile.svg"
+            alt="Giving Together Foundation"
+            className={styles.logoImageMobile}
+          />
         </div>
       </header>
 
