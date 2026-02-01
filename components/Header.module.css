@@ -197,6 +197,11 @@
   font-weight: 500;
 }
 
+.menuSectionTitle.active {
+  color: #ffffff;
+  font-weight: 500;
+}
+
 .bullet {
   color: #13D9E8;
   font-size: 12px;

@@ -1,0 +1,159 @@
+.exploreSection {
+  width: 100%;
+  min-height: 80vh;
+  background: #12363B;
+  padding: 100px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.exploreHeader {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.exploreLabel {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: #38F1FF;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.exploreTitle {
+  font-family: 'Zalando Sans Expanded', sans-serif;
+  font-weight: 300;
+  font-size: 48px;
+  color: white;
+  margin: 0;
+}
+
+.folderContainer {
+  display: flex;
+  gap: 60px;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.folderCard {
+  position: relative;
+  width: 500px;
+  height: 400px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.folderCard:hover {
+  transform: translateY(-10px);
+}
+
+.folderContent {
+  position: absolute;
+  top: 80px;
+  left: 60px;
+  z-index: 10;
+}
+
+.folderLabel {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: #38F1FF;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.folderTitle {
+  font-family: 'Zalando Sans Expanded', sans-serif;
+  font-weight: 400;
+  font-size: 36px;
+  color: #12363B;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.folderSvg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.folderFrontPath {
+  fill: #B8E986;
+  transition: fill 0.3s ease;
+}
+
+.folderCard:hover .folderFrontPath {
+  fill: #93CD4D;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .folderContainer {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .folderCard {
+    width: 90%;
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .exploreSection {
+    padding: 60px 20px;
+  }
+
+  .exploreHeader {
+    margin-bottom: 40px;
+  }
+
+  .exploreTitle {
+    font-size: 32px;
+    line-height: 1.2;
+    padding: 0 20px;
+  }
+
+  .folderTitle {
+    font-size: 28px;
+  }
+
+  .folderContent {
+    top: 60px;
+    left: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .exploreSection {
+    padding: 50px 16px;
+  }
+
+  .exploreTitle {
+    font-size: 28px;
+  }
+
+  .folderTitle {
+    font-size: 24px;
+  }
+
+  .folderLabel {
+    font-size: 9px;
+  }
+
+  .folderContent {
+    top: 50px;
+    left: 30px;
+  }
+}
