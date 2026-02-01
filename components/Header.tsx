@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Header.module.css';
 
@@ -17,6 +18,7 @@ export default function Header({
   chaptersSectionRef,
   bonusSectionRef,
 }: HeaderProps) {
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isFundraisingExpanded, setIsFundraisingExpanded] = useState(false);
   const [expandedChapter, setExpandedChapter] = useState<number | null>(null);
@@ -66,7 +68,13 @@ export default function Header({
               <div className={styles.menuBody}>
                 <div className={styles.menuLeft}>
                   <div className={styles.menuSection}>
-                    <button className={styles.menuSectionTitle}>
+                    <button
+                      className={styles.menuSectionTitle}
+                      onClick={() => {
+                        router.push('/field-guide');
+                        setIsMenuOpen(false);
+                      }}
+                    >
                       Introduction
                     </button>
                   </div>
