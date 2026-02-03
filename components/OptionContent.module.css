@@ -157,7 +157,7 @@
     -ms-overflow-style: none;
     display: flex;
     align-items: center;
-    /* margin-top: 180px; */
+    margin-top: 200px;
 }
 
 .horizontalScrollContainer::-webkit-scrollbar {
@@ -696,9 +696,9 @@
 }
 
 .ch1OptionA .scrollContent {
-    padding: 200px 0 20px 280px;
+    padding: 20px 0 20px 280px;
     gap: 200px;
-    transform: translateY(-20px);
+    /* transform: translateY(-20px); */
 }
 
 .ch1OptionB .scrollContent {
@@ -708,7 +708,7 @@
 }
 
 .ch1OptionB .horizontalScrollContainer {
-    margin-top: 175px;
+    margin-top: 200px;
 }
 
 .nextChapterImage {

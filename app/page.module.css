@@ -4295,7 +4295,7 @@
 .hoverRightFlowerTop {
   position: absolute;
   bottom: 0vh;
-  right: -10vw;
+  right: 30vw;
   width: 150px;
   height: auto;
   pointer-events: none;
@@ -8161,7 +8161,7 @@
 .hoverFlowerLeftmost {
   position: absolute;
   bottom: 0vh;
-  left: -5%;
+  left: -10%;
   width: 100px;
   height: 200px;
   pointer-events: none;
@@ -8172,7 +8172,7 @@
 .hoverFlowerMiddle {
   position: absolute;
   bottom: -0vh;
-  left: 7%;
+  left: -1%;
   width: 40px;
   height: auto;
   pointer-events: none;
@@ -8182,7 +8182,7 @@
 .hoverFlowerRightmost {
   position: absolute;
   bottom: -0vh;
-  left: 10%;
+  left: 1%;
   width: 40px;
   height: auto;
   pointer-events: none;
@@ -8192,7 +8192,7 @@
 .hoverPetal {
   position: absolute;
   top: -50%;
-  left: 0vw;
+  left: -5vw;
   width: 250px;
   height: auto;
   pointer-events: none;
@@ -8211,8 +8211,8 @@
 
 .hoverRightFlowerTop {
   position: absolute;
-  bottom: 0vh;
-  right: 2vw;
+  bottom: -3vh;
+  right: -5vw;
   width: 150px;
   height: auto;
   pointer-events: none;
@@ -8221,8 +8221,8 @@
 
 .hoverRightFlowerBottom {
   position: absolute;
-  bottom: 11.5vh;
-  right: 11vw;
+  bottom: 6.5vh;
+  right: 2vw;
   width: 100px;
   height: auto;
   pointer-events: none;
@@ -8231,7 +8231,7 @@
 
 .hoverRightFly {
   position: absolute;
-  top: -20px;
+  top: -40px;
   right: 50px;
   width: 50px;
   height: auto;
@@ -8242,7 +8242,7 @@
 .ch2HoverLamp {
   position: absolute;
   bottom: 0vh;
-  left: 1vw;
+  left: -5vw;
   width: 150px;
   height: auto;
   pointer-events: none;
@@ -8251,7 +8251,7 @@
 
 .ch2HoverFly {
   position: absolute;
-  top: 0;
+  top: -50px;
   left: 300px;
   width: 50px;
   height: auto;
@@ -8261,7 +8261,7 @@
 
 .ch2HoverEmptyBubble {
   position: absolute;
-  top: -120px;
+  top: -150px;
   left: 45px;
   width: 60px;
   height: auto;
@@ -8271,7 +8271,7 @@
 
 .ch2HoverFilledBubble {
   position: absolute;
-  top: -70px;
+  top: -100px;
   left: 100px;
   width: 60px;
   height: auto;
@@ -8281,8 +8281,8 @@
 
 .ch2HoverImageLeft {
   position: absolute;
-  bottom: 0vh;
-  left: 8vw;
+  bottom: -7vh;
+  left: 3vw;
   width: 60px;
   height: auto;
   pointer-events: none;
@@ -8291,8 +8291,8 @@
 
 .ch2HoverImageRight {
   position: absolute;
-  bottom: -0vh;
-  left: 12vw;
+  bottom: -1vh;
+  left: 8vw;
   width: 60px;
   height: auto;
   pointer-events: none;
@@ -8336,7 +8336,7 @@
 .ch2RightFlowerPetal1 {
   position: absolute;
   bottom: 40vh;
-  right: 0vw;
+  right: -3vw;
   width: 70px;
   height: auto;
   pointer-events: none;
@@ -8345,8 +8345,8 @@
 
 .ch2RightFlowerPetal2 {
   position: absolute;
-  top: 220px;
-  right: -55px;
+  top: 150px;
+  right: -147px;
   width: 15px;
   height: auto;
   pointer-events: none;
@@ -8355,8 +8355,8 @@
 
 .ch2RightFlowerPetal3 {
   position: absolute;
-  top: 240px;
-  right: -38px;
+  top: 210px;
+  right: -125px;
   width: 15px;
   height: auto;
   pointer-events: none;
@@ -8366,7 +8366,7 @@
 .ch2RightFlower1 {
   position: absolute;
   bottom: -8vh;
-  right: 5w;
+  right: -3w;
   width: 110px;
   height: auto;
   pointer-events: none;
@@ -8395,8 +8395,8 @@
 
 .ch2RightStick {
   position: absolute;
-  bottom: -110px;
-  right: -40px;
+  bottom: -60px;
+  right: -130px;
   width: 80px;
   height: auto;
   pointer-events: none;
@@ -8416,7 +8416,7 @@
 .ch3RightFlower {
   position: absolute;
   bottom: 0vh;
-  right: 0vw;
+  right: -12vw;
   width: 70px;
   height: auto;
   pointer-events: none;
@@ -8427,7 +8427,7 @@
 .ch3DiamondBottom {
   position: absolute;
   bottom: 3vh;
-  right: 0vw;
+  right: -12vw;
   width: 200px;
   height: auto;
   pointer-events: none;
@@ -8437,7 +8437,7 @@
 .ch3TopSection {
   position: absolute;
   top: -20vh;
-  right: 0vw;
+  right: -5vw;
   width: 250px;
   height: auto;
   pointer-events: none;
@@ -8447,7 +8447,7 @@
 .ch3LeftFlower {
   position: absolute;
   bottom: -1vh;
-  right: 8vw;
+  right: -5vw;
   width: 70px;
   height: auto;
   pointer-events: none;
