@@ -1827,10 +1827,11 @@
   font-style: italic;
 
   line-height: 150%;
-  letter-spacing: -0.02em; /* -2% converted correctly */
+  letter-spacing: -0.02em;
+  /* -2% converted correctly */
 
   text-align: center;
-  margin-bottom:24px;
+  margin-bottom: 24px;
 
   color: #93CD4D;
 }
@@ -8839,4 +8840,16 @@
   .bonusCalloutText {
     max-width: 338px;
   }
+}
+
+.backToChaptersBtn {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.navButton {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
