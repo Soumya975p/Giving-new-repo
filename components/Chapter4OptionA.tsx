@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowLeft } from 'lucide-react';
 import styles from './Chapter4OptionA.module.css';
+import ToolkitCard from './ToolkitCard';
 
 interface Chapter4OptionAProps {
     onBack: () => void;
@@ -111,12 +112,30 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false }: Ch
 
                         {/* Toolkit Card 1 */}
                         <div className={styles.toolkitCard}>
-                            <img src="/assets/toolkit_ch4_1.png" alt="Card background" className={styles.toolkitBg} />
+                            <ToolkitCard
+                                toolkitNumber={6}
+                                title="Donor Engagement Dashboard"
+                                description="A one stop shop to show you how well your organisation is retaining and engaging its everyday givers."
+                                backgroundImage="/assets/toolkit6/toolkit6_background.svg"
+                                designImage="/assets/toolkit6/toolkit6_design.png"
+                                disableRotation={true}
+                                backgroundVariant="tk6"
+                                designVariant="tk6"
+                            />
                         </div>
 
                         {/* Toolkit Card 2 */}
                         <div className={styles.toolkitCard}>
-                            <img src="/assets/toolkit_ch4_2.png" alt="Card background" className={styles.toolkitBg} />
+                            <ToolkitCard
+                                toolkitNumber={7}
+                                title="Supporter-Led Fundraising"
+                                description="A powerful toolkit to grow your network by creating champions for your cause."
+                                backgroundImage="/assets/toolkit7/toolkit7_background.svg"
+                                designImage="/assets/toolkit7/toolkit7_design.png"
+                                disableRotation={true}
+                                backgroundVariant="tk7"
+                                designVariant="tk7"
+                            />
                         </div>
 
                         {/* Next Chapter Button */}

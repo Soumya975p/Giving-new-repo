@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import styles from './OptionContent.module.css';
+import ToolkitCard from './ToolkitCard';
 
 interface ContentCard {
     id: number;
@@ -22,6 +23,14 @@ interface ContentCard {
     // New: support for dynamic toolkit content
     toolkitInnerImage?: string;
     toolkitLabel?: string;
+    toolkitNumber?: number;
+    toolkitBackgroundImage?: string;
+    toolkitDesignImage?: string;
+    toolkitDisableRotation?: boolean;
+    toolkitDesignVariant?: 'ch2' | 'tk3' | 'tk4' | 'tk5' | 'tk6' | 'tk7';
+    toolkitBackgroundVariant?: 'tk345' | 'tk6' | 'tk7';
+    onToolkitDownload?: () => void;
+    onToolkitView?: () => void;
     // New: support for nested stat within text card
     showStatBelow?: boolean;
     statLabel?: string;
@@ -92,8 +101,28 @@ export default function OptionContent({
             <div className={s.horizontalScrollContainer}>
                 <div className={s.scrollContent}>
                     {contentCards.map((card, index) => {
-                        // Specialized rendering for toolkit cards to avoid contentCard wrapper
+                        // Specialized rendering for toolkit cards using ToolkitCard component
                         if (card.type === 'toolkit') {
+                            // Use new ToolkitCard component if background and design images are provided
+                            if (card.toolkitBackgroundImage && card.toolkitDesignImage) {
+                                return (
+                                    <div key={card.id} className={`${s.toolkitCard} ${s[`toolkit-${card.id}`]}`}>
+                                        <ToolkitCard
+                                            toolkitNumber={card.toolkitNumber || 1}
+                                            title={card.toolkitTitle || 'Toolkit'}
+                                            description={card.toolkitDescription || ''}
+                                            backgroundImage={card.toolkitBackgroundImage}
+                                            designImage={card.toolkitDesignImage}
+                                            onDownload={card.onToolkitDownload}
+                                            onViewToolkit={card.onToolkitView}
+                                            disableRotation={card.toolkitDisableRotation}
+                                            designVariant={card.toolkitDesignVariant}
+                                            backgroundVariant={card.toolkitBackgroundVariant}
+                                        />
+                                    </div>
+                                );
+                            }
+                            // Fallback to old toolkit image rendering
                             return (
                                 <div key={card.id} className={`${s.toolkitCard} ${s[`toolkit-${card.id}`]}`}>
                                     {card.toolkitImage && (
