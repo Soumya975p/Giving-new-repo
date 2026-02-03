@@ -1,33 +1,36 @@
 import React from 'react';
 import { ArrowLeft } from 'lucide-react';
 import styles from './Chapter3OptionB.module.css';
+import ToolkitCard from './ToolkitCard';
 
 interface Chapter3OptionBProps {
     onBack: () => void;
+    onNext?: () => void;
     embedded?: boolean;
 }
 
-export default function Chapter3OptionB({ onBack, embedded = false }: Chapter3OptionBProps) {
+export default function Chapter3OptionB({ onBack, onNext, embedded = false }: Chapter3OptionBProps) {
     return (
-        <div className={styles.wrapper}>
-            {/* Back Button - only show when not embedded */}
-            {!embedded && (
+        <div className={styles.optionContentWrapper}>
+            {/* Sticky Header */}
+            <div className={`${styles.stickyHeader} ${embedded ? styles.embeddedHeader : ''}`}>
                 <button className={styles.backButton} onClick={onBack}>
                     <ArrowLeft size={16} />
                     <span>Back to scenario</span>
                 </button>
-            )}
 
-            {/* Header Content - only show when not embedded */}
-            {!embedded && (
-                <div className={styles.headerSection}>
-                    <h4 className={styles.headerLabel}>CHAPTER III: STEWARDING DONORS</h4>
-                    <p className={styles.headerText}>
-                        Staying connected after the first gift builds trust. This chapter focuses on
-                        how consistent, non-ask engagement helps donors feel involved and valued.
-                    </p>
-                </div>
-            )}
+                {!embedded && (
+                    <div className={styles.headerContent}>
+                        <h4 className={styles.headerLabel}>CHAPTER III: STEWARDING DONORS</h4>
+                        <p className={styles.headerText}>
+                            Staying connected after the first gift builds trust. This chapter focuses on
+                            how consistent, non-ask engagement helps donors feel involved and valued.
+                        </p>
+                    </div>
+                )}
+
+
+            </div>
 
             {/* Horizontal Scroll Container */}
             <div className={`${styles.horizontalScrollContainer} ${embedded ? styles.embeddedScroll : ''}`}>
@@ -107,25 +110,52 @@ export default function Chapter3OptionB({ onBack, embedded = false }: Chapter3Op
 
                     {/* Toolkit Card 1 - The Storytelling Bank */}
                     <div className={styles.toolkitCard}>
-                        <img src="/assets/toolkit_44.svg" alt="Card background" className={styles.toolkitBg} />
+                        <ToolkitCard
+                            toolkitNumber={2}
+                            title="The Storytelling Bank"
+                            description="A collection of stories to share with donors."
+                            backgroundImage="/assets/toolkit_base_card.svg"
+                            designImage="/assets/toolkit_44.svg"
+                            designVariant="tk4"
+                        />
                     </div>
 
                     {/* Toolkit Card 2 - Segmentation & Profiling */}
                     <div className={styles.toolkitCard}>
-                        <img src="/assets/toolkit_33.svg" alt="Card background" className={styles.toolkitBg} />
+                        <ToolkitCard
+                            toolkitNumber={1}
+                            title="Segmentation & Profiling"
+                            description="Tools to categorize and understand your donors."
+                            backgroundImage="/assets/toolkit_base_card.svg"
+                            designImage="/assets/toolkit_33.svg"
+                            designVariant="tk3"
+                        />
                     </div>
 
-                    {/* Toolkit Card 3 - Communications Calendar */}
-                    <div className={styles.toolkitCard}>
-                        <img src="/assets/toolkit_55.svg" alt="Card background" className={styles.toolkitBg} />
-                    </div>
+                    <div className={styles.lastCardWrapper}>
+                        {/* Toolkit Card 3 - Communications Calendar */}
+                        <div className={styles.toolkitCard}>
+                            <ToolkitCard
+                                toolkitNumber={3}
+                                title="The Communications Calendar"
+                                description="Plan your donor engagement throughout the year."
+                                backgroundImage="/assets/toolkit_base_card.svg"
+                                designImage="/assets/toolkit_55.svg"
+                                designVariant="tk5"
+                            />
+                        </div>
 
-                    {/* Next Chapter Button */}
-                    <div className={styles.nextChapterCard}>
-                        <button className={styles.nextChapterButton}>
-                            <span>Next chapter</span>
-                            <span className={styles.nextArrow}>→</span>
-                        </button>
+                        {/* Next Chapter Button */}
+                        <div className={styles.nextChapterCard}>
+                            {onNext && (
+                                <img
+                                    src="/assets/next_chapter_button.svg"
+                                    alt="Next chapter"
+                                    className={styles.nextChapterImage}
+                                    onClick={onNext}
+                                />
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>

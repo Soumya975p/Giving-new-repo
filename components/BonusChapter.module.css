@@ -123,9 +123,12 @@
 
 .bonusCalloutText {
     font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.9);
+    font-size: 20px;
+    font-weight: 400;
     font-style: italic;
+    line-height: 150%;
+    letter-spacing: 0;
+    color: #FFFFFF;
 }
 
 .bonusRight {
@@ -474,11 +477,11 @@
     /* Mobile Flower & Dot Positioning (Moved from global to protect desktop) */
     .bonusFlowerImage {
         position: absolute;
-        top: -15%;
+        top: -2%;
         bottom: auto;
         left: -15%;
         right: auto;
-        width: 1190px;
+        width: 1440px;
         /* Kept from user edit, scaling handled by viewport or transform if needed */
         height: 780px;
         transform: scale(0.6);
@@ -493,5 +496,11 @@
         width: 20px;
         height: 97px;
         z-index: 2;
+    }
+}
+
+@media (max-width: 475px) {
+    .bonusCallout {
+        max-width: 450px;
     }
 }

@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useRef } from 'react';
+import Link from 'next/link';
+// import { usePathname } from 'next/navigation';
 import { useRouter, usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Header.module.css';
@@ -31,6 +33,8 @@ export default function Header({
   const [expandedChapter, setExpandedChapter] = useState<number | null>(null);
 
   const isFieldGuidePage = pathname === '/field-guide';
+  const isIntroActive = isFieldGuidePage;
+  const isFundraisingActive = pathname === '/';
 
   return (
     <>
@@ -80,7 +84,8 @@ export default function Header({
               onClick={(e) => e.stopPropagation()}
             >
               <div className={styles.menuBody}>
-                <div className={styles.menuLeft}>
+                {/* Desktop Menu Layout - Hidden on Mobile */}
+                <div className={`${styles.menuLeft} ${styles.desktopOnly}`}>
                   <div className={styles.menuSection}>
                     <button
                       className={`${styles.menuSectionTitle} ${isFieldGuidePage ? styles.active : ''}`}
@@ -88,28 +93,41 @@ export default function Header({
                         setIsChaptersSectionSticky?.(false);
                         router.push('/field-guide');
                         setIsMenuOpen(false);
+                        if (isIntroActive) {
+                          heroSectionRef?.current?.scrollIntoView({
+                            behavior: 'smooth',
+                          });
+                        }
                       }}
                     >
-                      {isFieldGuidePage && <span className={styles.bullet}>◆</span>}
-                      <span>Introduction</span>
+                      {isIntroActive && (
+                        <span className={styles.activeDiamond}>◆</span>
+                      )}
+                      <span>{isFieldGuidePage && <span className={styles.bullet}>◆</span>}
+                        <span>Introduction</span></span>
                     </button>
                   </div>
 
                   <div className={styles.menuSection}>
-                    <button
-                      className={`${styles.menuSectionTitle} ${styles.withBullet}`}
+                    <Link
+                      href="/"
+                      className={`${styles.menuSectionTitle} ${styles.withBullet} ${isFundraisingActive ? styles.menuSectionTitleActive : ''}`}
                       onClick={() => {
-                        setIsFundraisingExpanded(!isFundraisingExpanded);
-                        setActiveChapter(1); // Reset to first chapter
-                        chaptersSectionRef?.current?.scrollIntoView({
-                          behavior: 'smooth',
-                        });
                         setIsMenuOpen(false);
+                        if (isFundraisingActive) {
+                          setIsFundraisingExpanded(!isFundraisingExpanded);
+                          setActiveChapter(1); // Reset to first chapter
+                          chaptersSectionRef?.current?.scrollIntoView({
+                            behavior: 'smooth',
+                          });
+                        }
                       }}
                     >
-                      <span className={styles.bullet}>◆</span>
+                      {isFundraisingActive && (
+                        <span className={styles.activeDiamond}>◆</span>
+                      )}
                       <span>Fundraising</span>
-                    </button>
+                    </Link>
                   </div>
 
                   <div className={styles.menuSection}>
@@ -122,12 +140,12 @@ export default function Header({
                         setIsMenuOpen(false);
                       }}
                     >
-                      Volunteer Engagement
+                      <span>Volunteer Engagement</span>
                     </button>
                   </div>
                 </div>
 
-                <div className={styles.menuRight}>
+                <div className={`${styles.menuRight} ${styles.desktopOnly}`}>
                   <div className={styles.chaptersList}>
                     {/* Chapter 1 */}
                     <div className={styles.chapterItem}>
@@ -361,6 +379,88 @@ export default function Header({
                       ↓ DOWNLOAD ALL
                     </span>
                   </button>
+                </div>
+
+                {/* Mobile Menu Layout - Visible Only on Mobile */}
+                <div className={`${styles.mobileMenuContainer} ${styles.mobileOnly}`}>
+                  {/* Top Bar */}
+                  <div className={styles.mobileTopBar}>
+                    <div className={styles.mobileHomeButton}>HOME</div>
+                    <div className={styles.mobileSiteTitle}>UDARTA:EG FIELD GUIDE</div>
+                    <div className={styles.mobileMenuIconPlaceholder} onClick={() => setIsMenuOpen(false)}>
+                      <div className={styles.gridIcon}>
+                        <span></span><span></span><span></span><span></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Tabs */}
+                  <div className={styles.mobileTabs}>
+                    <span className={styles.mobileTabItem}>Introduction</span>
+                    <span className={`${styles.mobileTabItem} ${styles.mobileTabActive}`}>
+                      <span className={styles.mobileTabDiamond}>⬥</span> Fundraising
+                    </span>
+                    <span className={styles.mobileTabItem}>Volunteer</span>
+                  </div>
+
+                  {/* Chapter List (Fundraising Tab Content) */}
+                  <div className={styles.mobileChapterList}>
+                    {/* Chapter I */}
+                    <div className={styles.mobileChapterCard}>
+                      <div className={styles.mobileChapterHeader}>
+                        <span className={styles.mobileChapterLabel}>CH. I : TILLING THE SOIL</span>
+                        <span className={styles.mobileReduceIcon}>−</span>
+                      </div>
+                      <h3 className={styles.mobileChapterTitle}>Network Expansion</h3>
+                      <div className={styles.mobileChapterSubList}>
+                        <div className={styles.mobileChapterSubItem}>│ Network Mapping</div>
+                      </div>
+                    </div>
+
+                    {/* Chapter II */}
+                    <div className={styles.mobileChapterCard}>
+                      <div className={styles.mobileChapterHeader}>
+                        <span className={styles.mobileChapterLabel}>CH. II : THE PLANTING</span>
+                        <span className={styles.mobileReduceIcon}>−</span>
+                      </div>
+                      <h3 className={styles.mobileChapterTitle}>First Donation</h3>
+                      <div className={styles.mobileChapterSubList}>
+                        <div className={styles.mobileChapterSubItem}>│ Donor Database</div>
+                      </div>
+                    </div>
+
+                    {/* Chapter III */}
+                    <div className={styles.mobileChapterCard}>
+                      <div className={styles.mobileChapterHeader}>
+                        <span className={styles.mobileChapterLabel}>CHAPTER III: THE NURTURING</span>
+                        <span className={styles.mobileReduceIcon}>−</span>
+                      </div>
+                      <h3 className={styles.mobileChapterTitle}>Stewarding Donors</h3>
+                      <div className={styles.mobileChapterSubList}>
+                        <div className={styles.mobileChapterSubItem}>│ Segmentation & Profiling</div>
+                        <div className={styles.mobileChapterSubItem}>│ The Storytelling Bank</div>
+                        <div className={styles.mobileChapterSubItem}>│ The Communications Calendar</div>
+                      </div>
+                    </div>
+
+                    {/* Chapter IV */}
+                    <div className={styles.mobileChapterCard}>
+                      <div className={styles.mobileChapterHeader}>
+                        <span className={styles.mobileChapterLabel}>CHAPTER IV: GROWTH</span>
+                        <span className={styles.mobileReduceIcon}>−</span>
+                      </div>
+                      <h3 className={styles.mobileChapterTitle}>Donors to Champions</h3>
+                      <div className={styles.mobileChapterSubList}>
+                        <div className={styles.mobileChapterSubItem}>│ Donor Engagement Dashboard</div>
+                        <div className={styles.mobileChapterSubItem}>│ Supporter-Led Fundraising</div>
+                      </div>
+                    </div>
+
+                    {/* Chapter V */}
+                    <div className={styles.mobileChapterCardBottom}>
+                      <span className={styles.mobileChapterLabel}>CH. V : BONUS CHAPTER</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </motion.div>

@@ -1832,6 +1832,23 @@
   width: 100%;
 }
 
+.chapterSelectionLabel {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: italic;
+
+  line-height: 150%;
+  letter-spacing: -0.02em;
+  /* -2% converted correctly */
+
+  text-align: center;
+  margin-bottom: 24px;
+
+  color: #93CD4D;
+}
+
+
 /* .heroDividerLine {
   width: 1px;
   height: 60px;
@@ -4268,54 +4285,55 @@
 }
 
 .hoverFlowerLeftmost {
-  position: absolute;
-  bottom: -225px;
-  left: -45px;
+  position: fixed;
+  bottom: 85px;
+  left: calc(50% - 625px);
   width: 125px;
   height: 400px;
   pointer-events: none;
-  z-index: 5;
-  transform: translateX(-100px);
+  z-index: 99;
 }
 
 .hoverFlowerMiddle {
-  position: absolute;
-  bottom: -150px;
-  left: 90px;
+  position: fixed;
+  bottom: 160px;
+  left: calc(50% - 525px);
   width: 60px;
   height: auto;
   pointer-events: none;
-  z-index: 6;
+  z-index: 99;
 }
 
 .hoverFlowerRightmost {
-  position: absolute;
-  bottom: -100px;
-  left: 180px;
+  position: fixed;
+  bottom: 210px;
+  left: calc(50% - 445px);
   width: 50px;
   height: auto;
   pointer-events: none;
-  z-index: 7;
+  z-index: 99;
 }
 
 .hoverPetal {
-  position: absolute;
-  top: -60px;
-  left: -100px;
+  position: fixed;
+  top: auto;
+  bottom: 350px;
+  left: calc(50% - 725px);
   width: 250px;
   height: auto;
   pointer-events: none;
-  z-index: 8;
+  z-index: 99;
 }
 
 .hoverFly {
-  position: absolute;
-  top: -20px;
-  left: 25%;
+  position: fixed;
+  top: auto;
+  bottom: 370px;
+  left: calc(50% - 435px);
   width: 50px;
   height: auto;
   pointer-events: none;
-  z-index: 9;
+  z-index: 99;
 }
 
 /* Hover Decorations for Chapter 1 Option B (Right Side) */
@@ -4363,7 +4381,7 @@
 .ch2HoverFly {
   position: absolute;
   top: 0;
-  left: 300px;
+  left: 200px;
   width: 50px;
   height: auto;
   pointer-events: none;
@@ -4373,7 +4391,7 @@
 .ch2HoverEmptyBubble {
   position: absolute;
   top: -120px;
-  left: 45px;
+  left: -55px;
   width: 60px;
   height: auto;
   pointer-events: none;
@@ -4383,7 +4401,7 @@
 .ch2HoverFilledBubble {
   position: absolute;
   top: -70px;
-  left: 100px;
+  left: 0;
   width: 60px;
   height: auto;
   pointer-events: none;
@@ -4393,7 +4411,7 @@
 .ch2HoverImageLeft {
   position: absolute;
   bottom: -120px;
-  left: 10px;
+  left: -90px;
   width: 80px;
   height: auto;
   pointer-events: none;
@@ -4403,7 +4421,7 @@
 .ch2HoverImageRight {
   position: absolute;
   bottom: -70px;
-  left: 100px;
+  left: 0;
   width: 80px;
   height: auto;
   pointer-events: none;
@@ -4413,7 +4431,7 @@
 .ch2HoverEmptyBubble2 {
   position: absolute;
   top: 255px;
-  left: 30%;
+  left: 110px;
   width: 50px;
   height: auto;
   pointer-events: none;
@@ -4423,7 +4441,7 @@
 .ch2HoverFilledBubble2 {
   position: absolute;
   top: 210px;
-  left: 32%;
+  left: 117px;
   width: 50px;
   height: auto;
   pointer-events: none;
@@ -4977,7 +4995,7 @@
 .ch4LeftFly {
   position: absolute;
   top: -80px;
-  left: 350px;
+  left: 250px;
   width: 50px;
   height: auto;
   pointer-events: none;
@@ -5007,7 +5025,7 @@
 .ch4LeftHollow2 {
   position: absolute;
   bottom: 150px;
-  left: 20px;
+  left: -80px;
   width: 50px;
   height: auto;
   pointer-events: none;
@@ -5017,7 +5035,7 @@
 .ch4LeftFill2 {
   position: absolute;
   bottom: 180px;
-  left: 5px;
+  left: -95px;
   width: 45px;
   height: auto;
   pointer-events: none;
@@ -8876,4 +8894,15 @@
   display: none;
   margin: 0;
   padding: 0;
+}
+.backToChaptersBtn {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.navButton {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }

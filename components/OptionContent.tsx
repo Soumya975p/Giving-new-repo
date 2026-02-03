@@ -84,7 +84,7 @@ export default function OptionContent({
             <div className={`${s.stickyHeader} ${embedded ? s.embeddedHeader : ''}`}>
                 <button className={s.backButton} onClick={onBack}>
                     <ArrowLeft size={16} />
-                    <span>Back to scenario</span>
+                    <span>Back to chapters</span>
                 </button>
 
                 {!embedded && (
@@ -94,20 +94,23 @@ export default function OptionContent({
                     </div>
                 )}
 
-                <div className={s.scrollToggle}>
-                    <img src="/assets/scroll.svg" alt="Scroll" />
-                </div>
+
             </div>
 
             {/* Horizontally Scrollable Content */}
             <div className={s.horizontalScrollContainer}>
                 <div className={s.scrollContent}>
                     {contentCards.map((card, index) => {
-                        // Specialized rendering for toolkit cards using ToolkitCard component
+                        // Determine if this is the last card and we have a next action
+                        const isLastCard = index === contentCards.length - 1;
+                        const showNextButtonWithCard = isLastCard && onNext;
+
+                        // specialized rendering for toolkit cards using ToolkitCard component
+                        let cardContent;
                         if (card.type === 'toolkit') {
                             // Use new ToolkitCard component if background and design images are provided
                             if (card.toolkitBackgroundImage && card.toolkitDesignImage) {
-                                return (
+                                cardContent = (
                                     <div key={card.id} className={`${s.toolkitCard} ${s[`toolkit-${card.id}`]}`}>
                                         <ToolkitCard
                                             toolkitNumber={card.toolkitNumber || 1}
@@ -123,129 +126,135 @@ export default function OptionContent({
                                         />
                                     </div>
                                 );
+                            } else {
+                                // Fallback to old toolkit image rendering
+                                cardContent = (
+                                    <div key={card.id} className={`${s.toolkitCard} ${s[`toolkit-${card.id}`]}`}>
+                                        {card.toolkitImage && (
+                                            <img src={card.toolkitImage} alt={card.toolkitTitle || "Toolkit"} className={s.toolkitImage} />
+                                        )}
+                                    </div>
+                                );
                             }
-                            // Fallback to old toolkit image rendering
-                            return (
-                                <div key={card.id} className={`${s.toolkitCard} ${s[`toolkit-${card.id}`]}`}>
-                                    {card.toolkitImage && (
-                                        <img src={card.toolkitImage} alt={card.toolkitTitle || "Toolkit"} className={s.toolkitImage} />
+                        } else {
+                            // Regular content card rendering
+                            cardContent = (
+                                <div
+                                    key={card.id}
+                                    className={s.contentCard}
+                                    style={index === 0 ? { marginTop: firstCardOffset } : {}}
+                                >
+                                    {card.decorationImages ? (
+                                        card.decorationImages.map((img, i) => (
+                                            <img
+                                                key={i}
+                                                src={img}
+                                                alt=""
+                                                className={`${s.decorationImage} ${s[`decor-${card.id}-${i}`]}`}
+                                            />
+                                        ))
+                                    ) : card.decorationImage ? (
+                                        <img src={card.decorationImage} alt="" className={s.decorationImage} />
+                                    ) : card.decorationType ? (
+                                        <div className={`${s.decoration} ${s[card.decorationType]}`}></div>
+                                    ) : null}
+
+                                    {card.floatingText && (
+                                        <div className={s.floatingTextContainer}>
+                                            {card.floatingTextLabel && <span className={s.floatingTextLabel}>{card.floatingTextLabel}</span>}
+                                            <p className={s.floatingText}>{card.floatingText}</p>
+                                        </div>
+                                    )}
+
+                                    {card.type === 'text' && (
+                                        <>
+                                            {(card.title || card.content || card.label) && (
+                                                <div
+                                                    className={s.textCard}
+                                                    style={card.transparentBackground ? {
+                                                        background: 'transparent',
+                                                        boxShadow: 'none',
+                                                        border: 'none',
+                                                        padding: 0
+                                                    } : {}}
+                                                >
+                                                    {card.title && <h3 className={s.cardTitle}>{card.title}</h3>}
+                                                    {card.content && <p className={s.cardContent}>{card.content}</p>}
+                                                    {card.label && (
+                                                        <div className={s.infoBox}>
+                                                            <span className={s.infoLabel}>{card.label}</span>
+                                                            <p className={s.infoText}>{card.content}</p>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            )}
+
+                                            {card.showStatBelow && (
+                                                <div
+                                                    className={styles.statCard}
+                                                    style={card.statBoxTransparent ? {
+                                                        background: 'rgba(0,0,0,0.2)',
+                                                        boxShadow: 'none',
+                                                        backdropFilter: 'blur(10px)',
+                                                        padding: '24px 30px',
+                                                        marginTop: '20px',
+                                                        borderRadius: '16px'
+                                                    } : {}}
+                                                >
+                                                    <span className={s.statLabel} style={card.statBoxTransparent ? { color: '#00F0FF', letterSpacing: '1px' } : {}}>{card.statLabel}</span>
+                                                    {card.showStatIcons !== false && (
+                                                        <img
+                                                            src={card.statIconImage || "/assets/stat_icons.svg"}
+                                                            alt="Stat icons"
+                                                            className={s.statIconsImage}
+                                                        />
+                                                    )}
+                                                    <h3 className={s.statNumber}>{card.stat}</h3>
+                                                    <p className={s.statDescription}>{card.statDescription}</p>
+                                                </div>
+                                            )}
+                                        </>
+                                    )}
+
+                                    {card.type === 'stat' && (
+                                        <div className={s.statCard}>
+                                            <span className={s.statLabel}>{card.label}</span>
+                                            <div className={s.statIcons}>
+                                                {[...Array(5)].map((_, i) => (
+                                                    <div key={i} className={`${s.statIcon} ${i < 4 ? s.active : ''}`}></div>
+                                                ))}
+                                            </div>
+                                            <h3 className={s.statNumber}>{card.stat}</h3>
+                                            <p className={s.statDescription}>{card.statDescription}</p>
+                                        </div>
+                                    )}
+
+                                    {/* Decorative elements */}
+                                    {index < contentCards.length - 1 && (
+                                        <div className={s.connector}></div>
                                     )}
                                 </div>
                             );
                         }
 
-                        // Regular content card rendering
-                        return (
-                            <div
-                                key={card.id}
-                                className={s.contentCard}
-                                style={index === 0 ? { marginTop: firstCardOffset } : {}}
-                            >
-                                {card.decorationImages ? (
-                                    card.decorationImages.map((img, i) => (
+                        if (showNextButtonWithCard) {
+                            return (
+                                <div key={`wrapper-${card.id}`} className={s.lastCardWrapper}>
+                                    {cardContent}
+                                    <div className={s.nextChapterCard}>
                                         <img
-                                            key={i}
-                                            src={img}
-                                            alt=""
-                                            className={`${s.decorationImage} ${s[`decor-${card.id}-${i}`]}`}
+                                            src="/assets/next_chapter_button.svg"
+                                            alt="Next chapter"
+                                            className={s.nextChapterImage}
+                                            onClick={onNext}
                                         />
-                                    ))
-                                ) : card.decorationImage ? (
-                                    <img src={card.decorationImage} alt="" className={s.decorationImage} />
-                                ) : card.decorationType ? (
-                                    <div className={`${s.decoration} ${s[card.decorationType]}`}></div>
-                                ) : null}
-
-                                {card.floatingText && (
-                                    <div className={s.floatingTextContainer}>
-                                        {card.floatingTextLabel && <span className={s.floatingTextLabel}>{card.floatingTextLabel}</span>}
-                                        <p className={s.floatingText}>{card.floatingText}</p>
                                     </div>
-                                )}
+                                </div>
+                            );
+                        }
 
-                                {card.type === 'text' && (
-                                    <>
-                                        {(card.title || card.content || card.label) && (
-                                            <div
-                                                className={s.textCard}
-                                                style={card.transparentBackground ? {
-                                                    background: 'transparent',
-                                                    boxShadow: 'none',
-                                                    border: 'none',
-                                                    padding: 0
-                                                } : {}}
-                                            >
-                                                {card.title && <h3 className={s.cardTitle}>{card.title}</h3>}
-                                                {card.content && <p className={s.cardContent}>{card.content}</p>}
-                                                {card.label && (
-                                                    <div className={s.infoBox}>
-                                                        <span className={s.infoLabel}>{card.label}</span>
-                                                        <p className={s.infoText}>{card.content}</p>
-                                                    </div>
-                                                )}
-                                            </div>
-                                        )}
-
-                                        {card.showStatBelow && (
-                                            <div
-                                                className={styles.statCard}
-                                                style={card.statBoxTransparent ? {
-                                                    background: 'rgba(0,0,0,0.2)',
-                                                    boxShadow: 'none',
-                                                    backdropFilter: 'blur(10px)',
-                                                    padding: '24px 30px',
-                                                    marginTop: '20px',
-                                                    borderRadius: '16px'
-                                                } : {}}
-                                            >
-                                                <span className={s.statLabel} style={card.statBoxTransparent ? { color: '#00F0FF', letterSpacing: '1px' } : {}}>{card.statLabel}</span>
-                                                {card.showStatIcons !== false && (
-                                                    <img
-                                                        src={card.statIconImage || "/assets/stat_icons.svg"}
-                                                        alt="Stat icons"
-                                                        className={s.statIconsImage}
-                                                    />
-                                                )}
-                                                <h3 className={s.statNumber}>{card.stat}</h3>
-                                                <p className={s.statDescription}>{card.statDescription}</p>
-                                            </div>
-                                        )}
-                                    </>
-                                )}
-
-                                {card.type === 'stat' && (
-                                    <div className={s.statCard}>
-                                        <span className={s.statLabel}>{card.label}</span>
-                                        <div className={s.statIcons}>
-                                            {[...Array(5)].map((_, i) => (
-                                                <div key={i} className={`${s.statIcon} ${i < 4 ? s.active : ''}`}></div>
-                                            ))}
-                                        </div>
-                                        <h3 className={s.statNumber}>{card.stat}</h3>
-                                        <p className={s.statDescription}>{card.statDescription}</p>
-                                    </div>
-                                )}
-
-                                {/* Decorative elements */}
-                                {index < contentCards.length - 1 && (
-                                    <div className={s.connector}></div>
-                                )}
-                            </div>
-                        );
+                        return cardContent;
                     })}
-
-                    {/* Next Chapter Button */}
-                    {/* Next Chapter Button */}
-                    {onNext && (
-                        <div className={s.nextChapterCard}>
-                            <img
-                                src="/assets/next_chapter_button.svg"
-                                alt="Next chapter"
-                                className={s.nextChapterImage}
-                                onClick={onNext}
-                            />
-                        </div>
-                    )}
 
                     {/* End Image */}
                     {endImage && (

@@ -564,13 +564,22 @@
    NEXT CHAPTER BUTTON
    ======================================== */
 
+.lastCardWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 200px;
+    /* Match scrollContent gap? Or Ch2 Option B gap? */
+}
+
 .nextChapterCard {
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     min-width: 150px;
-    align-self: center;
+    position: relative;
+    overflow: visible;
 }
 
 .nextChapterButton {
@@ -679,4 +688,21 @@
     margin-right: 30px;
     z-index: 10001;
     top: 20vh;
+}
+
+@media (max-width: 1024px) {
+    .lastCardWrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        margin-top: 20px;
+    }
+
+    .embedded .nextChapterCard {
+        /* Reset positioning for vertical stack */
+        top: 0;
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 20px;
+    }
 }
