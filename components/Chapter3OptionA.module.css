@@ -5,7 +5,7 @@
     top: 0;
     left: 0;
     z-index: 3000;
-    overflow: hidden;
+    overflow: visible;
     background: transparent;
     display: flex;
     flex-direction: column;
@@ -65,10 +65,12 @@
     gap: 8px;
     background: transparent;
     border: none;
-    color: #1a4d3a;
+    color: #20315B;
     font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.04em;
     cursor: pointer;
     padding: 0;
     opacity: 0.8;
@@ -76,20 +78,26 @@
 
 .scrollToggle {
     position: absolute;
-    top: 30px;
-    right: 60px;
+    top: 42px;
+    left: 1310px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: transparent;
-    padding: 0;
+    background: rgba(20, 52, 60, 0.15);
+    padding: 3.12px 9.37px 3.12px 12.49px;
     border: none;
+    width: 89.43px;
+    height: 36.69px;
+    gap: 6.25px;
+    border-radius: 101.5px;
+    opacity: 1;
 }
 
 .horizontalScrollContainer {
     width: 100%;
     flex-grow: 1;
     overflow-x: auto;
+    overflow-y: visible;
     scrollbar-width: none;
     display: flex;
     align-items: center;

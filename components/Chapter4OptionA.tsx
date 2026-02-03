@@ -7,9 +7,10 @@ interface Chapter4OptionAProps {
     onBack: () => void;
     onNext?: () => void;
     embedded?: boolean;
+    onToolkitDownload?: () => void;
 }
 
-export default function Chapter4OptionA({ onBack, onNext, embedded = false }: Chapter4OptionAProps) {
+export default function Chapter4OptionA({ onBack, onNext, embedded = false, onToolkitDownload }: Chapter4OptionAProps) {
     return (
         <div className={styles.optionContentWrapper}>
             {/* Sticky Header */}
@@ -121,6 +122,8 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false }: Ch
                                 disableRotation={true}
                                 backgroundVariant="tk6"
                                 designVariant="tk6"
+                                onDownload={onToolkitDownload}
+                                onViewToolkit={onToolkitDownload}
                             />
                         </div>
 
@@ -135,6 +138,8 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false }: Ch
                                 disableRotation={true}
                                 backgroundVariant="tk7"
                                 designVariant="tk7"
+                                onDownload={onToolkitDownload}
+                                onViewToolkit={onToolkitDownload}
                             />
                         </div>
 

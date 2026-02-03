@@ -10,7 +10,8 @@ interface HeaderProps {
   setActiveChapter?: (chapter: number) => void;
   chaptersSectionRef?: React.RefObject<HTMLDivElement>;
   bonusSectionRef?: React.RefObject<HTMLDivElement>;
-  setIsChaptersSectionSticky?: (isSticky: boolean) => void;
+  heroSectionRef?: React.RefObject<HTMLDivElement>;
+  exploreSectionRef?: React.RefObject<HTMLDivElement>;
 }
 
 export default function Header({
@@ -18,7 +19,8 @@ export default function Header({
   setActiveChapter = () => { },
   chaptersSectionRef,
   bonusSectionRef,
-  setIsChaptersSectionSticky,
+  heroSectionRef,
+  exploreSectionRef,
 }: HeaderProps) {
   const router = useRouter();
   const pathname = usePathname();
@@ -93,7 +95,12 @@ export default function Header({
                     <button
                       className={`${styles.menuSectionTitle} ${styles.withBullet}`}
                       onClick={() => {
-                        window.location.href = 'http://localhost:3001/';
+                        setIsFundraisingExpanded(!isFundraisingExpanded);
+                        setActiveChapter(1); // Reset to first chapter
+                        chaptersSectionRef?.current?.scrollIntoView({
+                          behavior: 'smooth',
+                        });
+                        setIsMenuOpen(false);
                       }}
                     >
                       <span className={styles.bullet}>◆</span>
@@ -102,7 +109,15 @@ export default function Header({
                   </div>
 
                   <div className={styles.menuSection}>
-                    <button className={styles.menuSectionTitle}>
+                    <button
+                      className={styles.menuSectionTitle}
+                      onClick={() => {
+                        exploreSectionRef?.current?.scrollIntoView({
+                          behavior: 'smooth',
+                        });
+                        setIsMenuOpen(false);
+                      }}
+                    >
                       Volunteer Engagement
                     </button>
                   </div>

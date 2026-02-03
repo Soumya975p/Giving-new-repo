@@ -697,15 +697,8 @@
   width: 100%;
   height: 100vh !important;
   z-index: 100;
-  overflow-y: auto;
-  scrollbar-width: none;
-  padding-top: 0;
-  padding-bottom: 100px !important;
-  /* Restored bottom padding for scroll space */
-}
-
-.chaptersSectionSticky::-webkit-scrollbar {
-  display: none;
+  overflow: hidden;
+  animation: slideUpAndFix 0.5s ease-out forwards;
 }
 
 @keyframes slideUpAndFix {
@@ -759,22 +752,23 @@
 /* Chapter panel that fills viewport with depth shadow */
 .chapterPanel {
   width: 100%;
-  height: auto;
-  min-height: 100vh;
+  height: 100vh;
   border-radius: 24px 24px 0 0;
   position: relative;
-  overflow: visible;
+  overflow: hidden;
   box-shadow:
     0 -20px 60px rgba(0, 0, 0, 0.4),
     0 -5px 20px rgba(0, 0, 0, 0.2);
   transform: translateZ(0);
   backface-visibility: hidden;
+  border: none;
+  outline: none;
 }
 
 /* Content area inside panel */
 .chapterContentSticky {
   width: 100%;
-  height: auto;
+  height: 100%;
   padding: 0;
   box-sizing: border-box;
   display: flex;
@@ -2362,6 +2356,18 @@
 }
 
 /* Hero Background SVG - Responsive & Centered */
+/* .heroBackgroundSvg {
+  position: relative;
+  display: block;
+  width: 100vw;
+  /* max-width: 100vw; */
+/* height: auto;
+  margin: -22vh;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 1;
+  transition: all 0.3s ease;
+} */
 .heroBackgroundSvg {
   position: relative;
   display: block;
@@ -4168,7 +4174,7 @@
   width: 996px;
   text-align: center;
   margin-bottom: 80px;
-  margin-top:120px;
+  margin-top: 120px;
   /* Reduced from 50px */
   position: relative;
   z-index: 10;
@@ -4315,7 +4321,7 @@
 .hoverRightFlowerTop {
   position: absolute;
   bottom: 0vh;
-  right: -10vw;
+  right: 30vw;
   width: 150px;
   height: auto;
   pointer-events: none;
@@ -8116,14 +8122,14 @@
     /* Options after card (order 1) and text (order 2) */
     text-align: left !important;
     border: 1px solid rgba(255, 255, 255, 0.3);
-  
+
   }
 
   .optionColumnRight {
     order: 4;
     /* After left option (order 3) */
     align-items: flex-start !important;
-    
+
   }
 
   .optionLabel {
@@ -8194,7 +8200,7 @@
 .hoverFlowerLeftmost {
   position: absolute;
   bottom: 0vh;
-  left: -5%;
+  left: -10%;
   width: 100px;
   height: 200px;
   pointer-events: none;
@@ -8205,7 +8211,7 @@
 .hoverFlowerMiddle {
   position: absolute;
   bottom: -0vh;
-  left: 7%;
+  left: -1%;
   width: 40px;
   height: auto;
   pointer-events: none;
@@ -8215,7 +8221,7 @@
 .hoverFlowerRightmost {
   position: absolute;
   bottom: -0vh;
-  left: 10%;
+  left: 1%;
   width: 40px;
   height: auto;
   pointer-events: none;
@@ -8224,8 +8230,8 @@
 
 .hoverPetal {
   position: absolute;
-  top: -20%;
-  left: -10vw;
+  top: -50%;
+  left: -5vw;
   width: 250px;
   height: auto;
   pointer-events: none;
@@ -8244,8 +8250,8 @@
 
 .hoverRightFlowerTop {
   position: absolute;
-  bottom: 0vh;
-  right: 2vw;
+  bottom: -3vh;
+  right: -5vw;
   width: 150px;
   height: auto;
   pointer-events: none;
@@ -8254,8 +8260,8 @@
 
 .hoverRightFlowerBottom {
   position: absolute;
-  bottom: 11.5vh;
-  right: 11vw;
+  bottom: 6.5vh;
+  right: 2vw;
   width: 100px;
   height: auto;
   pointer-events: none;
@@ -8264,7 +8270,7 @@
 
 .hoverRightFly {
   position: absolute;
-  top: -20px;
+  top: -40px;
   right: 50px;
   width: 50px;
   height: auto;
@@ -8275,7 +8281,7 @@
 .ch2HoverLamp {
   position: absolute;
   bottom: 0vh;
-  left: 1vw;
+  left: -5vw;
   width: 150px;
   height: auto;
   pointer-events: none;
@@ -8284,7 +8290,7 @@
 
 .ch2HoverFly {
   position: absolute;
-  top: 0;
+  top: -50px;
   left: 300px;
   width: 50px;
   height: auto;
@@ -8294,7 +8300,7 @@
 
 .ch2HoverEmptyBubble {
   position: absolute;
-  top: -120px;
+  top: -150px;
   left: 45px;
   width: 60px;
   height: auto;
@@ -8304,7 +8310,7 @@
 
 .ch2HoverFilledBubble {
   position: absolute;
-  top: -70px;
+  top: -100px;
   left: 100px;
   width: 60px;
   height: auto;
@@ -8314,8 +8320,8 @@
 
 .ch2HoverImageLeft {
   position: absolute;
-  bottom: 0vh;
-  left: 8vw;
+  bottom: -7vh;
+  left: 3vw;
   width: 60px;
   height: auto;
   pointer-events: none;
@@ -8324,8 +8330,8 @@
 
 .ch2HoverImageRight {
   position: absolute;
-  bottom: -0vh;
-  left: 12vw;
+  bottom: -1vh;
+  left: 8vw;
   width: 60px;
   height: auto;
   pointer-events: none;
@@ -8369,7 +8375,7 @@
 .ch2RightFlowerPetal1 {
   position: absolute;
   bottom: 40vh;
-  right: 0vw;
+  right: -3vw;
   width: 70px;
   height: auto;
   pointer-events: none;
@@ -8378,8 +8384,8 @@
 
 .ch2RightFlowerPetal2 {
   position: absolute;
-  top: 220px;
-  right: -55px;
+  top: 150px;
+  right: -147px;
   width: 15px;
   height: auto;
   pointer-events: none;
@@ -8388,8 +8394,8 @@
 
 .ch2RightFlowerPetal3 {
   position: absolute;
-  top: 240px;
-  right: -38px;
+  top: 210px;
+  right: -125px;
   width: 15px;
   height: auto;
   pointer-events: none;
@@ -8399,7 +8405,7 @@
 .ch2RightFlower1 {
   position: absolute;
   bottom: -8vh;
-  right: 5w;
+  right: -3w;
   width: 110px;
   height: auto;
   pointer-events: none;
@@ -8428,8 +8434,8 @@
 
 .ch2RightStick {
   position: absolute;
-  bottom: -110px;
-  right: -40px;
+  bottom: -60px;
+  right: -130px;
   width: 80px;
   height: auto;
   pointer-events: none;
@@ -8449,7 +8455,7 @@
 .ch3RightFlower {
   position: absolute;
   bottom: 0vh;
-  right: 0vw;
+  right: -12vw;
   width: 70px;
   height: auto;
   pointer-events: none;
@@ -8460,7 +8466,7 @@
 .ch3DiamondBottom {
   position: absolute;
   bottom: 3vh;
-  right: 0vw;
+  right: -12vw;
   width: 200px;
   height: auto;
   pointer-events: none;
@@ -8470,7 +8476,7 @@
 .ch3TopSection {
   position: absolute;
   top: -20vh;
-  right: 0vw;
+  right: -5vw;
   width: 250px;
   height: auto;
   pointer-events: none;
@@ -8480,7 +8486,7 @@
 .ch3LeftFlower {
   position: absolute;
   bottom: -1vh;
-  right: 8vw;
+  right: -5vw;
   width: 70px;
   height: auto;
   pointer-events: none;
