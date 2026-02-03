@@ -13,7 +13,7 @@ import chapter3StylesA from '../components/Chapter3OptionA.module.css'
 import chapter3StylesB from '../components/Chapter3OptionB.module.css'
 import chapter4StylesA from '../components/Chapter4OptionA.module.css'
 import chapter4StylesB from '../components/Chapter4OptionB.module.css'
-// import Chapter3OptionB from '../components/Chapter3OptionB'
+import Chapter3OptionB from '../components/Chapter3OptionB'
 import Chapter4OptionA from '../components/Chapter4OptionA'
 import TabsSection from '../components/TabsSection'
 import Footer from '../components/Footer'
@@ -1367,99 +1367,12 @@ export default function Home() {
                               </button>
                             </div>
                           ) : selectedOption === 'B' ? (
-                            // Chapter 3 Option B Content (without header, header is above)
-                            <div style={{ flex: 1, width: '100%', position: 'relative' }}>
-                              <OptionContent
-                                embedded={true}
-                                chapterTitle="CHAPTER III: STEWARDING DONORS"
-                                chapterSubtitle="Staying connected after the first gift builds trust. This chapter focuses on how consistent, non-ask engagement helps donors feel involved and valued."
-                                backgroundColor="transparent"
-                                onBack={() => setSelectedOption(null)}
-                                onNext={handleNextChapter}
-                                // optionId="ch1OptionA"
-                                customStyles={chapter3StylesB}
-                                contentCards={[
-                                  {
-                                    id: 1,
-                                    type: 'text',
-                                    decorationImages: ['/assets/flower_chapter_4.svg'],
-                                    title: "You're nurturing the relationship!",
-                                    content: "Nidhi receives a photo of the lake being de-silted and understands how her contribution made a difference. Over time, she joins virtual events and stays engaged through regular, meaningful updates."
-                                  },
-                                  {
-                                    id: 2,
-                                    type: 'text',
-                                    decorationImages: ['/assets/chapter_3_middlestick.svg'],
-                                    showStatBelow: true,
-                                    statLabel: "UDARTA:EG STUDY SHOWS",
-                                    stat: "",
-                                    statDescription: "Sharing impact updates is linked to an 11.3 percentage point increase in recurring donors.",
-                                    showStatIcons: false
-                                  },
-                                  {
-                                    id: 3,
-                                    type: 'text',
-                                    decorationImages: [
-                                      '/assets/chapter_1_column2_1.svg',
-                                      '/assets/chapter_3_middlestick.svg'
-                                    ],
-                                    // label: 'WHY THIS WORKS',
-                                    content: "Regular, non-ask touchpoints help donors feel included in the journey – not contacted only when funds are needed.",
-                                    floatingText: (
-                                      <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start', marginTop: '10px' }}>
-                                        <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#93CD4D', flexShrink: 0, marginTop: '4px' }}></div>
-                                        <span>We created three toolkits that will help you identify and activate people, tell better stories and organise your communications calendar</span>
-                                      </div>
-                                    )
-                                  },
-                                  {
-                                    id: 4,
-                                    type: 'toolkit',
-                                    toolkitNumber: 4,
-                                    toolkitTitle: 'The Storytelling Bank',
-                                    toolkitDescription: 'Build trust with donors through real stories saved and sorted systematically.',
-                                    toolkitBackgroundImage: '/assets/toolkit4/toolkit4_background.svg',
-                                    toolkitDesignImage: '/assets/toolkit4/toolkit4_design.png',
-                                    toolkitDisableRotation: true,
-                                    toolkitBackgroundVariant: 'tk345',
-                                    toolkitDesignVariant: 'tk4',
-                                    toolkitImage: '/assets/took4.svg',
-                                    onToolkitDownload: () => setIsPopupOpen(true),
-                                    onToolkitView: () => setIsPopupOpen(true)
-                                  },
-                                  {
-                                    id: 5,
-                                    type: 'toolkit',
-                                    toolkitNumber: 3,
-                                    toolkitTitle: 'Segmentation & Profiling',
-                                    toolkitDescription: 'The foundation for effective donor communication.',
-                                    toolkitBackgroundImage: '/assets/toolkit3/toolkit3_background.svg',
-                                    toolkitDesignImage: '/assets/toolkit3/toolkit3_design.png',
-                                    toolkitDisableRotation: true,
-                                    toolkitBackgroundVariant: 'tk345',
-                                    toolkitDesignVariant: 'tk3',
-                                    toolkitImage: '/assets/tool3.svg',
-                                    onToolkitDownload: () => setIsPopupOpen(true),
-                                    onToolkitView: () => setIsPopupOpen(true)
-                                  },
-                                  {
-                                    id: 6,
-                                    type: 'toolkit',
-                                    toolkitNumber: 5,
-                                    toolkitTitle: 'Communications Calendar',
-                                    toolkitDescription: 'A simple planning tool to keep outreach consistent, deliberate and aligned with donor preferences.',
-                                    toolkitBackgroundImage: '/assets/toolkit5/toolkit5_background.svg',
-                                    toolkitDesignImage: '/assets/toolkit5/toolkit5_design.png',
-                                    toolkitDisableRotation: true,
-                                    toolkitBackgroundVariant: 'tk345',
-                                    toolkitDesignVariant: 'tk5',
-                                    toolkitImage: '/assets/tool5.svg',
-                                    onToolkitDownload: () => setIsPopupOpen(true),
-                                    onToolkitView: () => setIsPopupOpen(true)
-                                  }
-                                ]}
-                              />
-                            </div>
+                            // Chapter 3 Option B Content
+                            <Chapter3OptionB
+                              embedded={true}
+                              onBack={() => setSelectedOption(null)}
+                              onNext={handleNextChapter}
+                            />
                           ) : (
                             // Chapter 3 Default View - just render scenario container, header is above
                             <div className={styles.scenarioContainer} style={{ marginTop: '10px' }}>

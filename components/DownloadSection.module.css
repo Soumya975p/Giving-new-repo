@@ -413,7 +413,7 @@
 }
 
 /* Download Section - Mobile Specifics */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .desktopOnly {
         display: none !important;
     }

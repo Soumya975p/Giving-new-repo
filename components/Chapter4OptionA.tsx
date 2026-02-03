@@ -11,8 +11,42 @@ interface Chapter4OptionAProps {
 }
 
 export default function Chapter4OptionA({ onBack, onNext, embedded = false, onToolkitDownload }: Chapter4OptionAProps) {
+    const [isHovered, setIsHovered] = React.useState(false);
+
     return (
         <div className={styles.optionContentWrapper}>
+            {/* Left Side Plant Decoration with Hover Effects */}
+            <div 
+                className={styles.leftPlantDecor}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+            >
+                <img 
+                    src="/assets/left_plant_leaves.svg"
+                    alt="Plant decoration"
+                    className={styles.plantImage}
+                />
+                {isHovered && (
+                    <>
+                        <img 
+                            src="/assets/chapter4/hover_fly_ch4.svg"
+                            alt="Flying decoration"
+                            className={styles.hoverFlyDecor}
+                        />
+                        <img 
+                            src="/assets/chapter4/hover_hollow_ch4.svg"
+                            alt="Hollow decoration"
+                            className={styles.hoverHollowDecor}
+                        />
+                        <img 
+                            src="/assets/chapter4/hover_fill_circle_ch4.svg"
+                            alt="Fill decoration"
+                            className={styles.hoverFillDecor}
+                        />
+                    </>
+                )}
+            </div>
+
             {/* Sticky Header */}
             <div className={`${styles.stickyHeader} ${embedded ? styles.embeddedHeader : ''}`}>
                 <button className={styles.backButton} onClick={onBack}>
@@ -125,33 +159,35 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
                             />
                         </div>
 
-                        {/* Toolkit Card 2 */}
-                        <div className={styles.toolkitCard}>
-                            <ToolkitCard
-                                toolkitNumber={7}
-                                title="Supporter-Led Fundraising"
-                                description="A powerful toolkit to grow your network by creating champions for your cause."
-                                backgroundImage="/assets/toolkit7/toolkit7_background.svg"
-                                designImage="/assets/toolkit7/toolkit7_design.png"
-                                disableRotation={true}
-                                backgroundVariant="tk7"
-                                designVariant="tk7"
-                                onDownload={onToolkitDownload}
-                                onViewToolkit={onToolkitDownload}
-                            />
-                        </div>
-
-                        {/* Next Chapter Button */}
-                        {onNext && (
-                            <div className={styles.nextChapterCard}>
-                                <img
-                                    src="/assets/next_chapter_button.svg"
-                                    alt="Next chapter"
-                                    className={styles.nextChapterImage}
-                                    onClick={onNext}
+                        <div className={styles.lastCardWrapper}>
+                            {/* Toolkit Card 2 */}
+                            <div className={styles.toolkitCard}>
+                                <ToolkitCard
+                                    toolkitNumber={7}
+                                    title="Supporter-Led Fundraising"
+                                    description="A powerful toolkit to grow your network by creating champions for your cause."
+                                    backgroundImage="/assets/toolkit7/toolkit7_background.svg"
+                                    designImage="/assets/toolkit7/toolkit7_design.png"
+                                    disableRotation={true}
+                                    backgroundVariant="tk7"
+                                    designVariant="tk7"
+                                    onDownload={onToolkitDownload}
+                                    onViewToolkit={onToolkitDownload}
                                 />
                             </div>
-                        )}
+
+                            {/* Next Chapter Button */}
+                            {onNext && (
+                                <div className={styles.nextChapterCard}>
+                                    <img
+                                        src="/assets/next_chapter_button.svg"
+                                        alt="Next chapter"
+                                        className={styles.nextChapterImage}
+                                        onClick={onNext}
+                                    />
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>

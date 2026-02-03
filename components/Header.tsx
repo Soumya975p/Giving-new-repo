@@ -27,12 +27,14 @@ export default function Header({
   setIsChaptersSectionSticky,
 }: HeaderProps) {
   const router = useRouter();
-  // const pathname = usePathname();
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isFundraisingExpanded, setIsFundraisingExpanded] = useState(false);
   const [expandedChapter, setExpandedChapter] = useState<number | null>(null);
 
   const isFieldGuidePage = pathname === '/field-guide';
+  const isIntroActive = isFieldGuidePage;
+  const isFundraisingActive = pathname === '/';
 
   return (
     <>
@@ -102,8 +104,8 @@ export default function Header({
                         <span className={styles.activeDiamond}>◆</span>
                       )}
                       <span>{isFieldGuidePage && <span className={styles.bullet}>◆</span>}
-                      <span>Introduction</span></span>
-                    </Link>
+                        <span>Introduction</span></span>
+                    </button>
                   </div>
 
                   <div className={styles.menuSection}>
