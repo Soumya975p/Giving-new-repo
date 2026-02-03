@@ -1,0 +1,62 @@
+<svg viewBox="0 0 450 1200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+  <!-- Left side plant connection stem -->
+  <path d="M 225 480 Q 200 550 150 650 Q 120 720 80 850 Q 40 980 15 1100" 
+    stroke="#B8D84C" stroke-width="8" fill="none" stroke-linecap="round"/>
+  
+  <!-- Top plant -->
+  <g id="top-plant">
+    <!-- Top stem -->
+    <path d="M 225 480 Q 230 380 240 280" stroke="#A8D84C" stroke-width="6" fill="none" stroke-linecap="round"/>
+    
+    <!-- Top plant leaves circle - Yellow gradient -->
+    <circle cx="250" cy="140" r="95" fill="url(#yellowGradient)"/>
+    
+    <!-- Top plant leaves inner cut - light area -->
+    <ellipse cx="280" cy="120" rx="35" ry="50" fill="#FFFACD" opacity="0.6"/>
+    
+    <!-- Diamond shape inside top plant -->
+    <polygon points="250,240 280,290 250,320 220,290" fill="url(#diamondGradient)"/>
+  </g>
+  
+  <!-- Bottom/Right plant -->
+  <g id="bottom-plant">
+    <!-- Bottom stem -->
+    <path d="M 225 480 Q 280 600 350 750" stroke="#B8D84C" stroke-width="8" fill="none" stroke-linecap="round"/>
+    
+    <!-- Bottom plant leaves circle - Yellow-green gradient -->
+    <circle cx="370" cy="900" r="105" fill="url(#yellowGreenGradient)"/>
+    
+    <!-- Bottom plant leaves inner cut - light area -->
+    <ellipse cx="400" cy="880" rx="40" ry="55" fill="#FFFACD" opacity="0.6"/>
+    
+    <!-- Diamond shape inside bottom plant -->
+    <polygon points="370,1020 410,1080 370,1120 330,1080" fill="url(#diamondGradient2)"/>
+  </g>
+  
+  <!-- Gradients -->
+  <defs>
+    <!-- Yellow gradient for top plant -->
+    <radialGradient id="yellowGradient" cx="30%" cy="30%">
+      <stop offset="0%" style="stop-color:#F5FF00;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#93CD4D;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- Yellow-green gradient for bottom plant -->
+    <radialGradient id="yellowGreenGradient" cx="30%" cy="30%">
+      <stop offset="0%" style="stop-color:#F5FF00;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7DC24E;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- Diamond gradient 1 -->
+    <linearGradient id="diamondGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#20A8A8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1FD7D7;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Diamond gradient 2 -->
+    <linearGradient id="diamondGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0FB8C5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00D4D8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg>

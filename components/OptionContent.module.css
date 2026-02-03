@@ -668,10 +668,10 @@
    ======================================== */
 
 .nextChapterCard {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
     z-index: 1000;
     flex-shrink: 0;
     display: flex;
@@ -679,6 +679,14 @@
     justify-content: center;
     min-width: 150px;
     padding-right: 20px;
+}
+
+.lastCardWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 200px;
+    /* Match scrollContent gap for Option A/B */
 }
 
 .nextChapterButton {
@@ -782,4 +790,26 @@
     margin-left: -10vw;
     padding-right: 0;
     z-index: 50;
+}
+
+@media (max-width: 1024px) {
+    .lastCardWrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .embedded .nextChapterCard {
+        top: 0;
+        margin-left: 0;
+        margin-top: 20px;
+        padding-right: 0;
+    }
+
+    /* Adjust scroll content padding/gap for mobile if needed */
+    .ch1OptionA .scrollContent,
+    .ch1OptionB .scrollContent {
+        gap: 50px;
+        /* Reduce gap on mobile */
+    }
 }

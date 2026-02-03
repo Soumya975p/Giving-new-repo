@@ -5,10 +5,11 @@ import ToolkitCard from './ToolkitCard';
 
 interface Chapter3OptionBProps {
     onBack: () => void;
+    onNext?: () => void;
     embedded?: boolean;
 }
 
-export default function Chapter3OptionB({ onBack, embedded = false }: Chapter3OptionBProps) {
+export default function Chapter3OptionB({ onBack, onNext, embedded = false }: Chapter3OptionBProps) {
     return (
         <div className={styles.optionContentWrapper}>
             {/* Sticky Header */}
@@ -131,24 +132,30 @@ export default function Chapter3OptionB({ onBack, embedded = false }: Chapter3Op
                         />
                     </div>
 
-                    {/* Toolkit Card 3 - Communications Calendar */}
-                    <div className={styles.toolkitCard}>
-                        <ToolkitCard
-                            toolkitNumber={3}
-                            title="The Communications Calendar"
-                            description="Plan your donor engagement throughout the year."
-                            backgroundImage="/assets/toolkit_base_card.svg"
-                            designImage="/assets/toolkit_55.svg"
-                            designVariant="tk5"
-                        />
-                    </div>
+                    <div className={styles.lastCardWrapper}>
+                        {/* Toolkit Card 3 - Communications Calendar */}
+                        <div className={styles.toolkitCard}>
+                            <ToolkitCard
+                                toolkitNumber={3}
+                                title="The Communications Calendar"
+                                description="Plan your donor engagement throughout the year."
+                                backgroundImage="/assets/toolkit_base_card.svg"
+                                designImage="/assets/toolkit_55.svg"
+                                designVariant="tk5"
+                            />
+                        </div>
 
-                    {/* Next Chapter Button */}
-                    <div className={styles.nextChapterCard}>
-                        <button className={styles.nextChapterButton}>
-                            <span>Next chapter</span>
-                            <span className={styles.nextArrow}>→</span>
-                        </button>
+                        {/* Next Chapter Button */}
+                        <div className={styles.nextChapterCard}>
+                            {onNext && (
+                                <img
+                                    src="/assets/next_chapter_button.svg"
+                                    alt="Next chapter"
+                                    className={styles.nextChapterImage}
+                                    onClick={onNext}
+                                />
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
