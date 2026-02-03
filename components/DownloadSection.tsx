@@ -1,12 +1,20 @@
 'use client';
 
+import { useState } from 'react';
 import styles from './DownloadSection.module.css';
+import PopupForm from './PopupForm';
 
 interface DownloadSectionProps {
     className?: string;
 }
 
 export default function DownloadSection({ className }: DownloadSectionProps) {
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+    const handleDownloadClick = () => {
+        setIsPopupOpen(true);
+    };
+
     return (
         <section className={`${styles.downloadSection} ${className || ''}`}>
             {/* Background Image */}
@@ -40,7 +48,7 @@ export default function DownloadSection({ className }: DownloadSectionProps) {
                             your organisation best.
                         </p>
                         <div className={styles.downloadButtons}>
-                            <button className={styles.downloadAllBtn}>
+                            <button className={styles.downloadAllBtn} onClick={handleDownloadClick}>
                                 <img
                                     src="/assets/download_all.svg"
                                     alt="Download all"
@@ -80,6 +88,8 @@ export default function DownloadSection({ className }: DownloadSectionProps) {
 
             </div>
 
+            {/* Popup Form */}
+            <PopupForm isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} />
         </section>
     );
 }

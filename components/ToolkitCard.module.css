@@ -1,10 +1,11 @@
 .toolkitCardWrapper {
     position: relative;
     width: 320px;
-    height: 462.222229px;
+    height: 415px;
     flex-shrink: 0;
     box-shadow: none;
     filter: none;
+    overflow: visible;
 }
 
 /* Base Card - SVG background */
@@ -135,7 +136,7 @@
     transform: translateX(-50%);
     width: 280px;
     height: 220px;
-    
+
 }
 
 .designTk7 .designOverlay {
@@ -145,7 +146,7 @@
     transform: translateX(-50%);
     width: 280px;
     height: 220px;
-    
+
 }
 
 .designTk4 .designOverlay {

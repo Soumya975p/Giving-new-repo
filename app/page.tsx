@@ -6,6 +6,7 @@ import { ArrowRight, ArrowLeft } from 'lucide-react'
 import { DM_Sans } from 'next/font/google'
 import styles from './page.module.css'
 import OptionContent from '../components/OptionContent'
+import PopupForm from '../components/PopupForm'
 import chapter2StylesA from '../components/Chapter2OptionA.module.css'
 import chapter2StylesB from '../components/Chapter2OptionB.module.css'
 import chapter3StylesA from '../components/Chapter3OptionA.module.css'
@@ -128,6 +129,7 @@ export default function Home() {
   const [activeChapter, setActiveChapter] = useState(1)
   const [scrollProgress, setScrollProgress] = useState(0)
   const [selectedOption, setSelectedOption] = useState<'A' | 'B' | null>(null)
+  const [isPopupOpen, setIsPopupOpen] = useState(false)
   const [isOptionAHovered, setIsOptionAHovered] = useState(false)
   const [isOptionBHovered, setIsOptionBHovered] = useState(false)
   const [isCh2OptionAHovered, setIsCh2OptionAHovered] = useState(false)
@@ -536,7 +538,9 @@ export default function Home() {
                                     toolkitDescription: 'A simple way to identify and activate people already connected to your cause.',
                                     toolkitBackgroundImage: '/assets/toolkit1/toolkit1_background.png',
                                     toolkitDesignImage: '/assets/toolkit1/toolkit1_design.png',
-                                    toolkitImage: '/assets/toolkit1.svg'
+                                    toolkitImage: '/assets/toolkit1.svg',
+                                    onToolkitDownload: () => setIsPopupOpen(true),
+                                    onToolkitView: () => setIsPopupOpen(true)
                                   }
                                 ]}
                               />
@@ -601,7 +605,9 @@ export default function Home() {
                                     toolkitDescription: 'A simple way to identify and activate people already connected to your cause.',
                                     toolkitBackgroundImage: '/assets/toolkit1/toolkit1_background.png',
                                     toolkitDesignImage: '/assets/toolkit1/toolkit1_design.png',
-                                    toolkitImage: '/assets/toolkit1.svg'
+                                    toolkitImage: '/assets/toolkit1.svg',
+                                    onToolkitDownload: () => setIsPopupOpen(true),
+                                    onToolkitView: () => setIsPopupOpen(true)
                                   }
                                 ]}
                               />
@@ -906,7 +912,9 @@ export default function Home() {
                                     toolkitDesignImage: '/assets/toolkit2/toolkit2_design.svg',
                                     toolkitDisableRotation: true,
                                     toolkitDesignVariant: 'ch2',
-                                    toolkitImage: '/assets/chapter2_option1_toolkit.svg'
+                                    toolkitImage: '/assets/chapter2_option1_toolkit.svg',
+                                    onToolkitDownload: () => setIsPopupOpen(true),
+                                    onToolkitView: () => setIsPopupOpen(true)
                                   }
                                 ]}
                               />
@@ -983,7 +991,14 @@ export default function Home() {
                                     toolkitLabel: 'TOOLKIT #1',
                                     toolkitTitle: 'Donor Database',
                                     toolkitDescription: 'How to record, remember, and build continuity from the first gift.',
-                                    toolkitImage: '/assets/toolkit_22.svg'
+                                    toolkitNumber: 1,
+                                    toolkitBackgroundImage: '/assets/toolkit1/toolkit1_background.png',
+                                    toolkitDesignImage: '/assets/toolkit2/toolkit2_design.svg',
+                                    toolkitDisableRotation: false,
+                                    toolkitDesignVariant: 'ch2',
+                                    toolkitImage: '/assets/chapter2_option1_toolkit.svg',
+                                    onToolkitDownload: () => setIsPopupOpen(true),
+                                    onToolkitView: () => setIsPopupOpen(true)
                                   }
                                 ]}
                               />
@@ -1404,7 +1419,9 @@ export default function Home() {
                                     toolkitDisableRotation: true,
                                     toolkitBackgroundVariant: 'tk345',
                                     toolkitDesignVariant: 'tk4',
-                                    toolkitImage: '/assets/took4.svg'
+                                    toolkitImage: '/assets/took4.svg',
+                                    onToolkitDownload: () => setIsPopupOpen(true),
+                                    onToolkitView: () => setIsPopupOpen(true)
                                   },
                                   {
                                     id: 5,
@@ -1417,7 +1434,9 @@ export default function Home() {
                                     toolkitDisableRotation: true,
                                     toolkitBackgroundVariant: 'tk345',
                                     toolkitDesignVariant: 'tk3',
-                                    toolkitImage: '/assets/tool3.svg'
+                                    toolkitImage: '/assets/tool3.svg',
+                                    onToolkitDownload: () => setIsPopupOpen(true),
+                                    onToolkitView: () => setIsPopupOpen(true)
                                   },
                                   {
                                     id: 6,
@@ -1430,7 +1449,9 @@ export default function Home() {
                                     toolkitDisableRotation: true,
                                     toolkitBackgroundVariant: 'tk345',
                                     toolkitDesignVariant: 'tk5',
-                                    toolkitImage: '/assets/tool5.svg'
+                                    toolkitImage: '/assets/tool5.svg',
+                                    onToolkitDownload: () => setIsPopupOpen(true),
+                                    onToolkitView: () => setIsPopupOpen(true)
                                   }
                                 ]}
                               />
@@ -1676,6 +1697,7 @@ export default function Home() {
                               embedded={true}
                               onBack={() => setSelectedOption(null)}
                               onNext={handleNextChapter}
+                              onToolkitDownload={() => setIsPopupOpen(true)}
                             />
                           ) : selectedOption === 'B' ? (
                             <div style={{
@@ -2052,6 +2074,9 @@ export default function Home() {
 
       {/* Footer Section */}
       <Footer />
+
+      {/* Popup Form */}
+      <PopupForm isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} />
     </div>
   )
 }
