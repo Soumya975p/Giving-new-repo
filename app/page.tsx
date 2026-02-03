@@ -150,6 +150,8 @@ export default function Home() {
   const scrollContainerRefs = useRef<(HTMLDivElement | null)[]>([])
   // Scroll Reference for Bonus Section
   const bonusSectionRef = useRef<HTMLDivElement>(null);
+  const heroSectionRef = useRef<HTMLDivElement>(null);
+  const exploreSectionRef = useRef<HTMLDivElement>(null);
   // Refs for center cards in each chapter
   const centerCardRefs = useRef<(HTMLDivElement | null)[]>([null, null, null, null]);
 
@@ -242,10 +244,12 @@ export default function Home() {
         setActiveChapter={setActiveChapter}
         chaptersSectionRef={chaptersSectionRef}
         bonusSectionRef={bonusSectionRef}
+        heroSectionRef={heroSectionRef}
+        exploreSectionRef={exploreSectionRef}
       />
 
       {/* Hero Section */}
-      <section className={styles.heroSection}>
+      <section className={styles.heroSection} ref={heroSectionRef}>
 
         {/* Hero Content */}
         <div className={styles.heroContent}>
@@ -2042,7 +2046,9 @@ export default function Home() {
       <DownloadSection />
 
       {/* Explore Grid Section */}
-      <Explore />
+      <div ref={exploreSectionRef}>
+        <Explore />
+      </div>
 
       {/* Footer Section */}
       <Footer />

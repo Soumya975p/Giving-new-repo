@@ -9,6 +9,8 @@ interface HeaderProps {
   setActiveChapter?: (chapter: number) => void;
   chaptersSectionRef?: React.RefObject<HTMLDivElement>;
   bonusSectionRef?: React.RefObject<HTMLDivElement>;
+  heroSectionRef?: React.RefObject<HTMLDivElement>;
+  exploreSectionRef?: React.RefObject<HTMLDivElement>;
 }
 
 export default function Header({
@@ -16,6 +18,8 @@ export default function Header({
   setActiveChapter = () => { },
   chaptersSectionRef,
   bonusSectionRef,
+  heroSectionRef,
+  exploreSectionRef,
 }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isFundraisingExpanded, setIsFundraisingExpanded] = useState(false);
@@ -71,7 +75,15 @@ export default function Header({
               <div className={styles.menuBody}>
                 <div className={styles.menuLeft}>
                   <div className={styles.menuSection}>
-                    <button className={styles.menuSectionTitle}>
+                    <button
+                      className={styles.menuSectionTitle}
+                      onClick={() => {
+                        heroSectionRef?.current?.scrollIntoView({
+                          behavior: 'smooth',
+                        });
+                        setIsMenuOpen(false);
+                      }}
+                    >
                       Introduction
                     </button>
                   </div>
@@ -79,9 +91,14 @@ export default function Header({
                   <div className={styles.menuSection}>
                     <button
                       className={`${styles.menuSectionTitle} ${styles.withBullet}`}
-                      onClick={() =>
-                        setIsFundraisingExpanded(!isFundraisingExpanded)
-                      }
+                      onClick={() => {
+                        setIsFundraisingExpanded(!isFundraisingExpanded);
+                        setActiveChapter(1); // Reset to first chapter
+                        chaptersSectionRef?.current?.scrollIntoView({
+                          behavior: 'smooth',
+                        });
+                        setIsMenuOpen(false);
+                      }}
                     >
                       <span className={styles.bullet}>◆</span>
                       <span>Fundraising</span>
@@ -89,7 +106,15 @@ export default function Header({
                   </div>
 
                   <div className={styles.menuSection}>
-                    <button className={styles.menuSectionTitle}>
+                    <button
+                      className={styles.menuSectionTitle}
+                      onClick={() => {
+                        exploreSectionRef?.current?.scrollIntoView({
+                          behavior: 'smooth',
+                        });
+                        setIsMenuOpen(false);
+                      }}
+                    >
                       Volunteer Engagement
                     </button>
                   </div>
