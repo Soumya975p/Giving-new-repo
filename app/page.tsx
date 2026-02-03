@@ -776,11 +776,11 @@ export default function Home() {
                                 <motion.div
                                   variants={ctaVariants}
                                   style={{
-                                    marginTop: '-15px',
+                                    marginTop: '10px',
                                     display: 'flex',
                                     alignItems: 'center',
                                     gap: '6px',
-                                    color: '#1a4d3a',
+                                    color: '#20315B',
                                     fontWeight: 500,
                                     flexDirection: 'row-reverse'
                                   }}
@@ -792,7 +792,7 @@ export default function Home() {
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>Choose Option</span>
+                                  }}> ⟵ Choose Option</span>
                                 </motion.div>
                               </motion.div>
 
@@ -1047,7 +1047,7 @@ export default function Home() {
                                 <motion.div
                                   variants={ctaVariants}
                                   style={{
-                                    marginTop: '-15px',
+                                    marginTop: '10px',
                                     display: 'flex',
                                     alignItems: 'center',
                                     gap: '6px',
