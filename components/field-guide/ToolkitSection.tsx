@@ -32,7 +32,7 @@ export default function ToolkitSection() {
                 Step-by-step<br />
                 action frameworks
               </p>
-              <img src="./assets/circleContent1.png" className={styles.circleImage1} alt="" />
+           
             </div>
           </div>
 
@@ -47,7 +47,6 @@ export default function ToolkitSection() {
                 grounded in Indian<br />
                 nonprofit realities
               </p>
-              <img src="./assets/circleContent2.png" className={styles.circleImage2} alt="" />
             </div>
           </div>
 
@@ -63,7 +62,6 @@ export default function ToolkitSection() {
                 that you can adopt<br />
                 immediately
               </p>
-              <img src="./assets/circleContent3.png" className={styles.circleImage3} alt="" />
             </div>
           </div>
         </div>

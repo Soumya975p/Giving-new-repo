@@ -32,11 +32,6 @@ export default function FieldGuideHero() {
           <h1 className={styles.mainTitle}>
             Unlock the Power of
           </h1>
-          <img
-            src="/assets/ed-giving.png"
-            alt="Everyday Giving Icon"
-            className={styles.edGivingIcon}
-          />
           <h2 className={styles.mainSubtitle}>
             Everyday <span>Giving</span>
           </h2>

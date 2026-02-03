@@ -59,8 +59,8 @@
 }
 
 .circle {
-  width: 390px;
-  height: 390px;
+  width: 320px;
+  height: 320px;
   background: linear-gradient(135deg, #B8E986 0%, #93CD4D 100%);
   border-radius: 50%;
   display: flex;
@@ -91,23 +91,21 @@
   opacity: 1;
 }
 
-
-
 .circleContent {
   text-align: center;
-  padding: 40px 40px 0 40px;
+  padding: 40px;
   position: relative;
   z-index: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
-  width: 100%;
 }
 
-
-
+.circle:first-child .circleContent {
+    background-image: url(/assets/circle-c-bg.png);
+    background-size: 80% auto;
+    background-position: left center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+}
 .circleText {
   font-family: 'DM Sans', sans-serif;
   font-size: 18px;
@@ -115,25 +113,6 @@
   line-height: 140%;
   color: #12363B;
   margin: 0;
-}
-
-/* Circle Images - bottom aligned with specific widths */
-.circleImage1 {
-  width: 123px;
-  height: auto;
-  margin-top: auto;
-}
-
-.circleImage2 {
-  width: 150px;
-  height: auto;
-  margin-top: auto;
-}
-
-.circleImage3 {
-  width: 170px;
-  height: auto;
-  margin-top: auto;
 }
 
 /* Decorative Pattern */
@@ -184,10 +163,10 @@
   }
 
   .title {
-    font-size: 24px;
-    max-width: 175px;
-    margin: auto;
-    margin-bottom: 20px;
+font-size: 24px;
+        max-width: 175px;
+        margin: auto;
+        margin-bottom: 20px;
   }
 
   .subtitle {
@@ -212,15 +191,7 @@
     border-bottom-left-radius: 170px !important;
     border-bottom-right-radius: 170px !important;
     justify-content: flex-start;
-    padding-top: 25px !important;
-  }
-
-  .circleVisible img {
-    opacity: 1;
-  }
-
-  .circleHidden img {
-    opacity: 0;
+        padding-top: 25px !important;
   }
 
   .circle {
@@ -232,32 +203,28 @@
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
-    user-select: none;
     touch-action: manipulation;
     position: absolute !important;
 
   }
-
-  .circleVisible {
+  .circleVisible{
     z-index: 9999 !important;
   }
-
-  .circle2 {
+  .circle2{
     margin-top: 40px !important;
     z-index: 2;
   }
-
-  .circle3 {
+  .circle3{
     margin-top: 80px !important;
     z-index: 1;
   }
-
   .circleContent {
-    padding: 30px 30px 0 30px;
+    padding: 30px;
   }
 
-
-
+  .circleHidden {
+  /* opacity: 0; */
+  }
   .circleHidden {
     border: 1px solid #ABE46778;
     background: transparent;
@@ -271,24 +238,10 @@
   .circleText {
     font-size: 15px;
     line-height: 150%;
-  }
-
-  .toolkitSection {
+  } 
+   .toolkitSection {
     padding: 150px 0px;
     min-height: 700px;
-  }
-
-  /* Mobile image widths */
-  .circleImage1 {
-    width: 111px;
-  }
-
-  .circleImage2 {
-    width: 135px;
-  }
-
-  .circleImage3 {
-    width: 153px;
   }
 }
 
@@ -311,7 +264,7 @@
   }
 
   .circleContent {
-    padding: 24px 24px 0 24px;
+    padding: 24px;
   }
 
   .circleText {
