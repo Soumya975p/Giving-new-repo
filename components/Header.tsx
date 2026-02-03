@@ -39,7 +39,7 @@ export default function Header({
   return (
     <>
       {/* Global Sticky Header Right */}
-      <div className={styles.headerRight}>
+      <div className={`${styles.headerRight} ${isMenuOpen ? styles.hiddenOnMobile : ''}`}>
         <img
           src={isMenuOpen ? '/assets/menu_open.svg' : '/assets/menu.svg'}
           alt="Menu"
@@ -396,11 +396,41 @@ export default function Header({
 
                   {/* Tabs */}
                   <div className={styles.mobileTabs}>
-                    <span className={styles.mobileTabItem}>Introduction</span>
-                    <span className={`${styles.mobileTabItem} ${styles.mobileTabActive}`}>
-                      <span className={styles.mobileTabDiamond}>⬥</span> Fundraising
+                    <span
+                      className={`${styles.mobileTabItem} ${isFieldGuidePage ? styles.mobileTabActive : ''}`}
+                      onClick={() => {
+                        setIsChaptersSectionSticky?.(false);
+                        router.push('/field-guide');
+                        setIsMenuOpen(false);
+                        if (isIntroActive) {
+                          heroSectionRef?.current?.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }}
+                    >
+                      {isFieldGuidePage && <span className={styles.mobileTabDiamond}>⬥</span>} Introduction
                     </span>
-                    <span className={styles.mobileTabItem}>Volunteer</span>
+                    <span
+                      className={`${styles.mobileTabItem} ${isFundraisingActive ? styles.mobileTabActive : ''}`}
+                      onClick={() => {
+                        setIsMenuOpen(false);
+                        if (!isFundraisingActive) {
+                          router.push('/');
+                        } else {
+                          chaptersSectionRef?.current?.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }}
+                    >
+                      {isFundraisingActive && <span className={styles.mobileTabDiamond}>⬥</span>} Fundraising
+                    </span>
+                    <span
+                      className={styles.mobileTabItem}
+                      onClick={() => {
+                        exploreSectionRef?.current?.scrollIntoView({ behavior: 'smooth' });
+                        setIsMenuOpen(false);
+                      }}
+                    >
+                      Volunteer
+                    </span>
                   </div>
 
                   {/* Chapter List (Fundraising Tab Content) */}

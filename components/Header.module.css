@@ -440,6 +440,10 @@
 
 /* Responsive Styles */
 @media (max-width: 768px) {
+  .hiddenOnMobile {
+    display: none !important;
+  }
+
   .desktopOnly {
     display: none !important;
   }
@@ -515,15 +519,17 @@
   }
 
   .menuContent {
-    width: 100vw;
-    height: 100vh;
-    max-height: 100vh;
-    margin: 0;
-    border-radius: 0;
+    width: calc(100vw - 32px);
+    height: auto;
+    max-height: calc(100vh - 40px);
+    margin: 20px 16px;
+    border-radius: 16px;
     background: rgba(18, 54, 59, 0.85);
     border: none;
-    padding-top: 80px;
-    /* Space for top bar */
+    padding: 16px 0 12px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
   }
 
   .menuHeader {
@@ -533,7 +539,7 @@
   .mobileMenuContainer {
     width: 100%;
     padding: 0 20px;
-    height: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
   }
@@ -609,7 +615,7 @@
   .mobileTabItem {
     font-family: 'DM Sans', sans-serif;
     font-size: 18px;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.7);
     font-weight: 400;
     cursor: pointer;
   }
@@ -632,8 +638,9 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    padding-bottom: 40px;
-    overflow-y: auto;
+    padding-bottom: 16px;
+    overflow-y: visible;
+    /* Let parent handle scroll */
   }
 
   .mobileChapterCard {
@@ -687,7 +694,7 @@
   .mobileChapterSubItem {
     font-family: 'DM Sans', sans-serif;
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.7);
     font-weight: 400;
   }
 

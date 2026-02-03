@@ -4,6 +4,7 @@ import FieldGuideHero from '../../components/field-guide/FieldGuideHero'
 import InsightsSection from '../../components/field-guide/InsightsSection'
 import ToolsSection from '../../components/field-guide/ToolsSection'
 import ToolkitSection from '../../components/field-guide/ToolkitSection'
+import LogosSection from '../../components/field-guide/LogosSection'
 import InspiredSection from '../../components/field-guide/InspiredSection'
 import Explore from '../../components/Explore'
 import Footer from '../../components/Footer'
@@ -33,6 +34,8 @@ export default function FieldGuidePage() {
 
       {/* Explore Grid Section */}
       <Explore />
+       {/* Logos Section */}
+      <LogosSection />
 
       {/* Footer Section */}
       <Footer />
