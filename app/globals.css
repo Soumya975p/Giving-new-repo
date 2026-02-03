@@ -12,5 +12,26 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+@media(min-width:769px){
+.m-d-block{
+  display: none !important;
+}
+}
+@media(max-width:768px){
+.m-d-block{
+  display: block !important;
+}
+}
+@media(min-width:769px){
+.d-d-block{
+  display: block !important;
+}
+}
+@media(max-width:768px){
+.d-d-block{
+  display: none !important;
+}
 }
