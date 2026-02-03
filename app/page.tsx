@@ -225,16 +225,20 @@ export default function Home() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // When 10% of section is visible, trigger sticky
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.1) {
+          // When 20% of section is visible, trigger sticky
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.2) {
             setIsChaptersSectionSticky(true);
-            // Scroll the section into full view
-            chaptersSection.scrollIntoView({ behavior: 'smooth' });
+            // Scroll the section into full view at bottom 0
+            if (chaptersSection) {
+              chaptersSection.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            }
+            // Disconnect once triggered to ensure it only happens once per session
+            observer.disconnect();
           }
         });
       },
       {
-        threshold: 0.1, // Trigger when 10% visible
+        threshold: 0.2, // Trigger when 20% visible
         rootMargin: '0px'
       }
     );
@@ -248,13 +252,14 @@ export default function Home() {
 
 
   return (
-    <div className={`${styles.pageWrapper} ${dmSans.className}`}>
+    <div className={`${styles.pageWrapper} ${isChaptersSectionSticky ? styles.noScroll : ''} ${dmSans.className}`}>
       {/* Header with Logo and Menu */}
       <Header
         activeChapter={activeChapter}
         setActiveChapter={setActiveChapter}
         chaptersSectionRef={chaptersSectionRef}
         bonusSectionRef={bonusSectionRef}
+        setIsChaptersSectionSticky={setIsChaptersSectionSticky}
       />
 
       {/* Hero Section */}
@@ -2031,6 +2036,7 @@ export default function Home() {
           activeChapter={activeChapter}
           onTabClick={(chapterId) => {
             if (chapterId === 5) {
+              setIsChaptersSectionSticky(false)
               bonusSectionRef.current?.scrollIntoView({ behavior: 'smooth' })
             } else {
               setActiveChapter(chapterId)
