@@ -2,7 +2,8 @@
 
 import { useState, useRef } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+// import { usePathname } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Header.module.css';
 
@@ -23,12 +24,16 @@ export default function Header({
   heroSectionRef,
   exploreSectionRef,
 }: HeaderProps) {
+  const router = useRouter();
+  // const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isFundraisingExpanded, setIsFundraisingExpanded] = useState(false);
   const [expandedChapter, setExpandedChapter] = useState<number | null>(null);
   const pathname = usePathname();
   const isIntroActive = pathname === '/field-guide';
   const isFundraisingActive = pathname === '/';
+  
+  const isFieldGuidePage = pathname === '/field-guide';
 
   return (
     <>
@@ -82,8 +87,8 @@ export default function Header({
                 <div className={`${styles.menuLeft} ${styles.desktopOnly}`}>
                   <div className={styles.menuSection}>
                     <Link
-                      href="/field-guide"
-                      className={`${styles.menuSectionTitle} ${isIntroActive ? styles.menuSectionTitleActive : ''}`}
+                      href="/field-guide" 
+                      className={`${`${styles.menuSectionTitle} ${isIntroActive ? styles.menuSectionTitleActive : ''}`} ${isFieldGuidePage ? styles.active : ''}`}
                       onClick={() => {
                         setIsMenuOpen(false);
                         if (isIntroActive) {
@@ -96,7 +101,8 @@ export default function Header({
                       {isIntroActive && (
                         <span className={styles.activeDiamond}>◆</span>
                       )}
-                      <span>Introduction</span>
+                      <span>{isFieldGuidePage && <span className={styles.bullet}>◆</span>}
+                      <span>Introduction</span></span>
                     </Link>
                   </div>
 
