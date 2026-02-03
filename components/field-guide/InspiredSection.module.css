@@ -209,6 +209,7 @@
   line-height: 120%;
   letter-spacing: -4%;
   margin-bottom: 40px;
+  color: #12363B;
 }
 
 .statCitation {
@@ -218,6 +219,7 @@
   font-size: 20px;
   line-height: 150%;
   letter-spacing: 0%;
+  color: #12363B;
 }
 
 .statRight {
@@ -229,11 +231,12 @@
 
 .descText {
   font-family: DM Sans;
-  font-weight: 400;
+  font-weight: 500;
   font-style: Regular;
   font-size: 24px;
   line-height: 140%;
   letter-spacing: -4%;
+  color: #12363B;
 }
 
 .reportLink {
@@ -435,11 +438,14 @@
   .cardsContainer {
     width: 100%;
     height: 400px;
+    margin: 0 auto;
   }
 
   .card {
     width: 100%;
     max-width: 220px;
+    left: 50%;
+    margin-left: -110px;
   }
 
 
@@ -467,6 +473,8 @@
     padding-top: 180px !important;
     margin-bottom: 80px;
     padding: 0 0px;
+    background-size: 100%;
+        background-position: 100% 11%;
   }
 
   .statText {

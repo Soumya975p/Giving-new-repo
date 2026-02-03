@@ -80,15 +80,15 @@ export default function InspiredSection() {
             </div>
 
             {/* Mobile Image - shown between text sections on mobile */}
-            <div className={`${inspiredStyles.insCbMobileImage} m-d-block`}>
-              <img src="/assets/mob-inscbbtmbg.png" alt="Inspired section illustration" />
+            <div className={`${inspiredStyles.insCbMobileImage} m-d-block`} style={{width:'100%', marginLeft: '-20px'}}>
+              <img src="/assets/inscbbtmbg.png" alt="Inspired section illustration" />
             </div>
 
             <div className={inspiredStyles.insCbBtm}>
               <h3>These guides translate sector-wide
                 insights into simple, usable systems for nonprofits of all sizes.</h3>
               <p>The opportunity is real, proven, that success isn't reserved for just the a few organisations; it is accessible to any of us willing to build authentic community relationships - across causes, geographies, and organisation sizes.</p>
-              <a href="">Read the research report  <img src="/assets/btn-arrow.png" alt="" /></a>
+              <a href="">Read the research report  <img src="/assets/right-arrow-bg.png" alt="" /></a>
             </div>
           </div>
         </div>

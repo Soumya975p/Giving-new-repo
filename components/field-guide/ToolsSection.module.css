@@ -235,7 +235,7 @@
 
   /* Mobile TopBox positioning */
   .topBox {
-    top: 6%;
+    top: 8%;
     left: 50%;
     transform: translateX(-50%);
     width: 80%;
