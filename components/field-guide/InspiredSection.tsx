@@ -47,7 +47,10 @@ export default function InspiredSection() {
         <div className={styles.guidesSection}>
           <p className={styles.chooseLabel}><span></span> CHOOSE A FIELD GUIDE TO EXPLORE <span></span></p>
           <div className={styles.guideButtons}>
-            <button className={styles.guideButton}>
+            <button
+              className={styles.guideButton}
+              onClick={() => window.location.href = 'http://localhost:3001/'}
+            >
               <span> <img
                 src="/assets/btn-diamond.png"
                 style={{ width: '100%', height: '100%', objectFit: 'contain' }}

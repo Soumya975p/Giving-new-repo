@@ -81,9 +81,7 @@ export default function Header({
                     <button
                       className={`${styles.menuSectionTitle} ${isFieldGuidePage ? styles.active : ''}`}
                       onClick={() => {
-                        setIsChaptersSectionSticky?.(false);
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                        setIsMenuOpen(false);
+                        window.location.href = 'http://localhost:3001/field-guide';
                       }}
                     >
                       {isFieldGuidePage && <span className={styles.bullet}>◆</span>}
@@ -94,9 +92,9 @@ export default function Header({
                   <div className={styles.menuSection}>
                     <button
                       className={`${styles.menuSectionTitle} ${styles.withBullet}`}
-                      onClick={() =>
-                        setIsFundraisingExpanded(!isFundraisingExpanded)
-                      }
+                      onClick={() => {
+                        window.location.href = 'http://localhost:3001/';
+                      }}
                     >
                       <span className={styles.bullet}>◆</span>
                       <span>Fundraising</span>

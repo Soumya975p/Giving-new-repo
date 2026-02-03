@@ -473,7 +473,6 @@ export default function Home() {
                                 This chapter helps you map your existing network so fundraising starts<br />
                                 with relationships, not cold outreach.
                               </h1>
-                              <p className={`${styles.selectChapter} ${styles.desktopOnly}`} style={{ color: 'rgba(0, 0, 0, 0.6)' }}>Select one of the two options to reveal the right way</p>
                             </div>
                           )}
 
@@ -619,7 +618,7 @@ export default function Home() {
                             </div>
                           ) : (
                             <div className={styles.scenarioContainer}>
-                              <p className={`${styles.ch1Instruction} ${styles.mobileOnly}`} style={{ order: 2, width: '100%', textAlign: 'center', margin: '0 0', color: 'rgba(0, 0, 0, 0.6)' }}>
+                              <p className={styles.ch1Instruction} style={{ order: 0, width: '100%', textAlign: 'center', margin: '0 0', color: 'rgba(0, 0, 0, 0.6)' }}>
                                 Select one of the two options to reveal the right way
                               </p>
                               {/* Option A */}
@@ -647,8 +646,8 @@ export default function Home() {
                               >
                                 <span className={styles.optionLabel}>OPTION A</span>
                                 <p className={styles.optionDesc}>
-                                  Find new donors and<br />
-                                  send appeal to random<br />
+                                  Find new donors and
+                                  send appeal to random
                                   people
                                 </p>
 
@@ -767,9 +766,9 @@ export default function Home() {
                               >
                                 <span className={styles.optionLabel}>OPTION B</span>
                                 <p className={styles.optionDesc}>
-                                  Tap into your existing<br />
-                                  network – Connections<br />
-                                  of volunteers,<br />
+                                  Tap into your existing
+                                  network – Connections
+                                  of volunteers,
                                   champions & donors
                                 </p>
 
@@ -848,7 +847,6 @@ export default function Home() {
                                 how timely acknowledgment and simple follow-up can turn a first gift<br />
                                 into the beginning of a relationship.
                               </h1>
-                              <p className={`${styles.selectChapter} ${styles.desktopOnly}`} style={{ color: 'rgba(255, 255, 255, 0.8)' }}>Select one of the two options to reveal the right way</p>
                             </div>
                           )}
 
@@ -999,7 +997,7 @@ export default function Home() {
                           ) : (
                             // Chapter 2 Default View - just render scenario container, header is above
                             <div className={styles.scenarioContainer} style={{ marginTop: '10px' }}>
-                              <p className={`${styles.ch1Instruction} ${styles.mobileOnly}`} style={{ order: 2, width: '100%', textAlign: 'center', margin: '0 0', color: 'rgba(255, 255, 255, 0.8)' }}>
+                              <p className={styles.ch1Instruction} style={{ order: 0, width: '100%', textAlign: 'center', margin: '0 0', color: 'rgba(255, 255, 255, 0.8)' }}>
                                 Select one of the two options to reveal the right way
                               </p>
                               {/* Option A */}
@@ -1026,9 +1024,9 @@ export default function Home() {
                               >
                                 <span className={styles.optionLabel} style={{ color: '#87F6FF' }}>OPTION A</span>
                                 <p className={styles.optionDesc}>
-                                  Record her details in<br />
-                                  your database and<br />
-                                  acknowledge her<br />
+                                  Record her details in
+                                  your database and
+                                  acknowledge her
                                   support
                                 </p>
 
@@ -1316,7 +1314,6 @@ export default function Home() {
                                 on how consistent, non-ask engagement helps donors feel involved<br />
                                 and valued.
                               </h1>
-                              <p className={`${styles.selectChapter} ${styles.desktopOnly}`} style={{ color: '#14343CCC' }}>Select one of the two options to reveal the right way</p>
                             </div>
                           )}
 
@@ -1436,7 +1433,7 @@ export default function Home() {
                           ) : (
                             // Chapter 3 Default View - just render scenario container, header is above
                             <div className={styles.scenarioContainer} style={{ marginTop: '10px' }}>
-                              <p className={`${styles.ch1Instruction} ${styles.mobileOnly}`} style={{ order: 2, width: '100%', textAlign: 'center', margin: '0 0', color: '#14343CCC' }}>
+                              <p className={styles.ch1Instruction} style={{ order: 0, width: '100%', textAlign: 'center', margin: '0 0', color: '#14343CCC' }}>
                                 Select one of the two options to reveal the right way
                               </p>
                               {/* Option A */}
@@ -1463,7 +1460,7 @@ export default function Home() {
                               >
                                 <span className={styles.optionLabel} style={{ color: '#20315B' }}>OPTION A</span>
                                 <p className={styles.optionDesc} style={{ color: '#20315B' }}>
-                                  Reach out only when<br />
+                                  Reach out only when
                                   you need funds again
                                 </p>
 
@@ -1561,10 +1558,10 @@ export default function Home() {
                               >
                                 <span className={styles.optionLabel} style={{ color: '#20315B' }}>OPTION B</span>
                                 <p className={styles.optionDesc} style={{ color: '#20315B' }}>
-                                  Share impact and invite<br />
-                                  her to engage. Updates,<br />
-                                  events, conversations –<br />
-                                  without asking for<br />
+                                  Share impact and invite
+                                  her to engage. Updates,
+                                  events, conversations –
+                                  without asking for
                                   money
                                 </p>
 
@@ -1662,7 +1659,6 @@ export default function Home() {
                                 When relationships are nurtured well, supporters deepen their involvement.<br />
                                 This chapter explores how donors grow into champions.
                               </h1>
-                              <p className={`${styles.selectChapter} ${styles.desktopOnly}`} style={{ color: '#FFFFFFCC' }}>Select one of the two options to reveal the right way</p>
                             </div>
                           )}
 
@@ -1702,7 +1698,7 @@ export default function Home() {
                           ) : (
                             // Chapter 4 Default View - Scenario Cards
                             <div className={styles.scenarioContainer} style={{ marginTop: '10px' }}>
-                              <p className={`${styles.ch1Instruction} ${styles.mobileOnly}`} style={{ order: 2, width: '100%', textAlign: 'center', margin: '0 0', color: '#FFFFFFCC' }}>
+                              <p className={styles.ch1Instruction} style={{ order: 0, width: '100%', textAlign: 'center', margin: '0 0', color: '#FFFFFFCC' }}>
                                 Select one of the two options to reveal the right way
                               </p>
 
@@ -1732,9 +1728,7 @@ export default function Home() {
                               >
                                 <span className={styles.optionLabel} style={{ color: '#20315B' }}>OPTION A</span>
                                 <p className={styles.optionDesc} style={{ color: '#20315B' }}>
-                                  Treat Nidhi like any<br />
-                                  other donor and send a<br />
-                                  standard appeal
+                                  Treat Nidhi like any other donor and send a standard appeal
                                 </p>
 
                                 {/* Animated CTA */}
@@ -1851,8 +1845,8 @@ export default function Home() {
                               >
                                 <span className={styles.optionLabel} style={{ color: '#20315B' }}>OPTION B</span>
                                 <p className={styles.optionDesc} style={{ color: '#20315B' }}>
-                                  Invite her to give again –<br />
-                                  and share the cause<br />
+                                  Invite her to give again –
+                                  and share the cause
                                   with her network
                                 </p>
 

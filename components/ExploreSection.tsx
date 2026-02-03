@@ -10,7 +10,11 @@ export default function ExploreSection() {
 
       <div className={styles.folderContainer}>
         {/* Folder Card 1 */}
-        <div className={styles.folderCard}>
+        <div
+          className={styles.folderCard}
+          onClick={() => window.location.href = 'http://localhost:3001/field-guide'}
+          style={{ cursor: 'pointer' }}
+        >
           <div className={styles.folderContent}>
             <span className={styles.folderLabel}>UDARTA:EG FIELD GUIDE</span>
             <h3 className={styles.folderTitle}>Introduction</h3>

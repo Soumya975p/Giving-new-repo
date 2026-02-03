@@ -215,7 +215,7 @@
   /* top: 10vh; */
   bottom: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -35%);
   width: 100vw;
   height: auto;
   min-height: 80vh;
@@ -4167,11 +4167,12 @@
 .chapter1Header {
   width: 996px;
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 80px;
+  margin-top:120px;
   /* Reduced from 50px */
   position: relative;
   z-index: 10;
-  padding: 160px 10px 58px 10px;
+  /* padding: 160px 10px 58px 10px; */
   top: 8%;
   /* Reduced side padding slightly */
 }
@@ -4186,7 +4187,8 @@
   color: #195960;
   text-transform: uppercase;
   text-align: center;
-  margin-bottom: 16px;
+  /* margin-bottom: 16px; */
+  margin-top: 12px;
   /* Reduced from 12px */
   opacity: 0.6;
 }
@@ -4200,7 +4202,7 @@
   letter-spacing: -0.03em;
   color: #0A1731;
   text-align: center;
-  margin-bottom: 1%;
+  /* margin-bottom: 1%; */
   /* Reduced from 20px */
   max-width: 1000px;
   margin-left: auto;
@@ -4217,22 +4219,25 @@
   /* -2% */
   color: rgba(0, 0, 0, 0.6);
   /* #000000 @ 60% */
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto 2%;
+  width: 100% !important;
+  text-align: center;
+  /* margin: 0 auto 20px !important; */
   position: relative;
   z-index: 20;
+  flex-shrink: 0;
+  padding-bottom: 63px;
 }
 
 
 /* Scenario Container */
 .scenarioContainer {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   /* Aligns options to the top */
   justify-content: center;
   gap: 40px;
-  padding-top: 20px;
+  /* padding-top: 20px; */
   /* Add breathing room */
   /* Reduced from 20px */
   width: 100%;
@@ -4257,8 +4262,8 @@
 
 .hoverFlowerLeftmost {
   position: absolute;
-  bottom: -225px;
-  left: -45px;
+  bottom: -10px;
+  left: -10px;
   width: 125px;
   height: 400px;
   pointer-events: none;
@@ -4288,7 +4293,7 @@
 
 .hoverPetal {
   position: absolute;
-  top: -60px;
+  top: -30px;
   left: -100px;
   width: 250px;
   height: auto;
@@ -5073,6 +5078,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
+  /* padding: 126.56px 0px 161px; */
 }
 
 .optionColumnRight {
@@ -5123,7 +5129,7 @@
   transition: transform 0.8s ease-out;
   transform-style: preserve-3d;
   transform-style: preserve-3d;
-  margin-top: -60px;
+  margin-top: -63px;
   /* Move card up - adjust as needed */
   align-self: center;
   /* keep center card vertically centered */
@@ -5757,7 +5763,7 @@
     color: rgba(255, 255, 255, 0.8) !important;
     background: transparent !important;
     text-align: center !important;
-    margin: 12px 0 16px 0 !important;
+    margin: 0 0 63px 0 !important;
     width: 100% !important;
     flex-shrink: 0 !important;
   }
@@ -8007,12 +8013,13 @@
 /* --- Extracted Scenario & Card Animations --- */
 .scenarioContainer {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   justify-content: center;
   gap: 40px;
   width: 100%;
   max-width: 1250px;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   position: relative;
 }
 
@@ -8021,17 +8028,22 @@
 .optionColumnLeft,
 .optionColumnRight {
   flex: 1;
-  max-width: 360px;
+  max-width: 302px;
+  height: 88px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
   position: relative;
+  margin-right: 148px;
 }
 
 .optionColumnRight {
-  align-items: flex-end;
+  align-items: flex-start;
   text-align: left;
+  paddingmargin: 0 140px 0 148px;
+  width: 302px;
+  height: 148px;
 }
 
 .centerCard {
@@ -8048,6 +8060,8 @@
   transition: transform 0.8s ease-out;
   transform-style: preserve-3d;
   z-index: 10;
+  margin-top: -63px;
+  /* margin-bottom: 200px; */
 }
 
 .optionLabel {
@@ -8059,12 +8073,12 @@
   color: #12363B;
   opacity: 0.6;
   text-transform: uppercase;
-  margin-bottom: 5px;
+  margin-bottom: 12px;
 }
 
 .optionDesc {
   font-family: 'DM Sans', sans-serif;
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 500;
   line-height: 110%;
   letter-spacing: -0.03em;
@@ -8098,17 +8112,18 @@
     padding: 20px;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
     border-radius: 12px;
-    margin-top: 0 !important;
     order: 3;
     /* Options after card (order 1) and text (order 2) */
     text-align: left !important;
     border: 1px solid rgba(255, 255, 255, 0.3);
+  
   }
 
   .optionColumnRight {
     order: 4;
     /* After left option (order 3) */
     align-items: flex-start !important;
+    
   }
 
   .optionLabel {
@@ -8209,8 +8224,8 @@
 
 .hoverPetal {
   position: absolute;
-  top: -50%;
-  left: 0vw;
+  top: -20%;
+  left: -10vw;
   width: 250px;
   height: auto;
   pointer-events: none;
