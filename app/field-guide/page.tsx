@@ -5,7 +5,7 @@ import InsightsSection from '../../components/field-guide/InsightsSection'
 import ToolsSection from '../../components/field-guide/ToolsSection'
 import ToolkitSection from '../../components/field-guide/ToolkitSection'
 import InspiredSection from '../../components/field-guide/InspiredSection'
-import ExploreSection from '../../components/ExploreSection'
+import Explore from '../../components/Explore'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 import FGstyles from './page.module.css'
@@ -32,7 +32,7 @@ export default function FieldGuidePage() {
       <ToolkitSection />
 
       {/* Explore Grid Section */}
-      <ExploreSection />
+      <Explore />
 
       {/* Footer Section */}
       <Footer />
