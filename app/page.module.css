@@ -699,7 +699,9 @@
   z-index: 100;
   overflow-y: auto;
   scrollbar-width: none;
-  padding-bottom: 0 !important;
+  padding-top: 0;
+  padding-bottom: 100px !important;
+  /* Restored bottom padding for scroll space */
 }
 
 .chaptersSectionSticky::-webkit-scrollbar {
@@ -5653,9 +5655,10 @@
     height: auto;
     min-height: 100%;
     min-width: unset;
-    padding: 16px 16px 0;
+    padding: 160px 16px 160px;
+    /* Restored top and bottom padding */
     gap: 0;
-    overflow: hidden;
+    overflow: visible;
     box-sizing: border-box;
   }
 
@@ -8793,7 +8796,7 @@
   }
 
   .chapter1Header {
-    padding-top: 80px;
+    padding-top: 160px;
   }
 
   .menuLeft {

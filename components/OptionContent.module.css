@@ -1,6 +1,7 @@
 .optionContentWrapper {
     width: 100%;
-    height: 100vh;
+    height: auto;
+    min-height: 100vh;
     position: fixed;
     top: 0;
     left: 0;
@@ -12,10 +13,11 @@
 }
 
 .optionContentWrapper.embedded {
-    position: sticky;
+    position: relative;
+    /* Changed from sticky to follow vertical flow */
     top: 0;
-    height: 100vh;
-    min-height: 500px;
+    height: auto;
+    min-height: 100vh;
     z-index: 1;
 }
 
@@ -48,7 +50,8 @@
     left: 0;
     right: 0;
     z-index: 100;
-    padding: 30px 60px 15px;
+    padding: 60px 60px 15px;
+    /* Updated to 60px as per request */
     background: transparent;
     display: flex;
     flex-direction: column;
@@ -58,19 +61,21 @@
 }
 
 .embeddedHeader {
-    padding: 0 60px;
+    padding: 60px 60px 0;
+    /* Updated to 60px as per request */
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    position: fixed;
-    top: 40px;
+    position: relative;
+    /* Changed from fixed to flow with content */
+    top: 0;
     left: 0;
     right: 0;
-    height: 60px;
-    pointer-events: none;
+    height: auto;
     width: 100%;
-    z-index: 10000;
+    z-index: 100;
+    pointer-events: none;
 }
 
 .embeddedHeader .backButton {
@@ -122,7 +127,6 @@
     cursor: pointer;
     padding: 0;
     transition: opacity 0.2s;
-    order: 2;
     opacity: 0.8;
 }
 
@@ -152,12 +156,12 @@
     width: 100%;
     flex-grow: 1;
     overflow-x: auto;
-    overflow-y: hidden;
+    overflow-y: visible;
+    /* Changed to visible for vertical scroll */
     scrollbar-width: none;
     -ms-overflow-style: none;
     display: flex;
     align-items: center;
-    /* margin-top: 180px; */
 }
 
 .horizontalScrollContainer::-webkit-scrollbar {

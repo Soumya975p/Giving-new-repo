@@ -465,20 +465,17 @@ export default function Home() {
                       {/* Chapter 1 Specific Layout */}
                       {chapter.id === 1 ? (
                         <div className={styles.chapter1Wrapper}>
-                          <div className={styles.chapter1Header}>
-                            {!selectedOption && (
-                              <>
-
-                                <h4 className={styles.ch1Label}>CHAPTER I: NETWORK EXPANSION</h4>
-                                <h1 className={styles.ch1Title}>
-                                  Before seeking support, understand who's already in your circle.<br />
-                                  This chapter helps you map your existing network so fundraising starts<br />
-                                  with relationships, not cold outreach.
-                                </h1>
-                                <p className={`${styles.selectChapter} ${styles.desktopOnly}`} style={{ color: 'rgba(0, 0, 0, 0.6)' }}>Select one of the two options to reveal the right way</p>
-                              </>
-                            )}
-                          </div>
+                          {!selectedOption && (
+                            <div className={styles.chapter1Header}>
+                              <h4 className={styles.ch1Label}>CHAPTER I: NETWORK EXPANSION</h4>
+                              <h1 className={styles.ch1Title}>
+                                Before seeking support, understand who's already in your circle.<br />
+                                This chapter helps you map your existing network so fundraising starts<br />
+                                with relationships, not cold outreach.
+                              </h1>
+                              <p className={`${styles.selectChapter} ${styles.desktopOnly}`} style={{ color: 'rgba(0, 0, 0, 0.6)' }}>Select one of the two options to reveal the right way</p>
+                            </div>
+                          )}
 
                           {selectedOption === 'A' ? (
                             <div style={{ flex: 1, width: '100%', position: 'relative' }}>
@@ -843,20 +840,17 @@ export default function Home() {
                       ) : chapter.id === 2 ? (
                         // Chapter 2 Specific Layout
                         <div className={styles.chapter1Wrapper}>
-                          <div className={styles.chapter1Header}>
-                            {!selectedOption && (
-                              <>
-
-                                <h4 className={styles.ch1Label}>CHAPTER II: FIRST DONATION</h4>
-                                <h1 className={styles.ch1Title} style={{ color: '#FFFFFF' }}>
-                                  A first donation is more than a transaction. This chapter focuses on<br />
-                                  how timely acknowledgment and simple follow-up can turn a first gift<br />
-                                  into the beginning of a relationship.
-                                </h1>
-                                <p className={`${styles.selectChapter} ${styles.desktopOnly}`} style={{ color: 'rgba(255, 255, 255, 0.8)' }}>Select one of the two options to reveal the right way</p>
-                              </>
-                            )}
-                          </div>
+                          {!selectedOption && (
+                            <div className={styles.chapter1Header}>
+                              <h4 className={styles.ch1Label}>CHAPTER II: FIRST DONATION</h4>
+                              <h1 className={styles.ch1Title} style={{ color: '#FFFFFF' }}>
+                                A first donation is more than a transaction. This chapter focuses on<br />
+                                how timely acknowledgment and simple follow-up can turn a first gift<br />
+                                into the beginning of a relationship.
+                              </h1>
+                              <p className={`${styles.selectChapter} ${styles.desktopOnly}`} style={{ color: 'rgba(255, 255, 255, 0.8)' }}>Select one of the two options to reveal the right way</p>
+                            </div>
+                          )}
 
                           {selectedOption === 'A' ? (
                             <div style={{ flex: 1, width: '100%', position: 'relative' }}>
@@ -1314,55 +1308,19 @@ export default function Home() {
                       ) : chapter.id === 3 ? (
                         // Chapter 3 Specific Layout - Persistent Header
                         <div className={styles.chapter1Wrapper}>
-                          <div className={styles.chapter1Header}>
-                            {!selectedOption && (
-                              <>
-
-                                <h4 className={styles.ch1Label} style={{ color: '#14343CCC' }}>CHAPTER III: STEWARDING DONORS</h4>
-                                <h1 className={styles.ch1Title} style={{ color: '#14343C' }}>
-                                  Staying connected after the first gift builds trust. This chapter focuses<br />
-                                  on how consistent, non-ask engagement helps donors feel involved<br />
-                                  and valued.
-                                </h1>
-                                <p className={`${styles.selectChapter} ${styles.desktopOnly}`} style={{ color: '#14343CCC' }}>Select one of the two options to reveal the right way</p>
-                              </>
-                            )}
-                          </div>
+                          {!selectedOption && (
+                            <div className={styles.chapter1Header}>
+                              <h4 className={styles.ch1Label} style={{ color: '#14343CCC' }}>CHAPTER III: STEWARDING DONORS</h4>
+                              <h1 className={styles.ch1Title} style={{ color: '#14343C' }}>
+                                Staying connected after the first gift builds trust. This chapter focuses<br />
+                                on how consistent, non-ask engagement helps donors feel involved<br />
+                                and valued.
+                              </h1>
+                              <p className={`${styles.selectChapter} ${styles.desktopOnly}`} style={{ color: '#14343CCC' }}>Select one of the two options to reveal the right way</p>
+                            </div>
+                          )}
 
                           {selectedOption === 'A' ? (
-                            <div style={{
-                              position: 'fixed',
-                              top: '40px',
-                              left: 0,
-                              right: 0,
-                              display: 'flex',
-                              justifyContent: 'center',
-                              zIndex: 10000,
-                              pointerEvents: 'none'
-                            }}>
-                              <button
-                                onClick={() => setSelectedOption(null)}
-                                style={{
-                                  pointerEvents: 'auto',
-                                  display: 'flex',
-                                  alignItems: 'center',
-                                  gap: '8px',
-                                  background: 'transparent',
-                                  border: 'none',
-                                  color: '#1a4d3a',
-                                  fontFamily: 'DM Sans, sans-serif',
-                                  fontSize: '14px',
-                                  fontWeight: 500,
-                                  cursor: 'pointer',
-                                  padding: 0
-                                }}
-                              >
-                                <ArrowLeft size={16} />
-                                <span>Back to scenario</span>
-                              </button>
-                            </div>
-                          ) : selectedOption === 'B' ? (
-                            // Chapter 3 Option B Content (without header, header is above)
                             <div style={{ flex: 1, width: '100%', position: 'relative' }}>
                               <OptionContent
                                 embedded={true}
@@ -1371,7 +1329,33 @@ export default function Home() {
                                 backgroundColor="transparent"
                                 onBack={() => setSelectedOption(null)}
                                 onNext={handleNextChapter}
-                                // optionId="ch1OptionA"
+                                customStyles={chapter3StylesA}
+                                contentCards={[
+                                  {
+                                    id: 1,
+                                    type: 'text',
+                                    title: "Nurture the relationship!",
+                                    content: "Show the impact of their gift. Share a photo of the lake being de-silted, invite them for a visit, or send a brief update on the lives touched."
+                                  },
+                                  {
+                                    id: 2,
+                                    type: 'stat',
+                                    label: "UDARTA:EG STUDY SHOWS",
+                                    stat: "11.3%",
+                                    statDescription: "Sharing impact updates is linked to an 11.3 percentage point increase in recurring donors."
+                                  }
+                                ]}
+                              />
+                            </div>
+                          ) : selectedOption === 'B' ? (
+                            <div style={{ flex: 1, width: '100%', position: 'relative' }}>
+                              <OptionContent
+                                embedded={true}
+                                chapterTitle="CHAPTER III: STEWARDING DONORS"
+                                chapterSubtitle="Staying connected after the first gift builds trust. This chapter focuses on how consistent, non-ask engagement helps donors feel involved and valued."
+                                backgroundColor="transparent"
+                                onBack={() => setSelectedOption(null)}
+                                onNext={handleNextChapter}
                                 customStyles={chapter3StylesB}
                                 contentCards={[
                                   {
@@ -1671,19 +1655,16 @@ export default function Home() {
                       ) : chapter.id === 4 ? (
                         // Chapter 4 Specific Layout - Persistent Header
                         <div className={styles.chapter1Wrapper}>
-                          <div className={styles.chapter1Header}>
-                            {!selectedOption && (
-                              <>
-
-                                <h4 className={styles.ch1Label} style={{ color: '#FFFFFFCC' }}>CHAPTER IV: DONORS TO CHAMPIONS</h4>
-                                <h1 className={styles.ch1Title} style={{ color: '#FFFFFF' }}>
-                                  When relationships are nurtured well, supporters deepen their involvement.<br />
-                                  This chapter explores how donors grow into champions.
-                                </h1>
-                                <p className={`${styles.selectChapter} ${styles.desktopOnly}`} style={{ color: '#FFFFFFCC' }}>Select one of the two options to reveal the right way</p>
-                              </>
-                            )}
-                          </div>
+                          {!selectedOption && (
+                            <div className={styles.chapter1Header}>
+                              <h4 className={styles.ch1Label} style={{ color: '#FFFFFFCC' }}>CHAPTER IV: DONORS TO CHAMPIONS</h4>
+                              <h1 className={styles.ch1Title} style={{ color: '#FFFFFF' }}>
+                                When relationships are nurtured well, supporters deepen their involvement.<br />
+                                This chapter explores how donors grow into champions.
+                              </h1>
+                              <p className={`${styles.selectChapter} ${styles.desktopOnly}`} style={{ color: '#FFFFFFCC' }}>Select one of the two options to reveal the right way</p>
+                            </div>
+                          )}
 
                           {selectedOption === 'A' ? (
                             <Chapter4OptionA
@@ -1692,36 +1673,31 @@ export default function Home() {
                               onNext={handleNextChapter}
                             />
                           ) : selectedOption === 'B' ? (
-                            <div style={{
-                              position: 'fixed',
-                              top: '40px',
-                              left: 0,
-                              right: 0,
-                              display: 'flex',
-                              justifyContent: 'center',
-                              zIndex: 10000,
-                              pointerEvents: 'none'
-                            }}>
-                              <button
-                                onClick={() => setSelectedOption(null)}
-                                style={{
-                                  pointerEvents: 'auto',
-                                  display: 'flex',
-                                  alignItems: 'center',
-                                  gap: '8px',
-                                  background: 'transparent',
-                                  border: 'none',
-                                  color: '#1a4d3a',
-                                  fontFamily: 'DM Sans, sans-serif',
-                                  fontSize: '14px',
-                                  fontWeight: 500,
-                                  cursor: 'pointer',
-                                  padding: 0
-                                }}
-                              >
-                                <ArrowLeft size={16} />
-                                <span>Back to scenario</span>
-                              </button>
+                            <div style={{ flex: 1, width: '100%', position: 'relative' }}>
+                              <OptionContent
+                                embedded={true}
+                                chapterTitle="CHAPTER IV: DONORS TO CHAMPIONS"
+                                chapterSubtitle="When relationships are nurtured well, supporters deepen their involvement. This chapter explores how donors grow into champions."
+                                backgroundColor="transparent"
+                                onBack={() => setSelectedOption(null)}
+                                onNext={handleNextChapter}
+                                customStyles={chapter4StylesB}
+                                contentCards={[
+                                  {
+                                    id: 1,
+                                    type: 'text',
+                                    title: "Champions in the making!",
+                                    content: "When you nurture relationships, donors don't just give again — they become advocates, volunteers, and long-term supporters."
+                                  },
+                                  {
+                                    id: 2,
+                                    type: 'stat',
+                                    label: "RETENTION MATTERS",
+                                    stat: "10x",
+                                    statDescription: "Acquiring a new donor costs nearly ten times more than retaining an existing one."
+                                  }
+                                ]}
+                              />
                             </div>
                           ) : (
                             // Chapter 4 Default View - Scenario Cards
