@@ -12,6 +12,7 @@ interface HeaderProps {
   bonusSectionRef?: React.RefObject<HTMLDivElement>;
   heroSectionRef?: React.RefObject<HTMLDivElement>;
   exploreSectionRef?: React.RefObject<HTMLDivElement>;
+  setIsChaptersSectionSticky?: (isSticky: boolean) => void;
 }
 
 export default function Header({
@@ -21,13 +22,14 @@ export default function Header({
   bonusSectionRef,
   heroSectionRef,
   exploreSectionRef,
+  setIsChaptersSectionSticky,
 }: HeaderProps) {
   const router = useRouter();
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isFundraisingExpanded, setIsFundraisingExpanded] = useState(false);
   const [expandedChapter, setExpandedChapter] = useState<number | null>(null);
-  
+
   const isFieldGuidePage = pathname === '/field-guide';
 
   return (
@@ -80,9 +82,10 @@ export default function Header({
               <div className={styles.menuBody}>
                 <div className={styles.menuLeft}>
                   <div className={styles.menuSection}>
-                    <button 
+                    <button
                       className={`${styles.menuSectionTitle} ${isFieldGuidePage ? styles.active : ''}`}
                       onClick={() => {
+                        setIsChaptersSectionSticky?.(false);
                         router.push('/field-guide');
                         setIsMenuOpen(false);
                       }}
@@ -310,6 +313,7 @@ export default function Header({
                       <button
                         className={styles.chapterButton}
                         onClick={() => {
+                          setIsChaptersSectionSticky?.(false);
                           bonusSectionRef?.current?.scrollIntoView({
                             behavior: 'smooth',
                           });

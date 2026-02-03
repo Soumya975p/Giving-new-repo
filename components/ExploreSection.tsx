@@ -1,4 +1,4 @@
-import styles from '../app/page.module.css'
+import styles from './ExploreSection.module.css'
 
 export default function ExploreSection() {
   return (
