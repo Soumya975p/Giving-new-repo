@@ -10,15 +10,15 @@ export default function InspiredSection() {
 
   const cards = [
     {
-      image: "/assets/slider1.png",
+      image: "/assets/Card 1.png",
       color: "#D349AE"
     },
     {
-      image: "/assets/slider1.png",
+      image: "/assets/Card 2.png",
       color: "#0FB8C5"
     },
     {
-      image: "/assets/slider1.png",
+      image: "/assets/Card 3.png",
       color: "#93CD4D"
     }
   ]
@@ -47,7 +47,10 @@ export default function InspiredSection() {
         <div className={styles.guidesSection}>
           <p className={styles.chooseLabel}><span></span> CHOOSE A FIELD GUIDE TO EXPLORE <span></span></p>
           <div className={styles.guideButtons}>
-            <button className={styles.guideButton}>
+            <button
+              className={styles.guideButton}
+              onClick={() => window.location.href = 'http://localhost:3001/'}
+            >
               <span> <img
                 src="/assets/btn-diamond.png"
                 style={{ width: '100%', height: '100%', objectFit: 'contain' }}
@@ -119,21 +122,50 @@ export default function InspiredSection() {
                       />
                     </button>
 
-                    {/* Cards Container */}
                     <div className={inspiredStyles.cardsContainer}>
-                      {cards.map((card, index) => (
-                        <div
-                          key={index}
-                          className={`${inspiredStyles.card} ${index === activeCard ? inspiredStyles.cardActive : ''}`}
-                          style={{ transform: `translateX(-${activeCard * 100}%)` }}
-                        >
-                          <img
-                            src={card.image}
-                            alt={`Card ${index + 1}`}
-                            className={inspiredStyles.cardImage}
-                          />
-                        </div>
-                      ))}
+                      {cards.map((card, index) => {
+                        // Calculate position relative to active card
+                        // 0 = active, 1 = next, 2 = last (in a 3-card stack)
+                        const position = (index - activeCard + cards.length) % cards.length;
+
+                        let style = {};
+                        if (position === 0) {
+                          // Front card
+                          style = {
+                            zIndex: 3,
+                            transform: 'scale(1) translateX(0px) translateY(0px) rotate(-0deg)',
+                            opacity: 1
+                          };
+                        } else if (position === 1) {
+                          // Middle card
+                          style = {
+                            zIndex: 2,
+                            transform: 'scale(1) translateX(0px) translateY(0px) rotate(-0deg)',
+                            opacity: 1
+                          };
+                        } else {
+                          // Back card
+                          style = {
+                            zIndex: 1,
+                            transform: 'scale(1) translateX(0px) translateY(0px) rotate(0deg)',
+                            opacity: 1
+                          };
+                        }
+
+                        return (
+                          <div
+                            key={index}
+                            className={`${inspiredStyles.card} ${position === 0 ? inspiredStyles.cardActive : ''}`}
+                            style={style}
+                          >
+                            <img
+                              src={card.image}
+                              alt={`Card ${index + 1}`}
+                              className={inspiredStyles.cardImage}
+                            />
+                          </div>
+                        )
+                      })}
                     </div>
 
                     {/* Next Arrow */}
@@ -175,6 +207,7 @@ export default function InspiredSection() {
               </div>
             </div>
 
+            {/* Bottom Quote Section */}
             {/* Bottom Quote Section */}
             <div className={inspiredStyles.quoteSection}>
               <p className={inspiredStyles.quoteText}>

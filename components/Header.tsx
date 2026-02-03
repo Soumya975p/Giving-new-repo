@@ -27,7 +27,7 @@ export default function Header({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isFundraisingExpanded, setIsFundraisingExpanded] = useState(false);
   const [expandedChapter, setExpandedChapter] = useState<number | null>(null);
-  
+
   const isFieldGuidePage = pathname === '/field-guide';
 
   return (
@@ -80,11 +80,10 @@ export default function Header({
               <div className={styles.menuBody}>
                 <div className={styles.menuLeft}>
                   <div className={styles.menuSection}>
-                    <button 
+                    <button
                       className={`${styles.menuSectionTitle} ${isFieldGuidePage ? styles.active : ''}`}
                       onClick={() => {
-                        router.push('/field-guide');
-                        setIsMenuOpen(false);
+                        window.location.href = 'http://localhost:3001/field-guide';
                       }}
                     >
                       {isFieldGuidePage && <span className={styles.bullet}>◆</span>}
@@ -310,6 +309,7 @@ export default function Header({
                       <button
                         className={styles.chapterButton}
                         onClick={() => {
+                          setIsChaptersSectionSticky?.(false);
                           bonusSectionRef?.current?.scrollIntoView({
                             behavior: 'smooth',
                           });

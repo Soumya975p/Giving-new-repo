@@ -44,6 +44,8 @@ export default function Explore() {
 
           <div
             className={`${styles.exploreCardBase} ${styles.exploreCard1}`}
+            onClick={() => window.location.href = 'http://localhost:3001/field-guide'}
+            style={{ cursor: 'pointer' }}
           >
             <div
               className={styles.hoverTrigger}

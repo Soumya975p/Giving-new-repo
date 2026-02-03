@@ -1,22 +1,23 @@
 .inspiredSection {
-background-color: #12363B;
-position: relative;
-background-image: url('/assets/brdr-radius.png');
-background-repeat: no-repeat;
-background-position: top center;
-    background-size: 100%;
-    border-top-left-radius: 60px;
-    margin-top: -60px;
-    z-index: 9;
-    border-top-right-radius: 60px;
+  background-color: #12363B;
+  position: relative;
+  background-image: url('/assets/brdr-radius.png');
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 100%;
+  border-top-left-radius: 60px;
+  margin-top: -60px;
+  z-index: 9;
+  border-top-right-radius: 60px;
 }
+
 .inspiredSectionBg {
   background: linear-gradient(135deg, #B8E986 0%, #93CD4D 100%);
   padding: 24px 40px;
   position: relative;
   overflow: hidden;
-border-top-left-radius: 999px;
-border-top-right-radius: 999px;
+  border-top-left-radius: 999px;
+  border-top-right-radius: 999px;
   border-bottom-left-radius: 14%;
   border-bottom-right-radius: 14%;
 
@@ -37,17 +38,17 @@ border-top-right-radius: 999px;
 }
 
 .circleContainer {
-background: #12363B;
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    aspect-ratio: 1 / 1;
+  background: #12363B;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  aspect-ratio: 1 / 1;
 }
 
-.circleContent{
+.circleContent {
   width: 50%;
   margin: auto;
 }
@@ -87,19 +88,26 @@ background: #12363B;
   width: 320px;
   height: 400px;
   position: relative;
-  overflow: hidden;
-  display: flex;
+  /* Removed overflow: hidden to allow stack to be visible if needed, or keep it if contained */
+  overflow: visible;
+  display: block;
+  /* Remove flex */
+  margin: 0 auto;
+  /* Center the container */
 }
 
 .card {
-  min-width: 100%;
+  width: 100%;
+  /* Will match container width */
   height: 100%;
   background: transparent;
-  position: relative;
+  position: absolute;
+  /* Stack on top of each other */
+  top: 0;
+  left: 0;
   border-radius: 12px;
-  overflow: hidden;
-  transition: transform 0.5s ease;
-  transform: rotate(-5deg);
+  transition: all 0.5s ease-in-out;
+  /* Transform will be handled inline in TSX */
 }
 
 .cardActive {
@@ -161,7 +169,7 @@ background: #12363B;
   justify-content: space-between;
   gap: 80px;
   margin-bottom: 160px;
-  padding-top: 200px;
+  padding-top: 155px;
   background-image: url('/assets/over-90.png');
   background-repeat: no-repeat;
   background-position: left top;
@@ -197,24 +205,24 @@ background: #12363B;
 }
 
 .statText {
-font-family: Zalando Sans Expanded;
-font-weight: 400;
-font-style: Regular;
-font-size: 40px;
-leading-trim: NONE;
-line-height: 120%;
-letter-spacing: -4%;
-margin-bottom: 40px;
+  font-family: Zalando Sans Expanded;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 40px;
+  leading-trim: NONE;
+  line-height: 120%;
+  letter-spacing: -4%;
+  margin-bottom: 40px;
 }
 
 .statCitation {
-font-family: DM Sans;
-font-weight: 400;
-font-style: Italic;
-font-size: 20px;
-leading-trim: NONE;
-line-height: 150%;
-letter-spacing: 0%;
+  font-family: DM Sans;
+  font-weight: 400;
+  font-style: Italic;
+  font-size: 20px;
+  leading-trim: NONE;
+  line-height: 150%;
+  letter-spacing: 0%;
 
 }
 
@@ -226,26 +234,26 @@ letter-spacing: 0%;
 }
 
 .descText {
- font-family: DM Sans;
-font-weight: 400;
-font-style: Regular;
-font-size: 24px;
-leading-trim: NONE;
-line-height: 140%;
-letter-spacing: -4%;
+  font-family: DM Sans;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 24px;
+  leading-trim: NONE;
+  line-height: 140%;
+  letter-spacing: -4%;
 
 }
 
 .reportLink {
-font-family: DM Sans;
-font-weight: 500;
-font-style: Medium;
-font-size: 20px;
-leading-trim: NONE;
-line-height: 140%;
-letter-spacing: -4%;
-color: #12363B;
-text-decoration: none;
+  font-family: DM Sans;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 20px;
+  leading-trim: NONE;
+  line-height: 140%;
+  letter-spacing: -4%;
+  color: #12363B;
+  text-decoration: none;
 }
 
 .reportLink:hover {
@@ -255,111 +263,134 @@ text-decoration: none;
 /* Quote Section */
 .quoteSection {
   background: linear-gradient(0deg, #031947 -39.61%, #07424E -6.94%, #033B30 100%);
-  
   border-radius: 80px;
   padding: 160px;
   text-align: center;
   border-radius: 230px;
+  position: relative;
+  overflow: hidden;
+}
+
+.quoteSection::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-image: url("/assets/insights-bg.png");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: auto;
+  width: 100%;
+  height: 100%;
 }
 
 .quoteText {
-font-family: Zalando Sans Expanded;
-font-weight: 300;
-font-style: Light;
-font-size: 52px;
-leading-trim: NONE;
-line-height: 110.00000000000001%;
-letter-spacing: -3%;
-text-align: center;
-color: #fff;
+  font-family: Zalando Sans Expanded;
+  font-weight: 300;
+  font-style: Light;
+  font-size: 52px;
+  leading-trim: NONE;
+  line-height: 110.00000000000001%;
+  letter-spacing: -3%;
+  text-align: center;
+  color: #fff;
 }
-.quoteText span{
+
+.quoteText span {
   color: #ABE467;
 }
-.insCbContainerBg{
+
+.insCbContainerBg {
   position: relative;
 }
-.insCbContainer{
+
+.insCbContainer {
   width: 1260px;
   margin: auto;
   padding: 200px 15px;
   position: relative;
 }
-.insCbContainerBg::before{
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background-image: url(/assets/inscbbtmbg.png);
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 100%;
-    background-position: 0% 75%;
-    background-size: auto;
-    z-index: 1;
+
+.insCbContainerBg::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-image: url(/assets/inscbbtmbg.png);
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  background-position: 0% 75%;
+  background-size: auto;
+  z-index: 1;
 }
-.insCbContainer h2{
+
+.insCbContainer h2 {
   font-family: Zalando Sans Expanded;
-font-weight: 400;
-font-style: Regular;
-font-size: 36px;
-leading-trim: NONE;
-line-height: 130%;
-letter-spacing: -4%;
-width: 50%;
-color: #fff;
-margin-bottom: 122px;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 36px;
+  leading-trim: NONE;
+  line-height: 130%;
+  letter-spacing: -4%;
+  width: 50%;
+  color: #fff;
+  margin-bottom: 122px;
 }
 
-.ins-cb-top{
+.ins-cb-top {
   /* Add your styles here */
 }
 
-.ins-cb-btm{
+.ins-cb-btm {
   /* Add your styles here */
 }
-.insCbBtm{
+
+.insCbBtm {
   width: 50%;
   margin-left: 50%;
 }
-.insCbBtm h3{
-font-family: DM Sans;
-font-weight: 500;
-font-style: Medium;
-font-size: 28px;
-leading-trim: NONE;
-line-height: 110.00000000000001%;
-letter-spacing: -3%;
-margin-bottom: 16px;
-color: #fff;
+
+.insCbBtm h3 {
+  font-family: DM Sans;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 28px;
+  leading-trim: NONE;
+  line-height: 110.00000000000001%;
+  letter-spacing: -3%;
+  margin-bottom: 16px;
+  color: #fff;
 }
-.insCbBtm p{
-font-family: DM Sans;
-font-weight: 400;
-font-style: Regular;
-font-size: 20px;
-leading-trim: NONE;
-line-height: 140%;
-letter-spacing: -4%;
-margin-bottom: 16px;
-color: #fff;
+
+.insCbBtm p {
+  font-family: DM Sans;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 20px;
+  leading-trim: NONE;
+  line-height: 140%;
+  letter-spacing: -4%;
+  margin-bottom: 16px;
+  color: #fff;
 }
-.insCbBtm a{
-font-family: DM Sans;
-font-weight: 500;
-font-size: 20px;
-line-height: 140%;
-letter-spacing: -4%;
-color: #fff;
-text-decoration: none;
-display: flex;
-gap: 8px;
+
+.insCbBtm a {
+  font-family: DM Sans;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: -4%;
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  gap: 8px;
 }
 
 
 /* Responsive */
 @media (max-width: 1024px) {
-  
+
   .circleContainer {
     width: 500px;
     height: 500px;
@@ -376,8 +407,12 @@ gap: 8px;
     padding: 20px;
     border-top-left-radius: 250px;
     border-top-right-radius: 250px;
-    border-bottom-left-radius: 280px;
-    border-bottom-right-radius: 280px;
+    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+  }
+
+  .quoteSection::after {
+    background-image: url("/assets/mob-insights-bg.png");
   }
 
   .container {
@@ -392,11 +427,11 @@ gap: 8px;
     aspect-ratio: 1;
     padding: 30px 20px;
     min-height: 1000px;
-          min-height: 1000px;
-        border-top-left-radius: 200px;
-        border-top-right-radius: 200px; 
-        border-bottom-left-radius: 200px;
-        border-bottom-right-radius: 200px;
+    min-height: 1000px;
+    border-top-left-radius: 200px;
+    border-top-right-radius: 200px;
+    border-bottom-left-radius: 200px;
+    border-bottom-right-radius: 200px;
   }
 
   .circleContent {
@@ -431,16 +466,19 @@ gap: 8px;
     width: 30px;
     height: auto;
   }
-   .sliderPrevBtn {
-top: 100%;
-        right: 18% !important;
-        height: 50px;
-   }
-   .sliderNextBtn {
-        bottom: -13%;
-        left: 18% !important;
-        width: 50px;
- }
+
+  .sliderPrevBtn {
+    top: 100%;
+    right: 18% !important;
+    height: 50px;
+  }
+
+  .sliderNextBtn {
+    bottom: -13%;
+    left: 18% !important;
+    width: 50px;
+  }
+
   .statsSection {
     flex-direction: column;
     gap: 40px;
@@ -462,14 +500,16 @@ top: 100%;
   }
 
   .quoteSection {
-   padding: 30px;
-        border-radius: 50%;
-        width: 100%;
-        height: 100%;
-        aspect-ratio: 1;
-        align-items: center;
-        display: flex;
+    padding: 30px;
+    border-radius: 60px;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1;
+    align-items: center;
+    display: flex;
+    min-height: 600px;
   }
+
 
   .quoteText {
     font-size: 28px;
@@ -503,25 +543,31 @@ top: 100%;
   .insCbBtm a {
     font-size: 16px;
   }
-.insCbContainerBg::before{
-display: none;
-}
-.insCbContainer .m-d-block{
-  width: 100%;
-}
-.insCbContainer .m-d-block{
-  margin-bottom: 100px;
-}
-.insCbBtm h3{
-  margin-top: 80px;
-  font-size: 28px;
-  margin-bottom: 12px;
-}
-.insCbBtm p{
-  font-size: 18px;
-  margin-bottom: 28px;
-}
-.ins-cb-btm a{
-  font-size: 18px;
-}
+
+  .insCbContainerBg::before {
+    display: none;
+  }
+
+  .insCbContainer .m-d-block {
+    width: 100%;
+  }
+
+  .insCbContainer .m-d-block {
+    margin-bottom: 100px;
+  }
+
+  .insCbBtm h3 {
+    margin-top: 80px;
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
+  .insCbBtm p {
+    font-size: 18px;
+    margin-bottom: 28px;
+  }
+
+  .ins-cb-btm a {
+    font-size: 18px;
+  }
 }

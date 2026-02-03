@@ -8,6 +8,10 @@
   scrollbar-width: none;
 }
 
+.noScroll {
+  overflow: hidden !important;
+}
+
 .desktopOnly {
   display: block !important;
 }
@@ -688,10 +692,10 @@
 /* Sticky state - triggered when 10% visible */
 .chaptersSectionSticky {
   position: fixed;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100vh !important;
   z-index: 100;
   overflow: hidden;
   animation: slideUpAndFix 0.5s ease-out forwards;
@@ -770,7 +774,7 @@
   display: flex;
   flex-direction: row;
   overflow-x: auto;
-  overflow-y: auto;
+  overflow-y: visible;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -958,7 +962,7 @@
 .contentSection {
   flex: 1;
   width: 100%;
-  overflow-y: auto;
+  overflow-y: visible;
   overflow-x: hidden;
   position: relative;
   border: 3px solid rgba(0, 0, 0, 0.3);
@@ -1065,7 +1069,8 @@
 /* Scroll Container */
 .scrollContainer {
   min-width: 100%;
-  height: 100%;
+  height: auto;
+  min-height: 100%;
   overflow: visible;
   padding: 30px 60px 200px 60px;
   display: flex;
@@ -1127,7 +1132,8 @@
   position: relative;
   padding: 0 40px;
   min-width: fit-content;
-  height: 100%;
+  height: auto;
+  min-height: 100%;
 }
 
 /* Left Column - Flowchart */
@@ -2719,11 +2725,12 @@
 
 /* Chapter Panel */
 .chapterPanel {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: auto;
+  min-height: 100vh;
   border-radius: 0;
   overflow: hidden;
   display: flex;
@@ -2736,7 +2743,7 @@
 .contentSection {
   flex: 1;
   width: 100%;
-  overflow-y: auto;
+  overflow-y: visible;
   overflow-x: hidden;
   position: relative;
   border: 3px solid rgba(0, 0, 0, 0.3);
@@ -4166,11 +4173,12 @@
 .chapter1Header {
   width: 996px;
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 80px;
+  margin-top: 120px;
   /* Reduced from 50px */
   position: relative;
   z-index: 10;
-  padding: 0 10px;
+  /* padding: 160px 10px 58px 10px; */
   top: 8%;
   /* Reduced side padding slightly */
 }
@@ -4185,7 +4193,8 @@
   color: #195960;
   text-transform: uppercase;
   text-align: center;
-  margin-bottom: 16px;
+  /* margin-bottom: 16px; */
+  margin-top: 12px;
   /* Reduced from 12px */
   opacity: 0.6;
 }
@@ -4199,7 +4208,7 @@
   letter-spacing: -0.03em;
   color: #0A1731;
   text-align: center;
-  margin-bottom: 1%;
+  /* margin-bottom: 1%; */
   /* Reduced from 20px */
   max-width: 1000px;
   margin-left: auto;
@@ -4216,22 +4225,25 @@
   /* -2% */
   color: rgba(0, 0, 0, 0.6);
   /* #000000 @ 60% */
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto 2%;
+  width: 100% !important;
+  text-align: center;
+  /* margin: 0 auto 20px !important; */
   position: relative;
   z-index: 20;
+  flex-shrink: 0;
+  padding-bottom: 63px;
 }
 
 
 /* Scenario Container */
 .scenarioContainer {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   /* Aligns options to the top */
   justify-content: center;
   gap: 40px;
-  padding-top: 20px;
+  /* padding-top: 20px; */
   /* Add breathing room */
   /* Reduced from 20px */
   width: 100%;
@@ -4256,8 +4268,8 @@
 
 .hoverFlowerLeftmost {
   position: absolute;
-  bottom: -225px;
-  left: -45px;
+  bottom: -10px;
+  left: -10px;
   width: 125px;
   height: 400px;
   pointer-events: none;
@@ -4287,7 +4299,7 @@
 
 .hoverPetal {
   position: absolute;
-  top: -60px;
+  top: -30px;
   left: -100px;
   width: 250px;
   height: auto;
@@ -5072,6 +5084,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
+  /* padding: 126.56px 0px 161px; */
 }
 
 .optionColumnRight {
@@ -5122,7 +5135,7 @@
   transition: transform 0.8s ease-out;
   transform-style: preserve-3d;
   transform-style: preserve-3d;
-  margin-top: -60px;
+  margin-top: -63px;
   /* Move card up - adjust as needed */
   align-self: center;
   /* keep center card vertically centered */
@@ -5603,9 +5616,9 @@
   .chaptersSection {
     position: relative;
     width: 100%;
-    height: 1035px !important;
-    min-height: 1035px;
-    overflow: hidden;
+    height: auto !important;
+    min-height: 100vh;
+    overflow: visible;
   }
 
   /* Hide top navigation on mobile */
@@ -5619,21 +5632,22 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: auto;
   }
 
   /* Chapter Panel - Full screen */
   .chapterPanel {
     width: 100%;
-    height: 100%;
+    height: auto;
+    min-height: 100vh;
     border-radius: 0;
   }
 
   /* Content Section */
   .contentSection {
     width: 100%;
-    height: 100%;
-    overflow-y: auto;
+    height: auto;
+    overflow-y: visible;
     overflow-x: hidden;
     border: none;
     padding-bottom: 70px;
@@ -5650,24 +5664,26 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100%;
+    height: auto;
+    min-height: 100%;
     min-width: unset;
-    padding: 16px 16px 0;
+    padding: 160px 16px 160px;
+    /* Restored top and bottom padding */
     gap: 0;
-    overflow: hidden;
+    overflow: visible;
     box-sizing: border-box;
   }
 
   /* Chapter 1 Wrapper - Mobile Layout */
   .chapter1Wrapper {
     width: 100%;
-    height: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 10px;
     padding-bottom: 0;
-    overflow: hidden;
+    overflow: visible;
   }
 
   /* Chapter Header - Mobile */
@@ -5721,7 +5737,7 @@
     margin-top: 0;
     padding: 0;
     flex: 1;
-    overflow: hidden;
+    overflow: visible;
   }
 
   /* Center Card - Mobile (Shown First) */
@@ -5753,7 +5769,7 @@
     color: rgba(255, 255, 255, 0.8) !important;
     background: transparent !important;
     text-align: center !important;
-    margin: 12px 0 16px 0 !important;
+    margin: 0 0 63px 0 !important;
     width: 100% !important;
     flex-shrink: 0 !important;
   }
@@ -8003,12 +8019,13 @@
 /* --- Extracted Scenario & Card Animations --- */
 .scenarioContainer {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   justify-content: center;
   gap: 40px;
   width: 100%;
   max-width: 1250px;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   position: relative;
 }
 
@@ -8017,17 +8034,22 @@
 .optionColumnLeft,
 .optionColumnRight {
   flex: 1;
-  max-width: 360px;
+  max-width: 302px;
+  height: 88px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
   position: relative;
+  margin-right: 148px;
 }
 
 .optionColumnRight {
-  align-items: flex-end;
+  align-items: flex-start;
   text-align: left;
+  paddingmargin: 0 140px 0 148px;
+  width: 302px;
+  height: 148px;
 }
 
 .centerCard {
@@ -8044,6 +8066,8 @@
   transition: transform 0.8s ease-out;
   transform-style: preserve-3d;
   z-index: 10;
+  margin-top: -63px;
+  /* margin-bottom: 200px; */
 }
 
 .optionLabel {
@@ -8055,12 +8079,12 @@
   color: #12363B;
   opacity: 0.6;
   text-transform: uppercase;
-  margin-bottom: 5px;
+  margin-bottom: 12px;
 }
 
 .optionDesc {
   font-family: 'DM Sans', sans-serif;
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 500;
   line-height: 110%;
   letter-spacing: -0.03em;
@@ -8094,17 +8118,18 @@
     padding: 20px;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
     border-radius: 12px;
-    margin-top: 0 !important;
     order: 3;
     /* Options after card (order 1) and text (order 2) */
     text-align: left !important;
     border: 1px solid rgba(255, 255, 255, 0.3);
+
   }
 
   .optionColumnRight {
     order: 4;
     /* After left option (order 3) */
     align-items: flex-start !important;
+
   }
 
   .optionLabel {
@@ -8789,6 +8814,10 @@
 @media (max-width: 768px) {
   .menuBody {
     grid-template-columns: 1fr;
+  }
+
+  .chapter1Header {
+    padding-top: 160px;
   }
 
   .menuLeft {
