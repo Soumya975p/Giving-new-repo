@@ -1,0 +1,305 @@
+.toolkitCardWrapper {
+    position: relative;
+    width: 320px;
+    height: 462.222229px;
+    flex-shrink: 0;
+    box-shadow: none;
+    filter: none;
+}
+
+/* Base Card - SVG background */
+.baseCard {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.baseCardImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    box-shadow: none;
+    filter: none;
+    transform: rotate(6deg);
+    transform-origin: center;
+}
+
+/* Content Container - positioned above base */
+.contentContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    overflow: visible;
+    transform: rotate(6deg);
+    transform-origin: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.noRotate .baseCardImage,
+.noRotate .contentContainer {
+    transform: none;
+}
+
+/* Top Section: Background + Design overlay */
+.topSection {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: visible;
+    border-radius: 16px 16px 0 0;
+}
+
+.backgroundImage {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    width: 100%;
+    height: 57%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.backgroundTk345 .backgroundImage {
+    top: 15px;
+    left: 13px;
+    width: 94%;
+    height: 70%;
+    object-fit: cover;
+}
+
+.backgroundTk6 .backgroundImage {
+    top: 13px;
+    left: 17px;
+    width: 90%;
+    height: 57%;
+    object-fit: cover;
+}
+
+
+.backgroundTk7 .backgroundImage {
+    top: 13px;
+    left: 17px;
+    width: 90%;
+    height: 57%;
+    object-fit: cover;
+}
+
+.designOverlay {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    height: 220px;
+    object-fit: contain;
+    object-position: center;
+    z-index: 100;
+    opacity: 1;
+    pointer-events: none;
+}
+
+.designCh2 .designOverlay {
+    top: 0;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: 280px;
+    height: 220px;
+    object-fit: contain;
+    object-position: center;
+}
+
+.designTk3 .designOverlay {
+    top: 0;
+    left: 50%;
+    right: 22%;
+    right: auto;
+    transform: translateX(-50%);
+    width: 280px;
+    height: 220px;
+}
+
+.designTk6 .designOverlay {
+    top: 10px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: 280px;
+    height: 220px;
+    
+}
+
+.designTk7 .designOverlay {
+    top: 10px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: 280px;
+    height: 220px;
+    
+}
+
+.designTk4 .designOverlay {
+    top: 33PX;
+    left: 80%;
+    right: auto;
+    transform: translateX(-50%);
+    width: 250px;
+    height: 220px;
+}
+
+.designTk5 .designOverlay {
+    top: 0;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: 280px;
+    height: 220px;
+}
+
+/* Text Section */
+.textSection {
+    flex: 1;
+    padding: 20px 24px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: transparent;
+}
+
+.toolkitLabel {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    line-height: 1.4;
+    color: #38F1FF;
+    text-transform: uppercase;
+}
+
+.toolkitTitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: #FFFFFF;
+    margin: 0;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+}
+
+.toolkitDescription {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #FFFFFF;
+    margin: 0;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+}
+
+/* Buttons Section */
+.buttonsSection {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 16px 24px 24px;
+    gap: 65px;
+}
+
+.downloadButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background: transparent;
+    border: none;
+    color: #FFFFFF;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 140%;
+    letter-spacing: -0.04em;
+    cursor: pointer;
+    padding: 0;
+    width: 79px;
+    height: 38px;
+    transition: color 0.2s ease;
+    text-decoration: none;
+}
+
+.downloadButton:hover {
+    color: #FFFFFF;
+}
+
+.downloadIcon {
+    width: 16px;
+    height: 16px;
+}
+
+.viewToolkitButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: #FFFFFF;
+    border: none;
+    border-radius: 40px;
+    color: #14343C;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 140%;
+    letter-spacing: -0.04em;
+    cursor: pointer;
+    padding: 10px 16px;
+    width: 121px;
+    height: 38px;
+    transition: all 0.2s ease;
+}
+
+.viewToolkitButton:hover {
+    background: #f0f0f0;
+}
+
+.arrowIcon {
+    width: 16px;
+    height: 16px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .toolkitCardWrapper {
+        width: 300px;
+        height: 430px;
+    }
+
+    .topSection {
+        height: 170px;
+    }
+
+    .textSection {
+        padding: 16px 20px;
+    }
+
+    .toolkitTitle {
+        font-size: 20px;
+    }
+
+    .toolkitDescription {
+        font-size: 13px;
+    }
+
+    .buttonsSection {
+        padding: 12px 20px 20px;
+    }
+}

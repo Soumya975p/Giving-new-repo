@@ -540,8 +540,11 @@ export default function Home() {
                                     type: 'toolkit',
                                     floatingText: "",
                                     decorationType: undefined,
+                                    toolkitNumber: 1,
                                     toolkitTitle: 'Network Mapping',
-                                    toolkitDescription: 'A simple way to identify and activate people already connected to your cause',
+                                    toolkitDescription: 'A simple way to identify and activate people already connected to your cause.',
+                                    toolkitBackgroundImage: '/assets/toolkit1/toolkit1_background.png',
+                                    toolkitDesignImage: '/assets/toolkit1/toolkit1_design.png',
                                     toolkitImage: '/assets/toolkit1.svg'
                                   }
                                 ]}
@@ -602,10 +605,12 @@ export default function Home() {
                                     type: 'toolkit',
                                     floatingText: "",
                                     decorationType: undefined,
+                                    toolkitNumber: 1,
                                     toolkitTitle: 'Network Mapping',
-                                    toolkitDescription: 'A simple way to identify and activate people already connected to your cause',
+                                    toolkitDescription: 'A simple way to identify and activate people already connected to your cause.',
+                                    toolkitBackgroundImage: '/assets/toolkit1/toolkit1_background.png',
+                                    toolkitDesignImage: '/assets/toolkit1/toolkit1_design.png',
                                     toolkitImage: '/assets/toolkit1.svg'
-
                                   }
                                 ]}
                               />
@@ -905,6 +910,11 @@ export default function Home() {
                                     toolkitLabel: 'TOOLKIT #1',
                                     toolkitTitle: 'Donor Database',
                                     toolkitDescription: 'How to record, remember, and build continuity from the first gift.',
+                                    toolkitNumber: 1,
+                                    toolkitBackgroundImage: '/assets/toolkit1/toolkit1_background.png',
+                                    toolkitDesignImage: '/assets/toolkit2/toolkit2_design.svg',
+                                    toolkitDisableRotation: true,
+                                    toolkitDesignVariant: 'ch2',
                                     toolkitImage: '/assets/chapter2_option1_toolkit.svg'
                                   }
                                 ]}
@@ -1395,16 +1405,40 @@ export default function Home() {
                                   {
                                     id: 4,
                                     type: 'toolkit',
+                                    toolkitNumber: 4,
+                                    toolkitTitle: 'The Storytelling Bank',
+                                    toolkitDescription: 'Build trust with donors through real stories saved and sorted systematically.',
+                                    toolkitBackgroundImage: '/assets/toolkit4/toolkit4_background.svg',
+                                    toolkitDesignImage: '/assets/toolkit4/toolkit4_design.png',
+                                    toolkitDisableRotation: true,
+                                    toolkitBackgroundVariant: 'tk345',
+                                    toolkitDesignVariant: 'tk4',
                                     toolkitImage: '/assets/took4.svg'
                                   },
                                   {
                                     id: 5,
                                     type: 'toolkit',
+                                    toolkitNumber: 3,
+                                    toolkitTitle: 'Segmentation & Profiling',
+                                    toolkitDescription: 'The foundation for effective donor communication.',
+                                    toolkitBackgroundImage: '/assets/toolkit3/toolkit3_background.svg',
+                                    toolkitDesignImage: '/assets/toolkit3/toolkit3_design.png',
+                                    toolkitDisableRotation: true,
+                                    toolkitBackgroundVariant: 'tk345',
+                                    toolkitDesignVariant: 'tk3',
                                     toolkitImage: '/assets/tool3.svg'
                                   },
                                   {
                                     id: 6,
                                     type: 'toolkit',
+                                    toolkitNumber: 5,
+                                    toolkitTitle: 'Communications Calendar',
+                                    toolkitDescription: 'A simple planning tool to keep outreach consistent, deliberate and aligned with donor preferences.',
+                                    toolkitBackgroundImage: '/assets/toolkit5/toolkit5_background.svg',
+                                    toolkitDesignImage: '/assets/toolkit5/toolkit5_design.png',
+                                    toolkitDisableRotation: true,
+                                    toolkitBackgroundVariant: 'tk345',
+                                    toolkitDesignVariant: 'tk5',
                                     toolkitImage: '/assets/tool5.svg'
                                   }
                                 ]}
