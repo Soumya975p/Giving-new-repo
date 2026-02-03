@@ -99,14 +99,13 @@
 
 /* Interactions */
 .tab:not(.activeTab):hover {
-    filter: brightness(1.1);
+    opacity: 0.8;
 }
 
 /* Active State */
 .activeTab {
     z-index: 10 !important;
     /* Active tab always on top */
-    filter: brightness(1.2);
 }
 
 .activeTab .tabLabel {

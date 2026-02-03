@@ -57,7 +57,7 @@ const BonusChapter = forwardRef<HTMLDivElement, BonusChapterProps>(
                     <div className={styles.bonusRight}>
                         <div className={`${styles.bonusCardWrapper} ${styles.desktopOnly}`}>
                             <img
-                                src="/assets/Bonus_flp_simple.png"
+                                src="/assets/Bonus_flp_simple.svg"
                                 alt="Stewardship is a team effort"
                                 className={styles.bonusCardImage}
                             />

@@ -54,6 +54,7 @@ interface OptionContentProps {
     customStyles?: any;
     endImage?: string;
     optionId?: string;
+    onToolkitDownload?: () => void; // Callback when toolkit download button is clicked
 }
 
 export default function OptionContent({
@@ -68,7 +69,8 @@ export default function OptionContent({
     embedded = false,
     customStyles,
     endImage,
-    optionId
+    optionId,
+    onToolkitDownload
 }: OptionContentProps) {
     const s = customStyles || styles;
 
