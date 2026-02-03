@@ -160,7 +160,7 @@
 .heroContent {
   display: flex;
   justify-content: space-between;
-  padding: 40px 60px;
+  padding: 40px 32px;
   position: relative;
   z-index: 5;
 }
@@ -178,22 +178,22 @@
 .titleLine1 {
   display: block;
   font-family: 'Zalando Sans Expanded', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   font-style: normal;
-  font-size: 80px;
-  line-height: 94%;
-  letter-spacing: 0%;
-  color: #ffffff;
+  font-size: 52px;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+  color: #FFFFFF;
 }
 
 .titleLine2 {
   display: block;
   font-family: 'Zalando Sans Expanded', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   font-style: normal;
-  font-size: 80px;
-  line-height: 94%;
-  letter-spacing: 0%;
+  font-size: 52px;
+  line-height: 100%;
+  letter-spacing: -0.03em;
   background: radial-gradient(circle, #0FB8C5 0%, #93CD4D 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -349,8 +349,8 @@
 }
 
 .emphasis {
-  color: #5dd9c4;
-  font-weight: 600;
+  color: #3AF1FF;
+  font-weight: 400;
 }
 
 .startButton {
@@ -432,7 +432,7 @@
   /* Show hero.png on mobile */
   .heroImageMobile {
     display: block;
-    width: 270%;
+    width: 200vw;
     /* max-width: 100%; */
     height: auto;
     order: 2;
@@ -477,7 +477,7 @@
   .mobileHeroBackground {
     display: block !important;
     position: relative;
-    width: 118%;
+    width: 100vw;
     height: auto;
     order: 4;
     /* Fourth: Mobile background SVG at bottom */
@@ -498,23 +498,87 @@
     width: 100%;
     display: block;
     margin-left: 0 !important;
-    transform: translateX(-5%);
+    transform: translate(-5%, 12%);
+    margin-top: 6px;
   }
 
   .heroSubtitle {
+    font-family: 'DM Sans', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 24px !important;
+    line-height: 120% !important;
+    letter-spacing: -0.04em !important;
+    color: #FFFFFF !important;
     text-align: left !important;
     margin-bottom: 16px;
-    font-size: 22px;
-    line-height: 1.3;
     width: 100%;
   }
 
   .heroDescription {
+    font-family: 'DM Sans', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    line-height: 130% !important;
+    letter-spacing: -0.04em !important;
+    color: #FFFFFF !important;
     text-align: left !important;
-    font-size: 15px;
-    line-height: 1.6;
     margin-bottom: 16px;
     width: 100%;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .emphasis {
+    color: #3AF1FF !important;
+  }
+
+  /* Hero Bottom Mobile Typography */
+  .cultivationLabel {
+    font-family: 'DM Sans', sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    line-height: 140% !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+    color: #38F1FF !important;
+  }
+
+  .heroBottomTitle {
+    font-family: 'Zalando Sans Expanded', sans-serif !important;
+    font-weight: 300 !important;
+    font-size: 28px !important;
+    line-height: 110% !important;
+    letter-spacing: -0.03em !important;
+    color: #FFFFFF !important;
+  }
+
+  .heroBottomDesc {
+    font-family: 'DM Sans', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    line-height: 130% !important;
+    letter-spacing: -0.04em !important;
+    color: #FFFFFF !important;
+  }
+
+  /* Chapter Grid Mobile Typography */
+  .gridLabel {
+    font-family: 'DM Sans', sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 12px !important;
+    line-height: 140% !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+    color: #FF6DDE !important;
+  }
+
+  .gridTitle {
+    font-family: 'DM Sans', sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 28px !important;
+    line-height: 110% !important;
+    letter-spacing: -0.03em !important;
+    color: #FFFFFF !important;
   }
 
   /* Pill button style for start button on mobile */
@@ -600,8 +664,15 @@
 }
 
 .selectChapter {
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.5);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 164%;
+  letter-spacing: -0.02em;
+  color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 /* Chapters Section - Transform-based stacking */
@@ -2317,7 +2388,7 @@
 }
 
 .heroRight {
-  max-width: 20vw;
+  max-width: 25vw;
   padding-top: 20vh;
   position: relative;
   z-index: 10;
@@ -2326,38 +2397,37 @@
 .heroSubtitle {
   font-family: 'DM Sans', sans-serif;
   font-weight: 500;
-  font-style: normal;
+  font-style: medium;
   /* "Medium" is usually font-weight 500 */
   font-size: 28px;
   line-height: 110%;
   letter-spacing: -0.03em;
   /* -3% of font size */
-  color: white;
+  color: #FFFFFF;
   margin-bottom: 20px;
 }
 
 .heroDescription {
   font-family: 'DM Sans', sans-serif;
   font-weight: 400;
-  font-style: normal;
+  font-style: regular;
   font-size: 18px;
   line-height: 150%;
   letter-spacing: -0.02em;
   /* -2% of font size */
-  color: rgba(255, 255, 255, 0.8);
+  color: #FFFFFF;
   margin-bottom: 30px;
   text-align: left;
 }
 
 .heroDescription em {
-  color: #38F1FF;
-  font-style: italic;
-  font-weight: inherit;
+  font-style: regular;
+  font-weight: 400;
 }
 
 .emphasis {
   color: #3AF1FF;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .startButton {}
@@ -2422,7 +2492,13 @@
 }
 
 .highlight {
-  color: #a8e583;
+  background: linear-gradient(90deg,
+      #0FB8C5 0%,
+      #93CD4D 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
 }
 
 .heroBottomDesc {
@@ -2432,9 +2508,21 @@
   margin-bottom: 40px;
 }
 
-.selectChapter {
-  font-size: 13px;
+/* .selectChapter {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
   color: #93CD4D
+} */
+.selectChapter {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 150%;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: #93CD4D;
 }
 
 /* Chapters Section - Transform-based stacking */
@@ -3480,7 +3568,7 @@
   font-size: 18px;
   line-height: 150%;
   letter-spacing: -0.02em;
-  color: rgba(255, 255, 255, 0.7);
+  color: #FFFFFF;
   max-width: 900px;
   margin: 0 auto 40px;
 }
@@ -3502,7 +3590,7 @@
 .chapterGrid {
   width: 100vw;
   max-width: none;
-  margin: 40px 0 0 calc(50% - 50vw);
+  margin: 24px 0 0 calc(50% - 50vw);
   border-radius: 0;
   overflow: hidden;
   padding: 0;
@@ -3510,6 +3598,7 @@
   background-color: #12363B;
   display: flex;
   border-top: 1px solid rgba(80, 227, 194, 0.3);
+  max-height: 481px;
 }
 
 .gridColumn {
@@ -3535,29 +3624,38 @@
 
 .gridLabel {
   font-family: 'DM Sans', sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  color: #FF6DDE;
-  /* Pink accent */
-  text-transform: uppercase;
-  margin-bottom: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  /* SemiBold */
+  font-style: normal;
+  /* SemiBold is a weight, not a style */
+  line-height: 140%;
+  letter-spacing: 0.1em;
+  /* 10% → 0.1em */
   text-align: center;
+  text-transform: uppercase;
+  color: #FF6DDE;
+  margin-bottom: 10px;
 }
 
 .gridTitle {
   font-family: 'DM Sans', sans-serif;
-  font-size: 28px;
-  font-weight: 400;
-  color: white;
-  margin-bottom: 40px;
+  font-size: 32px;
+  font-weight: 500;
+  /* Medium */
+  font-style: normal;
+  /* Medium is a weight, not a style */
+  line-height: 130%;
+  letter-spacing: -0.03em;
+  /* -3% → -0.03em */
   text-align: center;
-  line-height: 1.2;
+  color: #ffffff;
+  margin-bottom: 40px;
 }
 
 .gridImage {
-  width: 180px;
-  height: 180px;
+  width: 240px;
+  height: 240px;
   object-fit: contain;
   transition: transform 0.3s ease;
 }
@@ -3937,6 +4035,7 @@
   z-index: 100;
   display: flex;
   align-items: center;
+
 }
 
 .navLeft {
@@ -3947,15 +4046,18 @@
   background: rgba(26, 77, 58, 0.4);
   backdrop-filter: blur(8px);
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  height: 56px;
 }
+
 
 .navButton {
   display: flex;
   align-items: center;
   background: transparent;
   border: none;
-  padding: 10px 16px;
+  height: 48px;
+  padding: 0 16px;
   border-radius: 6px;
   cursor: pointer;
   transition: background 0.3s ease, color 0.3s ease;
@@ -3995,7 +4097,7 @@
 }
 
 .navDivider {
-  color: rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
   margin: 0 4px;
   font-size: 14px;
   pointer-events: none;
@@ -4050,7 +4152,7 @@
 .chapter1Header {
   width: 996px;
   text-align: center;
-  /* margin-bottom: 30px; */
+  margin-bottom: 40px;
   /* Reduced from 50px */
   position: relative;
   z-index: 10;
@@ -4066,7 +4168,7 @@
   font-weight: 700;
   /* line-height: 140%; */
   letter-spacing: 0.1em;
-  color: #1a4d3a;
+  color: #195960;
   text-transform: uppercase;
   text-align: center;
   margin-bottom: 16px;
@@ -4076,14 +4178,14 @@
 
 .ch1Title {
   font-family: 'DM Sans', sans-serif;
-  font-size: 28px;
+  font-size: 32px;
   /* Reduced from 28px to save significant space */
   font-weight: 500;
   /* line-height: 130%; */
   letter-spacing: -0.03em;
-  color: #1a4d3a;
+  color: #0A1731;
   text-align: center;
-  margin-bottom: 5%;
+  margin-bottom: 1%;
   /* Reduced from 20px */
   max-width: 1000px;
   margin-left: auto;
@@ -4093,14 +4195,20 @@
 .ch1Instruction {
   font-family: 'DM Sans', sans-serif;
   font-size: 16px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 150%;
+  letter-spacing: -0.02em;
+  /* -2% */
+  color: rgba(0, 0, 0, 0.6);
+  /* #000000 @ 60% */
   width: 100%;
   max-width: 600px;
-  margin: 0 auto;
+  margin: 0 auto 2%;
   position: relative;
   z-index: 20;
-  margin-bottom: 3%;
-  /* Increased spacing to avoid overlap */
 }
+
 
 /* Scenario Container */
 .scenarioContainer {
@@ -5152,10 +5260,7 @@
 
 /* Active state */
 .activeBottomTab {
-  background: linear-gradient(90deg, #93CD4D 0%, #0FB8C5 100%) !important;
-  /* Gradient as requested */
-  /* Wait user said "colors #0FB8C5 and #93CD4D which is from left to right" */
-  background: linear-gradient(90deg, #0FB8C5 0%, #93CD4D 100%) !important;
+  background: var(--gradient-primary) !important;
   z-index: 10;
   font-weight: 700;
   box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
@@ -5478,14 +5583,14 @@
    MOBILE RESPONSIVE STYLES - CHAPTERS SECTION
    ========================================= */
 
-@media (max-width: 768px) {
+@media (max-width: 764px) {
 
   /* Chapters Section - Fill viewport */
   .chaptersSection {
     position: relative;
     width: 100%;
-    height: 100vh;
-    min-height: 100vh;
+    height: 1035px !important;
+    min-height: 1035px;
     overflow: hidden;
   }
 
@@ -5555,24 +5660,36 @@
   .chapter1Header {
     width: 100%;
     text-align: left;
-    margin-bottom: -100px;
+    margin-bottom: -15px;
     padding: 0 4px;
     flex-shrink: 0;
+    margin-top: -45px;
   }
 
   .ch1Label {
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    margin-bottom: 12px;
-    text-align: left;
+    font-family: 'DM Sans', sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 12px !important;
+    line-height: 140% !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    background: transparent !important;
+    margin-bottom: 12px !important;
+    text-align: left !important;
   }
 
   .ch1Title {
-    font-size: 16px;
-    line-height: 135%;
-    text-align: left;
-    margin-bottom: 10px;
-    max-width: 100%;
+    font-family: 'DM Sans', sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 20px !important;
+    line-height: 130% !important;
+    letter-spacing: -0.03em !important;
+    color: #FFFFFF !important;
+    background: transparent !important;
+    text-align: left !important;
+    margin-bottom: 10px !important;
+    max-width: 100% !important;
   }
 
   .ch1Title br {
@@ -5613,14 +5730,18 @@
   /* Instruction text - below card */
   .ch1Instruction {
     order: 2;
-    font-size: 11px;
-    text-align: center;
-    margin: 0 0 8px 0;
-    width: 100%;
-    color: #1a4d3a;
-    font-style: italic;
-    opacity: 0.7;
-    flex-shrink: 0;
+    font-family: 'DM Sans', sans-serif !important;
+    font-weight: 400 !important;
+    font-style: italic !important;
+    font-size: 14px !important;
+    line-height: 164% !important;
+    letter-spacing: -0.02em !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    background: transparent !important;
+    text-align: center !important;
+    margin: 12px 0 16px 0 !important;
+    width: 100% !important;
+    flex-shrink: 0 !important;
   }
 
   /* Option Cards - Stack Vertically */
@@ -5629,23 +5750,23 @@
     order: 3;
     width: 100%;
     max-width: 100%;
-    margin-bottom: 0;
+    margin-bottom: 8px;
     display: inline-flex;
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
-    background: rgba(255, 255, 255, 0.35);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, 0.1) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
     border-radius: 10px;
-    padding: 8px 12px;
-    gap: 2px;
+    padding: 5px 5px;
+    gap: 4px;
     flex-shrink: 0;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 2px dotted rgba(56, 241, 255, 0.4);
     height: auto;
-    max-height: 80px;
-    /* Adjust this value to control box height */
-    overflow: hidden;
+    min-height: 40px;
+    max-height: none !important;
+    overflow: visible !important;
   }
 
   .optionColumnRight {
@@ -5655,20 +5776,25 @@
   }
 
   .optionLabel {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    color: #0FB8C5;
-    margin-bottom: 4px;
-    opacity: 1;
+    font-family: 'DM Sans', sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 10px !important;
+    line-height: 140% !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+    color: #87F6FF !important;
+    margin-bottom: 4px !important;
+    opacity: 1 !important;
   }
 
   .optionDesc {
-    font-size: 15px;
-    line-height: 130%;
-    letter-spacing: -0.02em;
-    color: #1a4d3a;
-    font-weight: 400;
+    font-family: 'DM Sans', sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 18px !important;
+    line-height: 119% !important;
+    letter-spacing: -0.06em !important;
+    color: #FFFFFF !important;
+    background: transparent !important;
   }
 
   .optionDesc br {
@@ -5804,8 +5930,8 @@
   }
 
   .gridImage {
-    width: 140px;
-    height: 140px;
+    width: 208px;
+    height: 208px;
   }
 }
 
@@ -7460,6 +7586,9 @@
     padding: 0 24px 0;
     margin: 0 auto;
     margin-top: -15vh;
+    gap: 50px;
+    display: flex;
+    flex-direction: column;
   }
 
   .cultivationLabel {
@@ -7467,7 +7596,8 @@
     font-weight: 600;
     letter-spacing: 2px;
     color: #38F1FF;
-    margin-bottom: 24px;
+    margin-bottom: -10px;
+    margin-top: 20px;
   }
 
   .heroBottomTitle {
@@ -7475,7 +7605,7 @@
     font-weight: 300;
     color: white;
     line-height: 1.25;
-    margin-bottom: 24px;
+    margin-bottom: 0;
     text-align: left;
   }
 
@@ -7488,6 +7618,10 @@
     line-height: 1.7;
     color: rgba(255, 255, 255, 0.8);
     margin-bottom: 32px;
+    width: 100%;
+    /* margin-left: 16px;
+    margin-right: 16px; */
+    box-sizing: border-box;
   }
 
   .heroBottomDesc br {
@@ -7879,7 +8013,7 @@
 
 .optionColumnRight {
   align-items: flex-end;
-  text-align: right;
+  text-align: left;
 }
 
 .centerCard {
@@ -7904,7 +8038,7 @@
   font-weight: 600;
   line-height: 140%;
   letter-spacing: 0.1em;
-  color: #1a4d3a;
+  color: #12363B;
   opacity: 0.6;
   text-transform: uppercase;
   margin-bottom: 5px;
@@ -7912,11 +8046,11 @@
 
 .optionDesc {
   font-family: 'DM Sans', sans-serif;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 500;
   line-height: 110%;
   letter-spacing: -0.03em;
-  color: #1a4d3a;
+  color: #0A1731;
   text-align: inherit;
 }
 
@@ -7928,10 +8062,10 @@
   }
 
   .centerCard {
-    width: 100%;
-    max-width: 240px !important;
+    width: 229.07px;
+    max-width: 229.07px !important;
     /* Decrease size for mobile from 300px */
-    height: auto;
+    height: 331.58px;
     order: 1;
     margin-bottom: 20px;
     transform: none !important;
@@ -7994,7 +8128,7 @@
     flex-direction: row;
     /* Horizontal */
     margin: 0;
-    margin-top: 50px;
+    margin-top: 10px;
     border-top: none;
     background: transparent;
     overflow-x: auto;

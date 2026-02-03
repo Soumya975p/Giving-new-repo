@@ -15,7 +15,7 @@ const TabsSection: React.FC<TabsSectionProps> = ({ activeChapter, onTabClick }) 
             svg: '/assets/ch_1_tab.svg',
             label: 'I. Network Expansion',
             fullLabel: 'Chapter I : Tilling the Soil',
-            gradient: 'linear-gradient(90deg, #0FB8C5 0%, #93CD4D 100%)'
+            gradient: 'var(--gradient-primary)'
         },
         {
             id: 2,

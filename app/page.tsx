@@ -47,7 +47,7 @@ const chapters: Chapter[] = [
     subtitle: 'Network Expansion',
     tabImage: '/assets/Tab 1.png',
     contentImage: '/assets/1.png',
-    gradient: 'linear-gradient(90deg, #0FB8C5 0%, #93CD4D 100%)',
+    gradient: 'var(--gradient-primary)',
     tabGradient: 'linear-gradient(135deg, #1eb59a 0%, #16a085 100%)',
     gridImage: '/assets/ch1.png'
   },
@@ -291,7 +291,8 @@ export default function Home() {
             <button className={styles.startButton} onClick={() => {
               chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
             }}>
-              <img src="/assets/start_button.svg" alt="Start Journey" className={styles.startButtonImage} />
+              <img src="/assets/start_button.svg" alt="Start Journey" className={`${styles.startButtonImage} ${styles.desktopOnly}`} />
+              <img src="/assets/start_button_mobile.svg" alt="Start Journey" className={`${styles.startButtonImage} ${styles.mobileOnly}`} />
             </button>
           </div>
 
@@ -317,21 +318,14 @@ export default function Home() {
         <div className={styles.heroBottom}>
           <p className={styles.cultivationLabel}>CULTIVATION IN ACTION</p>
           <h2 className={styles.heroBottomTitle}>
-            A <span className={styles.highlight}>step by step guide</span> <br />
-            to donor engagement through <br />
-            the journey of <span className={styles.highlight}>Nidhi</span>, our perennial <br />
-            supporter.
+            A <span className={styles.highlight}>step by step guide</span> to donor engagement through the journey of <span className={styles.highlight}>Nidhi</span>, our perennial supporter.
           </h2>
           <p className={styles.heroBottomDesc}>
-            Follow Nidhi's journey across four chapters to see how everyday giving can grow from a one-time transaction <br />
-            into a lasting relationship. Each chapter blends real-world moments with practical tools to help nonprofits guide <br />
-            donors naturally. Your donors may be at different stages of this journey—explore the chapters in any order that <br />
-            serves you best.
+            Follow Nidhi's journey across four chapters to see how everyday giving can grow from a one-time transaction into a lasting relationship. Each chapter blends real-world moments with practical tools to help nonprofits guide donors naturally. Your donors may be at different stages of this journey—explore the chapters in any order that serves you best.
           </p>
 
           <div className={styles.chapterSelectionWrapper}>
             {/* <div className={styles.heroDividerLine}></div> */}
-            <p className={styles.selectChapter}>Select a chapter to begin</p>
 
             <div
               className={styles.chapterGrid}
@@ -428,7 +422,7 @@ export default function Home() {
                 }
               }}
             >
-              <span className={styles.navText}>VIEW ALL TOOLKITS</span>
+              <span className={styles.navText}>View All Toolkits</span>
             </button>
           </div>
         </div>
@@ -469,13 +463,14 @@ export default function Home() {
                           <div className={styles.chapter1Header}>
                             {!selectedOption && (
                               <>
+
                                 <h4 className={styles.ch1Label}>CHAPTER I: NETWORK EXPANSION</h4>
                                 <h1 className={styles.ch1Title}>
                                   Before seeking support, understand who's already in your circle.<br />
                                   This chapter helps you map your existing network so fundraising starts<br />
                                   with relationships, not cold outreach.
                                 </h1>
-                                <p className={`${styles.ch1Instruction} ${styles.desktopOnly}`}>Select one of the two options to reveal the right way</p>
+                                <p className={`${styles.selectChapter} ${styles.desktopOnly}`} style={{ color: 'rgba(0, 0, 0, 0.6)' }}>Select one of the two options to reveal the right way</p>
                               </>
                             )}
                           </div>
@@ -617,7 +612,7 @@ export default function Home() {
                             </div>
                           ) : (
                             <div className={styles.scenarioContainer}>
-                              <p className={`${styles.ch1Instruction} ${styles.mobileOnly}`} style={{ order: 2, width: '100%', textAlign: 'center', margin: '20px 0', color: '#fff' }}>
+                              <p className={`${styles.ch1Instruction} ${styles.mobileOnly}`} style={{ order: 2, width: '100%', textAlign: 'center', margin: '0 0', color: 'rgba(0, 0, 0, 0.6)' }}>
                                 Select one of the two options to reveal the right way
                               </p>
                               {/* Option A */}
@@ -654,10 +649,10 @@ export default function Home() {
                                 <motion.div
                                   variants={ctaVariants}
                                   style={{
-                                    marginTop: '24px',
+                                    marginTop: '-15px',
                                     display: 'flex',
                                     alignItems: 'center',
-                                    gap: '12px',
+                                    gap: '6px',
                                     color: '#1a4d3a',
                                     fontWeight: 500
                                   }}
@@ -676,7 +671,7 @@ export default function Home() {
                               {/* Center Card - Dark */}
                               <div className={styles.centerCard} ref={(el) => { centerCardRefs.current[0] = el }}>
                                 <img
-                                  src="/assets/chapter_1_card.svg"
+                                  src="/assets/chapter_1_card.png"
                                   alt="Scenario 1 Card"
                                   style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                                 />
@@ -775,10 +770,10 @@ export default function Home() {
                                 <motion.div
                                   variants={ctaVariants}
                                   style={{
-                                    marginTop: '24px',
+                                    marginTop: '-15px',
                                     display: 'flex',
                                     alignItems: 'center',
-                                    gap: '12px',
+                                    gap: '6px',
                                     color: '#1a4d3a',
                                     fontWeight: 500,
                                     flexDirection: 'row-reverse'
@@ -841,13 +836,14 @@ export default function Home() {
                           <div className={styles.chapter1Header}>
                             {!selectedOption && (
                               <>
+
                                 <h4 className={styles.ch1Label}>CHAPTER II: FIRST DONATION</h4>
-                                <h1 className={styles.ch1Title}>
+                                <h1 className={styles.ch1Title} style={{ color: '#FFFFFF' }}>
                                   A first donation is more than a transaction. This chapter focuses on<br />
                                   how timely acknowledgment and simple follow-up can turn a first gift<br />
                                   into the beginning of a relationship.
                                 </h1>
-                                <p className={styles.ch1Instruction}>Select one of the two options to reveal the right way</p>
+                                <p className={`${styles.selectChapter} ${styles.desktopOnly}`} style={{ color: 'rgba(255, 255, 255, 0.8)' }}>Select one of the two options to reveal the right way</p>
                               </>
                             )}
                           </div>
@@ -994,6 +990,9 @@ export default function Home() {
                           ) : (
                             // Chapter 2 Default View - just render scenario container, header is above
                             <div className={styles.scenarioContainer} style={{ marginTop: '10px' }}>
+                              <p className={`${styles.ch1Instruction} ${styles.mobileOnly}`} style={{ order: 2, width: '100%', textAlign: 'center', margin: '0 0', color: 'rgba(255, 255, 255, 0.8)' }}>
+                                Select one of the two options to reveal the right way
+                              </p>
                               {/* Option A */}
                               <motion.div
                                 className={styles.optionColumnLeft}
@@ -1016,7 +1015,7 @@ export default function Home() {
                                 onClick={() => setSelectedOption('A')}
                                 style={{ cursor: 'pointer' }}
                               >
-                                <span className={styles.optionLabel} style={{ color: '#ffffff' }}>OPTION A</span>
+                                <span className={styles.optionLabel} style={{ color: '#87F6FF' }}>OPTION A</span>
                                 <p className={styles.optionDesc}>
                                   Record her details in<br />
                                   your database and<br />
@@ -1028,10 +1027,10 @@ export default function Home() {
                                 <motion.div
                                   variants={ctaVariants}
                                   style={{
-                                    marginTop: '24px',
+                                    marginTop: '-15px',
                                     display: 'flex',
                                     alignItems: 'center',
-                                    gap: '12px',
+                                    gap: '6px',
                                     color: '#ffffff',
                                     fontWeight: 500
                                   }}
@@ -1050,7 +1049,7 @@ export default function Home() {
                               {/* Center Card - Dark */}
                               <div className={styles.centerCard} ref={(el) => { centerCardRefs.current[1] = el }}>
                                 <img
-                                  src="/assets/chapter_2_card.svg"
+                                  src="/assets/chapter_2_card.png"
                                   alt="Scenario 2 Card"
                                   style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                                 />
@@ -1078,7 +1077,7 @@ export default function Home() {
                                 onClick={() => setSelectedOption('B')}
                                 style={{ cursor: 'pointer' }}
                               >
-                                <span className={styles.optionLabel} style={{ color: '#ffffff' }}>OPTION B</span>
+                                <span className={styles.optionLabel} style={{ color: '#87F6FF' }}>OPTION B</span>
                                 <p className={styles.optionDesc}>
                                   No thank you or follow-<br />
                                   ups. Accept the<br />
@@ -1089,10 +1088,10 @@ export default function Home() {
                                 <motion.div
                                   variants={ctaVariants}
                                   style={{
-                                    marginTop: '24px',
+                                    marginTop: '-15px',
                                     display: 'flex',
                                     alignItems: 'center',
-                                    gap: '12px',
+                                    gap: '6px',
                                     color: '#ffffff',
                                     fontWeight: 500,
                                     flexDirection: 'row-reverse'
@@ -1303,13 +1302,14 @@ export default function Home() {
                           <div className={styles.chapter1Header}>
                             {!selectedOption && (
                               <>
-                                <h4 className={styles.ch1Label}>CHAPTER III: STEWARDING DONORS</h4>
-                                <h1 className={styles.ch1Title}>
+
+                                <h4 className={styles.ch1Label} style={{ color: '#14343CCC' }}>CHAPTER III: STEWARDING DONORS</h4>
+                                <h1 className={styles.ch1Title} style={{ color: '#14343C' }}>
                                   Staying connected after the first gift builds trust. This chapter focuses<br />
                                   on how consistent, non-ask engagement helps donors feel involved<br />
                                   and valued.
                                 </h1>
-                                <p className={styles.ch1Instruction}>Select one of the two options to reveal the right way</p>
+                                <p className={`${styles.selectChapter} ${styles.desktopOnly}`} style={{ color: '#14343CCC' }}>Select one of the two options to reveal the right way</p>
                               </>
                             )}
                           </div>
@@ -1413,6 +1413,9 @@ export default function Home() {
                           ) : (
                             // Chapter 3 Default View - just render scenario container, header is above
                             <div className={styles.scenarioContainer} style={{ marginTop: '10px' }}>
+                              <p className={`${styles.ch1Instruction} ${styles.mobileOnly}`} style={{ order: 2, width: '100%', textAlign: 'center', margin: '0 0', color: '#14343CCC' }}>
+                                Select one of the two options to reveal the right way
+                              </p>
                               {/* Option A */}
                               <motion.div
                                 className={styles.optionColumnLeft}
@@ -1435,8 +1438,8 @@ export default function Home() {
                                 onClick={() => setSelectedOption('A')}
                                 style={{ cursor: 'pointer' }}
                               >
-                                <span className={styles.optionLabel} style={{ color: '#1a4d3a' }}>OPTION A</span>
-                                <p className={styles.optionDesc} style={{ color: '#1a4d3a' }}>
+                                <span className={styles.optionLabel} style={{ color: '#20315B' }}>OPTION A</span>
+                                <p className={styles.optionDesc} style={{ color: '#20315B' }}>
                                   Reach out only when<br />
                                   you need funds again
                                 </p>
@@ -1445,10 +1448,10 @@ export default function Home() {
                                 <motion.div
                                   variants={ctaVariants}
                                   style={{
-                                    marginTop: '24px',
+                                    marginTop: '-15px',
                                     display: 'flex',
                                     alignItems: 'center',
-                                    gap: '12px',
+                                    gap: '6px',
                                     color: '#1a4d3a',
                                     fontWeight: 500
                                   }}
@@ -1467,7 +1470,7 @@ export default function Home() {
                               {/* Center Card */}
                               <div className={styles.centerCard} ref={(el) => { centerCardRefs.current[2] = el }}>
                                 <img
-                                  src="/assets/chapter_3_card.svg"
+                                  src="/assets/chapter_3_card.png"
                                   alt="Scenario 3 Card"
                                   style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                                 />
@@ -1533,8 +1536,8 @@ export default function Home() {
                                 onClick={() => setSelectedOption('B')}
                                 style={{ cursor: 'pointer' }}
                               >
-                                <span className={styles.optionLabel} style={{ color: '#1a4d3a' }}>OPTION B</span>
-                                <p className={styles.optionDesc} style={{ color: '#1a4d3a' }}>
+                                <span className={styles.optionLabel} style={{ color: '#20315B' }}>OPTION B</span>
+                                <p className={styles.optionDesc} style={{ color: '#20315B' }}>
                                   Share impact and invite<br />
                                   her to engage. Updates,<br />
                                   events, conversations –<br />
@@ -1546,10 +1549,10 @@ export default function Home() {
                                 <motion.div
                                   variants={ctaVariants}
                                   style={{
-                                    marginTop: '24px',
+                                    marginTop: '-15px',
                                     display: 'flex',
                                     alignItems: 'center',
-                                    gap: '12px',
+                                    gap: '6px',
                                     color: '#1a4d3a',
                                     fontWeight: 500,
                                     flexDirection: 'row-reverse'
@@ -1632,12 +1635,13 @@ export default function Home() {
                           <div className={styles.chapter1Header}>
                             {!selectedOption && (
                               <>
-                                <h4 className={styles.ch1Label}>CHAPTER IV: DONORS TO CHAMPIONS</h4>
-                                <h1 className={styles.ch1Title}>
+
+                                <h4 className={styles.ch1Label} style={{ color: '#FFFFFFCC' }}>CHAPTER IV: DONORS TO CHAMPIONS</h4>
+                                <h1 className={styles.ch1Title} style={{ color: '#FFFFFF' }}>
                                   When relationships are nurtured well, supporters deepen their involvement.<br />
                                   This chapter explores how donors grow into champions.
                                 </h1>
-                                <p className={styles.ch1Instruction}>Select one of the two options to reveal the right way</p>
+                                <p className={`${styles.selectChapter} ${styles.desktopOnly}`} style={{ color: '#FFFFFFCC' }}>Select one of the two options to reveal the right way</p>
                               </>
                             )}
                           </div>
@@ -1683,6 +1687,9 @@ export default function Home() {
                           ) : (
                             // Chapter 4 Default View - Scenario Cards
                             <div className={styles.scenarioContainer} style={{ marginTop: '10px' }}>
+                              <p className={`${styles.ch1Instruction} ${styles.mobileOnly}`} style={{ order: 2, width: '100%', textAlign: 'center', margin: '0 0', color: '#FFFFFFCC' }}>
+                                Select one of the two options to reveal the right way
+                              </p>
 
 
 
@@ -1708,8 +1715,8 @@ export default function Home() {
                                 onClick={() => setSelectedOption('A')}
                                 style={{ cursor: 'pointer' }}
                               >
-                                <span className={styles.optionLabel} style={{ color: '#1a4d3a' }}>OPTION A</span>
-                                <p className={styles.optionDesc} style={{ color: '#1a4d3a' }}>
+                                <span className={styles.optionLabel} style={{ color: '#20315B' }}>OPTION A</span>
+                                <p className={styles.optionDesc} style={{ color: '#20315B' }}>
                                   Treat Nidhi like any<br />
                                   other donor and send a<br />
                                   standard appeal
@@ -1719,10 +1726,10 @@ export default function Home() {
                                 <motion.div
                                   variants={ctaVariants}
                                   style={{
-                                    marginTop: '24px',
+                                    marginTop: '-15px',
                                     display: 'flex',
                                     alignItems: 'center',
-                                    gap: '12px',
+                                    gap: '6px',
                                     color: '#1a4d3a',
                                     fontWeight: 500
                                   }}
@@ -1741,7 +1748,7 @@ export default function Home() {
                               {/* Center Card */}
                               <div className={styles.centerCard} ref={(el) => { centerCardRefs.current[3] = el }}>
                                 <img
-                                  src="/assets/chapter_4_card.svg"
+                                  src="/assets/chapter_4_card.png"
                                   alt="Scenario 4 Card"
                                   style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                                 />
@@ -1827,8 +1834,8 @@ export default function Home() {
                                 onClick={() => setSelectedOption('B')}
                                 style={{ cursor: 'pointer' }}
                               >
-                                <span className={styles.optionLabel} style={{ color: '#1a4d3a' }}>OPTION B</span>
-                                <p className={styles.optionDesc} style={{ color: '#1a4d3a' }}>
+                                <span className={styles.optionLabel} style={{ color: '#20315B' }}>OPTION B</span>
+                                <p className={styles.optionDesc} style={{ color: '#20315B' }}>
                                   Invite her to give again –<br />
                                   and share the cause<br />
                                   with her network
@@ -1838,10 +1845,10 @@ export default function Home() {
                                 <motion.div
                                   variants={ctaVariants}
                                   style={{
-                                    marginTop: '24px',
+                                    marginTop: '-15px',
                                     display: 'flex',
                                     alignItems: 'center',
-                                    gap: '12px',
+                                    gap: '6px',
                                     color: '#1a4d3a',
                                     fontWeight: 500,
                                     flexDirection: 'row-reverse'

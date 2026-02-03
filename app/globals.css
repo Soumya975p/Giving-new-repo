@@ -1,3 +1,7 @@
+:root {
+  --gradient-primary: linear-gradient(90deg, #0FB8C5 0%, #93CD4D 100%);
+}
+
 * {
   margin: 0;
   padding: 0;

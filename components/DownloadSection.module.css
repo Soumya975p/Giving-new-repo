@@ -28,14 +28,51 @@
     flex-direction: row;
     align-items: center;
     gap: 30px;
-    background: linear-gradient(to right, #96B600 0%, #C9CD33 50%, #F0DF5B 100%);
+    background: linear-gradient(180deg, #F0DF5B 0%, #96B600 100%);
     border-radius: 40px;
     padding: 80px 80px;
     z-index: 100;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     overflow: hidden;
-    max-height: 330px;
+    max-height: 380px;
 
+}
+
+.downloadCardTextOverlay {
+    position: absolute;
+    width: 248.33px;
+    height: 175.28px;
+    top: -180px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-6deg);
+    display: flex;
+    flex-direction: column;
+    gap: 8.28px;
+    z-index: 20;
+    pointer-events: none;
+    transform-origin: center;
+}
+
+.downloadCardOverlayTitle {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 110%;
+    letter-spacing: -0.03em;
+    text-align: center;
+    color: #FFFFFF;
+    margin: 0;
+}
+
+.downloadCardOverlayDesc {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 130%;
+    letter-spacing: -0.04em;
+    text-align: center;
+    color: #FFFFFF;
+    margin: 0;
 }
 
 
@@ -63,6 +100,23 @@
     /* Reset opacity as it might be a solid graphic now */
 }
 
+.downloadBackgroundImageMobile {
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    /* left: 50%; */
+    transform: translateY(22%);
+    width: 100%;
+    height: auto;
+    min-width: unset;
+    background-size: cover;
+    object-fit: cover;
+    z-index: 15;
+    pointer-events: none;
+    opacity: 1;
+    display: none;
+}
+
 .downloadContent {
     position: relative;
     z-index: 30;
@@ -86,8 +140,8 @@
     /* USER ADJUST: width, height, top, bottom, left, right */
     width: 80px;
     height: auto;
-    top: -90px;
-    left: -30px;
+    top: -92px;
+    left: -20px;
     margin-top: 10px;
 }
 
@@ -101,10 +155,14 @@
     font-family: 'Zalando Sans Expanded', sans-serif;
     font-size: 48px;
     font-weight: 300;
+    /* Light */
+    font-style: normal;
+    /* Light is a weight, not a style */
     line-height: 100%;
-    color: white;
+    letter-spacing: -0.03em;
+    /* -3% → -0.03em */
+    color: #ffffff;
     margin: 0 0 15px 0;
-    letter-spacing: -3%;
     transform: translateY(-5px);
 }
 
@@ -123,7 +181,7 @@
 
 .downloadButtons {
     display: flex;
-    gap: 20px;
+    gap: 0;
     align-items: center;
 }
 
@@ -134,21 +192,49 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+    justify-content: center;
     transition: all 0.3s ease;
     position: relative;
     /* USER ADJUST: top, bottom, left, right */
+    background: rgba(0, 0, 0, 0.01);
     top: -10px;
     left: 0;
+    min-width: fit-content;
+    min-height: fit-content;
+}
+
+.downloadAllImageWrap {
+    display: none;
+}
+
+.downloadAllImageWrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/></filter><rect width='120' height='120' filter='url(%23n)' opacity='0.15' fill='black'/></svg>");
+    opacity: 1;
+    pointer-events: none;
+    z-index: 0;
+    mix-blend-mode: multiply;
 }
 
 .downloadAllBtn:hover {
     transform: scale(1.05);
+    background: rgba(0, 0, 0, 0.01);
 }
 
 .downloadAllImage {
     /* USER ADJUST: width, height */
     height: 56px;
     width: auto;
+    position: relative;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.01);
+}
+
+.downloadAllImageMobile,
+.viewAllImageMobile {
+    display: none;
 }
 
 .diamond {
@@ -178,6 +264,10 @@
     /* USER ADJUST: width, height */
     height: 56px;
     width: auto;
+}
+
+.viewAllMobileWrap {
+    display: none;
 }
 
 
@@ -285,80 +375,6 @@
 /* Dots Pattern */
 /* Removed old bottom dots CSS since removed from markup */
 
-/* =========================================
-   DOWNLOAD SECTION DECORATIONS
-   ========================================= */
-
-/* Petal 1 - Left side */
-.downloadPetal1 {
-    position: absolute;
-    /* top: 50px; */
-    bottom: -74px;
-    /* left: 50px; */
-    right: 120px;
-    width: 20px;
-    height: auto;
-    pointer-events: none;
-}
-
-/* Petal 2 - Left side lower */
-.downloadPetal2 {
-    position: absolute;
-    /* top: 200px; */
-    bottom: -130px;
-    /* left: 100px; */
-    right: 155px;
-    width: 20px;
-    height: auto;
-    pointer-events: none;
-}
-
-/* Petal 3 - Right side */
-.downloadPetal3 {
-    position: absolute;
-    /* top: 80px; */
-    bottom: -192px;
-    /* left: auto; */
-    right: 85px;
-    width: 20px;
-    height: auto;
-    pointer-events: none;
-}
-
-.downloadPetal4 {
-    position: absolute;
-    bottom: -50%;
-    right: 85.2%;
-    width: 13px;
-    height: auto;
-    z-index: 35;
-    pointer-events: none;
-}
-
-/* Ball 1 - Left side */
-.downloadBall1 {
-    position: absolute;
-    top: 31%;
-    bottom: auto;
-    /* left: 30px; */
-    right: 8%;
-    width: 20px;
-    height: auto;
-    pointer-events: none;
-}
-
-/* Ball 2 - Right side */
-.downloadBall2 {
-    position: absolute;
-    top: 48%;
-    bottom: auto;
-    left: auto;
-    right: 10%;
-    width: 20px;
-    height: auto;
-    pointer-events: none;
-}
-
 @media (max-width: 1024px) {
     .downloadCard {
         padding: 60px 20px;
@@ -398,12 +414,28 @@
 
 /* Download Section - Mobile Specifics */
 @media (max-width: 768px) {
+    .desktopOnly {
+        display: none !important;
+    }
+
+    .mobileOnly {
+        display: block !important;
+    }
+
     .downloadSection {
         padding-left: 0;
         padding-right: 0;
         padding-bottom: 20px;
         overflow: visible;
         margin-top: -2vh;
+    }
+
+    .downloadBackgroundImage {
+        display: none;
+    }
+
+    .downloadBackgroundImageMobile {
+        display: block;
     }
 
     .downloadContent {
@@ -423,6 +455,31 @@
         gap: 10px !important;
         min-height: unset !important;
         max-height: unset !important;
+        overflow: visible !important;
+    }
+
+    .downloadCardTextOverlay {
+        display: block !important;
+        position: absolute !important;
+        top: 20px !important;
+        left: 20px !important;
+        width: auto !important;
+        height: auto !important;
+        transform: none !important;
+        gap: 6px !important;
+        z-index: 25 !important;
+    }
+
+    .downloadCardOverlayTitle {
+        font-size: 18px !important;
+        line-height: 110% !important;
+        margin: 0 !important;
+    }
+
+    .downloadCardOverlayDesc {
+        font-size: 12px !important;
+        line-height: 120% !important;
+        margin: 0 !important;
     }
 
     .downloadIconsImage {
@@ -438,20 +495,27 @@
     }
 
     .downloadTitle {
-        font-size: 8vw !important;
-        line-height: 1.1 !important;
+        font-family: 'Zalando Sans Expanded', sans-serif !important;
+        font-weight: 300 !important;
+        font-size: 36px !important;
+        line-height: 100% !important;
+        letter-spacing: -0.03em !important;
         margin: 0 0 15px 0 !important;
         transform: none !important;
         text-align: left !important;
     }
 
     .downloadDescription {
-        font-size: 3vw !important;
-        line-height: 1.4 !important;
+        font-family: 'DM Sans', sans-serif !important;
+        font-weight: 400 !important;
+        font-size: 16px !important;
+        line-height: 130% !important;
+        letter-spacing: -0.04em !important;
         margin: 0 0 30px 0 !important;
         text-align: left !important;
         max-width: 100% !important;
         padding: 0 !important;
+        opacity: 1 !important;
     }
 
     .downloadDescription br {
@@ -462,19 +526,80 @@
         display: flex;
         gap: 10px;
         flex-wrap: wrap;
+        flex-direction: row !important;
     }
 
-    .downloadAllBtn,
+    .downloadAllBtn {
+        padding: 0 !important;
+        border: none !important;
+        background: transparent !important;
+        width: 153px !important;
+        height: 53px !important;
+        min-width: 153px !important;
+        min-height: 53px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .downloadAllImageWrap {
+        display: none !important;
+    }
+
+    .downloadAllImageWrap::after {
+        display: none !important;
+    }
+
+    .diamond,
+    .downloadAllText {
+        display: none !important;
+    }
+
     .viewAllBtn {
-        padding: 0;
-        border: none;
-        background: transparent;
+        padding: 0 !important;
+        border: none !important;
+        background: transparent !important;
+        width: 144px !important;
+        height: 52px !important;
+        min-width: 144px !important;
+        min-height: 52px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .viewAllImage {
+        display: none !important;
+    }
+
+    .viewAllMobileWrap {
+        display: none !important;
+    }
+
+    .viewAllArrowCircle {
+        display: none !important;
+    }
+
+    .viewAllArrow {
+        display: none !important;
+    }
+
+    .downloadAllImageMobile,
+    .viewAllImageMobile {
+        display: block !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
     }
 
     .downloadAllImage,
     .viewAllImage {
         height: 36px !important;
         width: auto !important;
+    }
+
+    .downloadAllImage {
+        display: none !important;
     }
 
     .downloadBackgroundImage {
@@ -489,12 +614,4 @@
         object-fit: contain !important;
     }
 
-    .downloadPetal1,
-    .downloadPetal2,
-    .downloadPetal3,
-    .downloadPetal4,
-    .downloadBall1,
-    .downloadBall2 {
-        display: none !important;
-    }
 }

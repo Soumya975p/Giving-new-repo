@@ -55,21 +55,54 @@ const BonusChapter = forwardRef<HTMLDivElement, BonusChapterProps>(
                         </div>
                     </div>
                     <div className={styles.bonusRight}>
-                        <img
-                            src="/assets/Bonus_flp.png"
-                            alt="Stewardship is a team effort"
-                            className={`${styles.bonusCardImage} ${styles.desktopOnly}`}
-                        />
-                        <img
-                            src="/assets/mobilee_bonus_card.png"
-                            alt="Stewardship is a team effort"
-                            className={`${styles.bonusCardImage} ${styles.mobileOnly}`}
-                        />
+                        <div className={`${styles.bonusCardWrapper} ${styles.desktopOnly}`}>
+                            <img
+                                src="/assets/Bonus_flp_simple.png"
+                                alt="Stewardship is a team effort"
+                                className={styles.bonusCardImage}
+                            />
+                            <div className={styles.bonusCardTextOverlay}>
+                                <h3 className={styles.bonusCardOverlayTitle}>Stewardship is a team effort</h3>
+                                <p className={styles.bonusCardOverlayDesc}> A ready to use guide that helps fundraisers make the case for donor stewardship to their leadership and other team members.</p>
+                               
+                                <img
+                                    src="/assets/bonus_flip_icon.png"
+                                    alt="Bonus card icon"
+                                    className={styles.bonusCardOverlayIcon}
+                                />
+                            </div>
+                        </div>
+                        <div className={`${styles.bonusCardWrapper} ${styles.mobileOnly}`}>
+                            <img
+                                src="/assets/mobilee_bonus_card.png"
+                                alt="Stewardship is a team effort"
+                                className={styles.bonusCardImage}
+                            />
+                            {/* <img
+                                src="/assets/bonus_card_icon.png"
+                                alt="Bonus card icon"
+                                className={styles.bonusCardMobileIcon}
+                            /> */}
+                            <div className={styles.bonusCardTextOverlay}>
+                                <h3 className={styles.bonusCardOverlayTitle}>Stewardship is a team effort</h3>
+                                <p className={styles.bonusCardOverlayDesc}>A ready to use presentation that helps fundraisers make the case for donor stewardship to their leadership and other team members.</p>
+                                <img
+                                    src="/assets/bonus_flip_icon.png"
+                                    alt="Bonus card icon"
+                                    className={styles.bonusCardOverlayIcon}
+                                />
+                            </div>
+                        </div>
                         <div className={styles.bonusDotsPattern}>
                             <img
                                 src="/assets/bonus_background.png"
                                 alt=""
-                                className={styles.bonusDotsImage}
+                                className={`${styles.bonusDotsImage} ${styles.desktopOnly}`}
+                            />
+                            <img
+                                src="/assets/mobile_bonus_background.png"
+                                alt=""
+                                className={`${styles.bonusDotsImage} ${styles.mobileOnly}`}
                             />
                         </div>
                     </div>
