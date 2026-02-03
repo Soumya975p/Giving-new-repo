@@ -153,6 +153,7 @@ export default function Home() {
   // Scroll Reference for Bonus Section
   const bonusSectionRef = useRef<HTMLDivElement>(null);
   const heroSectionRef = useRef<HTMLDivElement>(null);
+  const chapterGridRef = useRef<HTMLDivElement>(null);
   const exploreSectionRef = useRef<HTMLDivElement>(null);
   // Refs for center cards in each chapter
   const centerCardRefs = useRef<(HTMLDivElement | null)[]>([null, null, null, null]);
@@ -317,8 +318,10 @@ export default function Home() {
             Follow Nidhi's journey across four chapters to see how everyday giving can grow from a one-time transaction into a lasting relationship. Each chapter blends real-world moments with practical tools to help nonprofits guide donors naturally. Your donors may be at different stages of this journey—explore the chapters in any order that serves you best.
           </p>
 
-          <div className={styles.chapterSelectionWrapper}>
+          <div className={styles.chapterSelectionWrapper} ref={chapterGridRef}>
             {/* <div className={styles.heroDividerLine}></div> */}
+
+            <p className={styles.chapterSelectionLabel}>Select a chapter to begin</p>
 
             <div
               className={styles.chapterGrid}
@@ -380,8 +383,8 @@ export default function Home() {
             <button
               className={`${styles.navButton} ${styles.backToChaptersBtn}`}
               onClick={() => {
-                // Scroll to top of chapters section
-                chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+                // Scroll to chapter grid section
+                chapterGridRef.current?.scrollIntoView({ behavior: 'smooth' });
               }}
             >
               <svg
@@ -2012,7 +2015,15 @@ export default function Home() {
                                 background: '#93CD4D',
                                 flexShrink: 0
                               }}></span>
-                              <span style={{ color: '#ffffff', fontSize: '16px' }}>
+                              <span style={{
+                                color: '#ffffff',
+                                fontFamily: 'DM Sans, sans-serif',
+                                fontWeight: 400,
+                                fontStyle: 'italic',
+                                fontSize: '20px',
+                                lineHeight: '150%',
+                                letterSpacing: '0'
+                              }}>
                                 Check the toolkit to learn how to build this alignment.
                               </span>
                             </div>

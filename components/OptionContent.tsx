@@ -84,7 +84,7 @@ export default function OptionContent({
             <div className={`${s.stickyHeader} ${embedded ? s.embeddedHeader : ''}`}>
                 <button className={s.backButton} onClick={onBack}>
                     <ArrowLeft size={16} />
-                    <span>Back to scenario</span>
+                    <span>Back to chapters</span>
                 </button>
 
                 {!embedded && (
@@ -94,9 +94,7 @@ export default function OptionContent({
                     </div>
                 )}
 
-                <div className={s.scrollToggle}>
-                    <img src="/assets/scroll.svg" alt="Scroll" />
-                </div>
+
             </div>
 
             {/* Horizontally Scrollable Content */}

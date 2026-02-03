@@ -36,6 +36,7 @@
     align-items: center;
     gap: 20px;
     flex-shrink: 0;
+    position: relative;
 }
 
 .embeddedHeader {
@@ -57,14 +58,13 @@
 .embeddedHeader .backButton {
     pointer-events: auto;
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 50vw;
 }
 
 .embeddedHeader .scrollToggle {
     position: fixed;
     top: 42px;
-    left: 1310px;
+    right: 60px;
     pointer-events: auto;
     margin-right: 0;
     width: 89.43px;
@@ -116,6 +116,10 @@
     padding: 0;
     transition: opacity 0.2s;
     opacity: 0.8;
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .backButton:hover {
@@ -125,7 +129,7 @@
 .scrollToggle {
     position: absolute;
     top: 42px;
-    left: 1310px;
+    right: 60px;
     display: flex;
     align-items: center;
     justify-content: center;

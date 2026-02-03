@@ -38,9 +38,8 @@ const BonusChapter = forwardRef<HTMLDivElement, BonusChapterProps>(
 
                         {/* Desktop Text */}
                         <p className={`${styles.bonusText} ${styles.desktopOnly}`}>
-                            As supporters move across stages, effective coordination between<br />
-                            programme, communications, and fundraising teams ensures consistency,<br />
-                            continuity, and trust.
+                            As supporters move across stages, effective coordination between
+                            programme, communications, and fundraising teams ensures consistency,, and trust.
                         </p>
                         {/* Mobile Text with specific breaks */}
                         <p className={`${styles.bonusText} ${styles.mobileOnly}`}>

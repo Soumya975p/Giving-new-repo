@@ -138,26 +138,32 @@ const TabsSection: React.FC<TabsSectionProps> = ({ activeChapter, onTabClick }) 
                     <>
                         <div className={styles.mobileMenuOverlay} onClick={() => setIsMobileMenuOpen(false)} />
                         <div className={styles.mobileDropup}>
-                            <div className={styles.mobileMenuHeader}>
+                            <div className={styles.mobileMenuHeader} onClick={() => setIsMobileMenuOpen(false)}>
                                 <span>Select a chapter</span>
-                                <div className={styles.mobileMenuClose} onClick={() => setIsMobileMenuOpen(false)}>
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
+                                <div className={styles.mobileMenuChevronCircle}>
+                                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1 1L6 6L11 1" stroke="#0A1731" strokeWidth="2" strokeLinecap="round" />
+                                    </svg>
                                 </div>
                             </div>
                             <div className={styles.mobileMenuList}>
-                                {tabs.map(tab => (
-                                    <div
-                                        key={tab.id}
-                                        className={`${styles.mobileMenuItem} ${activeChapter === tab.id ? styles.mobileMenuItemActive : ''}`}
-                                        onClick={() => {
-                                            onTabClick(tab.id);
-                                            setIsMobileMenuOpen(false);
-                                        }}
-                                    >
-                                        <span dangerouslySetInnerHTML={{ __html: tab.fullLabel.replace(':', '<span style="font-weight:700">:') }} />
-                                    </div>
-                                ))}
-                                <div className={styles.mobileMenuItem} onClick={() => setIsMobileMenuOpen(false)}>
+                                {tabs.map(tab => {
+                                    const parts = tab.fullLabel.split(' : ');
+                                    return (
+                                        <div
+                                            key={tab.id}
+                                            className={`${styles.mobileMenuItem} ${activeChapter === tab.id ? styles.mobileMenuItemActive : ''}`}
+                                            onClick={() => {
+                                                onTabClick(tab.id);
+                                                setIsMobileMenuOpen(false);
+                                            }}
+                                        >
+                                            <span className={styles.mobileMenuRoman}>{parts[0]} : </span>
+                                            <span className={styles.mobileMenuTitle}>{parts[1]}</span>
+                                        </div>
+                                    );
+                                })}
+                                <div className={styles.allChaptersItem} onClick={() => setIsMobileMenuOpen(false)}>
                                     All Chapters
                                 </div>
                             </div>
