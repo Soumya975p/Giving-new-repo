@@ -72,6 +72,8 @@ const TabsSection: React.FC<TabsSectionProps> = ({ activeChapter, onTabClick }) 
                                     WebkitMaskImage: `url('${tab.svg}')`,
                                     maskSize: 'cover',
                                     WebkitMaskSize: 'cover',
+                                    maskPosition: 'center',
+                                    WebkitMaskPosition: 'center',
                                     maskRepeat: 'no-repeat',
                                     WebkitMaskRepeat: 'no-repeat',
                                     pointerEvents: 'none',

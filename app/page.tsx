@@ -78,7 +78,7 @@ const chapters: Chapter[] = [
     subtitle: 'Deepening involvement',
     tabImage: '/assets/Tab 4.png',
     contentImage: '/assets/4.png',
-    gradient: 'linear-gradient(180deg, #FFEF3D 0%, #DCD647 20%, #C9CD33 40%, #8DA806 60%, #86A401 80%, #315900 100%)',
+    gradient: 'radial-gradient(circle, #FFEF3D 0%, #DCD647 16%, #C9CD33 32%, #8DA806 48%, #86A401 64%, #315900 100%)',
     tabGradient: 'linear-gradient(180deg, #315900 0%, #B0D313 100%)',
     gridImage: '/assets/ch4.png'
   }
@@ -188,35 +188,6 @@ export default function Home() {
     }
   }
 
-  // Handle horizontal scroll animation based on scroll position
-  useEffect(() => {
-    const handleContentScroll = () => {
-      const currentScrollContainer = scrollContainerRefs.current[activeChapter - 1]
-      if (!currentScrollContainer) return
-
-      const scrollLeft = currentScrollContainer.scrollLeft
-      const maxScroll = currentScrollContainer.scrollWidth - currentScrollContainer.clientWidth
-
-      if (maxScroll > 0) {
-        const progress = scrollLeft / maxScroll
-        setScrollProgress(progress)
-      } else {
-        setScrollProgress(0)
-      }
-    }
-
-    const currentScrollContainer = scrollContainerRefs.current[activeChapter - 1]
-    if (currentScrollContainer) {
-      currentScrollContainer.addEventListener('scroll', handleContentScroll)
-      handleContentScroll() // Initial check
-
-      return () => {
-        currentScrollContainer.removeEventListener('scroll', handleContentScroll)
-      }
-    }
-  }, [activeChapter])
-
-
   // Intersection Observer for scroll-triggered sticky chapters section
   useEffect(() => {
     const chaptersSection = chaptersSectionRef.current;
@@ -245,6 +216,22 @@ export default function Home() {
       observer.disconnect();
     };
   }, []);
+
+  // Lock body scroll when chapters section is sticky
+  useEffect(() => {
+    if (isChaptersSectionSticky) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
+  }, [isChaptersSectionSticky]);
 
 
   return (
@@ -2031,10 +2018,17 @@ export default function Home() {
           activeChapter={activeChapter}
           onTabClick={(chapterId) => {
             if (chapterId === 5) {
-              bonusSectionRef.current?.scrollIntoView({ behavior: 'smooth' })
+              // Release the sticky lock when bonus chapter is clicked
+              setIsChaptersSectionSticky(false);
+              document.body.style.overflow = '';
+              document.documentElement.style.overflow = '';
+              setTimeout(() => {
+                bonusSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+              }, 100);
             } else {
-              setActiveChapter(chapterId)
-              chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' })
+              setActiveChapter(chapterId);
+              // Keep the section sticky while navigating chapters
+              chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
             }
           }}
         />
