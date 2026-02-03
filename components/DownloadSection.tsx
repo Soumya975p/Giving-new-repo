@@ -11,69 +11,17 @@ export default function DownloadSection({ className }: DownloadSectionProps) {
         <section className={`${styles.downloadSection} ${className || ''}`}>
             {/* Background Image */}
             <img
-                src="/assets/download_background.svg"
+                src="/assets/download_background.png"
                 alt=""
                 className={styles.downloadBackgroundImage}
             />
+            <img
+                src="/assets/downloads_background_mobile.svg"
+                alt=""
+                className={styles.downloadBackgroundImageMobile}
+            />
 
             <div className={styles.downloadContent}>
-                {/* Decorative Petals */}
-                <img
-                    src="/assets/download_petal.svg"
-                    alt=""
-                    className={styles.downloadPetal1}
-                />
-                <img
-                    src="/assets/download_petal.svg"
-                    alt=""
-                    className={styles.downloadPetal2}
-                />
-                <img
-                    src="/assets/download_petal.svg"
-                    alt=""
-                    className={styles.downloadPetal3}
-                />
-                <img
-                    src="/assets/download_petal.svg"
-                    alt=""
-                    className={styles.downloadPetal4}
-                />
-
-                {/* Decorative Balls */}
-                <img
-                    src="/assets/download_section_ball.svg"
-                    alt=""
-                    className={styles.downloadBall1}
-                />
-                <img
-                    src="/assets/download_section_ball.svg"
-                    alt=""
-                    className={styles.downloadBall2}
-                />
-
-                {/* Decorative Sticks */}
-                {/* <img
-          src="/assets/download_petal_stick.svg"
-          alt=""
-          className={styles.downloadStick1}
-        />
-        <img
-          src="/assets/download_petal_stick.svg"
-          alt=""
-          className={styles.downloadStick2}
-        />
-        <img
-          src="/assets/download_petal_stick.svg"
-          alt=""
-          className={styles.downloadStick3}
-        />
-        <img
-          src="/assets/download_petal_stick.svg"
-          alt=""
-          className={styles.downloadStick4}
-        /> */}
-
-
                 {/* Center Card */}
                 <div className={styles.downloadCard}>
                     <div className={styles.downloadIcons}>
@@ -85,7 +33,7 @@ export default function DownloadSection({ className }: DownloadSectionProps) {
                     </div>
 
                     <div className={styles.downloadInfo}>
-                        <h2 className={styles.downloadTitle}>Download the complete fundraising set</h2>
+                        <h2 className={styles.downloadTitle}>Download the complete set of fundraising tools</h2>
                         <p className={styles.downloadDescription}>
                             All the tools in one place to start building a structured, relationship-led approach <br />
                             to engaging everyday givers – at your own pace, and with the resources that fit <br />
@@ -93,10 +41,36 @@ export default function DownloadSection({ className }: DownloadSectionProps) {
                         </p>
                         <div className={styles.downloadButtons}>
                             <button className={styles.downloadAllBtn}>
-                                <img src="/assets/download.svg" alt="Download all" className={styles.downloadAllImage} />
+                                <img
+                                    src="/assets/download_all.svg"
+                                    alt="Download all"
+                                    className={styles.downloadAllImage}
+                                />
+                                <span className={styles.downloadAllImageWrap}>
+                                    <span className={styles.diamond}>◆</span>
+                                    <span className={styles.downloadAllText}>Download all</span>
+                                    <span className={styles.diamond}>◆</span>
+                                </span>
+                                <img
+                                    src="/assets/download_all_btn_mobile.svg"
+                                    alt="Download all"
+                                    className={styles.downloadAllImageMobile}
+                                />
                             </button>
                             <button className={styles.viewAllBtn}>
                                 <img src="/assets/view_doanload.svg" alt="View all" className={styles.viewAllImage} />
+                                <span className={styles.viewAllMobileWrap}>
+                                    <span className={styles.diamond}>◆</span>
+                                    <span className={styles.downloadAllText}>View all</span>
+                                    <span className={styles.viewAllArrowCircle}>
+                                        <span className={styles.viewAllArrow}>→</span>
+                                    </span>
+                                </span>
+                                <img
+                                    src="/assets/view_all_btn_mobile.svg"
+                                    alt="View all"
+                                    className={styles.viewAllImageMobile}
+                                />
                             </button>
                         </div>
                     </div>

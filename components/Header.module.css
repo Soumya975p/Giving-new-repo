@@ -43,10 +43,15 @@
 }
 
 .menuSvg {
-  width: 250px;
-  height: auto;
+  width: 274px;
+  height: 45px;
   cursor: pointer;
   display: block;
+}
+
+.menuOpen {
+  width: 317px;
+  height: 53px;
 }
 
 /* Menu Overlay */
@@ -383,9 +388,10 @@
 }
 
 .logoImage {
-  height: 70px;
-  width: auto;
+  height: 43.16px;
+  width: 150.33px;
   display: block;
+  transform: translate(20px, 23px);
 }
 
 .logoImageMobile {
@@ -402,6 +408,11 @@
 
   .logoImageMobile {
     display: block !important;
+    width: 104.58px !important;
+    height: 45px !important;
+    position: absolute;
+    top: 40px;
+    left: 16px;
   }
 
   .headerRight {
@@ -415,6 +426,11 @@
     object-fit: cover;
     object-position: right;
     border-radius: 6px;
+  }
+
+  .menuOpen {
+    width: 45px !important;
+    height: 45px !important;
   }
 
   .menuBody {

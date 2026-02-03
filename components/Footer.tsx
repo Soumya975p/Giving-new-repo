@@ -35,42 +35,42 @@ export default function Footer() {
 
             {/* ROW 1: Get Involved Form */}
             <div className={styles.getInvolvedRow}>
-              <p className={styles.getInvolvedLabel}>GET INVOLVED</p>
+              <p className={styles.getInvolvedLabel}>SIGN UP HERE</p>
 
               {/* DESKTOP VERSION (3 Lines) */}
               <div className={`${styles.getInvolvedForm} ${styles.footerFormDesktop}`}>
                 <div className={styles.formLine}>
-                  Hi, I'm <input type="text" placeholder="Merlyn Fernandes" className={styles.inlineInput} />, I'm from <input type="text" placeholder="Giving Together Foundation" className={styles.inlineInput} />.
+                  Hi, I’m <input type="text" placeholder="your name" size={9} className={styles.inlineInput} />, I’m from <input type="text" placeholder="name of your organisation" size={25} className={styles.inlineInput} />.
                 </div>
                 <div className={styles.formLine}>
-                  I'd love to be a part of Giving Together Foundation's initiatives.
+                  I’d love to be a part of Giving Together Foundation’s initiatives.
                 </div>
                 <div className={styles.formLine}>
-                  I'm available on <input type="email" placeholder="m.fernandes@email.com" className={styles.inlineInput} /> if you need to reach out to me for updates & details.
+                  My email address is <input type="email" placeholder="your email address" size={18} className={styles.inlineInput} /> if you need to reach out to me.
                 </div>
               </div>
 
               {/* MOBILE VERSION (5 Lines) */}
               <div className={`${styles.getInvolvedForm} ${styles.footerFormMobile}`}>
                 <div className={styles.formLine}>
-                  Hi, I'm <input type="text" placeholder="your name" className={`${styles.inlineInput} ${styles.inputName}`} /> ,
+                  Hi, I’m <input type="text" placeholder="your name" size={9} className={`${styles.inlineInput} ${styles.inputName}`} />,
                 </div>
                 <div className={styles.formLine}>
-                  I'm from <input type="text" placeholder="name of your organisation" className={`${styles.inlineInput} ${styles.inputOrg}`} /> .
+                  I’m from <input type="text" placeholder="name of your organisation" size={25} className={`${styles.inlineInput} ${styles.inputOrg}`} />.
                 </div>
                 <div className={styles.formLine}>
-                  I'd love to be a part of Giving Together Foundation's
+                  I’d love to be a part of Giving Together Foundation’s
                 </div>
                 <div className={styles.formLine}>
-                  initiatives. I'm available on <input type="email" placeholder="your email address" className={`${styles.inlineInput} ${styles.inputEmail}`} />
+                  initiatives. My email address is <input type="email" placeholder="your email address" size={18} className={`${styles.inlineInput} ${styles.inputEmail}`} />
                 </div>
                 <div className={styles.formLine}>
-                  if you need to reach out to me for updates & details.
+                  if you need to reach out to me.
                 </div>
               </div>
 
               <button className={styles.subscribeBtn}>
-                Subscribe <span className={styles.btnArrow}>→</span>
+                Sign up <span className={styles.btnArrow}>→</span>
               </button>
             </div>
 
@@ -80,8 +80,8 @@ export default function Footer() {
               <div className={styles.footerGridCol}>
                 <p className={styles.footerColTitle}>HOME</p>
                 <ul className={styles.footerLinkList}>
-                  <li><a href="#">Who is this for?</a></li>
-                  <li><a href="#">Tools and toolkits</a></li>
+                  <li><a href="#" className={styles.homeLink}>Who is this for?</a></li>
+                  <li><a href="#" className={styles.homeLink}>Tools and toolkits</a></li>
                 </ul>
               </div>
 
@@ -90,9 +90,14 @@ export default function Footer() {
                 <p className={styles.footerColTitle}>REPORTS & RESOURCES</p>
                 <ul className={styles.footerLinkList}>
                   <li><a href="#">UDARTA:EG Field Guide</a></li>
-                  <li className={styles.indentedItem}><a href="#">Fundraising</a></li>
-                  <li className={styles.indentedItem}><a href="#">Volunteer Engagement</a></li>
-                  <li className={styles.arrowItem}><a href="#">UDARTA:EG Report ↗</a></li>
+                  <li className={styles.indentedItem}><a href="#" className={styles.subItemLink}>Fundraising</a></li>
+                  <li className={styles.indentedItem}><a href="#" className={styles.subItemLink}>Volunteer Engagement</a></li>
+                  <li className={styles.arrowItem}>
+                    <a href="#">
+                      UDARTA:EG Report
+                      <img src="/assets/footer_arrow.svg" alt="" className={styles.externalArrowIcon} />
+                    </a>
+                  </li>
                   <li><a href="#">Donor Motivation</a></li>
                 </ul>
               </div>

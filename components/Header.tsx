@@ -13,7 +13,7 @@ interface HeaderProps {
 
 export default function Header({
   activeChapter = 1,
-  setActiveChapter = () => {},
+  setActiveChapter = () => { },
   chaptersSectionRef,
   bonusSectionRef,
 }: HeaderProps) {
@@ -28,7 +28,7 @@ export default function Header({
         <img
           src={isMenuOpen ? '/assets/menu_open.svg' : '/assets/menu.svg'}
           alt="Menu"
-          className={styles.menuSvg}
+          className={`${styles.menuSvg} ${isMenuOpen ? styles.menuOpen : ''}`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         />
       </div>
