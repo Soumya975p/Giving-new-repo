@@ -30,9 +30,7 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
                     </div>
                 )}
 
-                <div className={styles.scrollToggle}>
-                    <img src="/assets/scroll.svg" alt="Scroll" />
-                </div>
+
             </div>
 
             <div className={styles.horizontalScrollContainer}>
