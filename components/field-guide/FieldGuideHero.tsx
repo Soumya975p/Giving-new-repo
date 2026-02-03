@@ -7,17 +7,12 @@ export default function FieldGuideHero() {
   return (
     <motion.section
       className={styles.heroSection}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
     >
       <div className={styles.heroContent}>
         {/* Left Side */}
         <motion.div
           className={styles.leftSide}
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+
         >
           {/* Fly Icon - Mobile Only */}
           <div className={`${styles.flyIcon} m-d-block`}>
@@ -32,6 +27,11 @@ export default function FieldGuideHero() {
           <h1 className={styles.mainTitle}>
             Unlock the Power of
           </h1>
+          <img
+            src="/assets/ed-giving.png"
+            alt="Everyday Giving Icon"
+            className={styles.edGivingIcon}
+          />
           <h2 className={styles.mainSubtitle}>
             Everyday <span>Giving</span>
           </h2>
@@ -49,10 +49,6 @@ export default function FieldGuideHero() {
         {/* Right Side */}
         <motion.div
           className={`${styles.rightSide} d-d-block`}
-
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
         >
           <p className={styles.sectionLabel}>UDARTA:EG Action Field Guides</p>
           <p className={styles.description}>
@@ -94,9 +90,6 @@ export default function FieldGuideHero() {
       {/* Bottom Hero Image */}
       <motion.div
         className={styles.bottomImageContainer}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.6 }}
       >
         <img
           src="/assets/fg-unlock-power.png"
