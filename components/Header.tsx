@@ -14,6 +14,7 @@ interface HeaderProps {
   bonusSectionRef?: React.RefObject<HTMLDivElement>;
   heroSectionRef?: React.RefObject<HTMLDivElement>;
   exploreSectionRef?: React.RefObject<HTMLDivElement>;
+  setIsChaptersSectionSticky?: (isSticky: boolean) => void;
 }
 
 export default function Header({
@@ -23,16 +24,14 @@ export default function Header({
   bonusSectionRef,
   heroSectionRef,
   exploreSectionRef,
+  setIsChaptersSectionSticky,
 }: HeaderProps) {
   const router = useRouter();
   // const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isFundraisingExpanded, setIsFundraisingExpanded] = useState(false);
   const [expandedChapter, setExpandedChapter] = useState<number | null>(null);
-  const pathname = usePathname();
-  const isIntroActive = pathname === '/field-guide';
-  const isFundraisingActive = pathname === '/';
-  
+
   const isFieldGuidePage = pathname === '/field-guide';
 
   return (
@@ -86,10 +85,11 @@ export default function Header({
                 {/* Desktop Menu Layout - Hidden on Mobile */}
                 <div className={`${styles.menuLeft} ${styles.desktopOnly}`}>
                   <div className={styles.menuSection}>
-                    <Link
-                      href="/field-guide" 
-                      className={`${`${styles.menuSectionTitle} ${isIntroActive ? styles.menuSectionTitleActive : ''}`} ${isFieldGuidePage ? styles.active : ''}`}
+                    <button
+                      className={`${styles.menuSectionTitle} ${isFieldGuidePage ? styles.active : ''}`}
                       onClick={() => {
+                        setIsChaptersSectionSticky?.(false);
+                        router.push('/field-guide');
                         setIsMenuOpen(false);
                         if (isIntroActive) {
                           heroSectionRef?.current?.scrollIntoView({
@@ -329,6 +329,7 @@ export default function Header({
                       <button
                         className={styles.chapterButton}
                         onClick={() => {
+                          setIsChaptersSectionSticky?.(false);
                           bonusSectionRef?.current?.scrollIntoView({
                             behavior: 'smooth',
                           });

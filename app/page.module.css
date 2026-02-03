@@ -8,6 +8,10 @@
   scrollbar-width: none;
 }
 
+.noScroll {
+  overflow: hidden !important;
+}
+
 .desktopOnly {
   display: block !important;
 }
@@ -688,13 +692,18 @@
 /* Sticky state - triggered when 10% visible */
 .chaptersSectionSticky {
   position: fixed;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100vh !important;
   z-index: 100;
-  overflow: hidden;
-  animation: slideUpAndFix 0.5s ease-out forwards;
+  overflow-y: auto;
+  scrollbar-width: none;
+  padding-bottom: 0 !important;
+}
+
+.chaptersSectionSticky::-webkit-scrollbar {
+  display: none;
 }
 
 @keyframes slideUpAndFix {
@@ -748,7 +757,8 @@
 /* Chapter panel that fills viewport with depth shadow */
 .chapterPanel {
   width: 100%;
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
   border-radius: 24px 24px 0 0;
   position: relative;
   overflow: hidden;
@@ -770,7 +780,7 @@
   display: flex;
   flex-direction: row;
   overflow-x: auto;
-  overflow-y: auto;
+  overflow-y: visible;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -958,7 +968,7 @@
 .contentSection {
   flex: 1;
   width: 100%;
-  overflow-y: auto;
+  overflow-y: visible;
   overflow-x: hidden;
   position: relative;
   border: 3px solid rgba(0, 0, 0, 0.3);
@@ -1065,7 +1075,8 @@
 /* Scroll Container */
 .scrollContainer {
   min-width: 100%;
-  height: 100%;
+  height: auto;
+  min-height: 100%;
   overflow: visible;
   padding: 30px 60px 200px 60px;
   display: flex;
@@ -1127,7 +1138,8 @@
   position: relative;
   padding: 0 40px;
   min-width: fit-content;
-  height: 100%;
+  height: auto;
+  min-height: 100%;
 }
 
 /* Left Column - Flowchart */
@@ -2736,11 +2748,12 @@
 
 /* Chapter Panel */
 .chapterPanel {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: auto;
+  min-height: 100vh;
   border-radius: 0;
   overflow: hidden;
   display: flex;
@@ -2753,7 +2766,7 @@
 .contentSection {
   flex: 1;
   width: 100%;
-  overflow-y: auto;
+  overflow-y: visible;
   overflow-x: hidden;
   position: relative;
   border: 3px solid rgba(0, 0, 0, 0.3);
@@ -4187,7 +4200,7 @@
   /* Reduced from 50px */
   position: relative;
   z-index: 10;
-  padding: 0 10px;
+  padding: 160px 10px 58px 10px;
   top: 8%;
   /* Reduced side padding slightly */
 }
@@ -5621,9 +5634,9 @@
   .chaptersSection {
     position: relative;
     width: 100%;
-    height: 1035px !important;
-    min-height: 1035px;
-    overflow: hidden;
+    height: auto !important;
+    min-height: 100vh;
+    overflow: visible;
   }
 
   /* Hide top navigation on mobile */
@@ -5637,21 +5650,22 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: auto;
   }
 
   /* Chapter Panel - Full screen */
   .chapterPanel {
     width: 100%;
-    height: 100%;
+    height: auto;
+    min-height: 100vh;
     border-radius: 0;
   }
 
   /* Content Section */
   .contentSection {
     width: 100%;
-    height: 100%;
-    overflow-y: auto;
+    height: auto;
+    overflow-y: visible;
     overflow-x: hidden;
     border: none;
     padding-bottom: 70px;
@@ -5668,7 +5682,8 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100%;
+    height: auto;
+    min-height: 100%;
     min-width: unset;
     padding: 16px 16px 0;
     gap: 0;
@@ -5679,13 +5694,13 @@
   /* Chapter 1 Wrapper - Mobile Layout */
   .chapter1Wrapper {
     width: 100%;
-    height: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 10px;
     padding-bottom: 0;
-    overflow: hidden;
+    overflow: visible;
   }
 
   /* Chapter Header - Mobile */
@@ -5739,7 +5754,7 @@
     margin-top: 0;
     padding: 0;
     flex: 1;
-    overflow: hidden;
+    overflow: visible;
   }
 
   /* Center Card - Mobile (Shown First) */
@@ -8807,6 +8822,10 @@
 @media (max-width: 768px) {
   .menuBody {
     grid-template-columns: 1fr;
+  }
+
+  .chapter1Header {
+    padding-top: 80px;
   }
 
   .menuLeft {

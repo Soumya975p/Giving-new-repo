@@ -10,24 +10,26 @@ export default function InspiredSection() {
 
   const cards = [
     {
-      image: "/assets/slider1.png",
+      image: "/assets/Card 1.png",
       color: "#D349AE"
     },
     {
-      image: "/assets/slider1.png",
+      image: "/assets/Card 2.png",
       color: "#0FB8C5"
     },
     {
-      image: "/assets/slider1.png",
+      image: "/assets/Card 3.png",
       color: "#93CD4D"
     }
   ]
 
-  const handlePrevious = () => {
+  const handlePrevious = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setActiveCard((prev) => (prev - 1 + cards.length) % cards.length)
   }
 
-  const handleNext = () => {
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setActiveCard((prev) => (prev + 1) % cards.length)
   }
 
@@ -86,7 +88,7 @@ export default function InspiredSection() {
               <h3>These guides translate sector-wide
                 insights into simple, usable systems for nonprofits of all sizes.</h3>
               <p>The opportunity is real, proven, that success isn't reserved for just the a few organisations; it is accessible to any of us willing to build authentic community relationships - across causes, geographies, and organisation sizes.</p>
-              <a href="">Read the research report  <img src="./assets/btn-arrow.png" alt="" /></a>
+              <a href="">Read the research report  <img src="/assets/btn-arrow.png" alt="" /></a>
             </div>
           </div>
         </div>
@@ -111,6 +113,7 @@ export default function InspiredSection() {
                       className={inspiredStyles.sliderPrevBtn}
                       onClick={handlePrevious}
                       aria-label="Previous card"
+                      style={{ zIndex: 100 }}
                     >
                       <img
                         src="/assets/who-slider-next.png"
@@ -119,21 +122,29 @@ export default function InspiredSection() {
                       />
                     </button>
 
-                    {/* Cards Container */}
                     <div className={inspiredStyles.cardsContainer}>
-                      {cards.map((card, index) => (
-                        <div
-                          key={index}
-                          className={`${inspiredStyles.card} ${index === activeCard ? inspiredStyles.cardActive : ''}`}
-                          style={{ transform: `translateX(-${activeCard * 100}%)` }}
-                        >
-                          <img
-                            src={card.image}
-                            alt={`Card ${index + 1}`}
-                            className={inspiredStyles.cardImage}
-                          />
-                        </div>
-                      ))}
+                      {cards.map((card, index) => {
+                        // Calculate position relative to active card
+                        const position = (index - activeCard + cards.length) % cards.length;
+
+                        return (
+                          <div
+                            key={index}
+                            className={inspiredStyles.card}
+                            style={{
+                              zIndex: position === 0 ? 10 : position === 1 ? 5 : 1,
+                              opacity: 1,
+                              transform: position === 0 ? 'scale(1)' : position === 1 ? 'scale(0.95) translate(10px, 10px)' : 'scale(0.9) translate(20px, 20px)'
+                            }}
+                          >
+                            <img
+                              src={card.image}
+                              alt={`Card ${index + 1}`}
+                              className={inspiredStyles.cardImage}
+                            />
+                          </div>
+                        )
+                      })}
                     </div>
 
                     {/* Next Arrow */}
@@ -141,6 +152,7 @@ export default function InspiredSection() {
                       className={inspiredStyles.sliderNextBtn}
                       onClick={handleNext}
                       aria-label="Next card"
+                      style={{ zIndex: 100 }}
                     >
                       <img
                         src="/assets/who-slider-next.png"
@@ -175,6 +187,7 @@ export default function InspiredSection() {
               </div>
             </div>
 
+            {/* Bottom Quote Section */}
             {/* Bottom Quote Section */}
             <div className={inspiredStyles.quoteSection}>
               <p className={inspiredStyles.quoteText}>

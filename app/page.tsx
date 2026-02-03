@@ -10,9 +10,9 @@ import PopupForm from '../components/PopupForm'
 import chapter2StylesA from '../components/Chapter2OptionA.module.css'
 import chapter2StylesB from '../components/Chapter2OptionB.module.css'
 import chapter3StylesA from '../components/Chapter3OptionA.module.css'
+import chapter3StylesB from '../components/Chapter3OptionB.module.css'
 import chapter4StylesA from '../components/Chapter4OptionA.module.css'
 import chapter4StylesB from '../components/Chapter4OptionB.module.css'
-import chapter3StylesB from '../components/Chapter3OptionB.module.css'
 // import Chapter3OptionB from '../components/Chapter3OptionB'
 import Chapter4OptionA from '../components/Chapter4OptionA'
 import TabsSection from '../components/TabsSection'
@@ -138,11 +138,7 @@ export default function Home() {
   const [isCh3OptionBHovered, setIsCh3OptionBHovered] = useState(false)
   const [isCh4OptionAHovered, setIsCh4OptionAHovered] = useState(false)
   const [isCh4OptionBHovered, setIsCh4OptionBHovered] = useState(false)
-  const [isExplore1Hovered, setIsExplore1Hovered] = useState(false) // Moved to Explore component
-  const [isExplore2Hovered, setIsExplore2Hovered] = useState(false) // Moved to Explore component
-  const [isMenuOpen, setIsMenuOpen] = useState(false) // Moved to Header component
-  const [isFundraisingExpanded, setIsFundraisingExpanded] = useState(false) // Moved to Header component
-  const [expandedChapter, setExpandedChapter] = useState<number | null>(null) // Moved to Header component
+
   const chapterRefs = useRef<(HTMLDivElement | null)[]>([])
   const activeChapterRef = useRef(activeChapter) // To track active chapter without dependency issues
   const chaptersSectionRef = useRef<HTMLDivElement>(null)
@@ -201,16 +197,20 @@ export default function Home() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // When 10% of section is visible, trigger sticky
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.1) {
+          // When 20% of section is visible, trigger sticky
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.2) {
             setIsChaptersSectionSticky(true);
-            // Scroll the section into full view
-            chaptersSection.scrollIntoView({ behavior: 'smooth' });
+            // Scroll the section into full view at bottom 0
+            if (chaptersSection) {
+              chaptersSection.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            }
+            // Disconnect once triggered to ensure it only happens once per session
+            observer.disconnect();
           }
         });
       },
       {
-        threshold: 0.1, // Trigger when 10% visible
+        threshold: 0.2, // Trigger when 20% visible
         rootMargin: '0px'
       }
     );
@@ -240,7 +240,7 @@ export default function Home() {
 
 
   return (
-    <div className={`${styles.pageWrapper} ${dmSans.className}`}>
+    <div className={`${styles.pageWrapper} ${isChaptersSectionSticky ? styles.noScroll : ''} ${dmSans.className}`}>
       {/* Header with Logo and Menu */}
       <Header
         activeChapter={activeChapter}
@@ -249,6 +249,7 @@ export default function Home() {
         bonusSectionRef={bonusSectionRef}
         heroSectionRef={heroSectionRef}
         exploreSectionRef={exploreSectionRef}
+        setIsChaptersSectionSticky={setIsChaptersSectionSticky}
       />
 
       {/* Hero Section */}
