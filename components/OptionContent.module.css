@@ -76,7 +76,6 @@
 .embeddedHeader .backButton {
     pointer-events: auto;
     position: absolute;
-    left: 60px;
 }
 
 .embeddedHeader .scrollToggle {
