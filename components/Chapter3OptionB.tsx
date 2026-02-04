@@ -40,7 +40,7 @@ export default function Chapter3OptionB({ onBack, onNext, embedded = false }: Ch
                         <img
                             src="/assets/flower_chapter_4.svg"
                             alt="Flower decoration"
-                            className={styles.flowerDecoration}
+                            className={styles.flowerDecor}
                         />
                         <h3 className={styles.storyTitle}>You're nurturing the relationship!</h3>
                         <p className={styles.storyText}>
@@ -114,8 +114,8 @@ export default function Chapter3OptionB({ onBack, onNext, embedded = false }: Ch
                             toolkitNumber={2}
                             title="The Storytelling Bank"
                             description="A collection of stories to share with donors."
-                            backgroundImage="/assets/toolkit_base_card.svg"
-                            designImage="/assets/toolkit_44.svg"
+                            backgroundImage="/assets/toolkit4_background.svg"
+                            designImage="/assets/toolkit4_design.png"
                             designVariant="tk4"
                         />
                     </div>
@@ -126,8 +126,8 @@ export default function Chapter3OptionB({ onBack, onNext, embedded = false }: Ch
                             toolkitNumber={1}
                             title="Segmentation & Profiling"
                             description="Tools to categorize and understand your donors."
-                            backgroundImage="/assets/toolkit_base_card.svg"
-                            designImage="/assets/toolkit_33.svg"
+                            backgroundImage="/assets/toolkit3_background.svg"
+                            designImage="/assets/toolkit3_design.png"
                             designVariant="tk3"
                         />
                     </div>
@@ -139,8 +139,8 @@ export default function Chapter3OptionB({ onBack, onNext, embedded = false }: Ch
                                 toolkitNumber={3}
                                 title="The Communications Calendar"
                                 description="Plan your donor engagement throughout the year."
-                                backgroundImage="/assets/toolkit_base_card.svg"
-                                designImage="/assets/toolkit_55.svg"
+                                backgroundImage="/assets/toolkit5_background.svg"
+                                designImage="/assets/toolkit5_design.png"
                                 designVariant="tk5"
                             />
                         </div>
