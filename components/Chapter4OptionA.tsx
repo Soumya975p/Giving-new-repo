@@ -21,11 +21,11 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
             >
-                <img 
+                {/* <img 
                     src="/assets/left_plant_leaves.svg"
                     alt="Plant decoration"
                     className={styles.plantImage}
-                />
+                /> */}
                 {isHovered && (
                     <>
                         <img 

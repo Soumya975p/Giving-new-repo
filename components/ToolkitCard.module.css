@@ -50,6 +50,16 @@
     transform: none;
 }
 
+/* Remove rotation for toolkit cards 3, 4, and 5 */
+.designTk3 .baseCardImage,
+.designTk3 .contentContainer,
+.designTk4 .baseCardImage,
+.designTk4 .contentContainer,
+.designTk5 .baseCardImage,
+.designTk5 .contentContainer {
+    transform: none;
+}
+
 /* Top Section: Background + Design overlay */
 .topSection {
     position: relative;
