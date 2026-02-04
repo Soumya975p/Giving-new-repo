@@ -66,7 +66,7 @@ export default function ToolkitCard({
 
                 {/* Buttons Section */}
                 <div className={styles.buttonsSection}>
-                    <button className={styles.downloadButton} data-tookiturl={toolkiturl} onClick={onDownload}>
+                    <button className={styles.downloadButton} onClick={onDownload}>
                         <span>Download</span>
                         <svg
                             width="16"
@@ -91,7 +91,7 @@ export default function ToolkitCard({
                             />
                         </svg>
                     </button>
-                    <button className={styles.viewToolkitButton} onClick={onViewToolkit}>
+                    <a className={styles.viewToolkitButton} data-href={toolkiturl} onClick={onViewToolkit}>
                         <span>View toolkit</span>
                         <svg
                             width="16"
@@ -109,7 +109,7 @@ export default function ToolkitCard({
                                 strokeLinejoin="round"
                             />
                         </svg>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

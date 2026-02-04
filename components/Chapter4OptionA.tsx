@@ -152,6 +152,7 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
                                 backgroundImage="/assets/toolkit6/toolkit6_background.svg"
                                 designImage="/assets/toolkit6/toolkit6_design.png"
                                 disableRotation={true}
+                                toolkiturl='https://drive.google.com/file/d/1fPMecVmlPoeO2QXkJjPn3iSvCwftP6BF/view?usp=sharing'
                                 backgroundVariant="tk6"
                                 designVariant="tk6"
                                 onDownload={onToolkitDownload}
@@ -171,6 +172,7 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
                                     disableRotation={true}
                                     backgroundVariant="tk7"
                                     designVariant="tk7"
+                                    toolkiturl='https://drive.google.com/file/d/1aeMzAwPDOpsdZIU3xxI2YwtlavS_z2F3/view?usp=sharing'
                                     onDownload={onToolkitDownload}
                                     onViewToolkit={onToolkitDownload}
                                 />
