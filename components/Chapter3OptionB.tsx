@@ -114,7 +114,8 @@ export default function Chapter3OptionB({ onBack, onNext, embedded = false }: Ch
                             toolkitNumber={2}
                             title="The Storytelling Bank"
                             description="A collection of stories to share with donors."
-                            backgroundImage="/assets/toolkit4_background.svg"
+                            toolkiturl='https://drive.google.com/file/d/1E7BcCBWNd8wMrpZbNmjwYHjp5SXQ8wzH/view?usp=sharing'
+                           backgroundImage="/assets/toolkit4_background.svg"
                             designImage="/assets/toolkit4_design.png"
                             designVariant="tk4"
                         />
@@ -125,6 +126,7 @@ export default function Chapter3OptionB({ onBack, onNext, embedded = false }: Ch
                         <ToolkitCard
                             toolkitNumber={1}
                             title="Segmentation & Profiling"
+                            toolkiturl='https://drive.google.com/file/d/1NwVk9MdQglzykCSP5_qj9RcVehPF1WIy/view?usp=sharing'
                             description="Tools to categorize and understand your donors."
                             backgroundImage="/assets/toolkit3_background.svg"
                             designImage="/assets/toolkit3_design.png"
@@ -138,6 +140,7 @@ export default function Chapter3OptionB({ onBack, onNext, embedded = false }: Ch
                             <ToolkitCard
                                 toolkitNumber={3}
                                 title="The Communications Calendar"
+                                toolkiturl='https://drive.google.com/file/d/1qKrCcT-W78CKUanp8bExreUgfrbjoj9L/view?usp=sharing'
                                 description="Plan your donor engagement throughout the year."
                                 backgroundImage="/assets/toolkit5_background.svg"
                                 designImage="/assets/toolkit5_design.png"

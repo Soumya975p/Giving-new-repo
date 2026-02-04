@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './PopupForm.module.css';
 
 interface PopupFormProps {
@@ -8,13 +8,52 @@ interface PopupFormProps {
     onClose: () => void;
 }
 
+const COOKIE_NAME = "popup_form_submitted_v1";
+
+const hasCookie = () =>
+    document.cookie.split(";").some(c => c.trim().startsWith(COOKIE_NAME + "="));
+
+const setCookie = () => {
+    document.cookie = `${COOKIE_NAME}=true; max-age=86400; path=/; SameSite=Lax`;
+};
+
 export default function PopupForm({ isOpen, onClose }: PopupFormProps) {
+    
+    const [ready, setReady] = useState(false); // prevents flicker
+    const [showPopup, setShowPopup] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState("");
+
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
         organisation: '',
         email: ''
     });
+
+    useEffect(() => {
+
+        if (isOpen !== undefined) {
+            setShowPopup(isOpen);
+            setReady(true);
+            return;
+        }
+
+        if (!hasCookie()) {
+            setTimeout(() => {
+                setShowPopup(true);
+                setReady(true);
+            }, 3000); // optional delay
+        } else {
+            setReady(true);
+        }
+
+    }, [isOpen]);
+
+    const handleClose = () => {
+        setShowPopup(false);
+        onClose?.();
+    };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -23,12 +62,69 @@ export default function PopupForm({ isOpen, onClose }: PopupFormProps) {
             [name]: value
         }));
     };
-
-    const handleSubmit = (e: React.FormEvent) => {
+    
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         // Handle form submission
-        console.log('Form submitted:', formData);
-        onClose();
+        setLoading(true);
+         const form = e.currentTarget;
+         const formData = new FormData(form);
+        setMessage("");
+        try {
+            const res = await fetch("http://givingtogetherfoundation.org/gtf/save.php", {
+                method: "POST",
+                headers: {
+                "Content-Type": "application/json",
+                },
+                //body: JSON.stringify(formData),
+                body: JSON.stringify({
+                    firstName: formData.get("firstName"),
+                    lastName: formData.get("lastName"),
+                    email: formData.get("email"),
+                    organisation: formData.get("organisation"),
+                }),
+            });
+            const text = await res.text(); // 👈 read as text first
+            //console.log(text);
+            const result = JSON.parse(text); // convert manually
+            //const result = await res.json();
+            if (result.status === "success") {
+                setCookie();
+                /*const date = new Date();
+                date.setTime(date.getTime() + (24 * 60 * 60 * 1000)); // 24 hours
+                document.cookie = `formSubmitted=true; expires=${date.toUTCString()}; path=/`;*/
+                setMessage("✅ Form submitted successfully!");
+                form.reset();
+                setFormData({
+                    firstName: "",
+                    lastName: "",
+                    organisation: "",
+                    email: "",
+                });
+                setTimeout(() => {
+                    document.querySelectorAll('[data-href]').forEach(el => {
+                        const url = el.getAttribute('data-href');
+                        if (url) {
+                            el.setAttribute('href', url);
+                            el.setAttribute('target', '_blank');
+                            el.setAttribute('rel', 'noopener noreferrer');
+                            el.removeAttribute('data-href');
+                        }
+                    });
+                }, 0);
+                setTimeout(() => {
+                    setMessage("");
+                    handleClose(); // Close popup after success message
+                }, 2000);
+            } else {
+                setMessage("❌ Something went wrong.");
+            }
+            } catch (err) {
+                console.log("REAL ERROR:", err);
+                setMessage("❌ Server error.");
+            } finally {
+                setLoading(false);
+            }
     };
 
     if (!isOpen) return null;
@@ -119,6 +215,7 @@ export default function PopupForm({ isOpen, onClose }: PopupFormProps) {
                                     <span className={`${styles.formLabel} ${styles.formLabelStrong}`}>Email id</span>
                                 </div>
                             </div>
+                            <p>{message}</p>
                             <button type="submit" className={styles.getToolkitBtn}>
                                 <span>◆</span>
                                 <span>Get toolkit</span>

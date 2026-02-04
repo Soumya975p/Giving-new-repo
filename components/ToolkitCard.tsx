@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import styles from './ToolkitCard.module.css';
 
@@ -5,6 +7,7 @@ interface ToolkitCardProps {
     toolkitNumber: number;
     title: string;
     description: string;
+    toolkiturl: string;
     backgroundImage: string;
     designImage: string;
     onDownload?: () => void;
@@ -14,10 +17,18 @@ interface ToolkitCardProps {
     backgroundVariant?: 'tk345' | 'tk6' | 'tk7';
 }
 
+const COOKIE_NAME = "popup_form_submitted_v1";
+
+const hasCookie = () => {
+    if (typeof document === 'undefined') return false;
+    return document.cookie.split(";").some(c => c.trim().startsWith(COOKIE_NAME + "="));
+};
+
 export default function ToolkitCard({
     toolkitNumber,
     title,
     description,
+    toolkiturl,
     backgroundImage,
     designImage,
     onDownload,
@@ -26,6 +37,28 @@ export default function ToolkitCard({
     designVariant,
     backgroundVariant
 }: ToolkitCardProps) {
+
+    const handleViewToolkit = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        // If cookie exists, allow default link behavior
+        if (hasCookie()) {
+            // Link should already be set by PopupForm, but ensure it's set
+            const target = e.currentTarget;
+            if (!target.hasAttribute('href') && target.hasAttribute('data-href')) {
+                const url = target.getAttribute('data-href');
+                if (url) {
+                    window.open(url, '_blank', 'noopener,noreferrer');
+                    e.preventDefault();
+                }
+            }
+            return;
+        }
+
+        // If no cookie, prevent default and show popup
+        e.preventDefault();
+        if (onViewToolkit) {
+            onViewToolkit();
+        }
+    };
     return (
         <div className={`${styles.toolkitCardWrapper} ${disableRotation ? styles.noRotate : ''} ${designVariant === 'ch2' ? styles.designCh2 : ''} ${designVariant === 'tk3' ? styles.designTk3 : ''} ${designVariant === 'tk4' ? styles.designTk4 : ''} ${designVariant === 'tk5' ? styles.designTk5 : ''} ${designVariant === 'tk6' ? styles.designTk6 : ''} ${designVariant === 'tk7' ? styles.designTk7 : ''} ${backgroundVariant === 'tk345' ? styles.backgroundTk345 : ''} ${backgroundVariant === 'tk6' ? styles.backgroundTk6 : ''} ${backgroundVariant === 'tk7' ? styles.backgroundTk7 : ''}`}>
             {/* Base Card */}
@@ -64,7 +97,7 @@ export default function ToolkitCard({
 
                 {/* Buttons Section */}
                 <div className={styles.buttonsSection}>
-                    <button className={styles.downloadButton} onClick={onDownload}>
+                    {/* <button className={styles.downloadButton} onClick={onDownload}>
                         <span>Download</span>
                         <svg
                             width="16"
@@ -88,8 +121,8 @@ export default function ToolkitCard({
                                 strokeLinecap="round"
                             />
                         </svg>
-                    </button>
-                    <button className={styles.viewToolkitButton} onClick={onViewToolkit}>
+                    </button> */}
+                    <a className={styles.viewToolkitButton} data-href={toolkiturl} onClick={handleViewToolkit}>
                         <span>View toolkit</span>
                         <svg
                             width="16"
@@ -107,7 +140,7 @@ export default function ToolkitCard({
                                 strokeLinejoin="round"
                             />
                         </svg>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

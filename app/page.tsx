@@ -543,6 +543,7 @@ export default function Home() {
                                     toolkitBackgroundImage: '/assets/toolkit1/toolkit1_background.png',
                                     toolkitDesignImage: '/assets/toolkit1/toolkit1_design.png',
                                     toolkitImage: '/assets/toolkit1.svg',
+                                    toolkitURL: 'https://drive.google.com/file/d/1JoWLChw1G1WBw3PiRAp-Q-qbppOPS7HC/view?usp=sharing',
                                     onToolkitDownload: () => setIsPopupOpen(true),
                                     onToolkitView: () => setIsPopupOpen(true)
                                   }
@@ -607,6 +608,7 @@ export default function Home() {
                                     toolkitNumber: 1,
                                     toolkitTitle: 'Network Mapping',
                                     toolkitDescription: 'A simple way to identify and activate people already connected to your cause.',
+                                    toolkitURL: 'https://drive.google.com/file/d/1JoWLChw1G1WBw3PiRAp-Q-qbppOPS7HC/view?usp=sharing',
                                     toolkitBackgroundImage: '/assets/toolkit1/toolkit1_background.png',
                                     toolkitDesignImage: '/assets/toolkit1/toolkit1_design.png',
                                     toolkitImage: '/assets/toolkit1.svg',
@@ -916,6 +918,7 @@ export default function Home() {
                                     toolkitDesignImage: '/assets/toolkit2/toolkit2_design.svg',
                                     toolkitDisableRotation: true,
                                     toolkitDesignVariant: 'ch2',
+                                    toolkitURL: 'https://drive.google.com/file/d/1ZQnu9KNetIdFINuW5RCkF5U62fRro3WT/view?usp=sharing',
                                     toolkitImage: '/assets/chapter2_option1_toolkit.svg',
                                     onToolkitDownload: () => setIsPopupOpen(true),
                                     onToolkitView: () => setIsPopupOpen(true)
@@ -999,6 +1002,7 @@ export default function Home() {
                                     toolkitBackgroundImage: '/assets/toolkit1/toolkit1_background.png',
                                     toolkitDesignImage: '/assets/toolkit2/toolkit2_design.svg',
                                     toolkitDisableRotation: false,
+                                    toolkitURL: 'https://drive.google.com/file/d/1ZQnu9KNetIdFINuW5RCkF5U62fRro3WT/view?usp=sharing',
                                     toolkitDesignVariant: 'ch2',
                                     toolkitImage: '/assets/chapter2_option1_toolkit.svg',
                                     onToolkitDownload: () => setIsPopupOpen(true),
