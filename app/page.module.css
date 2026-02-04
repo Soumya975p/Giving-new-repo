@@ -5635,8 +5635,10 @@
     position: relative;
     width: 100%;
     height: auto !important;
-    min-height: 100vh;
-    overflow: visible;
+    max-height: 90vh;
+        min-height: 90vh;
+        overflow: auto !important;
+    /* overflow: auto; */
   }
 
   /* Hide top navigation on mobile */
@@ -5700,7 +5702,9 @@
     align-items: center;
     padding-top: 10px;
     padding-bottom: 0;
-    overflow: visible;
+    /* overflow: visible; */
+    overflow: auto;
+        height: 80vh;
   }
 
   /* Chapter Header - Mobile */
@@ -8114,6 +8118,9 @@
     gap: 10px;
   }
 
+  .scenarioContainer {
+    margin-bottom: 0 !important;
+  }
   .centerCard {
     width: 229.07px;
     max-width: 229.07px !important;
@@ -8859,6 +8866,9 @@
 
   .chapterSubItem {
     font-size: 13px;
+  }
+    .noScroll{
+    /* overflow: auto !important; */
   }
 }
 

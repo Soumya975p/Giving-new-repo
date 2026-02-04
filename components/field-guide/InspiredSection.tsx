@@ -88,7 +88,7 @@ export default function InspiredSection() {
               <h3>These guides translate sector-wide
                 insights into simple, usable systems for nonprofits of all sizes.</h3>
               <p>The opportunity is real, proven, that success isn't reserved for just the a few organisations; it is accessible to any of us willing to build authentic community relationships - across causes, geographies, and organisation sizes.</p>
-              <a href="">Read the research report  <img src="/assets/right-arrow-bg.png" alt="" /></a>
+              <a href="" style={{ display: 'flex'}}>Read the research report  <img src="/assets/btn-arrow.png" alt=""style={{marginTop: '5px', marginLeft:'8px'}} /></a>
             </div>
           </div>
         </div>
@@ -183,7 +183,7 @@ export default function InspiredSection() {
                 <p className={inspiredStyles.descText}>
                   These aren't just metrics, they represent flexible operational funding, lifelong advocates, and invested communities that amplify your mission.
                 </p>
-                <a href="#" className={inspiredStyles.reportLink}>Read the research report →</a>
+                <a href="#" style={{ display: 'flex'}} className={inspiredStyles.reportLink}>Read the research report <img src="/assets/right-arrow-bg.png" style={{marginTop: '5px', marginLeft:'8px'}} alt="" /></a>
               </div>
             </div>
 

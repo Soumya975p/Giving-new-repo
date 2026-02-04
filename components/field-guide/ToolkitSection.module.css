@@ -95,7 +95,7 @@
 
 .circleContent {
   text-align: center;
-  padding: 40px 40px 0 40px;
+  padding: 60px 40px 0 40px;
   position: relative;
   z-index: 2;
   display: flex;
@@ -109,12 +109,13 @@
 
 
 .circleText {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 140%;
-  color: #12363B;
-  margin: 0;
+font-family: Zalando Sans Expanded;
+font-weight: 400;
+font-size: 20px;
+line-height: 120%;
+letter-spacing: -3%;
+text-align: center;
+color: #12363B;
 }
 
 /* Circle Images - bottom aligned with specific widths */
