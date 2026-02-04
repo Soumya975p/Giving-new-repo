@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import Cookies from 'js-cookie';
 import styles from './PopupForm.module.css';
 
 interface PopupFormProps {
@@ -110,12 +109,12 @@ export default function PopupForm({ isOpen, onClose }: PopupFormProps) {
                             el.setAttribute('target', '_blank');
                             el.setAttribute('rel', 'noopener noreferrer');
                             el.removeAttribute('data-href');
-                            el.removeAttribute('onClick');
                         }
                     });
                 }, 0);
                 setTimeout(() => {
                     setMessage("");
+                    handleClose(); // Close popup after success message
                 }, 2000);
             } else {
                 setMessage("❌ Something went wrong.");
@@ -123,9 +122,9 @@ export default function PopupForm({ isOpen, onClose }: PopupFormProps) {
             } catch (err) {
                 console.log("REAL ERROR:", err);
                 setMessage("❌ Server error.");
+            } finally {
+                setLoading(false);
             }
-        //console.log('Form submitted:', formData);
-        //onClose();
     };
 
     if (!isOpen) return null;
