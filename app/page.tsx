@@ -603,6 +603,7 @@ export default function Home() {
                                     toolkitNumber: 1,
                                     toolkitTitle: 'Network Mapping',
                                     toolkitDescription: 'A simple way to identify and activate people already connected to your cause.',
+                                    toolkitURL: 'https://drive.google.com/file/d/1JoWLChw1G1WBw3PiRAp-Q-qbppOPS7HC/view?usp=sharing',
                                     toolkitBackgroundImage: '/assets/toolkit1/toolkit1_background.png',
                                     toolkitDesignImage: '/assets/toolkit1/toolkit1_design.png',
                                     toolkitImage: '/assets/toolkit1.svg',

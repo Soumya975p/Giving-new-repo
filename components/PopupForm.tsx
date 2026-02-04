@@ -9,6 +9,10 @@ interface PopupFormProps {
 }
 
 export default function PopupForm({ isOpen, onClose }: PopupFormProps) {
+
+    const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState("");
+
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -24,11 +28,49 @@ export default function PopupForm({ isOpen, onClose }: PopupFormProps) {
         }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         // Handle form submission
-        console.log('Form submitted:', formData);
-        onClose();
+        setLoading(true);
+         const form = e.currentTarget;
+         const formData = new FormData(form);
+        setMessage("");
+        try {
+            const res = await fetch("http://localhost/gtf/save.php", {
+                method: "POST",
+                headers: {
+                "Content-Type": "application/json",
+                },
+                //body: JSON.stringify(formData),
+                body: JSON.stringify({
+                    firstName: formData.get("firstName"),
+                    lastName: formData.get("lastName"),
+                    email: formData.get("email"),
+                    organisation: formData.get("organisation"),
+                }),
+            });
+            const text = await res.text(); // 👈 read as text first
+            console.log(text);
+            const result = JSON.parse(text); // convert manually
+            //const result = await res.json();
+            if (result.status === "success") {
+                setMessage("✅ Form submitted successfully!");
+                form.reset();
+                setFormData({
+                firstName: "",
+                lastName: "",
+                organisation: "",
+                email: "",
+                });
+            } else {
+                setMessage("❌ Something went wrong.");
+            }
+            } catch (err) {
+                console.log("REAL ERROR:", err);
+                setMessage("❌ Server error.");
+            }
+        //console.log('Form submitted:', formData);
+        //onClose();
     };
 
     if (!isOpen) return null;
@@ -125,6 +167,7 @@ export default function PopupForm({ isOpen, onClose }: PopupFormProps) {
                                     <span className={`${styles.formLabel} ${styles.formLabelStrong}`}>Email id</span>
                                 </div>
                             </div>
+                            <p>{message}</p>
                             <button type="submit" className={styles.getToolkitBtn}>
                                 <span>◆</span>
                                 <span>Get toolkit</span>

@@ -24,6 +24,7 @@ interface ContentCard {
     toolkitInnerImage?: string;
     toolkitLabel?: string;
     toolkitNumber?: number;
+    toolkitURL?: string;
     toolkitBackgroundImage?: string;
     toolkitDesignImage?: string;
     toolkitDisableRotation?: boolean;
@@ -113,6 +114,7 @@ export default function OptionContent({
                                             toolkitNumber={card.toolkitNumber || 1}
                                             title={card.toolkitTitle || 'Toolkit'}
                                             description={card.toolkitDescription || ''}
+                                            toolkiturl={card.toolkitURL || ''}
                                             backgroundImage={card.toolkitBackgroundImage}
                                             designImage={card.toolkitDesignImage}
                                             onDownload={card.onToolkitDownload}

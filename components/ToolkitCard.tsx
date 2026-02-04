@@ -5,6 +5,7 @@ interface ToolkitCardProps {
     toolkitNumber: number;
     title: string;
     description: string;
+    toolkiturl: string;
     backgroundImage: string;
     designImage: string;
     onDownload?: () => void;
@@ -18,6 +19,7 @@ export default function ToolkitCard({
     toolkitNumber,
     title,
     description,
+    toolkiturl,
     backgroundImage,
     designImage,
     onDownload,
@@ -64,7 +66,7 @@ export default function ToolkitCard({
 
                 {/* Buttons Section */}
                 <div className={styles.buttonsSection}>
-                    <button className={styles.downloadButton} onClick={onDownload}>
+                    <button className={styles.downloadButton} data-tookiturl={toolkiturl} onClick={onDownload}>
                         <span>Download</span>
                         <svg
                             width="16"
