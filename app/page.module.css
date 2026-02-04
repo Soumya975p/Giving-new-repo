@@ -8,6 +8,10 @@
   scrollbar-width: none;
 }
 
+.noScroll {
+  overflow: hidden !important;
+}
+
 .desktopOnly {
   display: block !important;
 }
@@ -688,13 +692,18 @@
 /* Sticky state - triggered when 10% visible */
 .chaptersSectionSticky {
   position: fixed;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100vh !important;
   z-index: 100;
-  overflow: hidden;
-  animation: slideUpAndFix 0.5s ease-out forwards;
+  overflow-y: auto;
+  scrollbar-width: none;
+  padding-bottom: 0 !important;
+}
+
+.chaptersSectionSticky::-webkit-scrollbar {
+  display: none;
 }
 
 @keyframes slideUpAndFix {
@@ -748,7 +757,8 @@
 /* Chapter panel that fills viewport with depth shadow */
 .chapterPanel {
   width: 100%;
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
   border-radius: 24px 24px 0 0;
   position: relative;
   overflow: hidden;
@@ -770,7 +780,7 @@
   display: flex;
   flex-direction: row;
   overflow-x: auto;
-  overflow-y: auto;
+  overflow-y: visible;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -958,7 +968,7 @@
 .contentSection {
   flex: 1;
   width: 100%;
-  overflow-y: auto;
+  overflow-y: visible;
   overflow-x: hidden;
   position: relative;
   border: 3px solid rgba(0, 0, 0, 0.3);
@@ -1065,7 +1075,8 @@
 /* Scroll Container */
 .scrollContainer {
   min-width: 100%;
-  height: 100%;
+  height: auto;
+  min-height: 100%;
   overflow: visible;
   padding: 30px 60px 200px 60px;
   display: flex;
@@ -1127,7 +1138,8 @@
   position: relative;
   padding: 0 40px;
   min-width: fit-content;
-  height: 100%;
+  height: auto;
+  min-height: 100%;
 }
 
 /* Left Column - Flowchart */
@@ -1819,6 +1831,23 @@
   margin-top: 60px;
   width: 100%;
 }
+
+.chapterSelectionLabel {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: italic;
+
+  line-height: 150%;
+  letter-spacing: -0.02em;
+  /* -2% converted correctly */
+
+  text-align: center;
+  margin-bottom: 24px;
+
+  color: #93CD4D;
+}
+
 
 /* .heroDividerLine {
   width: 1px;
@@ -2719,11 +2748,12 @@
 
 /* Chapter Panel */
 .chapterPanel {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: auto;
+  min-height: 100vh;
   border-radius: 0;
   overflow: hidden;
   display: flex;
@@ -2736,7 +2766,7 @@
 .contentSection {
   flex: 1;
   width: 100%;
-  overflow-y: auto;
+  overflow-y: visible;
   overflow-x: hidden;
   position: relative;
   border: 3px solid rgba(0, 0, 0, 0.3);
@@ -4170,7 +4200,7 @@
   /* Reduced from 50px */
   position: relative;
   z-index: 10;
-  padding: 0 10px;
+  padding: 60px 10px 58px 10px;
   top: 8%;
   /* Reduced side padding slightly */
 }
@@ -4255,54 +4285,55 @@
 }
 
 .hoverFlowerLeftmost {
-  position: absolute;
-  bottom: -225px;
-  left: -45px;
+  position: fixed;
+  bottom: 85px;
+  left: calc(50% - 625px);
   width: 125px;
   height: 400px;
   pointer-events: none;
-  z-index: 5;
-  transform: translateX(-100px);
+  z-index: 99;
 }
 
 .hoverFlowerMiddle {
-  position: absolute;
-  bottom: -150px;
-  left: 90px;
+  position: fixed;
+  bottom: 160px;
+  left: calc(50% - 525px);
   width: 60px;
   height: auto;
   pointer-events: none;
-  z-index: 6;
+  z-index: 99;
 }
 
 .hoverFlowerRightmost {
-  position: absolute;
-  bottom: -100px;
-  left: 180px;
+  position: fixed;
+  bottom: 210px;
+  left: calc(50% - 445px);
   width: 50px;
   height: auto;
   pointer-events: none;
-  z-index: 7;
+  z-index: 99;
 }
 
 .hoverPetal {
-  position: absolute;
-  top: -60px;
-  left: -100px;
+  position: fixed;
+  top: auto;
+  bottom: 350px;
+  left: calc(50% - 725px);
   width: 250px;
   height: auto;
   pointer-events: none;
-  z-index: 8;
+  z-index: 99;
 }
 
 .hoverFly {
-  position: absolute;
-  top: -20px;
-  left: 25%;
+  position: fixed;
+  top: auto;
+  bottom: 370px;
+  left: calc(50% - 435px);
   width: 50px;
   height: auto;
   pointer-events: none;
-  z-index: 9;
+  z-index: 99;
 }
 
 /* Hover Decorations for Chapter 1 Option B (Right Side) */
@@ -4350,7 +4381,7 @@
 .ch2HoverFly {
   position: absolute;
   top: 0;
-  left: 300px;
+  left: 200px;
   width: 50px;
   height: auto;
   pointer-events: none;
@@ -4360,7 +4391,7 @@
 .ch2HoverEmptyBubble {
   position: absolute;
   top: -120px;
-  left: 45px;
+  left: -55px;
   width: 60px;
   height: auto;
   pointer-events: none;
@@ -4370,7 +4401,7 @@
 .ch2HoverFilledBubble {
   position: absolute;
   top: -70px;
-  left: 100px;
+  left: 0;
   width: 60px;
   height: auto;
   pointer-events: none;
@@ -4380,7 +4411,7 @@
 .ch2HoverImageLeft {
   position: absolute;
   bottom: -120px;
-  left: 10px;
+  left: -90px;
   width: 80px;
   height: auto;
   pointer-events: none;
@@ -4390,7 +4421,7 @@
 .ch2HoverImageRight {
   position: absolute;
   bottom: -70px;
-  left: 100px;
+  left: 0;
   width: 80px;
   height: auto;
   pointer-events: none;
@@ -4400,7 +4431,7 @@
 .ch2HoverEmptyBubble2 {
   position: absolute;
   top: 255px;
-  left: 30%;
+  left: 110px;
   width: 50px;
   height: auto;
   pointer-events: none;
@@ -4410,7 +4441,7 @@
 .ch2HoverFilledBubble2 {
   position: absolute;
   top: 210px;
-  left: 32%;
+  left: 117px;
   width: 50px;
   height: auto;
   pointer-events: none;
@@ -4964,7 +4995,7 @@
 .ch4LeftFly {
   position: absolute;
   top: -80px;
-  left: 350px;
+  left: 250px;
   width: 50px;
   height: auto;
   pointer-events: none;
@@ -4994,7 +5025,7 @@
 .ch4LeftHollow2 {
   position: absolute;
   bottom: 150px;
-  left: 20px;
+  left: -80px;
   width: 50px;
   height: auto;
   pointer-events: none;
@@ -5004,7 +5035,7 @@
 .ch4LeftFill2 {
   position: absolute;
   bottom: 180px;
-  left: 5px;
+  left: -95px;
   width: 45px;
   height: auto;
   pointer-events: none;
@@ -5603,9 +5634,11 @@
   .chaptersSection {
     position: relative;
     width: 100%;
-    height: 1035px !important;
-    min-height: 1035px;
-    overflow: hidden;
+    height: auto !important;
+    max-height: 90vh;
+        min-height: 90vh;
+        overflow: auto !important;
+    /* overflow: auto; */
   }
 
   /* Hide top navigation on mobile */
@@ -5619,21 +5652,22 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: auto;
   }
 
   /* Chapter Panel - Full screen */
   .chapterPanel {
     width: 100%;
-    height: 100%;
+    height: auto;
+    min-height: 100vh;
     border-radius: 0;
   }
 
   /* Content Section */
   .contentSection {
     width: 100%;
-    height: 100%;
-    overflow-y: auto;
+    height: auto;
+    overflow-y: visible;
     overflow-x: hidden;
     border: none;
     padding-bottom: 70px;
@@ -5650,7 +5684,8 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100%;
+    height: auto;
+    min-height: 100%;
     min-width: unset;
     padding: 16px 16px 0;
     gap: 0;
@@ -5661,13 +5696,15 @@
   /* Chapter 1 Wrapper - Mobile Layout */
   .chapter1Wrapper {
     width: 100%;
-    height: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 10px;
     padding-bottom: 0;
-    overflow: hidden;
+    /* overflow: visible; */
+    overflow: auto;
+        height: 80vh;
   }
 
   /* Chapter Header - Mobile */
@@ -5696,8 +5733,8 @@
   .ch1Title {
     font-family: 'DM Sans', sans-serif !important;
     font-weight: 500 !important;
-    font-size: 20px !important;
-    line-height: 130% !important;
+    font-size: 18px !important;
+    line-height: 120% !important;
     letter-spacing: -0.03em !important;
     color: #FFFFFF !important;
     background: transparent !important;
@@ -5721,7 +5758,7 @@
     margin-top: 0;
     padding: 0;
     flex: 1;
-    overflow: hidden;
+    overflow: visible;
   }
 
   /* Center Card - Mobile (Shown First) */
@@ -8010,6 +8047,7 @@
   max-width: 1250px;
   margin-top: 20px;
   position: relative;
+  margin-bottom: 100px !important;
 }
 
 
@@ -8021,7 +8059,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
+  gap: 5px;
   position: relative;
 }
 
@@ -8074,14 +8112,23 @@
     margin-top: -40px;
     gap: 20px;
   }
+  .chapter1Wrapper .scenarioContainer {
+    flex-direction: column;
+    margin-top: 5px  !important;
+    gap: 10px;
+  }
 
+  .scenarioContainer {
+    margin-bottom: 0 !important;
+  }
   .centerCard {
     width: 229.07px;
     max-width: 229.07px !important;
     /* Decrease size for mobile from 300px */
     height: 331.58px;
     order: 1;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 0px;
     transform: none !important;
   }
 
@@ -8091,7 +8138,7 @@
     width: 100% !important;
     max-width: 100% !important;
     align-items: flex-start !important;
-    padding: 20px;
+    padding: 10px 20px;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
     border-radius: 12px;
     margin-top: 0 !important;
@@ -8791,6 +8838,10 @@
     grid-template-columns: 1fr;
   }
 
+  .chapter1Header {
+    padding-top: 60px;
+  }
+
   .menuLeft {
     border-right: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -8816,10 +8867,52 @@
   .chapterSubItem {
     font-size: 13px;
   }
+    .noScroll{
+    /* overflow: auto !important; */
+  }
 }
 
 @media (max-width: 450px) {
   .bonusCalloutText {
     max-width: 338px;
   }
+}
+
+/* Chapter Container Overflow with Hidden Scrollbar */
+.chapterContainer {
+  overflow: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.chapterContainer::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.chapterActive {
+  overflow: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.chapterActive::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Hide chapter1Header when it has no content */
+.chapter1Header:empty {
+  display: none;
+  margin: 0;
+  padding: 0;
+}
+.backToChaptersBtn {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.navButton {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }

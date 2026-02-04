@@ -95,12 +95,6 @@ export default function PopupForm({ isOpen, onClose }: PopupFormProps) {
                 <div className={styles.popupContent}>
                     {/* Left Side - Design */}
                     <div className={styles.designContainer}>
-                        <svg
-                            src="/assets/popup_design.svg"
-                            alt="Popup Design"
-                            className={styles.designImage}
-                        />
-                        {/* Fallback for SVG */}
                         <img
                             src="/assets/popup_design.svg"
                             alt="Popup Design"

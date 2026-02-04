@@ -36,6 +36,7 @@
     align-items: center;
     gap: 20px;
     flex-shrink: 0;
+    position: relative;
 }
 
 .embeddedHeader {
@@ -57,14 +58,13 @@
 .embeddedHeader .backButton {
     pointer-events: auto;
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 50vw;
 }
 
 .embeddedHeader .scrollToggle {
     position: fixed;
     top: 42px;
-    left: 1310px;
+    right: 60px;
     pointer-events: auto;
     margin-right: 0;
     width: 89.43px;
@@ -116,6 +116,10 @@
     padding: 0;
     transition: opacity 0.2s;
     opacity: 0.8;
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .backButton:hover {
@@ -125,7 +129,7 @@
 .scrollToggle {
     position: absolute;
     top: 42px;
-    left: 1310px;
+    right: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -522,6 +526,14 @@
    NEXT CHAPTER BUTTON
    ======================================== */
 
+.lastCardWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    /* Match cardsGrouping gap */
+}
+
 .nextChapterCard {
     flex-shrink: 0;
     display: flex;
@@ -529,8 +541,9 @@
     justify-content: center;
     width: 200px;
     height: 400px;
-    align-self: center;
     overflow: visible;
+    position: relative;
+    align-self: auto;
 }
 
 .nextChapterImage {
@@ -639,5 +652,128 @@
 
     .cardsGrouping {
         gap: 20px;
+    }
+
+    .lastCardWrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .embedded .nextChapterCard {
+        /* Reset positioning for vertical stack */
+        top: 0;
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 20px;
+    }
+}
+
+/* ========================================
+   LEFT PLANT DECORATION WITH HOVER
+   ======================================== */
+
+.leftPlantDecor {
+    position: fixed;
+    left: 100px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 50;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.plantImage {
+    width: 200px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.leftPlantDecor:hover .plantImage {
+    transform: scale(1.05);
+}
+
+/* Hover decorations */
+.hoverFlyDecor {
+    position: absolute;
+    width: 40px;
+    height: auto;
+    object-fit: contain;
+    animation: flyAround 3s infinite ease-in-out;
+}
+
+.hoverHollowDecor {
+    position: absolute;
+    width: 35px;
+    height: auto;
+    object-fit: contain;
+    animation: floatUp 2.5s infinite ease-in-out;
+}
+
+.hoverFillDecor {
+    position: absolute;
+    width: 30px;
+    height: auto;
+    object-fit: contain;
+    animation: floatDown 3s infinite ease-in-out;
+}
+
+@keyframes flyAround {
+    0% {
+        top: 20px;
+        right: -60px;
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    50% {
+        top: 100px;
+        right: 20px;
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        top: 20px;
+        right: -60px;
+        opacity: 0;
+    }
+}
+
+@keyframes floatUp {
+    0% {
+        bottom: 0;
+        left: 30px;
+        opacity: 0.3;
+    }
+    50% {
+        bottom: 60px;
+        opacity: 1;
+    }
+    100% {
+        bottom: 120px;
+        left: 50px;
+        opacity: 0;
+    }
+}
+
+@keyframes floatDown {
+    0% {
+        top: -40px;
+        right: 20px;
+        opacity: 0;
+    }
+    50% {
+        top: 30px;
+        opacity: 1;
+    }
+    100% {
+        top: 100px;
+        right: 10px;
+        opacity: 0.2;
     }
 }

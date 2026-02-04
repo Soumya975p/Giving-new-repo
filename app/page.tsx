@@ -10,10 +10,10 @@ import PopupForm from '../components/PopupForm'
 import chapter2StylesA from '../components/Chapter2OptionA.module.css'
 import chapter2StylesB from '../components/Chapter2OptionB.module.css'
 import chapter3StylesA from '../components/Chapter3OptionA.module.css'
+import chapter3StylesB from '../components/Chapter3OptionB.module.css'
 import chapter4StylesA from '../components/Chapter4OptionA.module.css'
 import chapter4StylesB from '../components/Chapter4OptionB.module.css'
-import chapter3StylesB from '../components/Chapter3OptionB.module.css'
-// import Chapter3OptionB from '../components/Chapter3OptionB'
+import Chapter3OptionB from '../components/Chapter3OptionB'
 import Chapter4OptionA from '../components/Chapter4OptionA'
 import TabsSection from '../components/TabsSection'
 import Footer from '../components/Footer'
@@ -138,11 +138,7 @@ export default function Home() {
   const [isCh3OptionBHovered, setIsCh3OptionBHovered] = useState(false)
   const [isCh4OptionAHovered, setIsCh4OptionAHovered] = useState(false)
   const [isCh4OptionBHovered, setIsCh4OptionBHovered] = useState(false)
-  const [isExplore1Hovered, setIsExplore1Hovered] = useState(false) // Moved to Explore component
-  const [isExplore2Hovered, setIsExplore2Hovered] = useState(false) // Moved to Explore component
-  const [isMenuOpen, setIsMenuOpen] = useState(false) // Moved to Header component
-  const [isFundraisingExpanded, setIsFundraisingExpanded] = useState(false) // Moved to Header component
-  const [expandedChapter, setExpandedChapter] = useState<number | null>(null) // Moved to Header component
+
   const chapterRefs = useRef<(HTMLDivElement | null)[]>([])
   const activeChapterRef = useRef(activeChapter) // To track active chapter without dependency issues
   const chaptersSectionRef = useRef<HTMLDivElement>(null)
@@ -153,6 +149,7 @@ export default function Home() {
   // Scroll Reference for Bonus Section
   const bonusSectionRef = useRef<HTMLDivElement>(null);
   const heroSectionRef = useRef<HTMLDivElement>(null);
+  const chapterGridRef = useRef<HTMLDivElement>(null);
   const exploreSectionRef = useRef<HTMLDivElement>(null);
   // Refs for center cards in each chapter
   const centerCardRefs = useRef<(HTMLDivElement | null)[]>([null, null, null, null]);
@@ -200,16 +197,20 @@ export default function Home() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // When 10% of section is visible, trigger sticky
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.1) {
+          // When 20% of section is visible, trigger sticky
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.2) {
             setIsChaptersSectionSticky(true);
-            // Scroll the section into full view
-            chaptersSection.scrollIntoView({ behavior: 'smooth' });
+            // Scroll the section into full view at bottom 0
+            if (chaptersSection) {
+              chaptersSection.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            }
+            // Disconnect once triggered to ensure it only happens once per session
+            observer.disconnect();
           }
         });
       },
       {
-        threshold: 0.1, // Trigger when 10% visible
+        threshold: 0.2, // Trigger when 20% visible
         rootMargin: '0px'
       }
     );
@@ -239,7 +240,7 @@ export default function Home() {
 
 
   return (
-    <div className={`${styles.pageWrapper} ${dmSans.className}`}>
+    <div className={`${styles.pageWrapper} ${isChaptersSectionSticky ? styles.noScroll : ''} ${dmSans.className}`}>
       {/* Header with Logo and Menu */}
       <Header
         activeChapter={activeChapter}
@@ -248,6 +249,7 @@ export default function Home() {
         bonusSectionRef={bonusSectionRef}
         heroSectionRef={heroSectionRef}
         exploreSectionRef={exploreSectionRef}
+        setIsChaptersSectionSticky={setIsChaptersSectionSticky}
       />
 
       {/* Hero Section */}
@@ -317,8 +319,10 @@ export default function Home() {
             Follow Nidhi's journey across four chapters to see how everyday giving can grow from a one-time transaction into a lasting relationship. Each chapter blends real-world moments with practical tools to help nonprofits guide donors naturally. Your donors may be at different stages of this journey—explore the chapters in any order that serves you best.
           </p>
 
-          <div className={styles.chapterSelectionWrapper}>
+          <div className={styles.chapterSelectionWrapper} ref={chapterGridRef}>
             {/* <div className={styles.heroDividerLine}></div> */}
+
+            <p className={styles.chapterSelectionLabel}>Select a chapter to begin</p>
 
             <div
               className={styles.chapterGrid}
@@ -380,8 +384,8 @@ export default function Home() {
             <button
               className={`${styles.navButton} ${styles.backToChaptersBtn}`}
               onClick={() => {
-                // Scroll to top of chapters section
-                chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+                // Scroll to chapter grid section
+                chapterGridRef.current?.scrollIntoView({ behavior: 'smooth' });
               }}
             >
               <svg
@@ -773,11 +777,11 @@ export default function Home() {
                                 <motion.div
                                   variants={ctaVariants}
                                   style={{
-                                    marginTop: '-15px',
+                                    marginTop: '10px',
                                     display: 'flex',
                                     alignItems: 'center',
                                     gap: '6px',
-                                    color: '#1a4d3a',
+                                    color: '#20315B',
                                     fontWeight: 500,
                                     flexDirection: 'row-reverse'
                                   }}
@@ -789,7 +793,7 @@ export default function Home() {
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>Choose Option</span>
+                                  }}> ⟵ Choose Option</span>
                                 </motion.div>
                               </motion.div>
 
@@ -1044,7 +1048,7 @@ export default function Home() {
                                 <motion.div
                                   variants={ctaVariants}
                                   style={{
-                                    marginTop: '-15px',
+                                    marginTop: '10px',
                                     display: 'flex',
                                     alignItems: 'center',
                                     gap: '6px',
@@ -1364,99 +1368,12 @@ export default function Home() {
                               </button>
                             </div>
                           ) : selectedOption === 'B' ? (
-                            // Chapter 3 Option B Content (without header, header is above)
-                            <div style={{ flex: 1, width: '100%', position: 'relative' }}>
-                              <OptionContent
-                                embedded={true}
-                                chapterTitle="CHAPTER III: STEWARDING DONORS"
-                                chapterSubtitle="Staying connected after the first gift builds trust. This chapter focuses on how consistent, non-ask engagement helps donors feel involved and valued."
-                                backgroundColor="transparent"
-                                onBack={() => setSelectedOption(null)}
-                                onNext={handleNextChapter}
-                                // optionId="ch1OptionA"
-                                customStyles={chapter3StylesB}
-                                contentCards={[
-                                  {
-                                    id: 1,
-                                    type: 'text',
-                                    decorationImages: ['/assets/flower_chapter_4.svg'],
-                                    title: "You're nurturing the relationship!",
-                                    content: "Nidhi receives a photo of the lake being de-silted and understands how her contribution made a difference. Over time, she joins virtual events and stays engaged through regular, meaningful updates."
-                                  },
-                                  {
-                                    id: 2,
-                                    type: 'text',
-                                    decorationImages: ['/assets/chapter_3_middlestick.svg'],
-                                    showStatBelow: true,
-                                    statLabel: "UDARTA:EG STUDY SHOWS",
-                                    stat: "",
-                                    statDescription: "Sharing impact updates is linked to an 11.3 percentage point increase in recurring donors.",
-                                    showStatIcons: false
-                                  },
-                                  {
-                                    id: 3,
-                                    type: 'text',
-                                    decorationImages: [
-                                      '/assets/chapter_1_column2_1.svg',
-                                      '/assets/chapter_3_middlestick.svg'
-                                    ],
-                                    // label: 'WHY THIS WORKS',
-                                    content: "Regular, non-ask touchpoints help donors feel included in the journey – not contacted only when funds are needed.",
-                                    floatingText: (
-                                      <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start', marginTop: '10px' }}>
-                                        <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#93CD4D', flexShrink: 0, marginTop: '4px' }}></div>
-                                        <span>We created three toolkits that will help you identify and activate people, tell better stories and organise your communications calendar</span>
-                                      </div>
-                                    )
-                                  },
-                                  {
-                                    id: 4,
-                                    type: 'toolkit',
-                                    toolkitNumber: 4,
-                                    toolkitTitle: 'The Storytelling Bank',
-                                    toolkitDescription: 'Build trust with donors through real stories saved and sorted systematically.',
-                                    toolkitBackgroundImage: '/assets/toolkit4/toolkit4_background.svg',
-                                    toolkitDesignImage: '/assets/toolkit4/toolkit4_design.png',
-                                    toolkitDisableRotation: true,
-                                    toolkitBackgroundVariant: 'tk345',
-                                    toolkitDesignVariant: 'tk4',
-                                    toolkitImage: '/assets/took4.svg',
-                                    onToolkitDownload: () => setIsPopupOpen(true),
-                                    onToolkitView: () => setIsPopupOpen(true)
-                                  },
-                                  {
-                                    id: 5,
-                                    type: 'toolkit',
-                                    toolkitNumber: 3,
-                                    toolkitTitle: 'Segmentation & Profiling',
-                                    toolkitDescription: 'The foundation for effective donor communication.',
-                                    toolkitBackgroundImage: '/assets/toolkit3/toolkit3_background.svg',
-                                    toolkitDesignImage: '/assets/toolkit3/toolkit3_design.png',
-                                    toolkitDisableRotation: true,
-                                    toolkitBackgroundVariant: 'tk345',
-                                    toolkitDesignVariant: 'tk3',
-                                    toolkitImage: '/assets/tool3.svg',
-                                    onToolkitDownload: () => setIsPopupOpen(true),
-                                    onToolkitView: () => setIsPopupOpen(true)
-                                  },
-                                  {
-                                    id: 6,
-                                    type: 'toolkit',
-                                    toolkitNumber: 5,
-                                    toolkitTitle: 'Communications Calendar',
-                                    toolkitDescription: 'A simple planning tool to keep outreach consistent, deliberate and aligned with donor preferences.',
-                                    toolkitBackgroundImage: '/assets/toolkit5/toolkit5_background.svg',
-                                    toolkitDesignImage: '/assets/toolkit5/toolkit5_design.png',
-                                    toolkitDisableRotation: true,
-                                    toolkitBackgroundVariant: 'tk345',
-                                    toolkitDesignVariant: 'tk5',
-                                    toolkitImage: '/assets/tool5.svg',
-                                    onToolkitDownload: () => setIsPopupOpen(true),
-                                    onToolkitView: () => setIsPopupOpen(true)
-                                  }
-                                ]}
-                              />
-                            </div>
+                            // Chapter 3 Option B Content
+                            <Chapter3OptionB
+                              embedded={true}
+                              onBack={() => setSelectedOption(null)}
+                              onNext={handleNextChapter}
+                            />
                           ) : (
                             // Chapter 3 Default View - just render scenario container, header is above
                             <div className={styles.scenarioContainer} style={{ marginTop: '10px' }}>
@@ -2013,7 +1930,15 @@ export default function Home() {
                                 background: '#93CD4D',
                                 flexShrink: 0
                               }}></span>
-                              <span style={{ color: '#ffffff', fontSize: '16px' }}>
+                              <span style={{
+                                color: '#ffffff',
+                                fontFamily: 'DM Sans, sans-serif',
+                                fontWeight: 400,
+                                fontStyle: 'italic',
+                                fontSize: '20px',
+                                lineHeight: '150%',
+                                letterSpacing: '0'
+                              }}>
                                 Check the toolkit to learn how to build this alignment.
                               </span>
                             </div>
