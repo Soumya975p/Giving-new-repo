@@ -34,6 +34,13 @@
   margin: 0;
 }
 
+.subtitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+      color: white;
+  margin-top: 16px;
+
+}
 .exploreGrid {
   position: relative;
   width: 1100px;

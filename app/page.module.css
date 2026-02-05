@@ -502,7 +502,7 @@
     width: 100%;
     display: block;
     margin-left: 0 !important;
-    transform: translate(-5%, 12%);
+    transform: translate(-1%, 20%);
     margin-top: 6px;
   }
 
@@ -2571,7 +2571,7 @@
 /* Chapters Section - Transform-based stacking */
 .chaptersSection {
   width: 100%;
-  min-height: 130vh;
+  min-height: 135vh;
   position: sticky;
   top: 0;
   /* overflow: hidden; Removed */
@@ -3577,7 +3577,7 @@
 .heroBottom {
   width: 100%;
   max-width: 1200px;
-  margin: -600px auto 0;
+  margin: -400px auto 0;
   text-align: center;
   position: relative;
   /* padding-bottom: 100px; */
@@ -4155,7 +4155,7 @@
   width: 100%;
   height: auto;
   /* Let content drive height */
-  min-height: 100vh;
+  /* min-height: 100vh; */
   /* Ensure full screen min */
   overflow: visible;
   /* Use window scroll */
@@ -4163,6 +4163,11 @@
   /* Extra padding to clear bottom tabs/nav */
 }
 
+@media(min-width:769px){
+  .chaptersSection {
+      min-height: 100vh;
+  }
+}
 /* Chapter 1 Specific Layout */
 .chapter1Wrapper {
   width: 100%;
@@ -5634,10 +5639,11 @@
   .chaptersSection {
     position: relative;
     width: 100%;
-    height: auto !important;
+    /* min-height: auto !important; */
+    /* height: auto !important;
     max-height: 90vh;
         min-height: 90vh;
-        overflow: auto !important;
+        overflow: auto !important; */
     /* overflow: auto; */
   }
 
@@ -5704,7 +5710,7 @@
     padding-bottom: 0;
     /* overflow: visible; */
     overflow: auto;
-        height: 80vh;
+        /* height: 80vh; */
   }
 
   /* Chapter Header - Mobile */
@@ -6137,6 +6143,7 @@
   /* USER ADJUST: width, height */
   height: 56px;
   width: auto;
+  margin-right: 20px;
 }
 
 .diamond {
@@ -6932,6 +6939,13 @@
     left: 50% !important;
     transform: translateX(-50%) !important;
   }
+  .heroContent {
+    padding: 40px 24px;
+}
+  .heroContent {
+    /* margin-left: 0px  !important;
+    margin-right: 0px !important ; */
+}
 }
 
 @media (max-width: 640px) {

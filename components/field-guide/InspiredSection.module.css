@@ -65,8 +65,8 @@
 }
 
 .whoTitle {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 24px;
+  font-family: Zalando Sans Expanded;
+  font-size: 40px;
   font-weight: 400;
   line-height: 140%;
   color: white;
@@ -85,7 +85,7 @@
 }
 
 .cardsContainer {
-  width: 320px;
+  width: 70%;
   height: 400px;
   position: relative;
   /* Removed overflow: hidden to allow stack to be visible if needed, or keep it if contained */
@@ -112,8 +112,8 @@
 
 
 .cardImage {
-  width: 100%;
-  height: 100%;
+   width: 500px;
+  height: 500px;
   object-fit: contain;
   display: block;
   border-radius: 12px;
@@ -303,6 +303,7 @@
   margin: auto;
   padding: 200px 15px;
   position: relative;
+  z-index: 999;
 }
 
 .insCbContainerBg::before {
@@ -314,7 +315,7 @@
   background-repeat: no-repeat;
   width: 100%;
   height: 100%;
-  background-position: 0% 75%;
+  background-position: 0% 90%;
   background-size: auto;
   z-index: 1;
 }
@@ -457,13 +458,13 @@
   }
 
   .sliderPrevBtn {
-    top: 100%;
+    top:  91%;
     right: 18% !important;
     height: 50px;
   }
 
   .sliderNextBtn {
-    bottom: -13%;
+    bottom: -4%;
     left: 18% !important;
     width: 50px;
   }
@@ -560,5 +561,9 @@
 
   .ins-cb-btm a {
     font-size: 18px;
+  }
+  .cardImage {
+    width: 100%;
+    height: 100%;
   }
 }

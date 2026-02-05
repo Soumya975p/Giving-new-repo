@@ -189,58 +189,8 @@ export default function Home() {
     }
   }
 
-  // Intersection Observer for scroll-triggered sticky chapters section
-  useEffect(() => {
-    const chaptersSection = chaptersSectionRef.current;
-    if (!chaptersSection) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          // When 20% of section is visible, trigger sticky
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.2) {
-            setIsChaptersSectionSticky(true);
-            // Scroll the section into full view at bottom 0
-            if (chaptersSection) {
-              chaptersSection.scrollIntoView({ behavior: 'smooth', block: 'end' });
-            }
-            // Disconnect once triggered to ensure it only happens once per session
-            observer.disconnect();
-          }
-        });
-      },
-      {
-        threshold: 0.2, // Trigger when 20% visible
-        rootMargin: '0px'
-      }
-    );
-
-    observer.observe(chaptersSection);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
-  // Lock body scroll when chapters section is sticky
-  useEffect(() => {
-    if (isChaptersSectionSticky) {
-      document.body.style.overflow = 'hidden';
-      document.documentElement.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-      document.documentElement.style.overflow = '';
-    }
-
-    return () => {
-      document.body.style.overflow = '';
-      document.documentElement.style.overflow = '';
-    };
-  }, [isChaptersSectionSticky]);
-
-
   return (
-    <div className={`${styles.pageWrapper} ${isChaptersSectionSticky ? styles.noScroll : ''} ${dmSans.className}`}>
+    <div className={`${styles.pageWrapper} ${dmSans.className}`}>
       {/* Header with Logo and Menu */}
       <Header
         activeChapter={activeChapter}
@@ -487,7 +437,7 @@ export default function Home() {
                                     id: 1,
                                     type: 'text',
                                     floatingTextLabel: "UDARTA:EG STUDY SHOWS",
-                                    floatingText: "You may reach many people, but responses are scattered. Most donations are small, one-time, and disconnected.",
+                                    floatingText: "Finding new supporters can be expensive and effort intensive. You may receive some response but not strong enough because reaching strangers requires significantly more effort to build trust and convince them to give.",
                                     decorationImages: [
                                       '/assets/chapter_1/fly_left_optionA.svg',
                                       '/assets/chapter_1/flower_left_optionA.svg',
@@ -498,15 +448,15 @@ export default function Home() {
                                     content: '',
                                     showStatBelow: true,
                                     statLabel: 'DID YOU KNOW?',
-                                    stat: 'It costs 10x more',
-                                    statDescription: 'To acquire a new donor than continuing a relationship with someone who already believes in your work.',
+                                    stat: 'Nearly two-thirds of Indian nonprofits',
+                                    statDescription: 'say outreach through friends and family is their most effective fundraising strategy, with 95% having used it at some point.',
                                     showStatIcons: false,
                                     statBoxTransparent: true
                                   },
                                   {
                                     id: 2,
                                     type: 'text',
-                                    floatingText: "Instead, if you tapped into your existing network you will reach the people that care about the cause. The appeal feels more personal, more trusted.",
+                                    floatingText: "Instead, if you map our your existing network, you would know that you have underestimated its size and power. Your network can support you in many forms beyond money - connections, skills, time, influence, all matter, and everyone has something to give.",
                                     decorationImage: '/assets/chapter_2_column2_1.svg',
                                     label: '',
                                     title: '',
@@ -514,17 +464,15 @@ export default function Home() {
                                     // Nested stat box below the floating text
                                     showStatBelow: true,
                                     statLabel: 'UDARTA:EG STUDY SHOWS',
-                                    stat: '60% of nonprofits',
-                                    statDescription: 'find outreach through existing networks to be their most effective way of reaching new supporters'
+                                    stat: '76% of nonprofits',
+                                    statDescription: 'reported using volunteers to reach new supporters, indicating a strong leaning toward leveraging community networks over impersonal channels.'
                                   },
                                   {
                                     id: 3,
                                     type: 'text',
                                     floatingText: (
                                       <>
-                                        We've make a template<br />
-                                        to simplify mapping your<br />
-                                        network
+                                       Here is a toolkit to guide you <br/>  and your team through a simple, <br/>  effective and proven network <br/>  mapping exercise.
                                       </>
                                     ),
                                     decorationImage: '/assets/chapter_2_column3_1.svg',
@@ -543,7 +491,7 @@ export default function Home() {
                                     toolkitBackgroundImage: '/assets/toolkit1/toolkit1_background.png',
                                     toolkitDesignImage: '/assets/toolkit1/toolkit1_design.png',
                                     toolkitImage: '/assets/toolkit1.svg',
-                                    toolkitURL: 'https://drive.google.com/file/d/1JoWLChw1G1WBw3PiRAp-Q-qbppOPS7HC/view?usp=sharing',
+                                    toolkitURL: 'https://docs.google.com/spreadsheets/d/1s2DnnBgkzaFpaeR18VBuMq9Yby2JkvBsDZqkamidCFg/edit?gid=525572238#gid=525572238',
                                     onToolkitDownload: () => setIsPopupOpen(true),
                                     onToolkitView: () => setIsPopupOpen(true)
                                   }
@@ -568,9 +516,12 @@ export default function Home() {
                                     floatingText: (
                                       <>
                                         Yes!<br />
-                                        You will reach the people that care<br />
-                                        about the cause. The appeal feels<br />
-                                        more personal, more trusted.
+                                        Once you map your existing network, <br /> 
+                                        you will realise that you have<br />
+                                         underestimated its size and power.<br /> 
+                                         Your network can support you in many<br /> 
+                                         forms beyond money - connections,<br />
+                                           skills, time, influence, all matter,<br /> and everyone has something to give.
                                       </>
                                     ),
                                     decorationImages: ['/assets/chapter_1_column1_2.svg'],
@@ -579,17 +530,17 @@ export default function Home() {
                                     content: '',
                                     showStatBelow: true,
                                     statLabel: 'UDARTA:EG STUDY SHOWS',
-                                    stat: '60% of nonprofits',
-                                    statDescription: 'find outreach through existing networks to be their most effective way of reaching new supporters'
+                                    stat: '76% of nonprofits',
+                                    statDescription: 'reported using volunteers to reach new supporters, indicating a strong leaning toward leveraging community networks over impersonal channels.'
                                   },
                                   {
                                     id: 12,
                                     type: 'text',
                                     floatingText: (
                                       <>
-                                        We've make a template<br />
-                                        to simplify mapping your<br />
-                                        network
+                                        Here is a toolkit to guide you<br /> and 
+your team through a simple,<br />
+ effective and proven network<br /> mapping exercise.
                                       </>
                                     ),
                                     decorationImages: [
@@ -608,7 +559,7 @@ export default function Home() {
                                     toolkitNumber: 1,
                                     toolkitTitle: 'Network Mapping',
                                     toolkitDescription: 'A simple way to identify and activate people already connected to your cause.',
-                                    toolkitURL: 'https://drive.google.com/file/d/1JoWLChw1G1WBw3PiRAp-Q-qbppOPS7HC/view?usp=sharing',
+                                    toolkitURL: 'https://docs.google.com/spreadsheets/d/1s2DnnBgkzaFpaeR18VBuMq9Yby2JkvBsDZqkamidCFg/edit?gid=525572238#gid=525572238',
                                     toolkitBackgroundImage: '/assets/toolkit1/toolkit1_background.png',
                                     toolkitDesignImage: '/assets/toolkit1/toolkit1_design.png',
                                     toolkitImage: '/assets/toolkit1.svg',
@@ -657,7 +608,7 @@ export default function Home() {
                                 <motion.div
                                   variants={ctaVariants}
                                   style={{
-                                    marginTop: '-15px',
+                                    marginTop: '20px',
                                     display: 'flex',
                                     alignItems: 'center',
                                     gap: '6px',
@@ -769,7 +720,7 @@ export default function Home() {
                                 <span className={styles.optionLabel}>OPTION B</span>
                                 <p className={styles.optionDesc}>
                                   Tap into your existing<br />
-                                  network – Connections<br />
+                                  network – connections<br />
                                   of volunteers,<br />
                                   champions & donors
                                 </p>
@@ -778,7 +729,7 @@ export default function Home() {
                                 <motion.div
                                   variants={ctaVariants}
                                   style={{
-                                    marginTop: '10px',
+                                    marginTop: '20px',
                                     display: 'flex',
                                     alignItems: 'center',
                                     gap: '6px',
@@ -886,7 +837,7 @@ export default function Home() {
                                   {
                                     id: 2,
                                     type: 'text',
-                                    floatingText: "Instead, you thank Nidhi within two days. She receives an 80G receipt and a clear message of appreciation.",
+                                    floatingText: "She receives not just an 80G receipt, but also a clear message of appreciation.",
                                     decorationImage: '/assets/chapter_2_column2_1.svg',
                                     label: '',
                                     title: '',
@@ -894,7 +845,7 @@ export default function Home() {
                                     showStatBelow: true,
                                     statLabel: 'UDARTA:EG STUDY SHOWS',
                                     stat: '',
-                                    statDescription: 'Acknowledging donations leads to a 20.3 percentage point increase in funds raised from everyday givers.',
+                                    statDescription: 'Acknowledging donations leads to a 20.3 percentage points increase in proportion of funds raised from everyday givers.',
                                     showStatIcons: false
                                   },
                                   {
@@ -903,8 +854,8 @@ export default function Home() {
                                     floatingText: "",
                                     decorationImage: '/assets/chapter_2_column3_1.svg',
                                     label: '',
-                                    title: "You didn't just raise funds.\nYou began a relationship!",
-                                    content: 'We created a database template to help nonprofits to record, remember, and build continuity from the first gift.',
+                                    title: "You didn’t just raise funds.You began a relationship!",
+                                    content: 'Here is a database template to help you record, remember, and build continuity from the first gift.',
                                     transparentBackground: true
                                   },
                                   {
@@ -913,12 +864,12 @@ export default function Home() {
                                     toolkitLabel: 'TOOLKIT #1',
                                     toolkitTitle: 'Donor Database',
                                     toolkitDescription: 'How to record, remember, and build continuity from the first gift.',
-                                    toolkitNumber: 1,
+                                    toolkitNumber: 2,
                                     toolkitBackgroundImage: '/assets/toolkit1/toolkit1_background.png',
                                     toolkitDesignImage: '/assets/toolkit2/toolkit2_design.svg',
                                     toolkitDisableRotation: true,
                                     toolkitDesignVariant: 'ch2',
-                                    toolkitURL: 'https://drive.google.com/file/d/1ZQnu9KNetIdFINuW5RCkF5U62fRro3WT/view?usp=sharing',
+                                    toolkitURL: 'https://docs.google.com/spreadsheets/d/1s2DnnBgkzaFpaeR18VBuMq9Yby2JkvBsDZqkamidCFg/edit?gid=525572238#gid=525572238',
                                     toolkitImage: '/assets/chapter2_option1_toolkit.svg',
                                     onToolkitDownload: () => setIsPopupOpen(true),
                                     onToolkitView: () => setIsPopupOpen(true)
@@ -960,10 +911,8 @@ export default function Home() {
                                     stat: '',
                                     statDescription: (
                                       <>
-                                        Acknowledging donations leads to<br />
-                                        a 20.3 percentage point increase<br />
-                                        in funds raised from everyday<br />
-                                        givers.
+                                        Acknowledging donations leads to<br /> a 20.3 percentage point increase<br />
+                                         in proportion of funds raised from<br /> everyday givers.
                                       </>
                                     )
                                   },
@@ -998,11 +947,11 @@ export default function Home() {
                                     toolkitLabel: 'TOOLKIT #1',
                                     toolkitTitle: 'Donor Database',
                                     toolkitDescription: 'How to record, remember, and build continuity from the first gift.',
-                                    toolkitNumber: 1,
+                                    toolkitNumber: 2,
                                     toolkitBackgroundImage: '/assets/toolkit1/toolkit1_background.png',
                                     toolkitDesignImage: '/assets/toolkit2/toolkit2_design.svg',
                                     toolkitDisableRotation: false,
-                                    toolkitURL: 'https://drive.google.com/file/d/1ZQnu9KNetIdFINuW5RCkF5U62fRro3WT/view?usp=sharing',
+                                    toolkitURL: 'https://docs.google.com/spreadsheets/d/1s2DnnBgkzaFpaeR18VBuMq9Yby2JkvBsDZqkamidCFg/edit?gid=525572238#gid=525572238',
                                     toolkitDesignVariant: 'ch2',
                                     toolkitImage: '/assets/chapter2_option1_toolkit.svg',
                                     onToolkitDownload: () => setIsPopupOpen(true),
@@ -1040,7 +989,7 @@ export default function Home() {
                                 style={{ cursor: 'pointer' }}
                               >
                                 <span className={styles.optionLabel} style={{ color: '#87F6FF' }}>OPTION A</span>
-                                <p className={styles.optionDesc}>
+                                <p className={styles.optionDesc} style={{color: '#fff',}}>
                                   Record her details in<br />
                                   your database and<br />
                                   acknowledge her<br />
@@ -1051,7 +1000,7 @@ export default function Home() {
                                 <motion.div
                                   variants={ctaVariants}
                                   style={{
-                                    marginTop: '10px',
+                                    marginTop: '20px',
                                     display: 'flex',
                                     alignItems: 'center',
                                     gap: '6px',
@@ -1102,7 +1051,7 @@ export default function Home() {
                                 style={{ cursor: 'pointer' }}
                               >
                                 <span className={styles.optionLabel} style={{ color: '#87F6FF' }}>OPTION B</span>
-                                <p className={styles.optionDesc}>
+                                <p className={styles.optionDesc} style={{color: '#fff',}}>
                                   No thank you or follow-<br />
                                   ups. Accept the<br />
                                   donation and move on.
@@ -1112,7 +1061,7 @@ export default function Home() {
                                 <motion.div
                                   variants={ctaVariants}
                                   style={{
-                                    marginTop: '-15px',
+                                    marginTop: '20px',
                                     display: 'flex',
                                     alignItems: 'center',
                                     gap: '6px',
@@ -1339,36 +1288,73 @@ export default function Home() {
                           </div>
 
                           {selectedOption === 'A' ? (
-                            <div style={{
-                              position: 'fixed',
-                              top: '40px',
-                              left: 0,
-                              right: 0,
-                              display: 'flex',
-                              justifyContent: 'center',
-                              zIndex: 10000,
-                              pointerEvents: 'none'
-                            }}>
-                              <button
-                                onClick={() => setSelectedOption(null)}
-                                style={{
-                                  pointerEvents: 'auto',
-                                  display: 'flex',
-                                  alignItems: 'center',
-                                  gap: '8px',
-                                  background: 'transparent',
-                                  border: 'none',
-                                  color: '#1a4d3a',
-                                  fontFamily: 'DM Sans, sans-serif',
-                                  fontSize: '14px',
-                                  fontWeight: 500,
-                                  cursor: 'pointer',
-                                  padding: 0
-                                }}
-                              >
-                                <ArrowLeft size={16} />
-                                <span>Back to scenario</span>
-                              </button>
+                            <div style={{ flex: 1, width: '100%', position: 'relative' }}>
+                              <OptionContent
+                                embedded={true}
+                                chapterTitle="CHAPTER III: STEWARDING DONORS"
+                                chapterSubtitle="Staying connected after the first gift builds trust. This chapter focuses on how consistent, non-ask engagement helps donors feel involved and valued."
+                                backgroundColor="transparent"
+                                onBack={() => setSelectedOption(null)}
+                                onNext={handleNextChapter}
+                                optionId="ch3OptionA"
+                                contentCards={[
+                                  {
+                                    id: 1,
+                                    type: 'text',
+                                    floatingTextLabel: "UDARTA:EG STUDY SHOWS",
+                                    floatingText: "Sending only donation appeals may make donors feel like transactions, not partners. Support might fade after one or two gifts.",
+                                    label: '',
+                                    title: '',
+                                    content: '',
+                                    showStatBelow: true,
+                                    statLabel: 'DID YOU KNOW?',
+                                    stat: 'Donor retention rates',
+                                    statDescription: 'drop to 20-30% after the first gift without ongoing engagement.',
+                                    statBoxTransparent: true
+                                  },
+                                  {
+                                    id: 2,
+                                    type: 'text',
+                                    floatingText: "Instead, regular updates, stories, and gratitude keep donors connected to your impact. They feel part of the journey, not just a funding source.",
+                                    label: '',
+                                    title: '',
+                                    content: '',
+                                    showStatBelow: true,
+                                    statLabel: 'UDARTA:EG STUDY SHOWS',
+                                    stat: '85% of nonprofits',
+                                    statDescription: 'report that consistent communication increases donor loyalty and repeat giving.'
+                                  },
+                                  {
+                                    id: 3,
+                                    type: 'text',
+                                    floatingText: (
+                                      <>
+                                        We've created a toolkit<br />
+                                        to help you build meaningful<br />
+                                        donor relationships
+                                      </>
+                                    ),
+                                    label: '',
+                                    title: '',
+                                    content: ''
+                                  },
+                                  {
+                                    id: 4,
+                                    type: 'toolkit',
+                                    floatingText: "",
+                                    decorationType: undefined,
+                                    toolkitNumber: 4,
+                                    toolkitTitle: 'The Storytelling Bank',
+                                    toolkitDescription: 'A collection of stories to share with donors.',
+                                    toolkitBackgroundImage: '/assets/toolkit4_background.svg',
+                                    toolkitDesignImage: '/assets/toolkit4_design.png',
+                                    toolkitImage: '/assets/toolkit4.svg',
+                                    toolkitURL: 'https://docs.google.com/spreadsheets/d/1ZTATFrOS2l36KOk8FWKtQOvOnWRPizl4rb956zgj7tA/edit?usp=sharing',
+                                    onToolkitDownload: () => setIsPopupOpen(true),
+                                    onToolkitView: () => setIsPopupOpen(true)
+                                  }
+                                ]}
+                              />
                             </div>
                           ) : selectedOption === 'B' ? (
                             // Chapter 3 Option B Content
@@ -1415,7 +1401,7 @@ export default function Home() {
                                 <motion.div
                                   variants={ctaVariants}
                                   style={{
-                                    marginTop: '-15px',
+                                    marginTop: '20px',
                                     display: 'flex',
                                     alignItems: 'center',
                                     gap: '6px',
@@ -1516,7 +1502,7 @@ export default function Home() {
                                 <motion.div
                                   variants={ctaVariants}
                                   style={{
-                                    marginTop: '-15px',
+                                    marginTop: '20px',
                                     display: 'flex',
                                     alignItems: 'center',
                                     gap: '6px',
@@ -1694,7 +1680,7 @@ export default function Home() {
                                 <motion.div
                                   variants={ctaVariants}
                                   style={{
-                                    marginTop: '-15px',
+                                    marginTop: '20px',
                                     display: 'flex',
                                     alignItems: 'center',
                                     gap: '6px',
@@ -1804,16 +1790,14 @@ export default function Home() {
                               >
                                 <span className={styles.optionLabel} style={{ color: '#20315B' }}>OPTION B</span>
                                 <p className={styles.optionDesc} style={{ color: '#20315B' }}>
-                                  Invite her to give again –<br />
-                                  and share the cause<br />
-                                  with her network
+                                 Invite her to give again,<br /> appeal for a higher amount<br /> and ask her to share the<br /> campaign with her network.
                                 </p>
 
                                 {/* Animated CTA */}
                                 <motion.div
                                   variants={ctaVariants}
                                   style={{
-                                    marginTop: '-15px',
+                                    marginTop: '20px',
                                     display: 'flex',
                                     alignItems: 'center',
                                     gap: '6px',
@@ -1910,7 +1894,7 @@ export default function Home() {
                             {/* Bonus Card Image */}
                             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '40px' }}>
                               <img
-                                src="/assets/Bonus.png"
+                                src="/assets/bonus.png"
                                 alt="Stewardship is a team effort"
                                 style={{ maxWidth: '400px', width: '100%', height: 'auto' }}
                               />

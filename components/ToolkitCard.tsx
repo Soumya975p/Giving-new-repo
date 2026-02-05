@@ -17,13 +17,6 @@ interface ToolkitCardProps {
     backgroundVariant?: 'tk345' | 'tk6' | 'tk7';
 }
 
-const COOKIE_NAME = "popup_form_submitted_v1";
-
-const hasCookie = () => {
-    if (typeof document === 'undefined') return false;
-    return document.cookie.split(";").some(c => c.trim().startsWith(COOKIE_NAME + "="));
-};
-
 export default function ToolkitCard({
     toolkitNumber,
     title,
@@ -39,24 +32,10 @@ export default function ToolkitCard({
 }: ToolkitCardProps) {
 
     const handleViewToolkit = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        // If cookie exists, allow default link behavior
-        if (hasCookie()) {
-            // Link should already be set by PopupForm, but ensure it's set
-            const target = e.currentTarget;
-            if (!target.hasAttribute('href') && target.hasAttribute('data-href')) {
-                const url = target.getAttribute('data-href');
-                if (url) {
-                    window.open(url, '_blank', 'noopener,noreferrer');
-                    e.preventDefault();
-                }
-            }
-            return;
-        }
-
-        // If no cookie, prevent default and show popup
         e.preventDefault();
-        if (onViewToolkit) {
-            onViewToolkit();
+        // Directly open the toolkit URL in a new tab
+        if (toolkiturl) {
+            window.open(toolkiturl, '_blank', 'noopener,noreferrer');
         }
     };
     return (
@@ -123,7 +102,7 @@ export default function ToolkitCard({
                         </svg>
                     </button> */}
                     <a className={styles.viewToolkitButton} data-href={toolkiturl} onClick={handleViewToolkit}>
-                        <span>View toolkit</span>
+                        <span>Get toolkit</span>
                         <svg
                             width="16"
                             height="16"

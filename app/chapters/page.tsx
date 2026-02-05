@@ -52,16 +52,16 @@ export default function ChaptersPage() {
       {/* Top Bar - 4 Equal Sections */}
       <div className={styles.topBar}>
         <div className={styles.barSection}>
-          <img src="/assets/taskbar-gradient.png" alt="Section 1" className={styles.barImage} />
+          <img src="/assets/taskbar-gradient.svg" alt="Section 1" className={styles.barImage} />
         </div>
         <div className={styles.barSection}>
-          <img src="/assets/taskbar-gradient.png" alt="Section 2" className={styles.barImage} />
+          <img src="/assets/taskbar-gradient.svg" alt="Section 2" className={styles.barImage} />
         </div>
         <div className={styles.barSection}>
-          <img src="/assets/taskbar-gradient.png" alt="Section 3" className={styles.barImage} />
+          <img src="/assets/taskbar-gradient.svg" alt="Section 3" className={styles.barImage} />
         </div>
         <div className={styles.barSection}>
-          <img src="/assets/taskbar-gradient.png" alt="Section 4" className={styles.barImage} />
+          <img src="/assets/taskbar-gradient.svg" alt="Section 4" className={styles.barImage} />
         </div>
       </div>
 

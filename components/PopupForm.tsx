@@ -71,7 +71,7 @@ export default function PopupForm({ isOpen, onClose }: PopupFormProps) {
          const formData = new FormData(form);
         setMessage("");
         try {
-            const res = await fetch("http://givingtogetherfoundation.org/gtf/save.php", {
+            const res = await fetch("https://givingtogetherfoundation.org/gtf/save.php", {
                 method: "POST",
                 headers: {
                 "Content-Type": "application/json",

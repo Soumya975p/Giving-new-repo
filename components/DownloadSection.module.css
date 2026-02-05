@@ -140,7 +140,7 @@
     /* USER ADJUST: width, height, top, bottom, left, right */
     width: 80px;
     height: auto;
-    top: -92px;
+    top: -105px;
     left: -20px;
     margin-top: 10px;
 }
@@ -230,6 +230,8 @@
     position: relative;
     z-index: 1;
     background: rgba(0, 0, 0, 0.01);
+    margin-right: 20px;
+    margin-top: 20px;
 }
 
 .downloadAllImageMobile,
@@ -444,7 +446,7 @@
 
     .downloadCard {
         width: 100% !important;
-        height: 441px !important;
+        height: 500px !important;
         max-width: 100% !important;
         border-radius: 20px !important;
         padding: 40px 23px !important;
@@ -491,7 +493,7 @@
     }
 
     .downloadInfo {
-        text-align: left !important;
+        align-items: flex-start !important;
     }
 
     .downloadTitle {

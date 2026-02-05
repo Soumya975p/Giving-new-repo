@@ -108,25 +108,11 @@ export default function Chapter3OptionB({ onBack, onNext, embedded = false }: Ch
                         </div>
                     </div>
 
-                    {/* Toolkit Card 1 - The Storytelling Bank */}
-                    <div className={styles.toolkitCard}>
+  <div className={styles.toolkitCard}>
                         <ToolkitCard
-                            toolkitNumber={2}
-                            title="The Storytelling Bank"
-                            description="A collection of stories to share with donors."
-                            toolkiturl='https://drive.google.com/file/d/1E7BcCBWNd8wMrpZbNmjwYHjp5SXQ8wzH/view?usp=sharing'
-                           backgroundImage="/assets/toolkit4_background.svg"
-                            designImage="/assets/toolkit4_design.png"
-                            designVariant="tk4"
-                        />
-                    </div>
-
-                    {/* Toolkit Card 2 - Segmentation & Profiling */}
-                    <div className={styles.toolkitCard}>
-                        <ToolkitCard
-                            toolkitNumber={1}
+                            toolkitNumber={3}
                             title="Segmentation & Profiling"
-                            toolkiturl='https://drive.google.com/file/d/1NwVk9MdQglzykCSP5_qj9RcVehPF1WIy/view?usp=sharing'
+                            toolkiturl='https://docs.google.com/spreadsheets/d/1pVwzkSRwiibOMbvlyN9fHeReSVzq4wHB/edit?usp=sharing&ouid=114110917274284408501&rtpof=true&sd=true'
                             description="Tools to categorize and understand your donors."
                             backgroundImage="/assets/toolkit3_background.svg"
                             designImage="/assets/toolkit3_design.png"
@@ -134,13 +120,28 @@ export default function Chapter3OptionB({ onBack, onNext, embedded = false }: Ch
                         />
                     </div>
 
+                    {/* Toolkit Card 1 - The Storytelling Bank */}
+                    <div className={styles.toolkitCard}>
+                        <ToolkitCard
+                            toolkitNumber={4}
+                            title="The Storytelling Bank"
+                            description="A collection of stories to share with donors."
+                            toolkiturl='https://docs.google.com/spreadsheets/d/1ZTATFrOS2l36KOk8FWKtQOvOnWRPizl4rb956zgj7tA/edit?usp=sharing'
+                           backgroundImage="/assets/toolkit4_background.svg"
+                            designImage="/assets/toolkit4_design.png"
+                            designVariant="tk4"
+                        />
+                    </div>
+
+                    {/* Toolkit Card 2 - Segmentation & Profiling */}
+                  
                     <div className={styles.lastCardWrapper}>
                         {/* Toolkit Card 3 - Communications Calendar */}
                         <div className={styles.toolkitCard}>
                             <ToolkitCard
-                                toolkitNumber={3}
+                                toolkitNumber={5}
                                 title="The Communications Calendar"
-                                toolkiturl='https://drive.google.com/file/d/1qKrCcT-W78CKUanp8bExreUgfrbjoj9L/view?usp=sharing'
+                                toolkiturl='https://docs.google.com/spreadsheets/d/1mJU8N9rpZNs1dXz4O8HZNNeBxbTnxV-aIRGIjAVrvDc/edit?usp=sharing'
                                 description="Plan your donor engagement throughout the year."
                                 backgroundImage="/assets/toolkit5_background.svg"
                                 designImage="/assets/toolkit5_design.png"

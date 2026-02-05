@@ -208,6 +208,7 @@
     padding: 30px 100px;
     min-width: max-content;
     height: 100%;
+    padding-left: 30px;
 }
 
 /* Each content column in the horizontal flow */

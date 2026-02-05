@@ -31,6 +31,12 @@
   color: white;
   margin: 0;
 }
+.subtitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+      color: white;
+  margin: 0;
+}
 
 .folderContainer {
   display: flex;
@@ -59,6 +65,7 @@
   left: 60px;
   z-index: 10;
 }
+
 
 .folderLabel {
   font-family: 'DM Sans', sans-serif;

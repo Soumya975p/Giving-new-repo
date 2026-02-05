@@ -48,7 +48,7 @@ export default function DownloadSection({ className }: DownloadSectionProps) {
                             your organisation best.
                         </p>
                         <div className={styles.downloadButtons}>
-                            <button className={styles.downloadAllBtn} onClick={handleDownloadClick}>
+                            {/* <button className={styles.downloadAllBtn} onClick={handleDownloadClick}>
                                 <img
                                     src="/assets/download_all.svg"
                                     alt="Download all"
@@ -64,8 +64,25 @@ export default function DownloadSection({ className }: DownloadSectionProps) {
                                     alt="Download all"
                                     className={styles.downloadAllImageMobile}
                                 />
-                            </button>
-                            <button className={styles.viewAllBtn}>
+                            </button> */}
+                            <a className={styles.downloadAllBtn} href='https://drive.google.com/drive/folders/1w0CU1frY850hTcF0W0wojF6DDPK2xv9l?usp=sharing' target='_blank'>
+                                <img
+                                    src="/assets/get-all-toolkits.png"
+                                    alt="Download all"
+                                    className={styles.downloadAllImage}
+                                />
+                                <span className={styles.downloadAllImageWrap}>
+                                    <span className={styles.diamond}>◆</span>
+                                    <span className={styles.downloadAllText}>Get all toolkits</span>
+                                    <span className={styles.diamond}>◆</span>
+                                </span>
+                                <img
+                                    src="/assets/get-all-toolkits.png"
+                                    alt="Download all"
+                                    className={styles.downloadAllImageMobile}
+                                />
+                            </a>
+                            {/* <button className={styles.viewAllBtn}>
                                 <img src="/assets/view_doanload.svg" alt="View all" className={styles.viewAllImage} />
                                 <span className={styles.viewAllMobileWrap}>
                                     <span className={styles.diamond}>◆</span>
@@ -79,7 +96,7 @@ export default function DownloadSection({ className }: DownloadSectionProps) {
                                     alt="View all"
                                     className={styles.viewAllImageMobile}
                                 />
-                            </button>
+                            </button> */}
                         </div>
                     </div>
                 </div>

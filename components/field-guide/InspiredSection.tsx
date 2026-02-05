@@ -10,15 +10,15 @@ export default function InspiredSection() {
 
   const cards = [
     {
-      image: "/assets/Card 1.png",
+      image: "/assets/card-1.png",
       color: "#D349AE"
     },
     {
-      image: "/assets/Card 2.png",
+      image: "/assets/card-2.png",
       color: "#0FB8C5"
     },
     {
-      image: "/assets/Card 3.png",
+      image: "/assets/card-3.png",
       color: "#93CD4D"
     }
   ]
@@ -31,6 +31,10 @@ export default function InspiredSection() {
   const handleNext = (e: React.MouseEvent) => {
     e.stopPropagation();
     setActiveCard((prev) => (prev + 1) % cards.length)
+  }
+
+  const handleNavigateHome = () => {
+    window.location.href = '/'
   }
 
   return (
@@ -49,14 +53,23 @@ export default function InspiredSection() {
         <div className={styles.guidesSection}>
           <p className={styles.chooseLabel}><span></span> CHOOSE A FIELD GUIDE TO EXPLORE <span></span></p>
           <div className={styles.guideButtons}>
-            <button className={styles.guideButton}>
-              <span> <img
-                src="/assets/btn-diamond.png"
-                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-              /> Fundraising  <img
+            <button
+              type="button"
+              className={styles.guideButton}
+              onClick={handleNavigateHome}
+            >
+              <span style={{ pointerEvents: 'none' }}>
+                <img
                   src="/assets/btn-diamond.png"
-                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                /></span>
+                  style={{ objectFit: 'contain', pointerEvents: 'none' }}
+                  alt=""
+                /> Fundraising
+                <img
+                  src="/assets/btn-diamond.png"
+                  style={{ objectFit: 'contain', pointerEvents: 'none' }}
+                  alt=""
+                />
+              </span>
             </button>
             <button className={styles.guideButton}>
               <span> <img
@@ -75,8 +88,7 @@ export default function InspiredSection() {
         <div className={inspiredStyles.insCbContainerBg}>
           <div className={inspiredStyles.insCbContainer}>
             <div className={inspiredStyles.insCbTop}>
-              <h2>Inspired by the GivingTuesday Data Commons' research study, UDARTA:EG study [2025],
-                India's first collaborative research on everyday giving.</h2>
+              <h2>Inspired by the GivingTuesday Data Commons' UDARTA:EG 2025 research, India's first collaborative study on everyday giving.</h2>
             </div>
 
             {/* Mobile Image - shown between text sections on mobile */}
@@ -87,8 +99,8 @@ export default function InspiredSection() {
             <div className={inspiredStyles.insCbBtm}>
               <h3>These guides translate sector-wide
                 insights into simple, usable systems for nonprofits of all sizes.</h3>
-              <p>The opportunity is real, proven, that success isn't reserved for just the a few organisations; it is accessible to any of us willing to build authentic community relationships - across causes, geographies, and organisation sizes.</p>
-              <a href="" style={{ display: 'flex'}}>Read the research report  <img src="/assets/btn-arrow.png" alt=""style={{marginTop: '5px', marginLeft:'8px'}} /></a>
+              <p>The opportunity is real. Success with everyday giving isn't reserved for just the large organisations or those working on specific cause areas. It is accessible to any of us willing to build authentic community relationships - across causes, geographies, and organisation sizes.</p>
+              <a href="https://www.givingtuesday.org/india/udarta-eg/report/" target='_blank' style={{ display: 'flex'}}>Read the research report  <img src="/assets/btn-arrow.png" alt=""style={{marginTop: '5px', marginLeft:'8px'}} /></a>
             </div>
           </div>
         </div>
@@ -183,7 +195,7 @@ export default function InspiredSection() {
                 <p className={inspiredStyles.descText}>
                   These aren't just metrics, they represent flexible operational funding, lifelong advocates, and invested communities that amplify your mission.
                 </p>
-                <a href="#" style={{ display: 'flex'}} className={inspiredStyles.reportLink}>Read the research report <img src="/assets/right-arrow-bg.png" style={{marginTop: '5px', marginLeft:'8px'}} alt="" /></a>
+                <a href="https://www.givingtuesday.org/india/udarta-eg/report/" target='_blank' style={{ display: 'flex'}} className={inspiredStyles.reportLink}>Read the research report <img src="/assets/right-arrow-bg.png" style={{marginTop: '5px', marginLeft:'8px'}} alt="" /></a>
               </div>
             </div>
 
