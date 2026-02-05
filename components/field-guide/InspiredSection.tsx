@@ -10,15 +10,15 @@ export default function InspiredSection() {
 
   const cards = [
     {
-      image: "/assets/Card 1.png",
+      image: "/assets/card-1.png",
       color: "#D349AE"
     },
     {
-      image: "/assets/Card 2.png",
+      image: "/assets/card-2.png",
       color: "#0FB8C5"
     },
     {
-      image: "/assets/Card 3.png",
+      image: "/assets/card-3.png",
       color: "#93CD4D"
     }
   ]

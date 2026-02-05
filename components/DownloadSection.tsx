@@ -65,7 +65,7 @@ export default function DownloadSection({ className }: DownloadSectionProps) {
                                     className={styles.downloadAllImageMobile}
                                 />
                             </button> */}
-                            <button className={styles.downloadAllBtn} onClick={handleDownloadClick}>
+                            <a className={styles.downloadAllBtn} href='https://drive.google.com/drive/folders/1w0CU1frY850hTcF0W0wojF6DDPK2xv9l?usp=sharing' target='_blank'>
                                 <img
                                     src="/assets/get-all-toolkits.png"
                                     alt="Download all"
@@ -81,7 +81,7 @@ export default function DownloadSection({ className }: DownloadSectionProps) {
                                     alt="Download all"
                                     className={styles.downloadAllImageMobile}
                                 />
-                            </button>
+                            </a>
                             {/* <button className={styles.viewAllBtn}>
                                 <img src="/assets/view_doanload.svg" alt="View all" className={styles.viewAllImage} />
                                 <span className={styles.viewAllMobileWrap}>

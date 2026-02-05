@@ -292,10 +292,10 @@
     /* Tall Flower */
     top: -2%;
     bottom: auto;
-    left: -35%;
+    left: -40%;
     right: auto;
-    height: 500px;
-    width: auto;
+    height: 603px;
+    width: 184px;
     transform: translateY(0px);
 }
 
@@ -305,7 +305,7 @@
     bottom: -1%;
     left: -65%;
     right: auto;
-    height: 200px;
+    height: 265px;
     width: auto;
     transform: translateY(80px);
 }
@@ -545,6 +545,8 @@
     justify-content: center;
     flex-shrink: 0;
     overflow: visible;
+        left: -35px;
+    top: 30px;
 }
 
 .toolkitImageWrapper {
@@ -784,9 +786,9 @@
     position: relative;
     right: auto;
     bottom: auto;
-    top: 20vh;
+    top: 5vh;
     transform: none;
-    margin-left: -10vw;
+    margin-left: -18vw;
     padding-right: 0;
     z-index: 50;
 }

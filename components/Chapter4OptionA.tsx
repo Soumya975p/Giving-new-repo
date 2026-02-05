@@ -128,17 +128,17 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
                             <div className={styles.whySection}>
                                 <span className={styles.whyLabel}>WHY THIS WORKS</span>
                                 <p className={styles.whyText}>
-                                    Donors who feel valued don't just give more —
-                                    they bring others with them.
+                                   Donors who feel valued don’t<br /> just give more - they<br />
+                                    bring others with them.
                                 </p>
                             </div>
 
                             <div className={styles.toolkitIntro}>
 
                                 <p className={styles.toolkitIntroText}>
-                                    We have two toolkits to help you track
-                                    donor engagement and how to grow
-                                    your network
+                                    We have two toolkits to help you<br /> track how effective your donor <br />
+                                    engagement is and how you can grow <br />
+                                    your network through supporters like Nidhi.
                                 </p>
                             </div>
                         </div>
@@ -152,7 +152,7 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
                                 backgroundImage="/assets/toolkit6/toolkit6_background.svg"
                                 designImage="/assets/toolkit6/toolkit6_design.png"
                                 disableRotation={true}
-                                toolkiturl='https://drive.google.com/file/d/1fPMecVmlPoeO2QXkJjPn3iSvCwftP6BF/view?usp=sharing'
+                                toolkiturl='https://docs.google.com/spreadsheets/d/14igjiR-rsWemDzs0idCkzm0jj5osws5ZyQAxV6vCVb8/edit?usp=sharing'
                                 backgroundVariant="tk6"
                                 designVariant="tk6"
                                 onDownload={onToolkitDownload}
@@ -172,7 +172,7 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
                                     disableRotation={true}
                                     backgroundVariant="tk7"
                                     designVariant="tk7"
-                                    toolkiturl='https://drive.google.com/file/d/1aeMzAwPDOpsdZIU3xxI2YwtlavS_z2F3/view?usp=sharing'
+                                    toolkiturl='https://docs.google.com/spreadsheets/d/1Rai3BrOnpgDDSJbnGNPalXrJUWKQHgwwuUVGapbwCKI/edit?usp=sharing'
                                     onDownload={onToolkitDownload}
                                     onViewToolkit={onToolkitDownload}
                                 />
