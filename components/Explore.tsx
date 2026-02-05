@@ -9,13 +9,19 @@ export default function Explore() {
   const [exploreCursorPos, setExploreCursorPos] = useState({ x: 0, y: 0 });
   const [showExploreCursor, setShowExploreCursor] = useState(false);
 
+  const handleNavigateHome = () => {
+    window.location.href = '/';
+  };
+
   return (
     <>
       {/* Explore Grid Section */}
       <div className={styles.exploreSection}>
         <div className={styles.exploreHeader}>
           <span className={styles.exploreLabel}>FOLLOW ALONG</span>
-          <h2 className={styles.exploreTitle}>Explore the other sections</h2>
+          <h2 className={styles.exploreTitle}>Choose the Path That Fits Your Work</h2>
+          <p className={styles.subtitle}>Explore the Field Guides and discover how to turn community generosity into sustained mission success.</p>
+          
         </div>
 
         <div
@@ -44,6 +50,8 @@ export default function Explore() {
 
           <div
             className={`${styles.exploreCardBase} ${styles.exploreCard1}`}
+            onClick={handleNavigateHome}
+            style={{ cursor: 'pointer' }}
           >
             <div
               className={styles.hoverTrigger}
@@ -73,7 +81,7 @@ export default function Explore() {
             </div>
             {/* Mobile Version - Static */}
             <img
-              src="/assets/mobile_explore_intro.svg"
+              src="/assets/mobile_explore_intro.png"
               alt="Introduction Mobile"
               className={`${styles.exploreCardImage} ${styles.mobileOnly}`}
             />
@@ -81,6 +89,8 @@ export default function Explore() {
 
           <div
             className={`${styles.exploreCardBase} ${styles.exploreCard2}`}
+            onClick={handleNavigateHome}
+            style={{ cursor: 'pointer' }}
           >
             <div
               className={styles.hoverTrigger}
@@ -110,7 +120,7 @@ export default function Explore() {
             </div>
             {/* Mobile Version - Static */}
             <img
-              src="/assets/mobile_explore_vol.svg"
+              src="/assets/mobile_explore_vol.png"
               alt="Volunteer Engagement Mobile"
               className={`${styles.exploreCardImage} ${styles.mobileOnly}`}
             />

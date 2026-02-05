@@ -502,7 +502,7 @@
     width: 100%;
     display: block;
     margin-left: 0 !important;
-    transform: translate(-5%, 12%);
+    transform: translate(-1%, 20%);
     margin-top: 6px;
   }
 
@@ -3577,7 +3577,7 @@
 .heroBottom {
   width: 100%;
   max-width: 1200px;
-  margin: -600px auto 0;
+  margin: -400px auto 0;
   text-align: center;
   position: relative;
   /* padding-bottom: 100px; */
@@ -6137,6 +6137,7 @@
   /* USER ADJUST: width, height */
   height: 56px;
   width: auto;
+  margin-right: 20px;
 }
 
 .diamond {
@@ -6932,6 +6933,13 @@
     left: 50% !important;
     transform: translateX(-50%) !important;
   }
+  .heroContent {
+    padding: 40px 24px;
+}
+  .heroContent {
+    /* margin-left: 0px  !important;
+    margin-right: 0px !important ; */
+}
 }
 
 @media (max-width: 640px) {

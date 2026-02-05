@@ -17,7 +17,7 @@ export default function ToolkitSection() {
         <div className={styles.header}>
           <p className={styles.label}>TOOLKIT & TOOLS</p>
           <h2 className={styles.title}>From Insight to Impact</h2>
-          <p className={styles.subtitle}>Unlock each field guide to get:</p>
+          <p className={styles.subtitle}>These field guides contain:</p>
         </div>
 
         {/* Three Circles */}
@@ -47,7 +47,7 @@ export default function ToolkitSection() {
                 grounded in Indian<br />
                 nonprofit realities
               </p>
-              <img src="./assets/circleContent2.png" className={styles.circleImage2} alt="" />
+              <img src="/assets/circleContent2.png" className={styles.circleImage2} alt="" />
             </div>
           </div>
 
@@ -63,7 +63,7 @@ export default function ToolkitSection() {
                 that you can adopt<br />
                 immediately
               </p>
-              <img src="./assets/circleContent3.png" className={styles.circleImage3} alt="" />
+              <img src="/assets/circleContent3.png" className={styles.circleImage3} alt="" />
             </div>
           </div>
         </div>

@@ -769,7 +769,7 @@ export default function Home() {
                                 <span className={styles.optionLabel}>OPTION B</span>
                                 <p className={styles.optionDesc}>
                                   Tap into your existing<br />
-                                  network – Connections<br />
+                                  network – connections<br />
                                   of volunteers,<br />
                                   champions & donors
                                 </p>
@@ -1910,7 +1910,7 @@ export default function Home() {
                             {/* Bonus Card Image */}
                             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '40px' }}>
                               <img
-                                src="/assets/Bonus.png"
+                                src="/assets/bonus.png"
                                 alt="Stewardship is a team effort"
                                 style={{ maxWidth: '400px', width: '100%', height: 'auto' }}
                               />

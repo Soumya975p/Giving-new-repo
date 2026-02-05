@@ -46,7 +46,7 @@ export default function Footer() {
                   I’d love to be a part of Giving Together Foundation’s initiatives.
                 </div>
                 <div className={styles.formLine}>
-                  My email address is <input type="email" placeholder="your email address" size={18} className={styles.inlineInput} /> if you need to reach out to me.
+                  My email address is <input type="email" placeholder="your email address" size={18} className={styles.inlineInput} />  if you need to reach out to me for updates & details.
                 </div>
               </div>
 
@@ -65,7 +65,7 @@ export default function Footer() {
                   initiatives. My email address is <input type="email" placeholder="your email address" size={18} className={`${styles.inlineInput} ${styles.inputEmail}`} />
                 </div>
                 <div className={styles.formLine}>
-                  if you need to reach out to me.
+                   if you need to reach out to me for updates & details.
                 </div>
               </div>
 
@@ -93,7 +93,7 @@ export default function Footer() {
                   <li className={styles.indentedItem}><a href="#" className={styles.subItemLink}>Fundraising</a></li>
                   <li className={styles.indentedItem}><a href="#" className={styles.subItemLink}>Volunteer Engagement</a></li>
                   <li className={styles.arrowItem}>
-                    <a href="#">
+                    <a href="https://www.givingtuesday.org/india/udarta-eg/report/" target='_blank'>
                       UDARTA:EG Report
                       <img src="/assets/footer_arrow.svg" alt="" className={styles.externalArrowIcon} />
                     </a>

@@ -6,9 +6,9 @@ export default function ToolsSection() {
       {/* Image Wrapper - positions content relative to image */}
       <div className={styles.imageWrapper}>
         {/* Desktop Image */}
-        <img src="assets/tools-section.png" className={styles.backgroundImageDesktop} alt="" />
+        <img src="/assets/tools-section.png" className={styles.backgroundImageDesktop} alt="" />
         {/* Mobile Image - replace with your mobile image path */}
-        <img src="assets/mob-tools-section.png" className={styles.backgroundImageMobile} alt="" />
+        <img src="/assets/mob-tools-section.png" className={styles.backgroundImageMobile} alt="" />
 
         {/* Top Box - positioned relative to image */}
         <div className={styles.topBox}>

@@ -4,6 +4,10 @@ import { motion } from 'framer-motion'
 import styles from './FieldGuideHero.module.css'
 
 export default function FieldGuideHero() {
+  const handleNavigateHome = () => {
+    window.location.href = '/'
+  }
+
   return (
     <motion.section
       className={styles.heroSection}
@@ -58,14 +62,23 @@ export default function FieldGuideHero() {
           <div className={styles.guidesSection}>
             <p className={styles.chooseLabel}>CHOOSE A FIELD GUIDE TO EXPLORE <span></span></p>
             <div className={styles.guideButtons}>
-              <button className={styles.guideButton}>
-                <span> <img
-                  src="/assets/btn-diamond.png"
-                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                /> Fundraising  <img
+              <button
+                type="button"
+                className={styles.guideButton}
+                onClick={handleNavigateHome}
+              >
+                <span style={{ pointerEvents: 'none' }}>
+                  <img
                     src="/assets/btn-diamond.png"
-                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                  /></span>
+                    style={{ objectFit: 'contain', pointerEvents: 'none' }}
+                    alt=""
+                  /> Fundraising
+                  <img
+                    src="/assets/btn-diamond.png"
+                    style={{ objectFit: 'contain', pointerEvents: 'none' }}
+                    alt=""
+                  />
+                </span>
               </button>
               <button className={styles.guideButton}>
                 <span> <img
