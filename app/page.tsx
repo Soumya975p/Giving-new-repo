@@ -231,7 +231,7 @@ export default function Home() {
               Most nonprofits spend significant time and resources finding new donors. Yet research shows that acquiring a new donor costs <span className={styles.emphasis}>nearly ten times more</span> than continuing a relationship with someone who already believes in your work.
             </p>
             <p className={styles.heroDescription}>
-              Drawing on insights from the UDARTA:EG study of 300+ <span className={styles.emphasis}>Indian nonprofits</span>, this guide offers toolkits to shift donor engagement from reactive to retention-focused.
+              Drawing on insights from the UDARTA:EG study of <span className={styles.emphasis}>300+ Indian nonprofits</span>, this guide offers toolkits to shift donor engagement from reactive to retention-focused.
             </p>
             <button className={styles.startButton} onClick={() => {
               chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -719,9 +719,9 @@ your team through a simple,<br />
                               >
                                 <span className={styles.optionLabel}>OPTION B</span>
                                 <p className={styles.optionDesc}>
-                                  Tap into your existing<br />
-                                  network – connections<br />
-                                  of volunteers,<br />
+                                  Tap into your existing
+                                  network – Connections
+                                  of volunteers,
                                   champions & donors
                                 </p>
 
@@ -745,7 +745,7 @@ your team through a simple,<br />
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}> ⟵ Choose Option</span>
+                                  }}> Choose Option</span>
                                 </motion.div>
                               </motion.div>
 
