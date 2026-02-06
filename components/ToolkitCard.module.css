@@ -160,21 +160,21 @@
 }
 
 .designTk4 .designOverlay {
-    top: 33PX;
-    left: 80%;
+    top: 0px;
+    left: 75%;
     right: auto;
     transform: translateX(-50%);
-    width: 250px;
+    width: 230px;
     height: 220px;
 }
 
 .designTk5 .designOverlay {
     top: 0;
-    left: 50%;
+    left: 55%;
     right: auto;
     transform: translateX(-50%);
-    width: 280px;
-    height: 220px;
+    width: 225px;
+    height: 180px;
 }
 
 /* Text Section */

@@ -1,15 +1,15 @@
 import React from 'react';
 import { ArrowLeft } from 'lucide-react';
-import styles from './Chapter3OptionB.module.css';
+import styles from './Chapter3OptionA.module.css';
 import ToolkitCard from './ToolkitCard';
 
-interface Chapter3OptionBProps {
+interface Chapter3OptionAProps {
     onBack: () => void;
     onNext?: () => void;
     embedded?: boolean;
 }
 
-export default function Chapter3OptionB({ onBack, onNext, embedded = false }: Chapter3OptionBProps) {
+export default function Chapter3OptionA({ onBack, onNext, embedded = false }: Chapter3OptionAProps) {
     return (
         <div className={styles.optionContentWrapper}>
             {/* Sticky Header */}
@@ -28,37 +28,57 @@ export default function Chapter3OptionB({ onBack, onNext, embedded = false }: Ch
                         </p>
                     </div>
                 )}
-
-
             </div>
 
             {/* Horizontal Scroll Container */}
             <div className={`${styles.horizontalScrollContainer} ${embedded ? styles.embeddedScroll : ''}`}>
                 <div className={styles.scrollContent}>
-                    {/* Card 1 - Story Card with Flower */}
+                    {/* Card 1 - Problem Statement with Box */}
                     <div className={styles.contentCard}>
                         <img
-                            src="/assets/flower_chapter_4.svg"
+                            src="/assets/chapter_1/flower_left_optionA.svg"
                             alt="Flower decoration"
                             className={styles.flowerDecor}
                         />
-                        <h3 className={styles.storyTitle}>Yes! <br />You will reach the people that care about the cause. The appeal feels more personal, more trusted.!</h3>
-                        <p className={styles.storyText}>
-                            Nidhi receives a photo of the lake being de-silted and understands how her contribution made a difference. Over time, she joins virtual events and stays engaged through regular, meaningful updates.
+                        <img
+                            src="/assets/chapter_1/fly_left_optionA.svg"
+                            alt="Fly decoration"
+                            className={styles.flyDecor}
+                        />
+                        <img
+                            src="/assets/chapter_1/hover_left_flower_leftmost_ch1.svg"
+                            alt="Hover flower decoration"
+                            className={styles.hoverFlowerDecor}
+                        />
+                        <p className={styles.problemText}>
+                            You may reach many people, but the response may not be strong because they may not feel personally connected to the cause or your organisation. Most donations are small, one-time and disconnected.
                         </p>
+                        <div className={styles.didYouKnowSection}>
+                            <span className={styles.didYouKnowLabel}>DID YOU KNOW?</span>
+                            <p className={styles.didYouKnowText}>
+                                <span className={styles.didYouKnowHighlight}>It costs 10x more</span>
+                                <br />
+                                <span className={styles.didYouKnowSubtext}>To acquire a new donor than continuing a relationship with someone who already believes in our work.</span>
+                            </p>
+                        </div>
                     </div>
 
                     {/* Green Stick Decoration 1 - Moved here */}
                     <div className={styles.greenStickWrapper}>
                         <img
-                            src="/assets/chapter_3_middlestick.svg"
+                            src="/assets/chapter_2_column2_1.svg"
                             alt=""
-                            className={styles.greenStick}
+                            className={styles.card2design}
                         />
                     </div>
 
-                    {/* Card 2 - Study Box */}
+                    {/* Card 2 - Solution Text with Study Boxes */}
                     <div className={styles.contentCard}>
+                        <div className={styles.solutionTextSection}>
+                            <p className={styles.solutionText}>
+                                Instead tap into your existing supporters – they are your best ambassadors. They've already shown trust in you and can authentically share your impact with people who share similar values.
+                            </p>
+                        </div>
                         <div className={styles.studyContainer1}>
                             <span className={styles.studyLabel}>UDARTA:EG STUDY SHOWS</span>
                             <img
@@ -75,15 +95,6 @@ export default function Chapter3OptionB({ onBack, onNext, embedded = false }: Ch
                                 supporters
                             </p>
                         </div>
-                        <div className={styles.studyContainer2}>
-                            <span className={styles.studyLabel}>UDARTA:EG STUDY SHOWS</span>
-                            <p className={styles.studyText2}>
-                                Sharing impact updates is
-                                linked to an 11.3 percentage point
-                                increase in percentage of
-                                recurring donors
-                            </p>
-                        </div>
                     </div>
 
                     {/* Green Stick Decoration 2 - Moved here */}
@@ -97,28 +108,14 @@ export default function Chapter3OptionB({ onBack, onNext, embedded = false }: Ch
 
                     {/* Card 3 - Why This Works + Toolkit Intro */}
                     <div className={styles.contentCard}>
-                        {/* <div className={styles.yellowBar}></div> */}
-
-                        <div className={styles.whySection}>
-                            <span className={styles.whyLabel}>WHY THIS WORKS</span>
                             <p className={styles.whyText}>
-                                Regular, non-ask touchpoints help donors feel included in the journey - not contacted only when funds are needed.
+                                Here is a toolkit to guide you and your team through a simple, effective and proven network mapping exercise.
                             </p>
-                        </div>
 
-                        <div className={styles.toolkitIntro}>
-                            <img
-                                src="/assets/ch_3_op2_greenstickdot.svg"
-                                alt="Green stick dot decoration"
-                                className={styles.greenStickDot}
-                            />
-                            <p className={styles.toolkitIntroText}>
-                                Here are three toolkits
-                            </p>
-                        </div>
+                        {/*  */}
                     </div>
 
-  <div className={styles.toolkitCard}>
+                    <div className={styles.toolkitCard}>
                         <ToolkitCard
                             toolkitNumber={3}
                             title="Segmentation & Profiling"
@@ -137,14 +134,12 @@ export default function Chapter3OptionB({ onBack, onNext, embedded = false }: Ch
                             title="The Storytelling Bank"
                             description="A collection of stories to share with donors."
                             toolkiturl='https://docs.google.com/spreadsheets/d/1ZTATFrOS2l36KOk8FWKtQOvOnWRPizl4rb956zgj7tA/edit?usp=sharing'
-                           backgroundImage="/assets/toolkit4_background.svg"
+                            backgroundImage="/assets/toolkit4_background.svg"
                             designImage="/assets/toolkit4_design.png"
                             designVariant="tk4"
                         />
                     </div>
 
-                    {/* Toolkit Card 2 - Segmentation & Profiling */}
-                  
                     <div className={styles.lastCardWrapper}>
                         {/* Toolkit Card 3 - Communications Calendar */}
                         <div className={styles.toolkitCard}>

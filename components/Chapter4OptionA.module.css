@@ -793,7 +793,7 @@
 }
 
 .floatingDecor1 {
-    left: -30px;
+    left: -45px;
     top: 0;
     width: 24px;
 }
@@ -801,14 +801,14 @@
 .floatingDecor2 {
     width: 20px;
     left: -2px;
-    top: 170px;
+    top: 140px;
     /* transform: rotate(-15deg); */
 }
 
 .floatingDecor3 {
     width: 61px;
     left: -3px;
-    top: 220px;
+    top: 200px;
     /* transform: rotate(10deg); */
 }
 
@@ -821,15 +821,15 @@
 }
 
 /* Container Divisions for Individual Sections */
-.infoDiv1Container,
+/* .infoDiv1Container,
 .infoDiv2Container,
 .infoDiv3Container {
     position: relative;
     display: flex;
     align-items: flex-start;
     margin-bottom: 30px; /* Independent vertical spacing */
-    width: 100%;
-}
+    /* width: 100%; */
+
 
 .infoDiv1,
 .infoDiv2,

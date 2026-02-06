@@ -1,18 +1,28 @@
 import React from 'react';
 import { ArrowLeft } from 'lucide-react';
-import styles from './Chapter4OptionA.module.css';
+import styles from './Chapter4OptionB.module.css';
 import ToolkitCard from './ToolkitCard';
 
-interface Chapter4OptionAProps {
+interface Chapter4OptionBProps {
     onBack: () => void;
     onNext?: () => void;
     embedded?: boolean;
     onToolkitDownload?: () => void;
 }
 
-export default function Chapter4OptionA({ onBack, onNext, embedded = false, onToolkitDownload }: Chapter4OptionAProps) {
+export default function Chapter4OptionB({ onBack, onNext, embedded = false, onToolkitDownload }: Chapter4OptionBProps) {
+    const [isHovered, setIsHovered] = React.useState(false);
+
     return (
         <div className={styles.optionContentWrapper}>
+            {/* Left Side Plant Decoration with Hover Effects */}
+            <div
+                className={styles.leftPlantDecor}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+            >
+                
+            </div>
 
             {/* Sticky Header */}
             <div className={`${styles.stickyHeader} ${embedded ? styles.embeddedHeader : ''}`}>
@@ -30,8 +40,6 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
                         </p>
                     </div>
                 )}
-
-
             </div>
 
             <div className={styles.horizontalScrollContainer}>
@@ -39,14 +47,13 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
                     {/* Card 1 - Story Card */}
                     <div className={styles.contentCard}>
                         <img
-                            src="/assets/ch4_c1.png"
+                            src="/assets/ch4_optionb_decor.svg"
                             alt="Decoration"
                             className={styles.flowerDecoration}
                         />
-                        <h3 className={styles.storyTitle}>You've unlocked growth!</h3>
+                        <h3 className={styles.storyTitle}>You probably raised funds, but missed an opportunity</h3>
                         <p className={styles.storyText}>
-                            Nidhi increases her contribution to ₹4,000 and shares the campaign
-                            with her network. A friend donates ₹2,000 based on her recommendation.
+                            Nidhi receives a generic fundraising message with no reference to her past support or engagement. While she may donate again, the interaction feels transactional and you missed the chance to take this relationship deeper.
                         </p>
                     </div>
 
@@ -59,11 +66,11 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
                                 <img src="/assets/ch4_c2.png" alt="" className={styles.floatingDecor1} />
                                 <img src="/assets/ch4_C2.svg" alt="" className={styles.floatingDecor2} />
                                 <img src="/assets/ch4_c4.png" alt="" className={styles.floatingDecor3} />
-                                <img 
-                                    src="/assets/chapter4/hover_fly_ch4.svg" 
-                                    alt="Fly decoration" 
-                                    className={styles.flyDecoration} 
-                                />
+                                {/* <img
+                                    src="/assets/chapter4/hover_fly_ch4.svg"
+                                    alt=""
+                                    className={styles.flyDecoration}
+                                /> */}
                             </div>
 
                             <div className={styles.card2ContainerWrapper}>
@@ -71,9 +78,9 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
                                 <div className={styles.infoDiv1Container}>
                                     <div className={styles.infoDiv1}>
                                         <div className={styles.divContent1}>
-                                            <span className={styles.studyLabel}>WHAT CHANGES INTERNALLY</span>
+                                            <span className={styles.studyLabel}>WHAT THIS LEADS TO</span>
                                             <p className={styles.divText1}>
-                                                Nidhi moves into a High Potential donor segment.
+                                                Lower likelihood of repeat giving
                                             </p>
                                         </div>
                                     </div>
@@ -83,7 +90,7 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
                                 <div className={styles.infoDiv2Container}>
                                     <div className={styles.infoDiv2}>
                                         <p className={styles.divText2}>
-                                            Her repeat donation improves retention metrics
+                                            No signal that her earlier contribution was noticed or valued
                                         </p>
                                     </div>
                                 </div>
@@ -92,14 +99,14 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
                                 <div className={styles.infoDiv3Container}>
                                     <div className={styles.infoDiv3}>
                                         <p className={styles.divText3}>
-                                            Network referrals expand reach without cold outreach
+                                            Missed opportunity to deepen trust or invite advocacy
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Card 3 - Why This Works + Toolkit Intro */}
+                        {/* Card 3 - Why This Happens + Toolkit Intro */}
                         <div className={styles.contentCard}>
                             <img
                                 src="/assets/ch4_c5.png"
@@ -108,21 +115,18 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
                             />
 
                             <div className={styles.whySection}>
-                                <span className={styles.whyLabel}>WHY THIS WORKS</span>
+                                <span className={styles.whyLabel}>WHY THIS HAPPENS</span>
                                 <p className={styles.whyText}>
-                                   Donors who feel valued don’t<br /> just give more - they<br />
-                                    bring others with them.
+                                    Without segmentation or context, donors are treated the same - regardless of their history or potential.
                                 </p>
                             </div>
 
-                            <div className={styles.toolkitIntro}>
-
+                            {/* <div className={styles.toolkitIntro}>
                                 <p className={styles.toolkitIntroText}>
                                     We have two toolkits to help you track how effective your donor
-                                    engagement is and how you can grow
-                                    your network through supporters like Nidhi.
+                                    engagement is and how you can grow your network through supporters like Nidhi.
                                 </p>
-                            </div>
+                            </div> */}
                         </div>
 
                         {/* Toolkit Card 1 */}
@@ -134,7 +138,7 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
                                 backgroundImage="/assets/toolkit6/toolkit6_background.svg"
                                 designImage="/assets/toolkit6/toolkit6_design.png"
                                 disableRotation={true}
-                                toolkiturl='https://docs.google.com/spreadsheets/d/14igjiR-rsWemDzs0idCkzm0jj5osws5ZyQAxV6vCVb8/edit?usp=sharing'
+                                toolkiturl="https://docs.google.com/spreadsheets/d/14igjiR-rsWemDzs0idCkzm0jj5osws5ZyQAxV6vCVb8/edit?usp=sharing"
                                 backgroundVariant="tk6"
                                 designVariant="tk6"
                                 onDownload={onToolkitDownload}
@@ -154,7 +158,7 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
                                     disableRotation={true}
                                     backgroundVariant="tk7"
                                     designVariant="tk7"
-                                    toolkiturl='https://docs.google.com/spreadsheets/d/1Rai3BrOnpgDDSJbnGNPalXrJUWKQHgwwuUVGapbwCKI/edit?usp=sharing'
+                                    toolkiturl="https://docs.google.com/spreadsheets/d/1Rai3BrOnpgDDSJbnGNPalXrJUWKQHgwwuUVGapbwCKI/edit?usp=sharing"
                                     onDownload={onToolkitDownload}
                                     onViewToolkit={onToolkitDownload}
                                 />
