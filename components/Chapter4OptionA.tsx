@@ -88,32 +88,47 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
                         {/* Card 2 - Three Info Divisions */}
                         <div className={styles.contentCard}>
                             {/* Decorative images moved inside Card 2 */}
-                            <img src="/assets/ch4_c2.png" alt="" className={styles.floatingDecor1} />
-                            {/* <img src="/assets/ch4_c3.png" alt="" className={styles.floatingDecor2} />
-                            <img src="/assets/ch4_c4.png" alt="" className={styles.floatingDecor3} /> */}
+                            <div className={styles.card2Decorations}>
+                                <img src="/assets/ch4_c2.png" alt="" className={styles.floatingDecor1} />
+                                <img src="/assets/ch4_C2.svg" alt="" className={styles.floatingDecor2} />
+                                <img src="/assets/ch4_c4.png" alt="" className={styles.floatingDecor3} />
+                                <img 
+                                    src="/assets/chapter4/hover_fly_ch4.svg" 
+                                    alt="Fly decoration" 
+                                    className={styles.flyDecoration} 
+                                />
+                            </div>
 
-                            {/* Division 1 - Main heading */}
-                            <div className={styles.infoDiv1}>
-                                <div className={styles.divContent1}>
-                                    <span className={styles.studyLabel}>WHAT CHANGES INTERNALLY</span>
-                                    <p className={styles.divText1}>
-                                        Nidhi moves into a High Potential donor segment.
-                                    </p>
+                            <div className={styles.card2ContainerWrapper}>
+                                {/* Division 1 - Main heading */}
+                                <div className={styles.infoDiv1Container}>
+                                    <div className={styles.infoDiv1}>
+                                        <div className={styles.divContent1}>
+                                            <span className={styles.studyLabel}>WHAT CHANGES INTERNALLY</span>
+                                            <p className={styles.divText1}>
+                                                Nidhi moves into a High Potential donor segment.
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
 
-                            {/* Division 2 */}
-                            <div className={styles.infoDiv2}>
-                                <p className={styles.divText2}>
-                                    Her repeat donation improves retention metrics
-                                </p>
-                            </div>
+                                {/* Division 2 */}
+                                <div className={styles.infoDiv2Container}>
+                                    <div className={styles.infoDiv2}>
+                                        <p className={styles.divText2}>
+                                            Her repeat donation improves retention metrics
+                                        </p>
+                                    </div>
+                                </div>
 
-                            {/* Division 3 */}
-                            <div className={styles.infoDiv3}>
-                                <p className={styles.divText3}>
-                                    Network referrals expand reach without cold outreach
-                                </p>
+                                {/* Division 3 */}
+                                <div className={styles.infoDiv3Container}>
+                                    <div className={styles.infoDiv3}>
+                                        <p className={styles.divText3}>
+                                            Network referrals expand reach without cold outreach
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -136,8 +151,8 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
                             <div className={styles.toolkitIntro}>
 
                                 <p className={styles.toolkitIntroText}>
-                                    We have two toolkits to help you<br /> track how effective your donor <br />
-                                    engagement is and how you can grow <br />
+                                    We have two toolkits to help you track how effective your donor
+                                    engagement is and how you can grow
                                     your network through supporters like Nidhi.
                                 </p>
                             </div>

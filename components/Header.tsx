@@ -376,7 +376,7 @@ export default function Header({
                       All Fundraising toolkits
                     </span>
                     <span className={styles.downloadAllSubtitle}>
-                      ↓ DOWNLOAD ALL
+                      ↓ GET ALL TOOLKITS
                     </span>
                   </button>
                 </div>

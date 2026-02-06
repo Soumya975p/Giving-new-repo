@@ -143,19 +143,19 @@
     top: 10px;
     left: 50%;
     right: auto;
-    transform: translateX(-50%);
-    width: 280px;
-    height: 220px;
+    transform: translateX(-30%);
+    width: 170px;
+    height: 175px;
 
 }
 
 .designTk7 .designOverlay {
-    top: 10px;
+    top: 2px;
     left: 50%;
     right: auto;
-    transform: translateX(-50%);
-    width: 280px;
-    height: 220px;
+    transform: translateX(-40%);
+    width: 210px;
+    height: 194px;
 
 }
 
