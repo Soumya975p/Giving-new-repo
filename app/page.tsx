@@ -432,6 +432,8 @@ export default function Home() {
                   >
                     <div className={styles.scrollContainer}>
 
+              
+
                       {/* Chapter 1 Specific Layout */}
                       {chapter.id === 1 ? (
                         <div className={styles.chapter1Wrapper}>

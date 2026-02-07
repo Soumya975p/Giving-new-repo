@@ -87,6 +87,11 @@ export default function OptionContent({
                     <span><img src="/assets/bc-icon.png" alt="" /> Back to scenario</span>
                 </button>
 
+
+
+                <img src="/assets/scroll.svg" alt="scroll" className={styles.scrollImage} />
+
+
                 {!embedded && (
                     <div className={s.headerContent}>
                         <h4 className={s.headerLabel}>{chapterTitle}</h4>

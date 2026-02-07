@@ -30,6 +30,10 @@ export default function Chapter4OptionB({ onBack, onNext, embedded = false, onTo
                     <span><img src="/assets/bc-icon.png" alt="" /> Back to scenario</span>
                 </button>
 
+
+
+                <img src="/assets/scroll.svg" alt="scroll" className={styles.scrollImage} />
+
                 {!embedded && (
                     <div className={styles.headerContent}>
                         <h4 className={styles.headerLabel}>CHAPTER IV: DONORS TO CHAMPIONS</h4>

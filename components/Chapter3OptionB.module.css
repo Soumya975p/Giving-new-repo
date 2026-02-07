@@ -78,6 +78,13 @@
     position: absolute;
     left: 50vw;
 }
+.scrollImage{
+    position: absolute;
+    top: 42px;
+    right: 60px;
+    width: 90px;
+    height: 36px;
+}
 
 .embeddedHeader .scrollToggle {
     position: fixed;
