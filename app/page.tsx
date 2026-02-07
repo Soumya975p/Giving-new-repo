@@ -79,8 +79,9 @@ const chapters: Chapter[] = [
     subtitle: 'Deepening involvement',
     tabImage: '/assets/Tab 4.png',
     contentImage: '/assets/4.png',
-    gradient: 'radial-gradient(circle, #FFEF3D 0%, #DCD647 16%, #C9CD33 32%, #8DA806 48%, #86A401 64%, #315900 100%)',
-    tabGradient: 'linear-gradient(180deg, #315900 0%, #B0D313 100%)',
+    gradient: 'radial-gradient(131.15% 140.53% at 93.33% 139.19%, #FFEF3D 0%, #DCD647 22.85%, #C9CD33 46.96%, #8DA806 72.33%, #86A401 75.24%, #315900 99.52%)',
+
+    tabGradient: 'radial-gradient(62.57% 760.86% at 121.94% 254.49%, #FFEF3D 0%, #DCD647 22.85%, #C9CD33 46.96%, #86A401 75.24%, #315900 99.52%)',
     gridImage: '/assets/ch4.png'
   }
 ]
@@ -586,7 +587,7 @@ your team through a simple,<br />
                                   const card = centerCardRefs.current[0];
                                   if (card) {
                                     card.style.transformOrigin = 'bottom left';
-                                    card.style.transform = 'rotate(-15deg)';
+                                    card.style.transform = 'rotate(-6deg)';
                                   }
                                 }}
                                 onMouseLeave={() => {
@@ -606,6 +607,7 @@ your team through a simple,<br />
 
                                 {/* Animated CTA */}
                                 <motion.div
+                                 className={styles.chooseOptDiv}
                                   variants={ctaVariants}
                                   style={{
                                     marginTop: '20px',
@@ -613,17 +615,17 @@ your team through a simple,<br />
                                     alignItems: 'center',
                                     gap: '6px',
                                     color: '#1a4d3a',
-                                    fontWeight: 500
+                                    fontWeight: 500,
+                                    width: '100%',
+                                    justifyContent: 'center',
                                   }}
                                 >
-                                  <motion.div variants={arrowVariants}>
-                                    <ArrowRight style={{ width: '20px', height: '20px' }} />
-                                  </motion.div>
+                                  
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>Choose Option</span>
+                                  }}> <img src="./assets/left-arrow-b.png" alt="" className={styles.chooseOptImg} /> Choose Option</span>
                                 </motion.div>
                               </motion.div>
 
@@ -706,7 +708,7 @@ your team through a simple,<br />
                                   const card = centerCardRefs.current[0];
                                   if (card) {
                                     card.style.transformOrigin = 'bottom right';
-                                    card.style.transform = 'rotate(15deg)';
+                                    card.style.transform = 'rotate(10deg)';
                                   }
                                 }}
                                 onMouseLeave={() => {
@@ -720,7 +722,7 @@ your team through a simple,<br />
                                 <span className={styles.optionLabel}>OPTION B</span>
                                 <p className={styles.optionDesc}>
                                   Tap into your existing
-                                  network – Connections
+                                  network – connections
                                   of volunteers,
                                   champions & donors
                                 </p>
@@ -735,17 +737,17 @@ your team through a simple,<br />
                                     gap: '6px',
                                     color: '#20315B',
                                     fontWeight: 500,
-                                    flexDirection: 'row-reverse'
+                                    flexDirection: 'row-reverse',
+                                      width: '100%',
+                                    justifyContent: 'left',
                                   }}
                                 >
-                                  <motion.div variants={arrowLeftVariants}>
-                                    <ArrowLeft style={{ width: '20px', height: '20px' }} />
-                                  </motion.div>
+                                
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}> Choose Option</span>
+                                  }}> Choose Option <img src="/assets/right-arrow-b.png" alt=""  className={styles.chooseOptImg}/></span>
                                 </motion.div>
                               </motion.div>
 
@@ -977,7 +979,7 @@ your team through a simple,<br />
                                   const card = centerCardRefs.current[1];
                                   if (card) {
                                     card.style.transformOrigin = 'bottom left';
-                                    card.style.transform = 'rotate(-15deg)';
+                                    card.style.transform = 'rotate(-6deg)';
                                   }
                                 }}
                                 onMouseLeave={() => {
@@ -1008,14 +1010,12 @@ your team through a simple,<br />
                                     fontWeight: 500
                                   }}
                                 >
-                                  <motion.div variants={arrowVariants}>
-                                    <ArrowRight style={{ width: '20px', height: '20px' }} />
-                                  </motion.div>
+                                 
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>Choose Option</span>
+                                  }}>  <img src="./assets/left-arrow-w.png" alt="" className={styles.chooseOptImg} /> Choose Option</span>
                                 </motion.div>
                               </motion.div>
 
@@ -1039,7 +1039,7 @@ your team through a simple,<br />
                                   const card = centerCardRefs.current[1];
                                   if (card) {
                                     card.style.transformOrigin = 'bottom right';
-                                    card.style.transform = 'rotate(15deg)';
+                                    card.style.transform = 'rotate(10deg)';
                                   }
                                 }}
                                 onMouseLeave={() => {
@@ -1070,14 +1070,12 @@ your team through a simple,<br />
                                     flexDirection: 'row-reverse'
                                   }}
                                 >
-                                  <motion.div variants={arrowLeftVariants}>
-                                    <ArrowLeft style={{ width: '20px', height: '20px' }} />
-                                  </motion.div>
+                                 
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>Choose Option</span>
+                                  }}>Choose Option  <img src="./assets/right-arrow-w.png" alt="" className={styles.chooseOptImg} /></span>
                                 </motion.div>
                               </motion.div>
 
@@ -1380,7 +1378,7 @@ your team through a simple,<br />
                                   const card = centerCardRefs.current[2];
                                   if (card) {
                                     card.style.transformOrigin = 'bottom left';
-                                    card.style.transform = 'rotate(-15deg)';
+                                    card.style.transform = 'rotate(-6deg)';
                                   }
                                 }}
                                 onMouseLeave={() => {
@@ -1393,8 +1391,8 @@ your team through a simple,<br />
                               >
                                 <span className={styles.optionLabel} style={{ color: '#20315B' }}>OPTION A</span>
                                 <p className={styles.optionDesc} style={{ color: '#20315B' }}>
-                                  Reach out only when<br />
-                                  you need funds again
+                                  Reach out only when you <br />
+                                   need funds again
                                 </p>
 
                                 {/* Animated CTA */}
@@ -1406,17 +1404,18 @@ your team through a simple,<br />
                                     alignItems: 'center',
                                     gap: '6px',
                                     color: '#1a4d3a',
-                                    fontWeight: 500
+                                    fontWeight: 500,
+                                      width: '100%',
+                                    justifyContent: 'center',
+
                                   }}
                                 >
-                                  <motion.div variants={arrowVariants}>
-                                    <ArrowRight style={{ width: '20px', height: '20px' }} />
-                                  </motion.div>
+                                 
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>Choose Option</span>
+                                  }}> <img src="./assets/left-arrow-b.png" alt="" className={styles.chooseOptImg} /> Choose Option </span>
                                 </motion.div>
                               </motion.div>
 
@@ -1478,7 +1477,7 @@ your team through a simple,<br />
                                   const card = centerCardRefs.current[2];
                                   if (card) {
                                     card.style.transformOrigin = 'bottom right';
-                                    card.style.transform = 'rotate(15deg)';
+                                    card.style.transform = 'rotate(10deg)';
                                   }
                                 }}
                                 onMouseLeave={() => {
@@ -1508,17 +1507,17 @@ your team through a simple,<br />
                                     gap: '6px',
                                     color: '#1a4d3a',
                                     fontWeight: 500,
-                                    flexDirection: 'row-reverse'
+                                    flexDirection: 'row-reverse',
+                                      width: '100%',
+                                    justifyContent: 'left',
+
                                   }}
                                 >
-                                  <motion.div variants={arrowLeftVariants}>
-                                    <ArrowLeft style={{ width: '20px', height: '20px' }} />
-                                  </motion.div>
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>Choose Option</span>
+                                  }}>Choose Option  <img src="./assets/right-arrow-b.png" alt="" className={styles.chooseOptImg} /></span>
                                 </motion.div>
                               </motion.div>
 
@@ -1591,7 +1590,7 @@ your team through a simple,<br />
 
                                 <h4 className={styles.ch1Label} style={{ color: '#FFFFFFCC' }}>CHAPTER IV: DONORS TO CHAMPIONS</h4>
                                 <h1 className={styles.ch1Title} style={{ color: '#FFFFFF' }}>
-                                  When relationships are nurtured well, supporters deepen their involvement.<br />
+                                  When relationships are nurtured well, supporters deepen their involvement.
                                   This chapter explores how donors grow into champions.
                                 </h1>
                                 <p className={`${styles.selectChapter} ${styles.desktopOnly}`} style={{ color: '#FFFFFFCC' }}>Select one of the two options to reveal the right way</p>
@@ -1658,7 +1657,7 @@ your team through a simple,<br />
                                   const card = centerCardRefs.current[3];
                                   if (card) {
                                     card.style.transformOrigin = 'bottom left';
-                                    card.style.transform = 'rotate(-15deg)';
+                                    card.style.transform = 'rotate(-6deg)';
                                   }
                                 }}
                                 onMouseLeave={() => {
@@ -1685,17 +1684,17 @@ your team through a simple,<br />
                                     alignItems: 'center',
                                     gap: '6px',
                                     color: '#1a4d3a',
-                                    fontWeight: 500
+                                    fontWeight: 500,
+                                     width: '100%',
+                                    justifyContent: 'center',
+
                                   }}
                                 >
-                                  <motion.div variants={arrowVariants}>
-                                    <ArrowRight style={{ width: '20px', height: '20px' }} />
-                                  </motion.div>
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>Choose Option</span>
+                                  }}> <img src="./assets/left-arrow-b.png" alt="" className={styles.chooseOptImg} />Choose Option</span>
                                 </motion.div>
                               </motion.div>
 
@@ -1777,7 +1776,7 @@ your team through a simple,<br />
                                   const card = centerCardRefs.current[3];
                                   if (card) {
                                     card.style.transformOrigin = 'bottom right';
-                                    card.style.transform = 'rotate(15deg)';
+                                    card.style.transform = 'rotate(10deg)';
                                   }
                                 }}
                                 onMouseLeave={() => {
@@ -1803,17 +1802,17 @@ your team through a simple,<br />
                                     gap: '6px',
                                     color: '#1a4d3a',
                                     fontWeight: 500,
-                                    flexDirection: 'row-reverse'
+                                    flexDirection: 'row-reverse',
+                                     width: '100%',
+                                    justifyContent: 'center',
+
                                   }}
                                 >
-                                  <motion.div variants={arrowLeftVariants}>
-                                    <ArrowLeft style={{ width: '20px', height: '20px' }} />
-                                  </motion.div>
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>Choose Option</span>
+                                  }}>Choose Option  <img src="./assets/right-arrow-b.png" alt="" className={styles.chooseOptImg} /></span>
                                 </motion.div>
                               </motion.div>
 

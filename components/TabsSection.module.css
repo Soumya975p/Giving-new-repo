@@ -8,7 +8,7 @@
     bottom: 0;
     left: 0;
     width: 100vw;
-    height: 90px;
+    height: 85px;
     display: flex;
     align-items: flex-end;
     overflow: visible;
@@ -18,7 +18,7 @@
     pointer-events: auto;
     user-select: none;
     -webkit-user-select: none;
-    transform: translateY(12px);
+    transform: translateY(4px);
 
 }
 
