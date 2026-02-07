@@ -219,17 +219,18 @@
     flex-direction: column;
     gap: 15px;
     width: 280px;
+   
 }
 
 /* Staggered heights for visual interest */
 .contentCard:nth-child(1) {
     align-self: flex-start;
-    margin-top: 0;
+    margin-top: 80px !important;
 }
 
 .contentCard:nth-child(2) {
     align-self: flex-start;
-    margin-top: 30px;
+    margin-top: 52px;
 }
 
 .contentCard:nth-child(3) {
@@ -244,8 +245,8 @@
     /* Regular */
     font-style: normal;
     font-size: 24px;
-    line-height: 1.2;
-    /* 120% */
+    line-height: 1.4;
+    /* 140% */
     letter-spacing: -0.04em;
     /* -4% */
     color: #FFFFFF;
@@ -255,6 +256,12 @@
     border-left: none;
     padding-bottom: 10px;
     position: relative;
+    max-width: 250px;
+}
+
+/* Floating text for card 1 */
+.contentCard:nth-child(1) .floatingText {
+    margin-bottom: 36px;
 }
 
 /* Decoration markers on the left border */
@@ -313,13 +320,13 @@
     /* Regular */
     font-style: normal;
     font-size: 24px;
-    line-height: 1.2;
-    /* 120% */
+    line-height: 1.4;
+    /* 140% */
     letter-spacing: -0.04em;
     /* -4% */
     color: #FFFFFF;
-
     margin: 0;
+    max-width: 275px;
 }
 
 .cardContent {
@@ -328,13 +335,13 @@
     /* Regular */
     font-style: normal;
     font-size: 24px;
-    line-height: 1.2;
-    /* 120% */
+    line-height: 1.4;
+    /* 140% */
     letter-spacing: -0.04em;
     /* -4% */
     color: #FFFFFF;
-
     margin: 0;
+    max-width: 350px;
 }
 
 .infoBox {
@@ -444,6 +451,7 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    transform: rotate(6deg);
 }
 
 .toolkitImageWrapper {
@@ -569,7 +577,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 200px;
+    gap: 50px;
     /* Match scrollContent gap? Or Ch2 Option B gap? */
 }
 
@@ -581,6 +589,7 @@
     min-width: 150px;
     position: relative;
     overflow: visible;
+    align-self: center;
 }
 
 .nextChapterButton {
@@ -620,11 +629,16 @@
 
 .embedded .contentCard {
     width: 399px;
-    margin-right: 200px;
+    margin-right: 100px;
+}
+
+.embedded .contentCard:nth-child(1) {
+    margin-top: 80px !important;
 }
 
 .embedded .contentCard:nth-child(2) {
-    margin-right: 80px;
+    margin-top: 52px;
+    margin-right: 0px;
 }
 
 /* Option B only has 3 cards, so we might not need the nth-child(3) override unless the 2nd card needs it */
@@ -633,7 +647,7 @@
     width: 350px;
     height: 400px;
     margin-right: 10px;
-    transform: rotate(12deg);
+    transform: rotate(6deg);
 }
 
 .embedded .toolkitImage {
@@ -651,7 +665,7 @@
     position: absolute;
     width: 96px;
     height: auto;
-    top: -10%;
+    top: -25%;
     left: -20%;
     right: auto;
     bottom: auto;
@@ -666,7 +680,7 @@
     top: -5%;
     left: -10%;
     width: auto;
-    height: 500px;
+    height: 450px;
     z-index: 99;
     pointer-events: none;
 }
@@ -678,7 +692,7 @@
     height: auto;
     top: auto;
     bottom: -80px;
-    left: 20%;
+    left: 40%;
     margin-left: 50px;
     right: auto;
     z-index: 100;
@@ -686,9 +700,9 @@
 
 .embedded .nextChapterCard {
     margin-left: 0;
-    margin-right: 30px;
+    margin-right: 50px;
     z-index: 10001;
-    top: 20vh;
+    top: -5vh;
 }
 
 @media (max-width: 1024px) {

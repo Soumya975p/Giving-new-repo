@@ -48,13 +48,14 @@
     left: 0;
     right: 0;
     z-index: 100;
-    padding: 30px 60px 15px;
+    /* padding: 30px 60px 15px; */
     background: transparent;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
     flex-shrink: 0;
+    margin-top: 50px;
 }
 
 .embeddedHeader {
@@ -183,7 +184,7 @@
     -ms-overflow-style: none;
     display: flex;
     align-items: center;
-    margin-top: 200px;
+    margin-top: 128.97px;
 }
 
 .horizontalScrollContainer::-webkit-scrollbar {
@@ -232,7 +233,8 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    margin-bottom: 25px;
+    margin-top: 68px;
+    margin-bottom: 40px;
     /* max-width: 200px; */
 }
 
@@ -251,9 +253,9 @@
     font-weight: 400;
     font-style: normal;
     /* Regular */
-    font-size: 24px;
-    line-height: 1.2;
-    /* 120% */
+    font-size: 20px;
+    line-height: 1.4;
+    /* 140% */
     letter-spacing: -0.04em;
     /* -4% */
     color: #20315B;
@@ -332,7 +334,7 @@
 .ch1OptionA .contentCard:nth-child(2) .decorationImage,
 .ch1OptionA .contentCard:nth-child(3) .decorationImage {
     left: -40px;
-    top: -5%;
+    top: -3%;
     height: 500px;
     width: auto;
 }
@@ -428,9 +430,10 @@
 
 .cardContent {
     font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    color: rgba(255, 255, 255, 0.9);
+    font-size: 18px;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+    color: #FFFFFF;
     margin: 0;
     font-weight: 400;
 }
@@ -552,8 +555,9 @@
     justify-content: center;
     flex-shrink: 0;
     overflow: visible;
-        left: -35px;
+    left: -35px;
     top: 30px;
+    transform: rotate(6deg);
 }
 
 .toolkitImageWrapper {
@@ -695,7 +699,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 200px;
+    /* gap: 200px; */
     /* Match scrollContent gap for Option A/B */
 }
 
@@ -740,6 +744,14 @@
     /* transform: translateY(-20px); */
 }
 
+.ch1OptionA .contentCard:nth-child(2) {
+    margin-top: 0;
+}
+
+.ch1OptionA .lastCardWrapper {
+    gap: 15px;
+}
+
 .ch1OptionB .scrollContent {
     padding: 20px 0 20px 150px;
     gap: 200px;
@@ -748,6 +760,15 @@
 
 .ch1OptionB .horizontalScrollContainer {
     margin-top: 200px;
+}
+
+.ch1OptionB .contentCard:nth-child(1) {
+    margin-top: 49px;
+    
+}
+
+.ch1OptionB .floatingTextContainer {
+    max-width: 600px;
 }
 
 .nextChapterImage {
@@ -769,16 +790,17 @@
 .embedded .toolkitCard {
     width: 300px;
     height: 400px;
+    transform: rotate(6deg);
     /* Default offset removed, moving to specific IDs */
 }
 
 /* Specific Toolkit Offsets for 50px gap (Gap 200 - Offset 150 = 50) */
 .toolkit-4 {
-    transform: translateX(-210px);
+    transform: translateX(-210px) rotate(6deg);
 }
 
 .toolkit-13 {
-    transform: translateX(-210px) translateY(10%);
+    transform: translateX(-210px) translateY(10%) rotate(6deg);
 }
 
 .embedded .toolkitImage {
@@ -797,7 +819,7 @@
     bottom: auto;
     top: 5vh;
     transform: none;
-    margin-left: -18vw;
+    margin-left: 4vw;
     padding-right: 0;
     z-index: 50;
 }

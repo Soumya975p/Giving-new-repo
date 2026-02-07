@@ -179,7 +179,7 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    gap: 200px;
+    gap: 150px;
     padding: 120px 100px 30px;
     min-width: max-content;
     height: 100%;
@@ -305,7 +305,7 @@
     letter-spacing: 10%;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 12px;
+    /* margin-bottom: 12px; */
 }
 
 .studyText {
@@ -361,6 +361,9 @@
     align-items: flex-start;
     position: relative;
     margin-bottom: 30px;
+}
+.infoDiv2{
+    transform: translateX(-15px);
 }
 
 .divText1 {
@@ -504,7 +507,7 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    gap: 150px;
+    gap: 50px;
     align-self: flex-start;
     margin-top: auto;
     /* Allow items to align with their own margins */
@@ -871,6 +874,7 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+    transform: translateX(-25px);
 }
 
 .divText1 {
