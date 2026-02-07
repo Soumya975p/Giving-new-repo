@@ -13,8 +13,10 @@ import chapter3StylesA from '../components/Chapter3OptionA.module.css'
 import chapter3StylesB from '../components/Chapter3OptionB.module.css'
 import chapter4StylesA from '../components/Chapter4OptionA.module.css'
 import chapter4StylesB from '../components/Chapter4OptionB.module.css'
+import Chapter3OptionA from '../components/Chapter3OptionA'
 import Chapter3OptionB from '../components/Chapter3OptionB'
 import Chapter4OptionA from '../components/Chapter4OptionA'
+import Chapter4OptionB from '../components/Chapter4OptionB'
 import TabsSection from '../components/TabsSection'
 import Footer from '../components/Footer'
 import Explore from '../components/Explore'
@@ -1286,74 +1288,12 @@ your team through a simple,<br />
                           </div>
 
                           {selectedOption === 'A' ? (
-                            <div style={{ flex: 1, width: '100%', position: 'relative' }}>
-                              <OptionContent
-                                embedded={true}
-                                chapterTitle="CHAPTER III: STEWARDING DONORS"
-                                chapterSubtitle="Staying connected after the first gift builds trust. This chapter focuses on how consistent, non-ask engagement helps donors feel involved and valued."
-                                backgroundColor="transparent"
-                                onBack={() => setSelectedOption(null)}
-                                onNext={handleNextChapter}
-                                optionId="ch3OptionA"
-                                contentCards={[
-                                  {
-                                    id: 1,
-                                    type: 'text',
-                                    floatingTextLabel: "UDARTA:EG STUDY SHOWS",
-                                    floatingText: "Sending only donation appeals may make donors feel like transactions, not partners. Support might fade after one or two gifts.",
-                                    label: '',
-                                    title: '',
-                                    content: '',
-                                    showStatBelow: true,
-                                    statLabel: 'DID YOU KNOW?',
-                                    stat: 'Donor retention rates',
-                                    statDescription: 'drop to 20-30% after the first gift without ongoing engagement.',
-                                    statBoxTransparent: true
-                                  },
-                                  {
-                                    id: 2,
-                                    type: 'text',
-                                    floatingText: "Instead, regular updates, stories, and gratitude keep donors connected to your impact. They feel part of the journey, not just a funding source.",
-                                    label: '',
-                                    title: '',
-                                    content: '',
-                                    showStatBelow: true,
-                                    statLabel: 'UDARTA:EG STUDY SHOWS',
-                                    stat: '85% of nonprofits',
-                                    statDescription: 'report that consistent communication increases donor loyalty and repeat giving.'
-                                  },
-                                  {
-                                    id: 3,
-                                    type: 'text',
-                                    floatingText: (
-                                      <>
-                                        We've created a toolkit<br />
-                                        to help you build meaningful<br />
-                                        donor relationships
-                                      </>
-                                    ),
-                                    label: '',
-                                    title: '',
-                                    content: ''
-                                  },
-                                  {
-                                    id: 4,
-                                    type: 'toolkit',
-                                    floatingText: "",
-                                    decorationType: undefined,
-                                    toolkitNumber: 4,
-                                    toolkitTitle: 'The Storytelling Bank',
-                                    toolkitDescription: 'A collection of stories to share with donors.',
-                                    toolkitBackgroundImage: '/assets/toolkit4_background.svg',
-                                    toolkitDesignImage: '/assets/toolkit4_design.png',
-                                    toolkitImage: '/assets/toolkit4.svg',
-                                    toolkitURL: 'https://docs.google.com/spreadsheets/d/1ZTATFrOS2l36KOk8FWKtQOvOnWRPizl4rb956zgj7tA/edit?usp=sharing',
-                                    onToolkitDownload: () => setIsPopupOpen(true),
-                                    onToolkitView: () => setIsPopupOpen(true)
-                                  }
-                                ]}
-                              />
-                            </div>
+                            <Chapter3OptionA
+                              embedded={true}
+                              onBack={() => setSelectedOption(null)}
+                              onNext={handleNextChapter}
+                              onToolkitDownload={() => setIsPopupOpen(true)}
+                            />
                           ) : selectedOption === 'B' ? (
                             // Chapter 3 Option B Content
                             <Chapter3OptionB
@@ -1432,36 +1372,16 @@ your team through a simple,<br />
                               <AnimatePresence>
                                 {isCh3OptionAHovered && (
                                   <>
-                                    {/* <motion.img
-                                      key="ch3-left-fly"
-                                      src="/assets/chapter3/hover_fly_ch3.svg"
+                                    <motion.img
+                                      key="ch3-optiona-hover"
+                                      src="/assets/chapter3/hover_ch3_optiona.svg"
                                       alt=""
-                                      className={styles.ch3LeftFly}
-                                      initial={{ opacity: 0, x: -20 }}
-                                      animate={{ opacity: 1, x: 0 }}
-                                      exit={{ opacity: 0, x: -20 }}
-                                      transition={{ duration: 0.5 }}
-                                    /> */}
-                                    {/* <motion.img
-                                      key="ch3-left-flower"
-                                      src="/assets/chapter3/hover_left_flower_ch3.svg"
-                                      alt=""
-                                      className={styles.ch3LeftFlowerA}
-                                      initial={{ opacity: 0, y: 20 }}
-                                      animate={{ opacity: 1, y: 0 }}
-                                      exit={{ opacity: 0, y: 20 }}
-                                      transition={{ duration: 0.4, delay: 0.1 }}
-                                    /> */}
-                                    {/* <motion.img
-                                      key="ch3-left-diamond"
-                                      src="/assets/chapter3/hover_diamond_bottom_ch3.svg"
-                                      alt=""
-                                      className={styles.ch3LeftDiamond}
-                                      initial={{ opacity: 0, scale: 0.8 }}
+                                      className={styles.ch3OptionAHover}
+                                      initial={{ opacity: 0, scale: 0.9 }}
                                       animate={{ opacity: 1, scale: 1 }}
-                                      exit={{ opacity: 0, scale: 0.8 }}
-                                      transition={{ duration: 0.3, delay: 0.15 }}
-                                    /> */}
+                                      exit={{ opacity: 0, scale: 0.9 }}
+                                      transition={{ duration: 0.5 }}
+                                    />
                                   </>
                                 )}
                               </AnimatePresence>
@@ -1606,37 +1526,12 @@ your team through a simple,<br />
                               onToolkitDownload={() => setIsPopupOpen(true)}
                             />
                           ) : selectedOption === 'B' ? (
-                            <div style={{
-                              position: 'fixed',
-                              top: '40px',
-                              left: 0,
-                              right: 0,
-                              display: 'flex',
-                              justifyContent: 'center',
-                              zIndex: 10000,
-                              pointerEvents: 'none'
-                            }}>
-                              <button
-                                onClick={() => setSelectedOption(null)}
-                                style={{
-                                  pointerEvents: 'auto',
-                                  display: 'flex',
-                                  alignItems: 'center',
-                                  gap: '8px',
-                                  background: 'transparent',
-                                  border: 'none',
-                                  color: '#1a4d3a',
-                                  fontFamily: 'DM Sans, sans-serif',
-                                  fontSize: '14px',
-                                  fontWeight: 500,
-                                  cursor: 'pointer',
-                                  padding: 0
-                                }}
-                              >
-                                <ArrowLeft size={16} />
-                                <span>Back to scenario</span>
-                              </button>
-                            </div>
+                            <Chapter4OptionB
+                              embedded={true}
+                              onBack={() => setSelectedOption(null)}
+                              onNext={handleNextChapter}
+                              onToolkitDownload={() => setIsPopupOpen(true)}
+                            />
                           ) : (
                             // Chapter 4 Default View - Scenario Cards
                             <div className={styles.scenarioContainer} style={{ marginTop: '10px' }}>
@@ -1712,54 +1607,14 @@ your team through a simple,<br />
                                 {isCh4OptionAHovered && (
                                   <>
                                     <motion.img
-                                      key="ch4-left-fly"
-                                      src="/assets/chapter4/hover_fly_ch4.svg"
+                                      key="ch4-optiona-hover"
+                                      src="/assets/chapter4/hover_ch4_optiona.png"
                                       alt=""
-                                      className={styles.ch4LeftFly}
-                                      initial={{ opacity: 0, x: -20 }}
-                                      animate={{ opacity: 1, x: 0 }}
-                                      exit={{ opacity: 0, x: -20 }}
+                                      className={styles.ch4OptionAHover}
+                                      initial={{ opacity: 0, scale: 0.9 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      exit={{ opacity: 0, scale: 0.9 }}
                                       transition={{ duration: 0.5 }}
-                                    />
-                                    <motion.img
-                                      key="ch4-left-hollow"
-                                      src="/assets/chapter4/hover_hollow_ch4.svg"
-                                      alt=""
-                                      className={styles.ch4LeftHollow}
-                                      initial={{ opacity: 0, scale: 0.8 }}
-                                      animate={{ opacity: 1, scale: 1 }}
-                                      exit={{ opacity: 0, scale: 0.8 }}
-                                      transition={{ duration: 0.4, delay: 0.1 }}
-                                    />
-                                    <motion.img
-                                      key="ch4-left-fill"
-                                      src="/assets/chapter4/hover_fill_circle_ch4.svg"
-                                      alt=""
-                                      className={styles.ch4LeftFill}
-                                      initial={{ opacity: 0, scale: 0.8 }}
-                                      animate={{ opacity: 1, scale: 1 }}
-                                      exit={{ opacity: 0, scale: 0.8 }}
-                                      transition={{ duration: 0.3, delay: 0.15 }}
-                                    />
-                                    <motion.img
-                                      key="ch4-left-hollow-2"
-                                      src="/assets/chapter4/hover_hollow_ch4.svg"
-                                      alt=""
-                                      className={styles.ch4LeftHollow2}
-                                      initial={{ opacity: 0, scale: 0.8 }}
-                                      animate={{ opacity: 1, scale: 1 }}
-                                      exit={{ opacity: 0, scale: 0.8 }}
-                                      transition={{ duration: 0.4, delay: 0.2 }}
-                                    />
-                                    <motion.img
-                                      key="ch4-left-fill-2"
-                                      src="/assets/chapter4/hover_fill_circle_ch4.svg"
-                                      alt=""
-                                      className={styles.ch4LeftFill2}
-                                      initial={{ opacity: 0, scale: 0.8 }}
-                                      animate={{ opacity: 1, scale: 1 }}
-                                      exit={{ opacity: 0, scale: 0.8 }}
-                                      transition={{ duration: 0.3, delay: 0.25 }}
                                     />
                                   </>
                                 )}
@@ -1821,54 +1676,14 @@ your team through a simple,<br />
                                 {isCh4OptionBHovered && (
                                   <>
                                     <motion.img
-                                      key="ch4-right-fly"
-                                      src="/assets/chapter4/hover_fly_ch4.svg"
+                                      key="ch4-optionb-hover"
+                                      src="/assets/chapter4/hover_ch4_optionb.svg"
                                       alt=""
-                                      className={styles.ch4RightFly}
-                                      initial={{ opacity: 0, x: 20 }}
-                                      animate={{ opacity: 1, x: 0 }}
-                                      exit={{ opacity: 0, x: 20 }}
+                                      className={styles.ch4OptionBHover}
+                                      initial={{ opacity: 0, scale: 0.9 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      exit={{ opacity: 0, scale: 0.9 }}
                                       transition={{ duration: 0.5 }}
-                                    />
-                                    <motion.img
-                                      key="ch4-right-hollow"
-                                      src="/assets/chapter4/hover_hollow_ch4.svg"
-                                      alt=""
-                                      className={styles.ch4RightHollow}
-                                      initial={{ opacity: 0, scale: 0.8 }}
-                                      animate={{ opacity: 1, scale: 1 }}
-                                      exit={{ opacity: 0, scale: 0.8 }}
-                                      transition={{ duration: 0.4, delay: 0.1 }}
-                                    />
-                                    <motion.img
-                                      key="ch4-right-fill"
-                                      src="/assets/chapter4/hover_fill_circle_ch4.svg"
-                                      alt=""
-                                      className={styles.ch4RightFill}
-                                      initial={{ opacity: 0, scale: 0.8 }}
-                                      animate={{ opacity: 1, scale: 1 }}
-                                      exit={{ opacity: 0, scale: 0.8 }}
-                                      transition={{ duration: 0.3, delay: 0.15 }}
-                                    />
-                                    <motion.img
-                                      key="ch4-right-hollow-2"
-                                      src="/assets/chapter4/hover_hollow_ch4.svg"
-                                      alt=""
-                                      className={styles.ch4RightHollow2}
-                                      initial={{ opacity: 0, scale: 0.8 }}
-                                      animate={{ opacity: 1, scale: 1 }}
-                                      exit={{ opacity: 0, scale: 0.8 }}
-                                      transition={{ duration: 0.4, delay: 0.2 }}
-                                    />
-                                    <motion.img
-                                      key="ch4-right-fill-2"
-                                      src="/assets/chapter4/hover_fill_circle_ch4.svg"
-                                      alt=""
-                                      className={styles.ch4RightFill2}
-                                      initial={{ opacity: 0, scale: 0.8 }}
-                                      animate={{ opacity: 1, scale: 1 }}
-                                      exit={{ opacity: 0, scale: 0.8 }}
-                                      transition={{ duration: 0.3, delay: 0.25 }}
                                     />
                                   </>
                                 )}
