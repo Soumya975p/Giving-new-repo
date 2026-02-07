@@ -3319,6 +3319,10 @@
     padding: 20px 25px;
     gap: 25px;
   }
+  .chaptersSection {
+    min-height: 120vh !important;
+        align-items: flex-start;
+  }
 }
 
 /* Footer Section - Flows naturally after chapters */
@@ -5740,7 +5744,7 @@
     height: auto;
     min-height: 100%;
     min-width: unset;
-    padding: 16px 16px 0;
+    padding: 60px 16px 0;
     gap: 0;
     overflow: hidden;
     box-sizing: border-box;
@@ -5777,7 +5781,8 @@
     line-height: 140% !important;
     letter-spacing: 0.1em !important;
     text-transform: uppercase !important;
-    color: rgba(255, 255, 255, 0.8) !important;
+    color: #20315BB2;
+
     background: transparent !important;
     margin-bottom: 12px !important;
     text-align: left !important;
@@ -5786,10 +5791,10 @@
   .ch1Title {
     font-family: 'DM Sans', sans-serif !important;
     font-weight: 500 !important;
-    font-size: 18px !important;
+    font-size: 20px !important;
     line-height: 120% !important;
     letter-spacing: -0.03em !important;
-    color: #FFFFFF !important;
+    color: #0A1731 !important;
     background: transparent !important;
     text-align: left !important;
     margin-bottom: 10px !important;
@@ -5840,10 +5845,10 @@
     font-size: 14px !important;
     line-height: 164% !important;
     letter-spacing: -0.02em !important;
-    color: rgba(255, 255, 255, 0.8) !important;
+    color: #00000099  !important;
     background: transparent !important;
     text-align: center !important;
-    margin: 12px 0 16px 0 !important;
+    margin: 12px 0 14px 0 !important;
     width: 100% !important;
     flex-shrink: 0 !important;
   }
@@ -5863,7 +5868,7 @@
     backdrop-filter: blur(24px) !important;
     -webkit-backdrop-filter: blur(24px) !important;
     border-radius: 10px;
-    padding: 5px 5px;
+    padding: 20px;
     gap: 4px;
     flex-shrink: 0;
     border: 2px dotted rgba(56, 241, 255, 0.4);
@@ -5942,7 +5947,7 @@
   /* Hide hover CTA on mobile */
   .optionColumnLeft>div:last-child,
   .optionColumnRight>div:last-child {
-    display: none;
+    display: none !important;
   }
 
   /* Chapter Content Sticky - Mobile */
@@ -8199,7 +8204,7 @@
     width: 100% !important;
     max-width: 100% !important;
     align-items: flex-start !important;
-    padding: 10px 20px;
+    padding: 20px;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
     border-radius: 12px;
     margin-top: 0 !important;
@@ -8929,6 +8934,9 @@
   }
     .noScroll{
     /* overflow: auto !important; */
+  }
+  .floatingText{
+    font-size: 16px !important;
   }
 }
 

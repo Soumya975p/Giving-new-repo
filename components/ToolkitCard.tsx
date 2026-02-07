@@ -33,9 +33,9 @@ export default function ToolkitCard({
 
     const handleViewToolkit = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
-        // Directly open the toolkit URL in a new tab
-        if (toolkiturl) {
-            window.open(toolkiturl, '_blank', 'noopener,noreferrer');
+        // Call the onViewToolkit callback to open the popup form
+        if (onViewToolkit) {
+            onViewToolkit();
         }
     };
     return (

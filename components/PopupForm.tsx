@@ -6,18 +6,23 @@ import styles from './PopupForm.module.css';
 interface PopupFormProps {
     isOpen: boolean;
     onClose: () => void;
+    toolkitUrl?: string;
 }
 
 const COOKIE_NAME = "popup_form_submitted_v1";
 
-const hasCookie = () =>
-    document.cookie.split(";").some(c => c.trim().startsWith(COOKIE_NAME + "="));
+const hasCookie = () => {
+    const exists = document.cookie.split(";").some(c => c.trim().startsWith(COOKIE_NAME + "="));
+    console.log('PopupForm - Cookie check:', exists ? 'Found' : 'Not found', '- All cookies:', document.cookie);
+    return exists;
+};
 
 const setCookie = () => {
     document.cookie = `${COOKIE_NAME}=true; max-age=86400; path=/; SameSite=Lax`;
+    console.log('Cookie set:', COOKIE_NAME, '- Will expire in 24 hours');
 };
 
-export default function PopupForm({ isOpen, onClose }: PopupFormProps) {
+export default function PopupForm({ isOpen, onClose, toolkitUrl }: PopupFormProps) {
     
     const [ready, setReady] = useState(false); // prevents flicker
     const [showPopup, setShowPopup] = useState(false);
@@ -84,10 +89,21 @@ export default function PopupForm({ isOpen, onClose }: PopupFormProps) {
                     organisation: formData.get("organisation"),
                 }),
             });
+
+            if (!res.ok) {
+                throw new Error(`Server responded with ${res.status}: ${res.statusText}`);
+            }
+
             const text = await res.text(); // 👈 read as text first
-            //console.log(text);
-            const result = JSON.parse(text); // convert manually
-            //const result = await res.json();
+            console.log("Server response:", text);
+
+            let result;
+            try {
+                result = JSON.parse(text); // convert manually
+            } catch (parseErr) {
+                console.error("Failed to parse response as JSON:", text);
+                throw new Error("Invalid server response");
+            }
             if (result.status === "success") {
                 setCookie();
                 /*const date = new Date();
@@ -111,6 +127,10 @@ export default function PopupForm({ isOpen, onClose }: PopupFormProps) {
                             el.removeAttribute('data-href');
                         }
                     });
+                    // Open the specific toolkit URL if provided
+                    if (toolkitUrl) {
+                        window.open(toolkitUrl, '_blank', 'noopener,noreferrer');
+                    }
                 }, 0);
                 setTimeout(() => {
                     setMessage("");
@@ -120,8 +140,30 @@ export default function PopupForm({ isOpen, onClose }: PopupFormProps) {
                 setMessage("❌ Something went wrong.");
             }
             } catch (err) {
-                console.log("REAL ERROR:", err);
-                setMessage("❌ Server error.");
+                console.error("Form submission error:", err);
+                setMessage("⚠️ Could not save form data, but opening toolkit anyway...");
+
+                // Set cookie even on error, so form doesn't show again
+                setCookie();
+                form.reset();
+                setFormData({
+                    firstName: "",
+                    lastName: "",
+                    organisation: "",
+                    email: "",
+                });
+
+                // Even if the server fails, still open the toolkit
+                setTimeout(() => {
+                    if (toolkitUrl) {
+                        window.open(toolkitUrl, '_blank', 'noopener,noreferrer');
+                    }
+                }, 500);
+
+                setTimeout(() => {
+                    setMessage("");
+                    handleClose();
+                }, 2000);
             } finally {
                 setLoading(false);
             }

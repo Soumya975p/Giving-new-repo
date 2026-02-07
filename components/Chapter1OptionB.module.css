@@ -184,7 +184,7 @@
     -ms-overflow-style: none;
     display: flex;
     align-items: center;
-    margin-top: 180px;
+    /* margin-top: 180px; */
 }
 
 .horizontalScrollContainer::-webkit-scrollbar {
@@ -609,4 +609,28 @@
     margin-right: 30px;
     z-index: 10001;
     top: 20vh;
+}
+@media(max-width:768px){
+    .floatingText{
+        font-size: 16px !important;
+    }
+        .statLabel{
+        font-size: 10px !important;
+    }
+    .statNumber{
+        font-size: 16px !important;
+        font-weight: 500;
+    }
+        .statDescription{
+        font-size: 14px !important;
+        font-weight: 400;
+    }
+    .backButton {
+        top: 60px;
+        left: 16px;
+    }
+    .horizontalScrollContainer{
+        align-items: flex-start;
+        margin-top: 60px;
+    }
 }

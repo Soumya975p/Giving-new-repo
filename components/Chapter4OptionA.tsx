@@ -7,7 +7,7 @@ interface Chapter4OptionAProps {
     onBack: () => void;
     onNext?: () => void;
     embedded?: boolean;
-    onToolkitDownload?: () => void;
+    onToolkitDownload?: (url: string) => void;
 }
 
 export default function Chapter4OptionA({ onBack, onNext, embedded = false, onToolkitDownload }: Chapter4OptionAProps) {
@@ -17,8 +17,7 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
             {/* Sticky Header */}
             <div className={`${styles.stickyHeader} ${embedded ? styles.embeddedHeader : ''}`}>
                 <button className={styles.backButton} onClick={onBack}>
-                    <ArrowLeft size={16} />
-                    <span>Back to scenario</span>
+                    <span><img src="/assets/bc-icon.png" alt="" /> Back to scenario</span>
                 </button>
 
                 {!embedded && (
@@ -137,8 +136,7 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
                                 toolkiturl='https://docs.google.com/spreadsheets/d/14igjiR-rsWemDzs0idCkzm0jj5osws5ZyQAxV6vCVb8/edit?usp=sharing'
                                 backgroundVariant="tk6"
                                 designVariant="tk6"
-                                onDownload={onToolkitDownload}
-                                onViewToolkit={onToolkitDownload}
+                                onViewToolkit={() => onToolkitDownload?.('https://docs.google.com/spreadsheets/d/14igjiR-rsWemDzs0idCkzm0jj5osws5ZyQAxV6vCVb8/edit?usp=sharing')}
                             />
                         </div>
 
@@ -155,8 +153,7 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
                                     backgroundVariant="tk7"
                                     designVariant="tk7"
                                     toolkiturl='https://docs.google.com/spreadsheets/d/1Rai3BrOnpgDDSJbnGNPalXrJUWKQHgwwuUVGapbwCKI/edit?usp=sharing'
-                                    onDownload={onToolkitDownload}
-                                    onViewToolkit={onToolkitDownload}
+                                    onViewToolkit={() => onToolkitDownload?.('https://docs.google.com/spreadsheets/d/1Rai3BrOnpgDDSJbnGNPalXrJUWKQHgwwuUVGapbwCKI/edit?usp=sharing')}
                                 />
                             </div>
 
