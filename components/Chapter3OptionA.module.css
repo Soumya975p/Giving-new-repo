@@ -116,6 +116,13 @@
     background: rgba(20, 52, 60, 0.15);
     opacity: 1;
 }
+.scrollImage{
+    position: absolute;
+    top: 42px;
+    right: 60px;
+    width: 90px;
+    height: 36px;
+}
 
 .headerContent {
     text-align: center;
