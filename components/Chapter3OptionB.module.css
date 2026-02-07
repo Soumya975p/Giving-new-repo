@@ -32,7 +32,7 @@
 
 .flowerDecor {
     position: absolute;
-    top: 10px;
+    top: -170px;
     left: -80px;
     width: 80px;
     height: auto;
@@ -77,6 +77,13 @@
     pointer-events: auto;
     position: absolute;
     left: 50vw;
+}
+.scrollImage{
+    position: absolute;
+    top: 42px;
+    right: 60px;
+    width: 90px;
+    height: 36px;
 }
 
 .embeddedHeader .scrollToggle {
@@ -233,6 +240,7 @@
 .contentCard:nth-child(1) {
     align-self: flex-start;
     margin-top: 0;
+    top: 25%;
 }
 
 .contentCard:nth-child(2) {
@@ -392,6 +400,222 @@
 
 .infoText {
     display: none;
+}
+
+/* ========================================
+   STORY CARD STYLES
+   ======================================== */
+
+.storyTitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 140%;
+    letter-spacing: -0.04em;
+    color: #0A1731;
+    margin: 0;
+    max-width: 300px;
+}
+
+.storyText {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    font-style: normal;
+    line-height: 150%;
+    letter-spacing: -0.02em;
+    color: #0A1731;
+    margin: 0;
+    padding-left: 0;
+    padding-bottom: 10px;
+    position: relative;
+    min-width: 450px;
+}
+
+/* ========================================
+   STUDY BOX STYLES
+   ======================================== */
+
+.studyContainer1 {
+    width: 401px;
+    height: 237px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.studyContainer2 {
+    width: 401px;
+    height: 214px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.studyLabel {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    font-style: normal;
+    line-height: 140%;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #195960;
+    margin-bottom: -12px;
+}
+
+.studyIcon {
+    width: 172px;
+    height: 28px;
+    /* margin-bottom: 16px; */
+    margin-top: 8px;
+}
+
+.studyText1 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 24px;
+    line-height: 140%;
+    color: #0A1731;
+    margin: 0 0 12px 0;
+    letter-spacing: -0.04em;
+    font-weight: 400;
+}
+
+.studySubtext1 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 18px;
+    line-height: 140%;
+    color: #20315B;
+    margin: 0;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+    margin-top: -15px;
+}
+
+.studyText2 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 24px;
+    line-height: 140%;
+    color: #0A1731;
+    margin: 0;
+    letter-spacing: -0.04em;
+    font-weight: 400;
+    margin-top: 15px;
+}
+
+/* ========================================
+   GREEN STICK DECORATION
+   ======================================== */
+
+.greenStickWrapper {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    align-self: center;
+}
+
+.greenStick {
+    width: 60%;
+    height: auto;
+    opacity: 0.8;
+}
+
+/* ========================================
+   CARD 3 STYLES
+   ======================================== */
+
+.yellowBar {
+    position: absolute;
+    top: 0;
+    left: -20px;
+    width: 6px;
+    height: 100px;
+    background: linear-gradient(to bottom, #FFD700 0%, #F4E04D 100%);
+    border-radius: 3px;
+}
+
+.whySection {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.whyLabel {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 13px;
+    line-height: 140%;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #195960;
+    display: block;
+    margin-bottom: 8px;
+    transform: translateX(-3vw);
+}
+
+.whyText {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 140%;
+    letter-spacing: -0.04em;
+    color: #20315B;
+    margin: 0;
+    max-width: 420px;
+    transform: translateX(-3vw);
+}
+
+/* ========================================
+   TOOLKIT INTRO SECTION
+   ======================================== */
+
+.toolkitIntro {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 20px;
+    transform: translateY(75px);
+}
+
+.greenCircle {
+    width: 12px;
+    height: 12px;
+    background: #1a4d3a;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 6px;
+}
+
+.greenStickDot {
+    width: 16px;
+    height: auto;
+    flex-shrink: 0;
+    margin-top: -1vh;
+    margin-left: -40px;
+}
+
+.toolkitIntroText {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 140%;
+    letter-spacing: -0.04em;
+    color: #20315B;
+    margin: 0;
+    max-width: 350px;
+    transform: translateX(1vw);
 }
 
 /* ========================================

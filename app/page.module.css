@@ -1072,6 +1072,8 @@
   pointer-events: auto;
 }
 
+
+
 /* Scroll Container */
 .scrollContainer {
   min-width: 100%;
@@ -4914,6 +4916,16 @@
 }
 
 /* Chapter 3 Hover Decorations - Option A (Left Side) */
+.ch3OptionAHover {
+  position: fixed;
+  bottom: 30px;
+  left: calc(50% - 700px);
+  width: 250px;
+  height: 70%;
+  pointer-events: none;
+  z-index: 99;
+}
+
 .ch3LeftFly {
   position: absolute;
   top: -80px;
@@ -4948,7 +4960,7 @@
 .ch3RightFly {
   position: absolute;
   top: -80px;
-  right: 350px;
+  right: 340px;
   width: 50px;
   height: auto;
   pointer-events: none;
@@ -4958,7 +4970,7 @@
 .ch3RightFlower {
   position: absolute;
   bottom: 0vh;
-  right: 10vw;
+  right: 8vw;
   width: 70px;
   height: auto;
   pointer-events: none;
@@ -4969,7 +4981,7 @@
 .ch3DiamondBottom {
   position: absolute;
   bottom: -40px;
-  right: -60px;
+  right: -100px;
   width: 200px;
   height: auto;
   pointer-events: none;
@@ -4979,7 +4991,7 @@
 .ch3TopSection {
   position: absolute;
   top: -90px;
-  right: -120px;
+  right: -130px;
   width: 250px;
   height: auto;
   pointer-events: none;
@@ -4989,7 +5001,7 @@
 .ch3LeftFlower {
   position: absolute;
   bottom: -120px;
-  right: 60px;
+  right: 10px;
   width: 70px;
   height: auto;
   pointer-events: none;
@@ -4997,6 +5009,16 @@
 }
 
 /* Chapter 4 Hover Decorations - Option A (Left Side) */
+.ch4OptionAHover {
+  position: fixed;
+  bottom: 8vh;
+  left: calc(50% - 700px);
+  width: 20vw;
+  height: -8vh;
+  pointer-events: none;
+  z-index: 99;
+}
+
 .ch4LeftFly {
   position: absolute;
   top: -80px;
@@ -5009,8 +5031,8 @@
 
 .ch4LeftHollow {
   position: absolute;
-  top: -vh;
-  left: -65px;
+  top: -15vh;
+  left: -2vw;
   width: 70px;
   height: auto;
   pointer-events: none;
@@ -5019,9 +5041,9 @@
 
 .ch4LeftFill {
   position: absolute;
-  bottom: -40px;
-  left: -30px;
-  width: 60px;
+  top: -12vh;
+  left: -70px;
+  width: 70px;
   height: auto;
   pointer-events: none;
   z-index: 5;
@@ -5029,9 +5051,9 @@
 
 .ch4LeftHollow2 {
   position: absolute;
-  bottom: 150px;
-  left: -80px;
-  width: 50px;
+  bottom: 11vh;
+  left: 280px;
+  width: 45px;
   height: auto;
   pointer-events: none;
   z-index: 4;
@@ -5039,8 +5061,8 @@
 
 .ch4LeftFill2 {
   position: absolute;
-  bottom: 180px;
-  left: -95px;
+  bottom: 10vh;
+  left: 300px;
   width: 45px;
   height: auto;
   pointer-events: none;
@@ -5048,7 +5070,17 @@
 }
 
 /* Chapter 4 Hover Decorations - Option B (Right Side) */
-.ch4RightFly {
+.ch4OptionBHover {
+  position: fixed;
+  bottom: 6vh;
+  right: calc(50% - 700px);
+  width: 20vw;
+  height: -8vh;
+  pointer-events: none;
+  z-index: 99;
+}
+
+/* .ch4RightFly {
   position: absolute;
   top: -80px;
   right: 350px;
@@ -5056,7 +5088,7 @@
   height: auto;
   pointer-events: none;
   z-index: 6;
-}
+} */
 
 .ch4RightHollow {
   position: absolute;
@@ -8481,7 +8513,7 @@
 .ch3RightFly {
   position: absolute;
   top: -80px;
-  right: 350px;
+  right: 300px;
   width: 50px;
   height: auto;
   pointer-events: none;
@@ -8491,7 +8523,7 @@
 .ch3RightFlower {
   position: absolute;
   bottom: 0vh;
-  right: -12vw;
+  right: -9vw;
   width: 70px;
   height: auto;
   pointer-events: none;
@@ -8502,7 +8534,7 @@
 .ch3DiamondBottom {
   position: absolute;
   bottom: 3vh;
-  right: -12vw;
+  right: -10vw;
   width: 200px;
   height: auto;
   pointer-events: none;
@@ -8522,7 +8554,7 @@
 .ch3LeftFlower {
   position: absolute;
   bottom: -1vh;
-  right: -5vw;
+  right: -3vw;
   width: 70px;
   height: auto;
   pointer-events: none;
