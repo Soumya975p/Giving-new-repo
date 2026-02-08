@@ -200,20 +200,20 @@
     width: 420px;
     overflow: visible;
     margin-top: 60px;
-    transform: translateY(10px);
+    transform: translateY(17px);
 }
 
 /* Card 1 is the first child of scrollContent */
 .scrollContent>.contentCard:nth-child(1) {
     align-self: flex-start;
     margin-top: 0;
-    transform: translateY(15vh);
+    transform: translateY(18.2vh);
 }
 
 /* Card 2 is the first child of cardsGrouping */
 .cardsGrouping>.contentCard:nth-child(1) {
     align-self: flex-start;
-    margin-top: 30px;
+    margin-top: 35px;
     padding-left: 0;
 }
 
@@ -472,7 +472,7 @@
     align-items: flex-start;
     gap: 12px;
     margin-top: 20px;
-    transform: translateY(75px);
+    transform: translateY(85px);
 }
 
 .greenCircle {

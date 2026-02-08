@@ -208,13 +208,13 @@
 .scrollContent>.contentCard:nth-child(1) {
     align-self: flex-start;
     margin-top: 0;
-    transform: translateY(35vh);
+    transform: translateY(40vh);
 }
 
 /* Card 2 is the first child of cardsGrouping */
 .cardsGrouping>.contentCard:nth-child(1) {
     align-self: flex-start;
-    margin-top: 30px;
+    margin-top: 60px;
     padding-left: 0;
 }
 
@@ -233,7 +233,7 @@
 
 .flowerDecoration {
     position: absolute;
-    top: -50vh;
+    top: -60vh;
     left: -8vw;
     width: 135px;
     height: 80vh;

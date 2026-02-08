@@ -256,7 +256,7 @@
     border-left: none;
     padding-bottom: 10px;
     position: relative;
-    max-width: 250px;
+    max-width: 450px;
 }
 
 /* Floating text for card 1 */
@@ -638,7 +638,7 @@
 
 .embedded .contentCard:nth-child(2) {
     margin-top: 52px;
-    margin-right: 0px;
+    margin-right: -15px;
 }
 
 /* Option B only has 3 cards, so we might not need the nth-child(3) override unless the 2nd card needs it */

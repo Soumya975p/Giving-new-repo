@@ -216,7 +216,7 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    gap: 80px;
+    gap: 61px;
     padding: 120px 100px 30px;
     min-width: max-content;
     height: 100%;
@@ -447,6 +447,7 @@
     display: flex;
     flex-direction: column;
     gap: 18px;
+    margin-bottom: 5px;
 }
 
 .studyContainer2 {
@@ -524,6 +525,11 @@
     align-self: center;
 }
 
+/* Reduce the gap between card 2 and card 3 to 133px total. */
+.greenStickWrapper:nth-child(4) {
+    margin-left: -29px;
+}
+
 .greenStick {
     width: 60%;
     height: auto;
@@ -585,7 +591,7 @@
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    margin-top: 20px;
+    margin-top: 4px;
     transform: translateY(75px);
 }
 
@@ -599,7 +605,7 @@
 }
 
 .greenStickDot {
-    width: 16px;
+    width: 20px;
     height: auto;
     flex-shrink: 0;
     margin-top: -1vh;
@@ -855,7 +861,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 200px;
+    gap: 60px;
     /* Match scrollContent gap? */
 }
 

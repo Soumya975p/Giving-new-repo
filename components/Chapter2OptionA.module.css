@@ -293,9 +293,9 @@
 /* Card 1 Decoration */
 .contentCard:nth-child(1) .decorationImage {
     top: -25vh;
-    left: -20%;
-    width: auto;
-    height: 500px;
+    left: -50%;
+    width: 500px;
+    height: 600px;
 }
 
 /* Card 2 Decoration */
@@ -309,7 +309,7 @@
 /* Card 3 Decoration */
 .contentCard:nth-child(3) .decorationImage {
     top: -5%;
-    left: -10%;
+    left: -18%;
     width: auto;
     height: 450px;
 }
@@ -330,9 +330,10 @@
     padding: 30px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 42px important; 
     color: #1a4d3a;
     overflow: visible;
+    margin-left: -40px;
 }
 
 .cardTitle {
@@ -352,7 +353,7 @@
     line-height: 1.4;
     letter-spacing: -0.04em;
     color: #FFFFFF;
-    margin: 0;
+    margin-top: 42px;
     font-weight: 400;
     max-width: 350px;
 }
@@ -631,7 +632,7 @@
 
 .embedded .contentCard {
     width: 399px;
-    margin-right: 200px;
+    margin-right: 161px;
     margin-top: 87px;
 }
 
