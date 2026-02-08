@@ -7,6 +7,7 @@ interface Chapter3OptionAProps {
     onBack: () => void;
     onNext?: () => void;
     embedded?: boolean;
+    onToolkitDownload?: () => void;
 }
 
 export default function Chapter3OptionA({ onBack, onNext, embedded = false }: Chapter3OptionAProps) {
