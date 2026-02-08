@@ -74,6 +74,18 @@
   margin-bottom: 40px;
 }
 
+.pColor {
+  color: #13D9E8;
+}
+
+.gColor {
+  background: radial-gradient(108.63% 108.63% at 117.78% 116.39%, #FFCD86 15.38%, #13D9E8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
 /* Card */
 .cardWrapper {
   position: relative;
@@ -112,7 +124,7 @@
 
 
 .cardImage {
-   width: 500px;
+  width: 500px;
   height: 500px;
   object-fit: contain;
   display: block;
@@ -294,6 +306,30 @@
   color: #ABE467;
 }
 
+.Title {
+  font-family: DM Sans;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: -4%;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+
+.Description {
+  font-family: Zalando Sans Expanded;
+  font-weight: 300;
+  font-style: Light;
+  font-size: 52px;
+  line-height: 110.00000000000001%;
+  letter-spacing: -3%;
+  text-align: center;
+  color: #fff;
+}
+
 .insCbContainerBg {
   position: relative;
 }
@@ -458,7 +494,7 @@
   }
 
   .sliderPrevBtn {
-    top:  91%;
+    top: 91%;
     right: 18% !important;
     height: 50px;
   }
@@ -476,7 +512,7 @@
     margin-bottom: 80px;
     padding: 0 0px;
     background-size: 100%;
-        background-position: 100% 11%;
+    background-position: 100% 11%;
   }
 
   .statText {
@@ -497,8 +533,10 @@
     width: 100%;
     height: 100%;
     aspect-ratio: 1;
-    align-items: center;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     min-height: 600px;
   }
 
@@ -562,8 +600,28 @@
   .ins-cb-btm a {
     font-size: 18px;
   }
+
   .cardImage {
     width: 100%;
     height: 100%;
+  }
+
+  .Title {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 130%;
+    letter-spacing: -0.04em;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .Description {
+    font-family: 'Zalando Sans Expanded', sans-serif;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 110%;
+    letter-spacing: -0.03em;
+    text-align: center;
   }
 }

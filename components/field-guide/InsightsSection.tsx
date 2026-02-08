@@ -3,13 +3,16 @@ import styles from './InsightsSection.module.css'
 export default function InsightsSection() {
   return (
     <section className={styles.insightsSection}>
+
+
+      
       <div className={styles.container}>
-        <h2 className={styles.insightsTitle}>
-          Insights from 300+ nonprofit peers reveal a common challenge
-        </h2>
-        <p className={styles.insightsDescription}>
-          <span className={styles.pColor}>Despite valuing individual donors and volunteers, nonprofits</span> <span className={styles.gColor}>struggle</span> to move beyond: One-time giving, ad-hoc outreach, and informal volunteering.
-        </p>
+       
+        
+              <p className={styles.quoteText}>
+                The real gap isn't <span>commitment.</span><br />
+                It is strategy, systems, capabilities<br/> and time.
+              </p>
       </div>
     </section>
   )

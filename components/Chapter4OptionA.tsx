@@ -12,7 +12,7 @@ interface Chapter4OptionAProps {
 
 export default function Chapter4OptionA({ onBack, onNext, embedded = false, onToolkitDownload }: Chapter4OptionAProps) {
     return (
-        <div className={styles.optionContentWrapper}>
+        <div className={`${styles.optionContentWrapper} ${embedded ? styles.embedded : ''}`}>
 
             {/* Sticky Header */}
             <div className={`${styles.stickyHeader} ${embedded ? styles.embeddedHeader : ''}`}>
@@ -38,7 +38,7 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
 
             </div>
 
-            <div className={styles.horizontalScrollContainer}>
+            <div className={`${styles.horizontalScrollContainer} ${embedded ? styles.embeddedScroll : ''}`}>
                 <div className={styles.scrollContent}>
                     {/* Card 1 - Story Card */}
                     <div className={styles.contentCard}>

@@ -826,7 +826,7 @@
 
 @media (max-width: 1024px) {
     .lastCardWrapper {
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
         gap: 30px;
     }
@@ -841,7 +841,7 @@
     /* Adjust scroll content padding/gap for mobile if needed */
     .ch1OptionA .scrollContent,
     .ch1OptionB .scrollContent {
-        gap: 50px;
+        gap: 150px;
         /* Reduce gap on mobile */
     }
 }

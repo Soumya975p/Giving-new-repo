@@ -312,6 +312,44 @@
   color: #fff;
 }
 
+
+.quoteSection {
+  background: linear-gradient(0deg, #031947 -39.61%, #07424E -6.94%, #033B30 100%);
+  border-radius: 80px;
+  padding: 160px;
+  text-align: center;
+  border-radius: 230px;
+  position: relative;
+  overflow: hidden;
+}
+
+.quoteSection::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-image: url("/assets/insights-bg.png");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: auto;
+  width: 100%;
+  height: 100%;
+}
+
+.quoteText {
+  font-family: Zalando Sans Expanded;
+  font-weight: 300;
+  font-style: Light;
+  font-size: 52px;
+  line-height: 110%;
+  letter-spacing: -3%;
+  text-align: center;
+  color: #fff;
+}
+
+.quoteText span {
+  color: #ABE467;
+}
 .quoteText span {
   color: #ABE467;
 }
@@ -409,6 +447,24 @@
   .circleContainer {
     width: 500px;
     height: 500px;
+  }
+  .quoteSection::after {
+    background-image: url("/assets/mob-insights-bg.png");
+  }
+
+   .quoteText {
+    font-size: 28px;
+  }
+
+  .quoteSection {
+    padding: 30px;
+    border-radius: 60px;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1;
+    align-items: center;
+    display: flex;
+    min-height: 600px;
   }
 
   .statsSection {

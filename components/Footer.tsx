@@ -40,7 +40,8 @@ export default function Footer() {
               {/* DESKTOP VERSION (3 Lines) */}
               <div className={`${styles.getInvolvedForm} ${styles.footerFormDesktop}`}>
                 <div className={styles.formLine}>
-                  Hi, I’m <input type="text" placeholder="your name" size={9} className={styles.inlineInput} />, I’m from <input type="text" placeholder="name of your organisation" size={25} className={styles.inlineInput} />.
+                  Hi, I’m <input type="text" placeholder="first name" size={10} className={`${styles.inlineInput} ${styles.inputFirstName}`} />{' '}
+                  <input type="text" placeholder="last name" size={9} className={`${styles.inlineInput} ${styles.inputLastName}`} />, I’m from <input type="text" placeholder="name of your organisation" size={25} className={styles.inlineInput} />.
                 </div>
                 <div className={styles.formLine}>
                   I’d love to be a part of Giving Together Foundation’s initiatives.
@@ -53,7 +54,8 @@ export default function Footer() {
               {/* MOBILE VERSION (5 Lines) */}
               <div className={`${styles.getInvolvedForm} ${styles.footerFormMobile}`}>
                 <div className={styles.formLine}>
-                  Hi, I’m <input type="text" placeholder="your name" size={9} className={`${styles.inlineInput} ${styles.inputName}`} />,
+                  Hi, I’m <input type="text" placeholder="first name" size={10} className={`${styles.inlineInput} ${styles.inputFirstName}`} />{' '}
+                  <input type="text" placeholder="last name" size={9} className={`${styles.inlineInput} ${styles.inputLastName}`} />,
                 </div>
                 <div className={styles.formLine}>
                   I’m from <input type="text" placeholder="name of your organisation" size={25} className={`${styles.inlineInput} ${styles.inputOrg}`} />.
@@ -65,7 +67,7 @@ export default function Footer() {
                   initiatives. My email address is <input type="email" placeholder="your email address" size={18} className={`${styles.inlineInput} ${styles.inputEmail}`} />
                 </div>
                 <div className={styles.formLine}>
-                   if you need to reach out to me for updates & details.
+                  if you need to reach out to me for updates & details.
                 </div>
               </div>
 
@@ -90,7 +92,7 @@ export default function Footer() {
                 <p className={styles.footerColTitle}>REPORTS & RESOURCES</p>
                 <ul className={styles.footerLinkList}>
                   <li><a href="#">UDARTA:EG Field Guide</a></li>
-                  <li className={styles.indentedItem}><a href="#" className={styles.subItemLink}>Fundraising</a></li>
+                  <li className={styles.indentedItem}><a href="http://localhost:3000/" className={styles.subItemLink}>Fundraising</a></li>
                   <li className={styles.indentedItem}><a href="#" className={styles.subItemLink}>Volunteer Engagement</a></li>
                   <li className={styles.arrowItem}>
                     <a href="https://www.givingtuesday.org/india/udarta-eg/report/" target='_blank'>
