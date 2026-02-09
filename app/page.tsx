@@ -182,6 +182,7 @@ export default function Home() {
   const heroImageRef = useRef<HTMLImageElement>(null);
   const scrollChaptersRef = useRef<HTMLDivElement>(null);
   const downloadSectionRef = useRef<HTMLDivElement>(null);
+  const heroBottomRef = useRef<HTMLDivElement>(null);
   // Refs for center cards in each chapter
   const centerCardRefs = useRef<(HTMLDivElement | null)[]>([null, null, null, null]);
 
@@ -292,7 +293,7 @@ export default function Home() {
         <div className={styles.dotsPattern}></div>
 
         {/* Bottom Section */}
-        <div className={styles.heroBottom}>
+        <div className={styles.heroBottom} ref={heroBottomRef}>
           <p className={styles.cultivationLabel}>CULTIVATION IN ACTION</p>
           <h2 className={styles.heroBottomTitle}>
             A <span className={styles.highlight}>step by step guide</span> to donor engagement through the journey of <span className={styles.highlight}>Nidhi</span>, our perennial supporter.
@@ -369,11 +370,8 @@ export default function Home() {
                 setIsChaptersSectionSticky(false);
                 document.body.style.overflow = '';
                 document.documentElement.style.overflow = '';
-                if (heroImageRef.current) {
-                  heroImageRef.current.style.scrollMarginTop = '-1300px';
-                }
                 setTimeout(() => {
-                  heroImageRef.current?.scrollIntoView({ behavior: 'smooth' });
+                  heroBottomRef.current?.scrollIntoView({ behavior: 'smooth' });
                 }, 100);
               }}
             >

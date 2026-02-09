@@ -36,6 +36,12 @@ export default function PopupForm({ isOpen, onClose, toolkitUrl }: PopupFormProp
         email: ''
     });
 
+    // Check if all fields are filled
+    const isFormValid = formData.firstName.trim() !== '' &&
+                        formData.lastName.trim() !== '' &&
+                        formData.organisation.trim() !== '' &&
+                        formData.email.trim() !== '';
+
     useEffect(() => {
 
         if (isOpen !== undefined) {
@@ -258,7 +264,11 @@ export default function PopupForm({ isOpen, onClose, toolkitUrl }: PopupFormProp
                                 </div>
                             </div>
                             <p>{message}</p>
-                            <button type="submit" className={styles.getToolkitBtn}>
+                            <button
+                                type="submit"
+                                className={`${styles.getToolkitBtn} ${isFormValid ? styles.active : ''}`}
+                                disabled={!isFormValid}
+                            >
                                 <span>◆</span>
                                 <span>Get toolkit</span>
                                 <span>◆</span>

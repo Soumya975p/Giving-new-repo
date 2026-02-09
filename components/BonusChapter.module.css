@@ -226,8 +226,8 @@
     width: 100%;
     height: 80%;
     top: 240px;
-    left: 22.5%;
-    right: 100px;
+    left: 0;
+    right: 0px;
     pointer-events: none;
     z-index: 0;
 }
@@ -241,10 +241,11 @@
 }
 
 .bonusDotsImage {
-    width: 100%;
     height: 100%;
     object-fit: contain;
     opacity: 0.8;
+    position: absolute;
+    right: 0;
 }
 
 .bonusCardWrapper {
@@ -278,7 +279,7 @@
 .toolkitCardContainer {
     position: absolute;
     top: 0;
-    left: 0;
+    left: -70%;
     width: 100%;
     height: 100%;
     transition: opacity 0.5s ease;
@@ -445,7 +446,7 @@
     }
 
     .mobileOnly .toolkitCardContainer {
-        position: absolute;
+        position: relative;
         top: 0;
         left: 0;
         width: 100%;
@@ -453,17 +454,25 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    .designOverlay{
+        transform: translateX(-2%) !important;
+
     }
 
     .mobileOnly .originalCard {
         position: relative;
         min-height: 355px;
+        display: none !important;
     }
 
     /* Bonus Section - Mobile Specifics */
     .bonusSection {
         padding: 12vh 24px;
         background: #12363B;
+        padding-bottom: 200px;
         /* Darker background based on reference */
     }
 
@@ -489,7 +498,7 @@
         display: flex;
         justify-content: center;
         position: relative;
-        right: 5%;
+        right: 0;
         top: 10vh;
         background: #12363B;
         min-height: auto;
@@ -590,22 +599,27 @@
         position: absolute;
         top: auto;
         bottom: 0%;
-        left: 50%;
+        left: 0%;
         transform: translateX(-0%);
         width: 100%;
         height: 100%;
         z-index: 0;
-        opacity: 0.5;
+        opacity: 1;
         /* Optional: Adjust opacity if needed to match reference visual weight */
         pointer-events: none;
         background: #12363B;
     }
-
+  .contentContainer {
+    width: 310px !important;
+}
 
     .bonusDotsImage {
-        width: 60%;
-        height: 150%;
+        width: 100%;
+        height: auto;
+        position: relative;
+                bottom: -22vh;
         object-fit: contain;
+        transform: translateX(10%);
         /* or cover, depending on desired effect. Desktop uses something specific? */
     }
 

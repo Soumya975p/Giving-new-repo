@@ -9,6 +9,10 @@ export default function Explore() {
   const [exploreCursorPos, setExploreCursorPos] = useState({ x: 0, y: 0 });
   const [showExploreCursor, setShowExploreCursor] = useState(false);
 
+  const handleNavigateFieldGuide = () => {
+    window.location.href = '/field-guide';
+  };
+
   const handleNavigateHome = () => {
     window.location.href = '/';
   };
@@ -50,7 +54,7 @@ export default function Explore() {
 
           <div
             className={`${styles.exploreCardBase} ${styles.exploreCard1}`}
-            onClick={handleNavigateHome}
+            onClick={handleNavigateFieldGuide}
             style={{ cursor: 'pointer' }}
           >
             <div
