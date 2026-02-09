@@ -1,16 +1,16 @@
 'use client';
 
 import { useState } from 'react';
-import styles from './Explore.module.css';
+import styles from './ExploreFieldGuide.module.css';
 
-export default function Explore() {
+export default function ExploreFieldGuide() {
   const [isExplore1Hovered, setIsExplore1Hovered] = useState(false);
   const [isExplore2Hovered, setIsExplore2Hovered] = useState(false);
   const [exploreCursorPos, setExploreCursorPos] = useState({ x: 0, y: 0 });
   const [showExploreCursor, setShowExploreCursor] = useState(false);
 
-  const handleNavigateHome = () => {
-    window.location.href = '/';
+  const handleNavigateFieldGuide = () => {
+    window.location.href = '/field-guide';
   };
 
   return (
@@ -21,7 +21,7 @@ export default function Explore() {
           <span className={styles.exploreLabel}>FOLLOW ALONG</span>
           <h2 className={styles.exploreTitle}>Choose the Path That Fits Your Work</h2>
           <p className={styles.subtitle}>Explore the Field Guides and discover how to turn community generosity into sustained mission success.</p>
-          
+
         </div>
 
         <div
@@ -50,7 +50,7 @@ export default function Explore() {
 
           <div
             className={`${styles.exploreCardBase} ${styles.exploreCard1}`}
-            onClick={handleNavigateHome}
+            onClick={handleNavigateFieldGuide}
             style={{ cursor: 'pointer' }}
           >
             <div
@@ -67,13 +67,13 @@ export default function Explore() {
             {/* Desktop Version */}
             <div className={styles.desktopOnly}>
               <img
-                src="/assets/into-folder.png"
+                src="/assets/explore_introduction.png"
                 alt="Introduction"
                 className={styles.exploreCardImage}
                 style={{ opacity: isExplore1Hovered ? 0 : 1 }}
               />
               <img
-                src="/assets/intro-folder-active.png"
+                src="/assets/intro_hover.png"
                 alt="Introduction Hover"
                 className={styles.exploreHoverImage}
                 style={{ opacity: isExplore1Hovered ? 1 : 0 }}
@@ -81,7 +81,7 @@ export default function Explore() {
             </div>
             {/* Mobile Version - Static */}
             <img
-              src="/assets/intro-mobile.png"
+              src="/assets/mobile_explore_intro.png"
               alt="Introduction Mobile"
               className={`${styles.exploreCardImage} ${styles.mobileOnly}`}
             />
@@ -89,7 +89,7 @@ export default function Explore() {
 
           <div
             className={`${styles.exploreCardBase} ${styles.exploreCard2}`}
-            onClick={handleNavigateHome}
+            onClick={handleNavigateFieldGuide}
             style={{ cursor: 'pointer' }}
           >
             <div

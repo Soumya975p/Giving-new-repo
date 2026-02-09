@@ -1,7 +1,7 @@
 .toolkitCardWrapper {
     position: relative;
     width: 320px;
-    height: 415px;
+    height: 462px;
     flex-shrink: 0;
     box-shadow: none;
     filter: none;
@@ -43,6 +43,13 @@
     transform: rotate(6deg);
     transform-origin: center;
     border: none;
+}
+
+.designTk8 .contentContainer {
+    background-image: url('/assets/toolkit-8-bg.png');
+    /* background-size: cover; */
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .noRotate .baseCardImage,
@@ -156,7 +163,24 @@
     transform: translateX(-40%);
     width: 210px;
     height: 194px;
+}
 
+/* Toolkit 8 - Bonus Chapter Card */
+.backgroundTk8 .backgroundImage {
+    top: 13px;
+    left: 17px;
+    width: 90%;
+    height: 57%;
+    object-fit: cover;
+}
+
+.designTk8 .designOverlay {
+    top: 50px;
+    left: 50%;
+    right: auto;
+    transform: translateX(2%);
+    width: 210px;
+    height: 194px;
 }
 
 .designTk4 .designOverlay {
@@ -180,12 +204,17 @@
 /* Text Section */
 .textSection {
     flex: 1;
-    padding: 20px 24px 0;
+    padding: 8px;
     display: flex;
     flex-direction: column;
     gap: 6px;
     background: transparent;
     margin: 0px 15px;
+}
+
+.designTk8 .textSection {
+    justify-content: flex-end;
+    padding-bottom: 20px;
 }
 
 .toolkitLabel {
@@ -224,7 +253,7 @@
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    padding: 16px 24px 24px;
+    padding:  16px ;
     gap: 65px;
     margin-right: 15px;
 }
