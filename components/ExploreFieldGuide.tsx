@@ -50,7 +50,7 @@ export default function ExploreFieldGuide() {
 
           <div
             className={`${styles.exploreCardBase} ${styles.exploreCard1}`}
-            onClick={handleNavigateFieldGuide}
+            onClick={() => window.location.href = '/'}
             style={{ cursor: 'pointer' }}
           >
             <div
@@ -67,13 +67,13 @@ export default function ExploreFieldGuide() {
             {/* Desktop Version */}
             <div className={styles.desktopOnly}>
               <img
-                src="/assets/explore_introduction.png"
+                src="/assets/Into-folder.png"
                 alt="Introduction"
                 className={styles.exploreCardImage}
                 style={{ opacity: isExplore1Hovered ? 0 : 1 }}
               />
               <img
-                src="/assets/intro_hover.png"
+                src="/assets/intro-folder-active.png"
                 alt="Introduction Hover"
                 className={styles.exploreHoverImage}
                 style={{ opacity: isExplore1Hovered ? 1 : 0 }}
@@ -85,6 +85,14 @@ export default function ExploreFieldGuide() {
               alt="Introduction Mobile"
               className={`${styles.exploreCardImage} ${styles.mobileOnly}`}
             />
+            {/* Text Overlay */}
+            <div className={styles.introTextContainer} data-hovered={isExplore1Hovered}>
+              <span className={styles.introLabel}>UDARTA-EG FIELD GUIDE</span>
+              <h3 className={styles.introTitle}>Fundraising</h3>
+              <p className={styles.introDescription}>
+                Build sustainable fundraising systems that diversify income and deepen donor relationships.
+              </p>
+            </div>
           </div>
 
           <div
@@ -106,13 +114,13 @@ export default function ExploreFieldGuide() {
             {/* Desktop Version */}
             <div className={styles.desktopOnly}>
               <img
-                src="/assets/explore_volunteer_engagement.png"
+                src="/assets/Into-folder.png"
                 alt="Volunteer Engagement"
                 className={styles.exploreCardImage}
                 style={{ opacity: isExplore2Hovered ? 0 : 1 }}
               />
               <img
-                src="/assets/volunteer_hover.png"
+                src="/assets/intro-folder-active.png"
                 alt="Volunteer Engagement Hover"
                 className={styles.exploreHoverImage}
                 style={{ opacity: isExplore2Hovered ? 1 : 0 }}
@@ -124,6 +132,14 @@ export default function ExploreFieldGuide() {
               alt="Volunteer Engagement Mobile"
               className={`${styles.exploreCardImage} ${styles.mobileOnly}`}
             />
+            {/* Text Overlay */}
+            <div className={styles.introTextContainer} data-hovered={isExplore2Hovered}>
+              <span className={styles.introLabel}>UDARTA-EG FIELD GUIDE</span>
+              <h3 className={styles.introTitle}>Volunteer Engagement</h3>
+              <p className={styles.introDescription}>
+                Create structured, meaningful volunteer journeys that lead to long-term involvement.
+              </p>
+            </div>
           </div>
         </div>
       </div>

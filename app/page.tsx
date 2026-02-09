@@ -238,8 +238,13 @@ export default function Home() {
             <button className={styles.startButton} onClick={() => {
               chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
             }}>
-              <img src="/assets/start_button.svg" alt="Start Journey" className={`${styles.startButtonImage} ${styles.desktopOnly}`} />
-              <img src="/assets/start_button_mobile.svg" alt="Start Journey" className={`${styles.startButtonImage} ${styles.mobileOnly}`} />
+              <div className={styles.buttonContentWrapper}>
+                <span className={styles.buttonDiamond}>◆</span>
+                <div className={styles.buttonTextContainer}>
+                  <span className={styles.buttonText}>Start journey</span>
+                </div>
+                <span className={styles.buttonDiamond}>◆</span>
+              </div>
             </button>
           </div>
 

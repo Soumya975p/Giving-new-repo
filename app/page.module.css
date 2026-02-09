@@ -357,39 +357,74 @@
   font-weight: 400;
 }
 
+
 .startButton {
-  display: inline-block;
-  background: transparent;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  outline: none;
-  box-shadow: none;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.startButton:focus,
-.startButton:active,
-.startButton:focus-visible {
-  outline: none !important;
-  box-shadow: none !important;
-  background: transparent !important;
-}
-
-.startButton:hover {
-  background: transparent;
-  outline: none;
-}
-
-.startButton::before {
-  display: none;
-}
-
-.startButtonImage {
+  display: inline-flex;
+  width: 177.79px;
   height: 56px;
-  width: auto;
-  display: block;
+  align-items: center;
+  justify-content: center;
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)) padding-box, 
+    linear-gradient(90deg, #07595F, #0FB8C5) border-box;
+  border: 2px solid transparent;
+  border-radius: 60px;
+  padding: 4px;
+  cursor: pointer;
+ font-family: 'DM Sans', 'Zodiak', serif;
+  font-size: 16px;
+  font-weight: 500;
+  font-style: medium;
+  line-height: 150%;
+  letter-spacing: -2%;
+  text-align: center;
+  color: #ffffff;
+  background-origin: border-box;
+ backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+ 
+
 }
+
+.buttonContentWrapper {
+  display: flex;
+ justify-content: space-between;
+  width: 170.79px;
+  height: 24px;
+  gap: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  opacity: 1;
+}
+
+.buttonDiamond {
+  background: linear-gradient(90deg, #93CD4D, #0FB8C5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 16px;
+}
+
+.buttonTextContainer {
+  width: 170px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+}
+
+.buttonText {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-style: medium;
+  font-size: 14.3px;
+  line-height: 150%;
+  letter-spacing: -2%;
+  text-align: center;
+  color: #fff;
+}
+
 
 .buttonArrow {
   background: #3dd9c4;
@@ -401,13 +436,6 @@
   align-items: center;
   justify-content: center;
   font-size: 18px;
-}
-
-.buttonDiamond {
-  width: 14px;
-  height: 14px;
-  object-fit: contain;
-  flex-shrink: 0;
 }
 
 /* Mobile Layout adjustments */
@@ -587,18 +615,23 @@
   }
 
   /* Pill button style for start button on mobile */
-  /* Start button mobile reset */
   .startButton {
     width: auto;
     min-width: auto;
-    background: transparent;
-    border: none;
-    border-radius: 0;
-    padding: 0;
+    padding: 12px 32px;
+    gap: 10px;
     margin-top: 10px;
     margin-bottom: 20px;
     align-self: flex-start !important;
     /* Force left alignment */
+  }
+
+  .buttonText {
+    font-size: 16px;
+  }
+
+  .buttonDiamond {
+    font-size: 14px;
   }
 
   .startButtonImage {
