@@ -360,31 +360,45 @@
 
 .startButton {
   display: inline-flex;
+  justify-content: space-between;
   width: 177.79px;
   height: 56px;
   align-items: center;
-  justify-content: center;
-  background: 
-    linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)) padding-box, 
-    linear-gradient(90deg, #07595F, #0FB8C5) border-box;
-  border: 2px solid transparent;
+  background: transparent;
   border-radius: 60px;
-  padding: 4px;
-  cursor: pointer;
- font-family: 'DM Sans', 'Zodiak', serif;
-  font-size: 16px;
+  /* padding: 0 20px; */
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
   font-weight: 500;
-  font-style: medium;
-  line-height: 150%;
-  letter-spacing: -2%;
-  text-align: center;
-  color: #ffffff;
-  background-origin: border-box;
- backdrop-filter: blur(22px);
-  -webkit-backdrop-filter: blur(22px);
- 
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 1;
+  position: relative;
+  overflow: hidden;
+  justify-content: center;
+  padding: 12px 28px;
+  border-radius: 50px;
+
+  border: 2px solid transparent;
+
+  background:
+    linear-gradient(#132E3F, #132E3F) padding-box,
+    linear-gradient(270deg, #0FB8C5 0%, #07595F 100%) border-box;
+
+  color: #fff;
+  border: 2px solid;
+
+  border-image-source: linear-gradient(270deg, #0FB8C5 0%, #07595F 100%);
+  background-clip: padding-box, border-box;
 
 }
+ 
+ 
+ 
+ 
+ 
+
 
 .buttonContentWrapper {
   display: flex;

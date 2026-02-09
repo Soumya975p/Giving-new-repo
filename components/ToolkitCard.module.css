@@ -126,7 +126,7 @@
 }
 
 .designCh2 .designOverlay {
-    top: 0;
+    top: 10px;
     left: 50%;
     right: auto;
     transform: translateX(-50%);
@@ -362,4 +362,68 @@
         transform: translateX(-2%) !important;
 
     }
+
+    .designOverlay {
+    position: absolute;
+    top: 10px;
+    left: 25%;
+    transform: translateX(-20%);
+    width: 280px;
+    height: 220px;
+    object-fit: contain;
+    object-position: center;
+    z-index: 100;
+    opacity: 1;
+    pointer-events: none;
+}
+
+.designCh2 .designOverlay {
+    top: 10px;
+    left: 17%;
+    right: auto;
+    width: 250px;
+    height: 190px;
+    object-fit: contain;
+    object-position: center;
+}
+
+    .designTk3 .designOverlay {
+    top: -10px;
+    left: 38%;
+    right: auto;
+    width: 117px;
+    height: 205px;
+}
+
+.designTk4 .designOverlay {
+    top: -10px;
+    left: 50%;
+    right: auto;
+    width: 200px;
+    height: 245px;
+}
+
+.designTk5 .designOverlay {
+    top: -30px;
+    left: 22%;
+    right: auto;
+    width: 220px;
+    height: 245px;
+}
+
+.designTk6 .designOverlay {
+    top: 9px;
+    left: 25%;
+    right: auto;
+    width: 160px;
+    height: 170px;
+}
+
+.designTk7 .designOverlay {
+    top: px;
+    left: 30%;
+    right: auto;
+    width: 175px;
+    height: 194px;
+}
 }
