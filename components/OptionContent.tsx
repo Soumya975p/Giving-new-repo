@@ -84,7 +84,8 @@ export default function OptionContent({
             {/* Sticky Header */}
             <div className={`${s.stickyHeader} ${embedded ? s.embeddedHeader : ''}`}>
                 <button className={s.backButton} onClick={onBack}>
-                    <span><img src="/assets/bc-icon.png" alt="" /> Back to scenario</span>
+                    <ArrowLeft size={16} />
+                    <span>Back to scenario</span>
                 </button>
 
 
