@@ -179,6 +179,9 @@ export default function Home() {
   const heroSectionRef = useRef<HTMLDivElement>(null);
   const chapterGridRef = useRef<HTMLDivElement>(null);
   const exploreSectionRef = useRef<HTMLDivElement>(null);
+  const heroImageRef = useRef<HTMLImageElement>(null);
+  const scrollChaptersRef = useRef<HTMLDivElement>(null);
+  const downloadSectionRef = useRef<HTMLDivElement>(null);
   // Refs for center cards in each chapter
   const centerCardRefs = useRef<(HTMLDivElement | null)[]>([null, null, null, null]);
 
@@ -279,11 +282,12 @@ export default function Home() {
 
         {/* Desktop Hero Background - Restored */}
         <img
+          ref={heroImageRef}
           src="/assets/hero.png"
           alt="Donor Gardening Tree"
           className={styles.heroBackgroundSvg}
         />
-
+        <div className='scroll-chapters' ref={scrollChaptersRef}></div>
         {/* Decorative dots pattern */}
         <div className={styles.dotsPattern}></div>
 
@@ -362,8 +366,15 @@ export default function Home() {
             <button
               className={`${styles.navButton} ${styles.backToChaptersBtn}`}
               onClick={() => {
-                // Scroll to chapter grid section
-                chapterGridRef.current?.scrollIntoView({ behavior: 'smooth' });
+                setIsChaptersSectionSticky(false);
+                document.body.style.overflow = '';
+                document.documentElement.style.overflow = '';
+                if (heroImageRef.current) {
+                  heroImageRef.current.style.scrollMarginTop = '-1300px';
+                }
+                setTimeout(() => {
+                  heroImageRef.current?.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
               }}
             >
               <svg
@@ -388,12 +399,8 @@ export default function Home() {
             <button
               className={styles.navButton}
               onClick={() => {
-                // For "View all toolkits", we'll scroll to the footer or a toolkits section if exists
-                const footer = document.querySelector('footer');
-                if (footer) {
-                  footer.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                if (downloadSectionRef.current) {
+                  downloadSectionRef.current.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
             >
@@ -1813,15 +1820,28 @@ your team through a simple,<br />
               chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
             }
           }}
+          onAllChaptersClick={() => {
+            setIsChaptersSectionSticky(false);
+            document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
+            if (heroImageRef.current) {
+              heroImageRef.current.style.scrollMarginTop = '-400px';
+            }
+            setTimeout(() => {
+              heroImageRef.current?.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+          }}
         />
 
       </section >
 
       {/* Bonus Chapter Section */}
-      <BonusChapter ref={bonusSectionRef} />
+      <BonusChapter ref={bonusSectionRef} onToolkitClick={handleToolkitClick} />
 
       {/* Download Section */}
-      <DownloadSection />
+      <div ref={downloadSectionRef}>
+        <DownloadSection />
+      </div>
 
       {/* Explore Grid Section */}
       <div ref={exploreSectionRef}>
