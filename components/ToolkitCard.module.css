@@ -78,9 +78,9 @@
 
 .backgroundImage {
     position: absolute;
-    top: 12px;
+    top: 13px;
     left: 0;
-    width: 100%;
+    width: 94%;
     height: 57%;
     object-fit: cover;
     z-index: 1;
@@ -97,7 +97,7 @@
 .backgroundTk6 .backgroundImage {
     top: 13px;
     left: 17px;
-    width: 90%;
+    width: 88%;
     height: 57%;
     object-fit: cover;
 }
@@ -106,16 +106,16 @@
 .backgroundTk7 .backgroundImage {
     top: 13px;
     left: 17px;
-    width: 90%;
+    width: 88%;
     height: 57%;
     object-fit: cover;
 }
 
 .designOverlay {
     position: absolute;
-    top: 0;
+    top: 10px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-20%);
     width: 280px;
     height: 220px;
     object-fit: contain;

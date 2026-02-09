@@ -80,15 +80,18 @@ export default function FieldGuideHero() {
                   />
                 </span>
               </button>
-              <button className={styles.guideButton}>
-                <span> <img
-                  src="/assets/btn-diamond.png"
-                  style={{ objectFit: 'contain' }}
-                /> Volunteer Engagement  <img
+              <div className={styles.tooltipWrapper}>
+                <button className={styles.guideButton}>
+                  <span> <img
                     src="/assets/btn-diamond.png"
                     style={{ objectFit: 'contain' }}
-                  /></span>
-              </button>
+                  /> Volunteer Engagement  <img
+                      src="/assets/btn-diamond.png"
+                      style={{ objectFit: 'contain' }}
+                    /></span>
+                </button>
+                <div className={styles.tooltipText}>Coming soon</div>
+              </div>
             </div>
           </div>
         </motion.div>

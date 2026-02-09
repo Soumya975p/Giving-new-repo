@@ -7,6 +7,7 @@ interface Chapter3OptionBProps {
     onBack: () => void;
     onNext?: () => void;
     embedded?: boolean;
+    onToolkitDownload?: () => void;
     onToolkitDownload?: (url: string) => void;
 }
 

@@ -202,10 +202,12 @@ export default function InspiredSection() {
             {/* Bottom Quote Section */}
             {/* Bottom Quote Section */}
             <div className={inspiredStyles.quoteSection}>
-              <p className={inspiredStyles.quoteText}>
-                The real gap isn't <span>commitment.</span><br />
-                It is strategy, systems, capabilities and time.
-              </p>
+               <h2 className={inspiredStyles.Title}>
+          Insights from 300+ nonprofit peers reveal a common challenge
+        </h2>
+        <p className={inspiredStyles.Description}>
+          <span className={inspiredStyles.pColor}>Despite valuing individual donors and volunteers, nonprofits</span> <span className={inspiredStyles.gColor}>struggle</span> to move beyond: One-time giving, ad-hoc outreach, and informal volunteering.
+        </p>
             </div>
           </div>
         </div>

@@ -161,10 +161,20 @@
   vertical-align: baseline;
 }
 
-.inputName,
+.inputFirstName,
+.inputLastName,
 .inputOrg,
 .inputEmail {
   width: auto;
+}
+
+.inputFirstName {
+  min-width: 10ch;
+  margin-right: 12px;
+}
+
+.inputLastName {
+  min-width: 9ch;
 }
 
 .inlineInput::placeholder {
@@ -499,8 +509,12 @@
     opacity: 0.8 !important;
   }
 
-  .footerFormMobile .inputName {
-    width: 120px !important;
+  .footerFormMobile .inputFirstName {
+    width: 110px !important;
+  }
+
+  .footerFormMobile .inputLastName {
+    width: 110px !important;
   }
 
   .footerFormMobile .inputOrg {

@@ -14,7 +14,7 @@ export default function Chapter4OptionB({ onBack, onNext, embedded = false, onTo
     const [isHovered, setIsHovered] = React.useState(false);
 
     return (
-        <div className={styles.optionContentWrapper}>
+        <div className={`${styles.optionContentWrapper} ${embedded ? styles.embedded : ''}`}>
             {/* Left Side Plant Decoration with Hover Effects */}
             <div
                 className={styles.leftPlantDecor}
@@ -45,7 +45,7 @@ export default function Chapter4OptionB({ onBack, onNext, embedded = false, onTo
                 )}
             </div>
 
-            <div className={styles.horizontalScrollContainer}>
+            <div className={`${styles.horizontalScrollContainer} ${embedded ? styles.embeddedScroll : ''}`}>
                 <div className={styles.scrollContent}>
                     {/* Card 1 - Story Card */}
                     <div className={styles.contentCard}>

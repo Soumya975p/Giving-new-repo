@@ -417,6 +417,7 @@
     color: #0A1731;
     margin: 0;
     max-width: 300px;
+    
 }
 
 .storyText {
@@ -447,6 +448,7 @@
     display: flex;
     flex-direction: column;
     gap: 18px;
+    margin-bottom: 5px;
 }
 
 .studyContainer2 {
@@ -524,6 +526,11 @@
     align-self: center;
 }
 
+/* Reduce the gap between card 2 and card 3 to 133px total. */
+.greenStickWrapper:nth-child(4) {
+    margin-left: -29px;
+}
+
 .greenStick {
     width: 60%;
     height: auto;
@@ -585,7 +592,7 @@
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    margin-top: 20px;
+    margin-top: 4px;
     transform: translateY(75px);
 }
 
@@ -599,7 +606,7 @@
 }
 
 .greenStickDot {
-    width: 16px;
+    width: 20px;
     height: auto;
     flex-shrink: 0;
     margin-top: -1vh;
@@ -855,7 +862,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 200px;
+    gap: 60px;
     /* Match scrollContent gap? */
 }
 
@@ -958,6 +965,27 @@
     top: 20vh;
 }
 
+/* Mobile-specific layout for next chapter button beside toolkits */
+@media (max-width: 768px) {
+    .lastCardWrapper {
+        flex-direction: row;
+        align-items: center;
+        gap: 50px;
+        width: 100%;
+    }
+
+    .toolkitCard {
+        flex: 1;
+    }
+
+    .nextChapterCard {
+        flex-shrink: 0;
+        width: auto;
+        min-width: 150px;
+        transform: translateY(-30vh);
+    }
+}
+
 .endImageCard {
     flex-shrink: 0;
     display: flex;
@@ -981,15 +1009,7 @@
         flex-direction: column;
         align-items: center;
         gap: 30px;
-        margin-top: 20px;
-    }
-
-    .embedded .nextChapterCard {
-        /* Reset positioning for vertical stack */
-        top: 0;
-        margin-left: 0;
-        margin-right: 0;
-        margin-top: 20px;
+        /* margin-top: 20px; */
     }
         .floatingText{
         font-size: 16px !important;

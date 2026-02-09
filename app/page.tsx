@@ -473,7 +473,7 @@ export default function Home() {
                                   {
                                     id: 1,
                                     type: 'text',
-                                    floatingTextLabel: "UDARTA:EG STUDY SHOWS",
+                                    // floatingTextLabel: "UDARTA:EG STUDY SHOWS",
                                     floatingText: "Finding new supporters can be expensive and effort intensive. You may receive some response but not strong enough because reaching strangers requires significantly more effort to build trust and convince them to give.",
                                     decorationImages: [
                                       '/assets/chapter_1/fly_left_optionA.svg',
@@ -554,12 +554,12 @@ export default function Home() {
                                     floatingText: (
                                       <>
                                         Yes!<br />
-                                        Once you map your existing network, <br /> 
-                                        you will realise that you have<br />
-                                         underestimated its size and power.<br /> 
-                                         Your network can support you in many<br /> 
-                                         forms beyond money - connections,<br />
-                                           skills, time, influence, all matter,<br /> and everyone has something to give.
+                                        Once you map your existing network,
+                                        you will realise that you have
+                                         underestimated its size and power. 
+                                         Your network can support you in many 
+                                         forms beyond money - connections,
+                                           skills, time, influence, all matter, and everyone has something to give.
                                       </>
                                     ),
                                     decorationImages: ['/assets/chapter_1_column1_2.svg'],
@@ -871,7 +871,7 @@ your team through a simple,<br />
                                     stat: 'Only 20%',
                                     statDescription: 'of first-time donors ever give again, while nearly 60% of repeat donors continue after their second gift.',
                                     statBoxTransparent: true,
-                                    // statIconImage: '/assets/chapter_2_stat.svg'
+                                    statIconImage: '/assets/ch2_icon.svg'
                                   },
                                   {
                                     id: 2,
@@ -934,8 +934,8 @@ your team through a simple,<br />
                                     // floatingTextLabel: "UDARTA:EG STUDY SHOWS",
                                     floatingText: (
                                       <>
-                                        You thank Nidhi within two days.<br />
-                                        She receives an 80G receipt and a<br />
+                                        You thank Nidhi within two days.
+                                        She receives an 80G receipt and a
                                         clear message of appreciation.
                                       </>
                                     ),
@@ -950,8 +950,8 @@ your team through a simple,<br />
                                     stat: '',
                                     statDescription: (
                                       <>
-                                        Acknowledging donations leads to<br /> a 20.3 percentage point increase<br />
-                                         in proportion of funds raised from<br /> everyday givers.
+                                        Acknowledging donations leads toa 20.3 percentage point increase
+                                         in proportion of funds raised from everyday givers.
                                       </>
                                     )
                                   },
@@ -966,15 +966,15 @@ your team through a simple,<br />
                                     label: '',
                                     title: (
                                       <>
-                                        You didn't just raise funds.<br />
+                                        You didn't just raise funds.
                                         You began a relationship!
                                       </>
                                     ),
                                     content: (
                                       <>
-                                        We created a database template<br />
-                                        to help nonprofits to record,<br />
-                                        remember, and build continuity<br />
+                                        We created a database template
+                                        to help nonprofits to record,
+                                        remember, and build continuity
                                         from the first gift.
                                       </>
                                     ),
