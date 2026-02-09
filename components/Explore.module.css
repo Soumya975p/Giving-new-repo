@@ -43,15 +43,17 @@
 }
 .exploreGrid {
   position: relative;
-  width: 1100px;
-  height: 500px;
+  width: 1200px;
+  height: 600px;
   margin-top: -30px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .exploreCardBase {
   position: absolute;
-  width: 450px;
-  height: 480px;
+  width: 560px;
+  height: 580px;
   opacity: 1;
   overflow: visible;
 }
@@ -61,7 +63,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 320.5px;
+  height: 400px;
   z-index: 20;
   /* Above all images */
   cursor: none !important;
@@ -74,7 +76,7 @@
 
 .exploreCard2 {
   top: 0;
-  left: 650px;
+  left: 640px;
 }
 
 .exploreCardImage {

@@ -103,13 +103,13 @@ const BonusChapter = forwardRef<HTMLDivElement, BonusChapterProps>(
                                     toolkitNumber={8}
                                     title="Getting Your Team On Board"
                                     description="A ready to use presentation that helps fundraisers make the case for donor stewardship to their leadership and other team members."
-                                    toolkiturl="https://docs.google.com/presentation/d/YOUR_PRESENTATION_ID/edit"
+                                    toolkiturl="https://drive.google.com/file/d/1B6SFVhbtK44nZJFKqD_8v4udsCscReza/view?usp=sharing"
                                     backgroundImage="/assets/toolkit-8-img1.png"
                                     designImage="/assets/toolkit-8-img2.png"
                                     designVariant="tk8"
                                     backgroundVariant="tk8"
                                     disableRotation={true}
-                                    onViewToolkit={() => handleToolkitViewClick('https://docs.google.com/presentation/d/YOUR_PRESENTATION_ID/edit')}
+                                    onViewToolkit={() => handleToolkitViewClick('https://drive.google.com/file/d/1B6SFVhbtK44nZJFKqD_8v4udsCscReza/view?usp=sharing')}
                                 />
                             </div>
                         </div>
@@ -141,13 +141,13 @@ const BonusChapter = forwardRef<HTMLDivElement, BonusChapterProps>(
                                     toolkitNumber={8}
                                     title="Getting Your Team On Board"
                                     description="A ready to use presentation that helps fundraisers make the case for donor stewardship to their leadership and other team members."
-                                    toolkiturl="https://docs.google.com/presentation/d/YOUR_PRESENTATION_ID/edit"
+                                    toolkiturl="https://drive.google.com/file/d/1B6SFVhbtK44nZJFKqD_8v4udsCscReza/view?usp=sharing"
                                     backgroundImage="/assets/toolkit-8-img1.png"
                                     designImage="/assets/toolkit-8-img2.png"
                                     designVariant="tk8"
                                     backgroundVariant="tk8"
                                     disableRotation={true}
-                                    onViewToolkit={() => handleToolkitViewClick('https://docs.google.com/presentation/d/YOUR_PRESENTATION_ID/edit')}
+                                    onViewToolkit={() => handleToolkitViewClick('https://drive.google.com/file/d/1B6SFVhbtK44nZJFKqD_8v4udsCscReza/view?usp=sharing')}
                                 />
                             </div>
                         </div>
