@@ -660,7 +660,7 @@ your team through a simple,<br />
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}> <img src="./assets/left-arrow-b.png" alt="" className={styles.chooseOptImg} /> Choose Option</span>
+                                  }}> <img src="./assets/left-arrow-b.svg" alt="" className={styles.chooseOptImg} /> Choose Option</span>
                                 </motion.div>
                               </motion.div>
 
@@ -1050,7 +1050,7 @@ your team through a simple,<br />
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>  <img src="./assets/left-arrow-w.png" alt="" className={styles.chooseOptImg} /> Choose Option</span>
+                                  }}>  <img src="./assets/left-arrow-w.svg" alt="" className={styles.chooseOptImg} /> Choose Option</span>
                                 </motion.div>
                               </motion.div>
 
@@ -1389,7 +1389,7 @@ your team through a simple,<br />
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}> <img src="./assets/left-arrow-b.png" alt="" className={styles.chooseOptImg} /> Choose Option </span>
+                                  }}> <img src="./assets/left-arrow-b.svg" alt="" className={styles.chooseOptImg} /> Choose Option </span>
                                 </motion.div>
                               </motion.div>
 
@@ -1623,7 +1623,7 @@ your team through a simple,<br />
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}> <img src="./assets/left-arrow-b.png" alt="" className={styles.chooseOptImg} />Choose Option</span>
+                                  }}> <img src="./assets/left-arrow-b.svg" alt="" className={styles.chooseOptImg} />Choose Option</span>
                                 </motion.div>
                               </motion.div>
 
