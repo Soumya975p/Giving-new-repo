@@ -10,7 +10,7 @@ interface TabsSectionProps {
 const TabsSection: React.FC<TabsSectionProps> = ({ activeChapter, onTabClick, onAllChaptersClick }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
-    const tabs = [
+    const tabs = [ 
         {
             id: 1,
             svg: '/assets/ch_1_tab.svg',
