@@ -71,7 +71,7 @@ export default function Explore() {
             {/* Desktop Version */}
             <div className={styles.desktopOnly}>
               <img
-                src="/assets/into-folder.png"
+                src="/assets/Into-folder.png"
                 alt="Introduction"
                 className={styles.exploreCardImage}
                 style={{ opacity: isExplore1Hovered ? 0 : 1 }}
