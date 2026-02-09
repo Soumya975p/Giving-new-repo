@@ -1,18 +1,38 @@
 'use client';
 
-import { forwardRef } from 'react';
+import { forwardRef, useState } from 'react';
 import styles from './BonusChapter.module.css';
+import ToolkitCard from './ToolkitCard';
 
 interface BonusChapterProps {
     className?: string;
+    onToolkitClick?: (url: string) => void;
 }
 
 const BonusChapter = forwardRef<HTMLDivElement, BonusChapterProps>(
-    ({ className }, ref) => {
+    ({ className, onToolkitClick }, ref) => {
+        const [isCardHovered, setIsCardHovered] = useState(false);
+        const [isMobileCardFlipped, setIsMobileCardFlipped] = useState(false);
+
+        const handleMobileClick = () => {
+            setIsMobileCardFlipped(!isMobileCardFlipped);
+        };
+
+        const handleToolkitViewClick = (url: string) => {
+            // Release hover state after clicking
+            setIsCardHovered(false);
+            // Call the parent callback
+            onToolkitClick?.(url);
+        };
+
         return (
-            <section className={`${styles.bonusSection} ${className || ''}`} ref={ref}>
-                <div className={styles.bonusContent}>
-                    <div className={styles.bonusLeft}>
+            <section
+                className={`${styles.bonusSection} ${className || ''}`}
+                ref={ref}
+                onMouseLeave={() => setIsCardHovered(false)}
+            >
+                <div className={`${styles.bonusContent} ${isCardHovered ? styles.contentHovered : ''}`}>
+                    <div className={`${styles.bonusLeft} ${isCardHovered ? styles.leftHidden : ''}`}>
                         <img
                             src="/assets/bonus_chapter_flower.svg"
                             alt=""
@@ -54,41 +74,80 @@ const BonusChapter = forwardRef<HTMLDivElement, BonusChapterProps>(
                         </div>
                     </div>
                     <div className={styles.bonusRight}>
-                        <div className={`${styles.bonusCardWrapper} ${styles.desktopOnly}`}>
-                            <img
-                                src="/assets/bonus_flp_simple.png"
-                                alt="Stewardship is a team effort"
-                                className={styles.bonusCardImage}
-                            />
-                            <div className={styles.bonusCardTextOverlay}>
-                                <h3 className={styles.bonusCardOverlayTitle}>Stewardship is a team effort</h3>
-                                <p className={styles.bonusCardOverlayDesc}> A ready to use guide that helps fundraisers make the case for donor stewardship to their leadership and other team members.</p>
-                               
+                        <div
+                            className={`${styles.bonusCardWrapper} ${styles.desktopOnly} ${isCardHovered ? styles.cardHovered : ''}`}
+                            onMouseEnter={() => setIsCardHovered(true)}
+                        >
+                            {/* Original Card - Visible initially, hidden on hover */}
+                            <div className={`${styles.originalCard} ${isCardHovered ? styles.cardHidden : ''}`}>
                                 <img
-                                    src="/assets/bonus_flip_icon.png"
-                                    alt="Bonus card icon"
-                                    className={styles.bonusCardOverlayIcon}
+                                    src="/assets/bonus_flp_simple.png"
+                                    alt="Stewardship is a team effort"
+                                    className={styles.bonusCardImage}
+                                />
+                                <div className={styles.bonusCardTextOverlay}>
+                                    <h3 className={styles.bonusCardOverlayTitle}>Stewardship is a team effort</h3>
+                                    <p className={styles.bonusCardOverlayDesc}>A ready to use guide that helps fundraisers make the case for donor stewardship to their leadership and other team members.</p>
+
+                                    <img
+                                        src="/assets/bonus_flip_icon.png"
+                                        alt="Bonus card icon"
+                                        className={styles.bonusCardOverlayIcon}
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Toolkit Card - Hidden initially, visible on hover */}
+                            <div className={`${styles.toolkitCardContainer} ${isCardHovered ? styles.cardVisible : ''}`}>
+                                <ToolkitCard
+                                    toolkitNumber={8}
+                                    title="Getting Your Team On Board"
+                                    description="A ready to use presentation that helps fundraisers make the case for donor stewardship to their leadership and other team members."
+                                    toolkiturl="https://docs.google.com/presentation/d/YOUR_PRESENTATION_ID/edit"
+                                    backgroundImage="/assets/toolkit-8-img1.png"
+                                    designImage="/assets/toolkit-8-img2.png"
+                                    designVariant="tk8"
+                                    backgroundVariant="tk8"
+                                    disableRotation={true}
+                                    onViewToolkit={() => handleToolkitViewClick('https://docs.google.com/presentation/d/YOUR_PRESENTATION_ID/edit')}
                                 />
                             </div>
                         </div>
-                        <div className={`${styles.bonusCardWrapper} ${styles.mobileOnly}`}>
-                            <img
-                                src="/assets/mobilee_bonus_card.png"
-                                alt="Stewardship is a team effort"
-                                className={styles.bonusCardImage}
-                            />
-                            {/* <img
-                                src="/assets/bonus_card_icon.png"
-                                alt="Bonus card icon"
-                                className={styles.bonusCardMobileIcon}
-                            /> */}
-                            <div className={styles.bonusCardTextOverlay}>
-                                <h3 className={styles.bonusCardOverlayTitle}>Stewardship is a team effort</h3>
-                                <p className={styles.bonusCardOverlayDesc}>A ready to use presentation that helps fundraisers make the case for donor stewardship to their leadership and other team members.</p>
+                        <div
+                            className={`${styles.bonusCardWrapper} ${styles.mobileOnly}`}
+                            onClick={handleMobileClick}
+                        >
+                            {/* Original Card - Mobile */}
+                            <div className={`${styles.originalCard} ${isMobileCardFlipped ? styles.cardHidden : ''}`}>
                                 <img
-                                    src="/assets/bonus_flip_icon.png"
-                                    alt="Bonus card icon"
-                                    className={styles.bonusCardOverlayIcon}
+                                    src="/assets/mobilee_bonus_card.png"
+                                    alt="Stewardship is a team effort"
+                                    className={styles.bonusCardImage}
+                                />
+                                <div className={styles.bonusCardTextOverlay}>
+                                    <h3 className={styles.bonusCardOverlayTitle}>Stewardship is a team effort</h3>
+                                    <p className={styles.bonusCardOverlayDesc}>A ready to use presentation that helps fundraisers make the case for donor stewardship to their leadership and other team members.</p>
+                                    <img
+                                        src="/assets/bonus_flip_icon.png"
+                                        alt="Bonus card icon"
+                                        className={styles.bonusCardOverlayIcon}
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Toolkit Card - Mobile */}
+                            <div className={`${styles.toolkitCardContainer} ${isMobileCardFlipped ? styles.cardVisible : ''}`}>
+                                <ToolkitCard
+                                    toolkitNumber={8}
+                                    title="Getting Your Team On Board"
+                                    description="A ready to use presentation that helps fundraisers make the case for donor stewardship to their leadership and other team members."
+                                    toolkiturl="https://docs.google.com/presentation/d/YOUR_PRESENTATION_ID/edit"
+                                    backgroundImage="/assets/toolkit-8-img1.png"
+                                    designImage="/assets/toolkit-8-img2.png"
+                                    designVariant="tk8"
+                                    backgroundVariant="tk8"
+                                    disableRotation={true}
+                                    onViewToolkit={() => handleToolkitViewClick('https://docs.google.com/presentation/d/YOUR_PRESENTATION_ID/edit')}
                                 />
                             </div>
                         </div>

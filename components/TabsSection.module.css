@@ -8,7 +8,7 @@
     bottom: 0;
     left: 0;
     width: 100vw;
-    height: 90px;
+    height: 85px;
     display: flex;
     align-items: flex-end;
     overflow: visible;
@@ -18,7 +18,7 @@
     pointer-events: auto;
     user-select: none;
     -webkit-user-select: none;
-    transform: translateY(12px);
+    transform: translateY(4px);
 
 }
 
@@ -142,9 +142,9 @@
 
     .mobileContainer {
         display: block;
-        position: absolute;
+        position: sticky;
         /* Changed from fixed to absolute */
-        bottom: 0;
+        top: 0;
         /* Align to bottom of container */
         left: 0;
         right: 0;
@@ -182,7 +182,8 @@
     }
 
     .mobileTabContent {
-        position: relative;
+        position: sticky;
+        top: 0;
         /* Relative to button, above bg */
         width: 100%;
         height: 100%;
@@ -192,6 +193,7 @@
         /* Adjusted padding */
         gap: 8px;
         z-index: 2;
+        background-color: #12363b;
     }
 
     .mobileViewingText {

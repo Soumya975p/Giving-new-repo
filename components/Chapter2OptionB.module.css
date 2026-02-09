@@ -191,7 +191,7 @@
     -ms-overflow-style: none;
     display: flex;
     align-items: center;
-    margin-top: 180px;
+    /* margin-top: 180px; */
 }
 
 
@@ -731,5 +731,20 @@
         flex-shrink: 0;
         width: auto;
         min-width: 150px;
+    }
+        .statLabel{
+        font-size: 10px !important;
+    }
+    .statNumber{
+        font-size: 16px !important;
+        font-weight: 500;
+    }
+        .statDescription{
+        font-size: 14px !important;
+        font-weight: 400;
+    }
+    .backButton {
+        top: 60px;
+        left: 16px;
     }
 }

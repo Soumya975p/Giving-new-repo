@@ -10,9 +10,28 @@ interface DownloadSectionProps {
 
 export default function DownloadSection({ className }: DownloadSectionProps) {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [toolkitUrl, setToolkitUrl] = useState<string>('');
 
-    const handleDownloadClick = () => {
-        setIsPopupOpen(true);
+    const COOKIE_NAME = "popup_form_submitted_v1";
+    const DOWNLOAD_ALL_URL = 'https://drive.google.com/drive/folders/1w0CU1frY850hTcF0W0wojF6DDPK2xv9l?usp=sharing';
+
+    const hasCookie = () => {
+        if (typeof document !== 'undefined') {
+            return document.cookie.split(";").some(c => c.trim().startsWith(COOKIE_NAME + "="));
+        }
+        return false;
+    };
+
+    const handleDownloadClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        const cookieExists = hasCookie();
+
+        if (cookieExists) {
+            window.open(DOWNLOAD_ALL_URL, '_blank', 'noopener,noreferrer');
+        } else {
+            setToolkitUrl(DOWNLOAD_ALL_URL);
+            setIsPopupOpen(true);
+        }
     };
 
     return (
@@ -65,7 +84,7 @@ export default function DownloadSection({ className }: DownloadSectionProps) {
                                     className={styles.downloadAllImageMobile}
                                 />
                             </button> */}
-                            <a className={styles.downloadAllBtn} href='https://drive.google.com/drive/folders/1w0CU1frY850hTcF0W0wojF6DDPK2xv9l?usp=sharing' target='_blank'>
+                            <a className={styles.downloadAllBtn} onClick={handleDownloadClick}>
                                 <img
                                     src="/assets/get-all-toolkits.png"
                                     alt="Download all"
@@ -106,7 +125,11 @@ export default function DownloadSection({ className }: DownloadSectionProps) {
             </div>
 
             {/* Popup Form */}
-            <PopupForm isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} />
+            <PopupForm
+                isOpen={isPopupOpen}
+                onClose={() => setIsPopupOpen(false)}
+                toolkitUrl={toolkitUrl}
+            />
         </section>
     );
 }

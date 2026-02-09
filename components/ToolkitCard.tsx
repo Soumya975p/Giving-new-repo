@@ -13,8 +13,8 @@ interface ToolkitCardProps {
     onDownload?: () => void;
     onViewToolkit?: () => void;
     disableRotation?: boolean;
-    designVariant?: 'ch2' | 'tk3' | 'tk4' | 'tk5' | 'tk6' | 'tk7';
-    backgroundVariant?: 'tk345' | 'tk6' | 'tk7';
+    designVariant?: 'ch2' | 'tk3' | 'tk4' | 'tk5' | 'tk6' | 'tk7' | 'tk8';
+    backgroundVariant?: 'tk345' | 'tk6' | 'tk7' | 'tk8';
 }
 
 export default function ToolkitCard({
@@ -33,13 +33,13 @@ export default function ToolkitCard({
 
     const handleViewToolkit = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
-        // Directly open the toolkit URL in a new tab
-        if (toolkiturl) {
-            window.open(toolkiturl, '_blank', 'noopener,noreferrer');
+        // Call the onViewToolkit callback to open the popup form
+        if (onViewToolkit) {
+            onViewToolkit();
         }
     };
     return (
-        <div className={`${styles.toolkitCardWrapper} ${disableRotation ? styles.noRotate : ''} ${designVariant === 'ch2' ? styles.designCh2 : ''} ${designVariant === 'tk3' ? styles.designTk3 : ''} ${designVariant === 'tk4' ? styles.designTk4 : ''} ${designVariant === 'tk5' ? styles.designTk5 : ''} ${designVariant === 'tk6' ? styles.designTk6 : ''} ${designVariant === 'tk7' ? styles.designTk7 : ''} ${backgroundVariant === 'tk345' ? styles.backgroundTk345 : ''} ${backgroundVariant === 'tk6' ? styles.backgroundTk6 : ''} ${backgroundVariant === 'tk7' ? styles.backgroundTk7 : ''}`}>
+        <div className={`${styles.toolkitCardWrapper} ${disableRotation ? styles.noRotate : ''} ${designVariant === 'ch2' ? styles.designCh2 : ''} ${designVariant === 'tk3' ? styles.designTk3 : ''} ${designVariant === 'tk4' ? styles.designTk4 : ''} ${designVariant === 'tk5' ? styles.designTk5 : ''} ${designVariant === 'tk6' ? styles.designTk6 : ''} ${designVariant === 'tk7' ? styles.designTk7 : ''} ${designVariant === 'tk8' ? styles.designTk8 : ''} ${backgroundVariant === 'tk345' ? styles.backgroundTk345 : ''} ${backgroundVariant === 'tk6' ? styles.backgroundTk6 : ''} ${backgroundVariant === 'tk7' ? styles.backgroundTk7 : ''} ${backgroundVariant === 'tk8' ? styles.backgroundTk8 : ''}`}>
             {/* Base Card */}
             <div className={styles.baseCard}>
                 <img

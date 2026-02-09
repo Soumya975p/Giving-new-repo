@@ -81,8 +81,9 @@ const chapters: Chapter[] = [
     subtitle: 'Deepening involvement',
     tabImage: '/assets/Tab 4.png',
     contentImage: '/assets/4.png',
-    gradient: 'radial-gradient(circle, #FFEF3D 0%, #DCD647 16%, #C9CD33 32%, #8DA806 48%, #86A401 64%, #315900 100%)',
-    tabGradient: 'linear-gradient(180deg, #315900 0%, #B0D313 100%)',
+    gradient: 'radial-gradient(131.15% 140.53% at 93.33% 139.19%, #FFEF3D 0%, #DCD647 22.85%, #C9CD33 46.96%, #8DA806 72.33%, #86A401 75.24%, #315900 99.52%)',
+
+    tabGradient: 'radial-gradient(62.57% 760.86% at 121.94% 254.49%, #FFEF3D 0%, #DCD647 22.85%, #C9CD33 46.96%, #86A401 75.24%, #315900 99.52%)',
     gridImage: '/assets/ch4.png'
   }
 ]
@@ -132,6 +133,31 @@ export default function Home() {
   const [scrollProgress, setScrollProgress] = useState(0)
   const [selectedOption, setSelectedOption] = useState<'A' | 'B' | null>(null)
   const [isPopupOpen, setIsPopupOpen] = useState(false)
+  const [currentToolkitUrl, setCurrentToolkitUrl] = useState<string>('')
+
+  // Cookie helper functions
+  const COOKIE_NAME = "popup_form_submitted_v1";
+  const hasCookie = () => {
+    if (typeof document !== 'undefined') {
+      return document.cookie.split(";").some(c => c.trim().startsWith(COOKIE_NAME + "="));
+    }
+    return false;
+  };
+
+  // Handle toolkit button click with cookie check
+  const handleToolkitClick = (url: string) => {
+    const cookieExists = hasCookie();
+    console.log('Cookie check:', cookieExists ? 'EXISTS - Opening directly' : 'NOT FOUND - Showing form');
+
+    if (cookieExists) {
+      // Cookie exists, directly open the URL
+      window.open(url, '_blank', 'noopener,noreferrer');
+    } else {
+      // No cookie, show the form
+      setCurrentToolkitUrl(url);
+      setIsPopupOpen(true);
+    }
+  };
   const [isOptionAHovered, setIsOptionAHovered] = useState(false)
   const [isOptionBHovered, setIsOptionBHovered] = useState(false)
   const [isCh2OptionAHovered, setIsCh2OptionAHovered] = useState(false)
@@ -153,6 +179,9 @@ export default function Home() {
   const heroSectionRef = useRef<HTMLDivElement>(null);
   const chapterGridRef = useRef<HTMLDivElement>(null);
   const exploreSectionRef = useRef<HTMLDivElement>(null);
+  const heroImageRef = useRef<HTMLImageElement>(null);
+  const scrollChaptersRef = useRef<HTMLDivElement>(null);
+  const downloadSectionRef = useRef<HTMLDivElement>(null);
   // Refs for center cards in each chapter
   const centerCardRefs = useRef<(HTMLDivElement | null)[]>([null, null, null, null]);
 
@@ -253,11 +282,12 @@ export default function Home() {
 
         {/* Desktop Hero Background - Restored */}
         <img
+          ref={heroImageRef}
           src="/assets/hero.png"
           alt="Donor Gardening Tree"
           className={styles.heroBackgroundSvg}
         />
-
+        <div className='scroll-chapters' ref={scrollChaptersRef}></div>
         {/* Decorative dots pattern */}
         <div className={styles.dotsPattern}></div>
 
@@ -336,8 +366,15 @@ export default function Home() {
             <button
               className={`${styles.navButton} ${styles.backToChaptersBtn}`}
               onClick={() => {
-                // Scroll to chapter grid section
-                chapterGridRef.current?.scrollIntoView({ behavior: 'smooth' });
+                setIsChaptersSectionSticky(false);
+                document.body.style.overflow = '';
+                document.documentElement.style.overflow = '';
+                if (heroImageRef.current) {
+                  heroImageRef.current.style.scrollMarginTop = '-1300px';
+                }
+                setTimeout(() => {
+                  heroImageRef.current?.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
               }}
             >
               <svg
@@ -362,12 +399,8 @@ export default function Home() {
             <button
               className={styles.navButton}
               onClick={() => {
-                // For "View all toolkits", we'll scroll to the footer or a toolkits section if exists
-                const footer = document.querySelector('footer');
-                if (footer) {
-                  footer.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                if (downloadSectionRef.current) {
+                  downloadSectionRef.current.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
             >
@@ -445,6 +478,7 @@ export default function Home() {
                                     decorationImages: [
                                       '/assets/chapter_1/fly_left_optionA.svg',
                                       '/assets/chapter_1/flower_left_optionA.svg',
+                                      '/assets/chapter_1/mob-flower_left_optionA.png',
                                       '/assets/chapter_1/hover_left_flower_leftmost_ch1.svg'
                                     ],
                                     label: '',
@@ -496,8 +530,8 @@ export default function Home() {
                                     toolkitDesignImage: '/assets/toolkit1/toolkit1_design.png',
                                     toolkitImage: '/assets/toolkit1.svg',
                                     toolkitURL: 'https://docs.google.com/spreadsheets/d/1s2DnnBgkzaFpaeR18VBuMq9Yby2JkvBsDZqkamidCFg/edit?gid=525572238#gid=525572238',
-                                    onToolkitDownload: () => setIsPopupOpen(true),
-                                    onToolkitView: () => setIsPopupOpen(true)
+                                    onToolkitDownload: () => handleToolkitClick('https://docs.google.com/spreadsheets/d/1s2DnnBgkzaFpaeR18VBuMq9Yby2JkvBsDZqkamidCFg/edit?gid=525572238#gid=525572238'),
+                                    onToolkitView: () => handleToolkitClick('https://docs.google.com/spreadsheets/d/1s2DnnBgkzaFpaeR18VBuMq9Yby2JkvBsDZqkamidCFg/edit?gid=525572238#gid=525572238')
                                   }
                                 ]}
                               />
@@ -567,8 +601,8 @@ your team through a simple,<br />
                                     toolkitBackgroundImage: '/assets/toolkit1/toolkit1_background.png',
                                     toolkitDesignImage: '/assets/toolkit1/toolkit1_design.png',
                                     toolkitImage: '/assets/toolkit1.svg',
-                                    onToolkitDownload: () => setIsPopupOpen(true),
-                                    onToolkitView: () => setIsPopupOpen(true)
+                                    onToolkitDownload: () => handleToolkitClick('https://docs.google.com/spreadsheets/d/1s2DnnBgkzaFpaeR18VBuMq9Yby2JkvBsDZqkamidCFg/edit?gid=525572238#gid=525572238'),
+                                    onToolkitView: () => handleToolkitClick('https://docs.google.com/spreadsheets/d/1s2DnnBgkzaFpaeR18VBuMq9Yby2JkvBsDZqkamidCFg/edit?gid=525572238#gid=525572238')
                                   }
                                 ]}
                               />
@@ -590,7 +624,7 @@ your team through a simple,<br />
                                   const card = centerCardRefs.current[0];
                                   if (card) {
                                     card.style.transformOrigin = 'bottom left';
-                                    card.style.transform = 'rotate(-15deg)';
+                                    card.style.transform = 'rotate(-6deg)';
                                   }
                                 }}
                                 onMouseLeave={() => {
@@ -610,6 +644,7 @@ your team through a simple,<br />
 
                                 {/* Animated CTA */}
                                 <motion.div
+                                 className={styles.chooseOptDiv}
                                   variants={ctaVariants}
                                   style={{
                                     marginTop: '20px',
@@ -617,17 +652,17 @@ your team through a simple,<br />
                                     alignItems: 'center',
                                     gap: '6px',
                                     color: '#1a4d3a',
-                                    fontWeight: 500
+                                    fontWeight: 500,
+                                    width: '100%',
+                                    justifyContent: 'center',
                                   }}
                                 >
-                                  <motion.div variants={arrowVariants}>
-                                    <ArrowRight style={{ width: '20px', height: '20px' }} />
-                                  </motion.div>
+                                  
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>Choose Option</span>
+                                  }}> <img src="./assets/left-arrow-b.png" alt="" className={styles.chooseOptImg} /> Choose Option</span>
                                 </motion.div>
                               </motion.div>
 
@@ -710,7 +745,7 @@ your team through a simple,<br />
                                   const card = centerCardRefs.current[0];
                                   if (card) {
                                     card.style.transformOrigin = 'bottom right';
-                                    card.style.transform = 'rotate(15deg)';
+                                    card.style.transform = 'rotate(10deg)';
                                   }
                                 }}
                                 onMouseLeave={() => {
@@ -724,7 +759,7 @@ your team through a simple,<br />
                                 <span className={styles.optionLabel}>OPTION B</span>
                                 <p className={styles.optionDesc}>
                                   Tap into your existing
-                                  network – Connections
+                                  network – connections
                                   of volunteers,
                                   champions & donors
                                 </p>
@@ -739,17 +774,17 @@ your team through a simple,<br />
                                     gap: '6px',
                                     color: '#20315B',
                                     fontWeight: 500,
-                                    flexDirection: 'row-reverse'
+                                    flexDirection: 'row-reverse',
+                                      width: '100%',
+                                    justifyContent: 'left',
                                   }}
                                 >
-                                  <motion.div variants={arrowLeftVariants}>
-                                    <ArrowLeft style={{ width: '20px', height: '20px' }} />
-                                  </motion.div>
+                                
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}> Choose Option</span>
+                                  }}> Choose Option <img src="/assets/right-arrow-b.png" alt=""  className={styles.chooseOptImg}/></span>
                                 </motion.div>
                               </motion.div>
 
@@ -875,8 +910,8 @@ your team through a simple,<br />
                                     toolkitDesignVariant: 'ch2',
                                     toolkitURL: 'https://docs.google.com/spreadsheets/d/1s2DnnBgkzaFpaeR18VBuMq9Yby2JkvBsDZqkamidCFg/edit?gid=525572238#gid=525572238',
                                     toolkitImage: '/assets/chapter2_option1_toolkit.svg',
-                                    onToolkitDownload: () => setIsPopupOpen(true),
-                                    onToolkitView: () => setIsPopupOpen(true)
+                                    onToolkitDownload: () => handleToolkitClick('https://docs.google.com/spreadsheets/d/1s2DnnBgkzaFpaeR18VBuMq9Yby2JkvBsDZqkamidCFg/edit?gid=525572238#gid=525572238'),
+                                    onToolkitView: () => handleToolkitClick('https://docs.google.com/spreadsheets/d/1s2DnnBgkzaFpaeR18VBuMq9Yby2JkvBsDZqkamidCFg/edit?gid=525572238#gid=525572238')
                                   }
                                 ]}
                               />
@@ -958,8 +993,8 @@ your team through a simple,<br />
                                     toolkitURL: 'https://docs.google.com/spreadsheets/d/1s2DnnBgkzaFpaeR18VBuMq9Yby2JkvBsDZqkamidCFg/edit?gid=525572238#gid=525572238',
                                     toolkitDesignVariant: 'ch2',
                                     toolkitImage: '/assets/chapter2_option1_toolkit.svg',
-                                    onToolkitDownload: () => setIsPopupOpen(true),
-                                    onToolkitView: () => setIsPopupOpen(true)
+                                    onToolkitDownload: () => handleToolkitClick('https://docs.google.com/spreadsheets/d/1s2DnnBgkzaFpaeR18VBuMq9Yby2JkvBsDZqkamidCFg/edit?gid=525572238#gid=525572238'),
+                                    onToolkitView: () => handleToolkitClick('https://docs.google.com/spreadsheets/d/1s2DnnBgkzaFpaeR18VBuMq9Yby2JkvBsDZqkamidCFg/edit?gid=525572238#gid=525572238')
                                   }
                                 ]}
                               />
@@ -981,7 +1016,7 @@ your team through a simple,<br />
                                   const card = centerCardRefs.current[1];
                                   if (card) {
                                     card.style.transformOrigin = 'bottom left';
-                                    card.style.transform = 'rotate(-15deg)';
+                                    card.style.transform = 'rotate(-6deg)';
                                   }
                                 }}
                                 onMouseLeave={() => {
@@ -1012,14 +1047,12 @@ your team through a simple,<br />
                                     fontWeight: 500
                                   }}
                                 >
-                                  <motion.div variants={arrowVariants}>
-                                    <ArrowRight style={{ width: '20px', height: '20px' }} />
-                                  </motion.div>
+                                 
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>Choose Option</span>
+                                  }}>  <img src="./assets/left-arrow-w.png" alt="" className={styles.chooseOptImg} /> Choose Option</span>
                                 </motion.div>
                               </motion.div>
 
@@ -1043,7 +1076,7 @@ your team through a simple,<br />
                                   const card = centerCardRefs.current[1];
                                   if (card) {
                                     card.style.transformOrigin = 'bottom right';
-                                    card.style.transform = 'rotate(15deg)';
+                                    card.style.transform = 'rotate(10deg)';
                                   }
                                 }}
                                 onMouseLeave={() => {
@@ -1074,14 +1107,12 @@ your team through a simple,<br />
                                     flexDirection: 'row-reverse'
                                   }}
                                 >
-                                  <motion.div variants={arrowLeftVariants}>
-                                    <ArrowLeft style={{ width: '20px', height: '20px' }} />
-                                  </motion.div>
+                                 
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>Choose Option</span>
+                                  }}>Choose Option  <img src="./assets/right-arrow-w.png" alt="" className={styles.chooseOptImg} /></span>
                                 </motion.div>
                               </motion.div>
 
@@ -1296,7 +1327,7 @@ your team through a simple,<br />
                               embedded={true}
                               onBack={() => setSelectedOption(null)}
                               onNext={handleNextChapter}
-                              onToolkitDownload={() => setIsPopupOpen(true)}
+                              onToolkitDownload={(url: string) => handleToolkitClick(url)}
                             />
                           ) : selectedOption === 'B' ? (
                             // Chapter 3 Option B Content
@@ -1304,6 +1335,7 @@ your team through a simple,<br />
                               embedded={true}
                               onBack={() => setSelectedOption(null)}
                               onNext={handleNextChapter}
+                              onToolkitDownload={(url: string) => handleToolkitClick(url)}
                             />
                           ) : (
                             // Chapter 3 Default View - just render scenario container, header is above
@@ -1322,7 +1354,7 @@ your team through a simple,<br />
                                   const card = centerCardRefs.current[2];
                                   if (card) {
                                     card.style.transformOrigin = 'bottom left';
-                                    card.style.transform = 'rotate(-15deg)';
+                                    card.style.transform = 'rotate(-6deg)';
                                   }
                                 }}
                                 onMouseLeave={() => {
@@ -1335,8 +1367,8 @@ your team through a simple,<br />
                               >
                                 <span className={styles.optionLabel} style={{ color: '#20315B' }}>OPTION A</span>
                                 <p className={styles.optionDesc} style={{ color: '#20315B' }}>
-                                  Reach out only when<br />
-                                  you need funds again
+                                  Reach out only when you <br />
+                                   need funds again
                                 </p>
 
                                 {/* Animated CTA */}
@@ -1348,17 +1380,18 @@ your team through a simple,<br />
                                     alignItems: 'center',
                                     gap: '6px',
                                     color: '#1a4d3a',
-                                    fontWeight: 500
+                                    fontWeight: 500,
+                                      width: '100%',
+                                    justifyContent: 'center',
+
                                   }}
                                 >
-                                  <motion.div variants={arrowVariants}>
-                                    <ArrowRight style={{ width: '20px', height: '20px' }} />
-                                  </motion.div>
+                                 
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>Choose Option</span>
+                                  }}> <img src="./assets/left-arrow-b.png" alt="" className={styles.chooseOptImg} /> Choose Option </span>
                                 </motion.div>
                               </motion.div>
 
@@ -1400,7 +1433,7 @@ your team through a simple,<br />
                                   const card = centerCardRefs.current[2];
                                   if (card) {
                                     card.style.transformOrigin = 'bottom right';
-                                    card.style.transform = 'rotate(15deg)';
+                                    card.style.transform = 'rotate(10deg)';
                                   }
                                 }}
                                 onMouseLeave={() => {
@@ -1430,17 +1463,17 @@ your team through a simple,<br />
                                     gap: '6px',
                                     color: '#1a4d3a',
                                     fontWeight: 500,
-                                    flexDirection: 'row-reverse'
+                                    flexDirection: 'row-reverse',
+                                      width: '100%',
+                                    justifyContent: 'left',
+
                                   }}
                                 >
-                                  <motion.div variants={arrowLeftVariants}>
-                                    <ArrowLeft style={{ width: '20px', height: '20px' }} />
-                                  </motion.div>
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>Choose Option</span>
+                                  }}>Choose Option  <img src="./assets/right-arrow-b.png" alt="" className={styles.chooseOptImg} /></span>
                                 </motion.div>
                               </motion.div>
 
@@ -1526,14 +1559,14 @@ your team through a simple,<br />
                               embedded={true}
                               onBack={() => setSelectedOption(null)}
                               onNext={handleNextChapter}
-                              onToolkitDownload={() => setIsPopupOpen(true)}
+                              onToolkitDownload={(url: string) => handleToolkitClick(url)}
                             />
                           ) : selectedOption === 'B' ? (
                             <Chapter4OptionB
                               embedded={true}
                               onBack={() => setSelectedOption(null)}
                               onNext={handleNextChapter}
-                              onToolkitDownload={() => setIsPopupOpen(true)}
+                              onToolkitDownload={(url: string) => handleToolkitClick(url)}
                             />
                           ) : (
                             // Chapter 4 Default View - Scenario Cards
@@ -1555,7 +1588,7 @@ your team through a simple,<br />
                                   const card = centerCardRefs.current[3];
                                   if (card) {
                                     card.style.transformOrigin = 'bottom left';
-                                    card.style.transform = 'rotate(-15deg)';
+                                    card.style.transform = 'rotate(-6deg)';
                                   }
                                 }}
                                 onMouseLeave={() => {
@@ -1582,17 +1615,17 @@ your team through a simple,<br />
                                     alignItems: 'center',
                                     gap: '6px',
                                     color: '#1a4d3a',
-                                    fontWeight: 500
+                                    fontWeight: 500,
+                                     width: '100%',
+                                    justifyContent: 'center',
+
                                   }}
                                 >
-                                  <motion.div variants={arrowVariants}>
-                                    <ArrowRight style={{ width: '20px', height: '20px' }} />
-                                  </motion.div>
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>Choose Option</span>
+                                  }}> <img src="./assets/left-arrow-b.png" alt="" className={styles.chooseOptImg} />Choose Option</span>
                                 </motion.div>
                               </motion.div>
 
@@ -1634,7 +1667,7 @@ your team through a simple,<br />
                                   const card = centerCardRefs.current[3];
                                   if (card) {
                                     card.style.transformOrigin = 'bottom right';
-                                    card.style.transform = 'rotate(15deg)';
+                                    card.style.transform = 'rotate(10deg)';
                                   }
                                 }}
                                 onMouseLeave={() => {
@@ -1660,17 +1693,17 @@ your team through a simple,<br />
                                     gap: '6px',
                                     color: '#1a4d3a',
                                     fontWeight: 500,
-                                    flexDirection: 'row-reverse'
+                                    flexDirection: 'row-reverse',
+                                     width: '100%',
+                                    justifyContent: 'center',
+
                                   }}
                                 >
-                                  <motion.div variants={arrowLeftVariants}>
-                                    <ArrowLeft style={{ width: '20px', height: '20px' }} />
-                                  </motion.div>
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>Choose Option</span>
+                                  }}>Choose Option  <img src="./assets/right-arrow-b.png" alt="" className={styles.chooseOptImg} /></span>
                                 </motion.div>
                               </motion.div>
 
@@ -1787,15 +1820,28 @@ your team through a simple,<br />
               chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
             }
           }}
+          onAllChaptersClick={() => {
+            setIsChaptersSectionSticky(false);
+            document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
+            if (heroImageRef.current) {
+              heroImageRef.current.style.scrollMarginTop = '-400px';
+            }
+            setTimeout(() => {
+              heroImageRef.current?.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+          }}
         />
 
       </section >
 
       {/* Bonus Chapter Section */}
-      <BonusChapter ref={bonusSectionRef} />
+      <BonusChapter ref={bonusSectionRef} onToolkitClick={handleToolkitClick} />
 
       {/* Download Section */}
-      <DownloadSection />
+      <div ref={downloadSectionRef}>
+        <DownloadSection />
+      </div>
 
       {/* Explore Grid Section */}
       <div ref={exploreSectionRef}>
@@ -1806,7 +1852,11 @@ your team through a simple,<br />
       <Footer />
 
       {/* Popup Form */}
-      <PopupForm isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} />
+      <PopupForm
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+        toolkitUrl={currentToolkitUrl}
+      />
     </div>
   )
 }
