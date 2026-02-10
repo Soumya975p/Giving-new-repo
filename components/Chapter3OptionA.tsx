@@ -7,16 +7,17 @@ interface Chapter3OptionAProps {
     onBack: () => void;
     onNext?: () => void;
     embedded?: boolean;
-    onToolkitDownload?: (url: string) => void;
+    onToolkitDownload?: () => void;
 }
 
-export default function Chapter3OptionA({ onBack, onNext, embedded = false, onToolkitDownload }: Chapter3OptionAProps) {
+export default function Chapter3OptionA({ onBack, onNext, embedded = false }: Chapter3OptionAProps) {
     return (
         <div className={styles.optionContentWrapper}>
             {/* Sticky Header */}
             <div className={`${styles.stickyHeader} ${embedded ? styles.embeddedHeader : ''}`}>
                 <button className={styles.backButton} onClick={onBack}>
-                    <span><img src="/assets/bc-icon.png" alt="" /> Back to scenario</span>
+                    <ArrowLeft size={16} />
+                    <span>Back to scenario</span>
                 </button>
 
 
@@ -42,11 +43,6 @@ export default function Chapter3OptionA({ onBack, onNext, embedded = false, onTo
                             src="/assets/chapter_1/flower_left_optionA.svg"
                             alt="Flower decoration"
                             className={styles.flowerDecor}
-                        />
-                        <img
-                            src="/assets/chapter_1/mob-flower_left_optionA.png"
-                            alt="Flower decoration mobile"
-                            className={styles.flowerDecorMobile}
                         />
                         <img
                             src="/assets/chapter_1/fly_left_optionA.svg"
@@ -116,9 +112,9 @@ export default function Chapter3OptionA({ onBack, onNext, embedded = false, onTo
 
                     {/* Card 3 - Why This Works + Toolkit Intro */}
                     <div className={styles.contentCard}>
-                            <p className={styles.whyText}>
-                                Here is a toolkit to guide you and your team through a simple, effective and proven network mapping exercise.
-                            </p>
+                        <p className={styles.whyText}>
+                            Here is a toolkit to guide you and your team through a simple, effective and proven network mapping exercise.
+                        </p>
 
                         {/*  */}
                     </div>
@@ -132,7 +128,6 @@ export default function Chapter3OptionA({ onBack, onNext, embedded = false, onTo
                             backgroundImage="/assets/toolkit3_background.svg"
                             designImage="/assets/toolkit3_design.png"
                             designVariant="tk3"
-                            onViewToolkit={() => onToolkitDownload?.('https://docs.google.com/spreadsheets/d/1pVwzkSRwiibOMbvlyN9fHeReSVzq4wHB/edit?usp=sharing&ouid=114110917274284408501&rtpof=true&sd=true')}
                         />
                     </div>
 
@@ -146,7 +141,6 @@ export default function Chapter3OptionA({ onBack, onNext, embedded = false, onTo
                             backgroundImage="/assets/toolkit4_background.svg"
                             designImage="/assets/toolkit4_design.png"
                             designVariant="tk4"
-                            onViewToolkit={() => onToolkitDownload?.('https://docs.google.com/spreadsheets/d/1ZTATFrOS2l36KOk8FWKtQOvOnWRPizl4rb956zgj7tA/edit?usp=sharing')}
                         />
                     </div>
 
@@ -161,7 +155,6 @@ export default function Chapter3OptionA({ onBack, onNext, embedded = false, onTo
                                 backgroundImage="/assets/toolkit5_background.svg"
                                 designImage="/assets/toolkit5_design.png"
                                 designVariant="tk5"
-                                onViewToolkit={() => onToolkitDownload?.('https://docs.google.com/spreadsheets/d/1mJU8N9rpZNs1dXz4O8HZNNeBxbTnxV-aIRGIjAVrvDc/edit?usp=sharing')}
                             />
                         </div>
 

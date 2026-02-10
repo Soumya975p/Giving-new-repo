@@ -357,38 +357,59 @@
   font-weight: 400;
 }
 
+
 .startButton {
-  display: inline-block;
-  background: transparent;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  outline: none;
-  box-shadow: none;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.startButton:focus,
-.startButton:active,
-.startButton:focus-visible {
-  outline: none !important;
-  box-shadow: none !important;
-  background: transparent !important;
-}
-
-.startButton:hover {
-  background: transparent;
-  outline: none;
-}
-
-.startButton::before {
-  display: none;
-}
-
-.startButtonImage {
+  position: relative;
+  width: 178px;
   height: 56px;
-  width: auto;
-  display: block;
+  border-radius: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(22px);
+  background: rgba(0, 0, 0, 0.01);
+  border: none;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* Gradient border */
+.startButton::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 28px;
+  padding: 2px;
+  background: linear-gradient(90deg, #07595F, #0FB8C5);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* Text */
+.startLabel {
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 2;
+}
+
+/* Diamond SVGs */
+.startDiamond {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  z-index: 2;
+}
+
+.startDiamondLeft {
+  left: 26px;
+}
+
+.startDiamondRight {
+  right: 26px;
 }
 
 .buttonArrow {
@@ -401,13 +422,6 @@
   align-items: center;
   justify-content: center;
   font-size: 18px;
-}
-
-.buttonDiamond {
-  width: 14px;
-  height: 14px;
-  object-fit: contain;
-  flex-shrink: 0;
 }
 
 /* Mobile Layout adjustments */
@@ -587,23 +601,24 @@
   }
 
   /* Pill button style for start button on mobile */
-  /* Start button mobile reset */
   .startButton {
     width: auto;
     min-width: auto;
-    background: transparent;
-    border: none;
-    border-radius: 0;
-    padding: 0;
+    padding: 12px 32px;
+    gap: 10px;
     margin-top: 10px;
     margin-bottom: 20px;
     align-self: flex-start !important;
     /* Force left alignment */
   }
 
-  .startButtonImage {
-    height: 48px;
-    width: auto;
+  .startLabel {
+    font-size: 14px;
+  }
+
+  .startDiamond {
+    width: 7px;
+    height: 7px;
   }
 
 }
@@ -8994,4 +9009,58 @@ display: inline-block;
     position: relative;
     top: 8px;
     margin: 0px 12px;
+}
+
+/* Glass Button Cursor Styles */
+.glassButton {
+  position: relative;
+  width: 181px;
+  height: 57px;
+  border-radius: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+/* Gradient border trick */
+.glassButton::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 28px;
+  padding: 2px;
+  background: linear-gradient(90deg, #07595F, #0FB8C5);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* Button text */
+.btnText {
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  z-index: 2;
+}
+
+/* Decorative diamonds */
+.diamond {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  transform: rotate(45deg);
+  background: radial-gradient(circle, #0FB8C5 35%, #93CD4D 100%);
+  opacity: 0.9;
+}
+
+.left {
+  left: 16px;
+}
+
+.right {
+  right: 16px;
 }

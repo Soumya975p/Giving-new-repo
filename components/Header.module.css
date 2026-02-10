@@ -26,7 +26,7 @@
   line-height: 1.2;
 }
 
-/* Header Right - Menu Button */
+/* Header Right - Glass Button */
 .headerRight {
   position: fixed;
   top: 30px;
@@ -35,23 +35,142 @@
   /* Above menu overlay */
   display: flex;
   align-items: center;
-  gap: 20px;
+  justify-content: flex-end;
   width: auto;
-  /* Changed from fixed width to accommodate just the icon */
   opacity: 1;
   pointer-events: auto;
 }
 
-.menuSvg {
-  width: 274px;
-  height: 45px;
-  cursor: pointer;
-  display: block;
+.buttonWrapper {
+  position: relative;
+  width: auto;
 }
 
-.menuOpen {
-  width: 317px;
-  height: 53px;
+/* Glass Button Styles */
+.glassBtn {
+  position: relative;
+  width: 274px;
+  height: 45px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+
+  /* glass background */
+  background: rgba(0, 0, 0, 0.13);
+  backdrop-filter: blur(27px);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 15px;
+  padding-right: 0;
+
+  font-family: "DM Sans", sans-serif;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.glassBtn:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* Gradient text (matches SVG fill) */
+.btnText {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  /* Matching reference image which shows uppercase */
+  letter-spacing: 1px;
+
+  background: radial-gradient(circle at right,
+      #d349ae,
+      #13d9e8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-style: semibold;
+  line-height: 140%;
+  letter-spacing: 10%;
+}
+
+.diamondIcon {
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle at right,
+      #d349ae,
+      #13d9e8);
+  transform: rotate(45deg);
+  margin-right: 12px;
+  border-radius: 1px;
+  /* Slight radius for softness */
+}
+
+/* Right icon container */
+.btnIcon {
+  width: 45px;
+  height: 45px;
+  background: #0a1731;
+  border-radius: 6px;
+
+  display: grid;
+  grid-template-columns: repeat(2, 6px);
+  grid-template-rows: repeat(2, 6px);
+  gap: 3px;
+  justify-content: center;
+  align-content: center;
+}
+
+/* Expanded Menu State (Desktop) */
+.navContainer {
+  width: 370px;
+  height: 45px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  /* padding: 8px; */
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  /* Maintain positioning context */
+}
+
+.navTabs {
+  display: flex;
+  gap: 8px;
+  flex: 1;
+}
+
+.tab {
+  padding: 14px 22px;
+  border-radius: 10px;
+  color: #cfe3e5;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tabActive {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+/* Dots */
+.dot {
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
 }
 
 /* Menu Overlay */
@@ -444,6 +563,10 @@
     display: none !important;
   }
 
+  .diamondIcon {
+    display: none !important;
+  }
+
   .desktopOnly {
     display: none !important;
   }
@@ -470,12 +593,24 @@
     right: 20px;
   }
 
-  .menuSvg {
+  .glassBtn {
     width: 45px;
-    height: 45px;
-    object-fit: cover;
-    object-position: right;
-    border-radius: 6px;
+    padding: 0;
+    justify-content: center;
+    background: transparent;
+    backdrop-filter: none;
+  }
+
+  .glassBtn:hover {
+    background: transparent;
+  }
+
+  .glassBtn>div:first-child {
+    display: none;
+  }
+
+  .btnText {
+    display: none;
   }
 
   .menuOpen {

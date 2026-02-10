@@ -7,7 +7,7 @@ interface Chapter4OptionAProps {
     onBack: () => void;
     onNext?: () => void;
     embedded?: boolean;
-    onToolkitDownload?: (url: string) => void;
+    onToolkitDownload?: () => void;
 }
 
 export default function Chapter4OptionA({ onBack, onNext, embedded = false, onToolkitDownload }: Chapter4OptionAProps) {
@@ -17,7 +17,8 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
             {/* Sticky Header */}
             <div className={`${styles.stickyHeader} ${embedded ? styles.embeddedHeader : ''}`}>
                 <button className={styles.backButton} onClick={onBack}>
-                    <span><img src="/assets/bc-icon.png" alt="" /> Back to scenario</span>
+                    <ArrowLeft size={16} />
+                    <span>Back to scenario</span>
                 </button>
 
 
@@ -62,10 +63,10 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
                                 <img src="/assets/ch4_c2.png" alt="" className={styles.floatingDecor1} />
                                 <img src="/assets/ch4_C2.svg" alt="" className={styles.floatingDecor2} />
                                 <img src="/assets/ch4_c4.png" alt="" className={styles.floatingDecor3} />
-                                <img 
-                                    src="/assets/chapter4/hover_fly_ch4.svg" 
-                                    alt="Fly decoration" 
-                                    className={styles.flyDecoration} 
+                                <img
+                                    src="/assets/chapter4/hover_fly_ch4.svg"
+                                    alt="Fly decoration"
+                                    className={styles.flyDecoration}
                                 />
                             </div>
 
@@ -113,7 +114,7 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
                             <div className={styles.whySection}>
                                 <span className={styles.whyLabel}>WHY THIS WORKS</span>
                                 <p className={styles.whyText}>
-                                   Donors who feel valued don’t<br /> just give more - they<br />
+                                    Donors who feel valued don’t<br /> just give more - they<br />
                                     bring others with them.
                                 </p>
                             </div>
@@ -140,7 +141,8 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
                                 toolkiturl='https://docs.google.com/spreadsheets/d/14igjiR-rsWemDzs0idCkzm0jj5osws5ZyQAxV6vCVb8/edit?usp=sharing'
                                 backgroundVariant="tk6"
                                 designVariant="tk6"
-                                onViewToolkit={() => onToolkitDownload?.('https://docs.google.com/spreadsheets/d/14igjiR-rsWemDzs0idCkzm0jj5osws5ZyQAxV6vCVb8/edit?usp=sharing')}
+                                onDownload={onToolkitDownload}
+                                onViewToolkit={onToolkitDownload}
                             />
                         </div>
 
@@ -157,7 +159,8 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
                                     backgroundVariant="tk7"
                                     designVariant="tk7"
                                     toolkiturl='https://docs.google.com/spreadsheets/d/1Rai3BrOnpgDDSJbnGNPalXrJUWKQHgwwuUVGapbwCKI/edit?usp=sharing'
-                                    onViewToolkit={() => onToolkitDownload?.('https://docs.google.com/spreadsheets/d/1Rai3BrOnpgDDSJbnGNPalXrJUWKQHgwwuUVGapbwCKI/edit?usp=sharing')}
+                                    onDownload={onToolkitDownload}
+                                    onViewToolkit={onToolkitDownload}
                                 />
                             </div>
 

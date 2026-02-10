@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import styles from './Explore.module.css';
+import pageStyles from '../app/page.module.css';
 
 export default function Explore() {
   const [isExplore1Hovered, setIsExplore1Hovered] = useState(false);
@@ -25,7 +26,7 @@ export default function Explore() {
           <span className={styles.exploreLabel}>FOLLOW ALONG</span>
           <h2 className={styles.exploreTitle}>Choose the Path That Fits Your Work</h2>
           <p className={styles.subtitle}>Explore the Field Guides and discover how to turn community generosity into sustained mission success.</p>
-          
+
         </div>
 
         <div
@@ -36,20 +37,21 @@ export default function Explore() {
         >
           {/* Custom Explore Cursor Button */}
           {showExploreCursor && (
-            <img
-              src="/assets/explore.svg"
-              alt=""
+            <div
+              className={pageStyles.glassButton}
               style={{
                 position: 'fixed',
                 top: 0,
                 left: 0,
-                transform: `translate(${exploreCursorPos.x - 91.4}px, ${exploreCursorPos.y - 28}px)`, // Centered based on 182.79 / 2
+                transform: `translate(${exploreCursorPos.x - 90}px, ${exploreCursorPos.y - 28}px)`,
                 pointerEvents: 'none',
                 zIndex: 9999,
-                width: '182.79px',
-                height: '56px',
               }}
-            />
+            >
+              <span className={`${pageStyles.diamond} ${pageStyles.left}`}></span>
+              <span className={pageStyles.btnText}>Explore</span>
+              <span className={`${pageStyles.diamond} ${pageStyles.right}`}></span>
+            </div>
           )}
 
           <div
@@ -89,6 +91,14 @@ export default function Explore() {
               alt="Introduction Mobile"
               className={`${styles.exploreCardImage} ${styles.mobileOnly}`}
             />
+            {/* Text Overlay */}
+            <div className={styles.introTextContainer} data-hovered={isExplore1Hovered}>
+              <span className={styles.introLabel}>UDARTA-EG FIELD GUIDE</span>
+              <h3 className={styles.introTitle}>Introduction</h3>
+              <p className={styles.introDescription}>
+                Unlock the power of everyday giving using what's already working across India.
+              </p>
+            </div>
           </div>
 
           <div
@@ -110,13 +120,13 @@ export default function Explore() {
             {/* Desktop Version */}
             <div className={styles.desktopOnly}>
               <img
-                src="/assets/explore_volunteer_engagement.png"
+                src="/assets/Into-folder.png"
                 alt="Volunteer Engagement"
                 className={styles.exploreCardImage}
                 style={{ opacity: isExplore2Hovered ? 0 : 1 }}
               />
               <img
-                src="/assets/volunteer_hover.png"
+                src="/assets/intro-folder-active.png"
                 alt="Volunteer Engagement Hover"
                 className={styles.exploreHoverImage}
                 style={{ opacity: isExplore2Hovered ? 1 : 0 }}
@@ -128,6 +138,14 @@ export default function Explore() {
               alt="Volunteer Engagement Mobile"
               className={`${styles.exploreCardImage} ${styles.mobileOnly}`}
             />
+            <div className={styles.introTextContainer} data-hovered={isExplore2Hovered}>
+              <span className={styles.introLabel}>UDARTA-EG FIELD GUIDE</span>
+              <h3 className={styles.introTitle}>Volunteer Engagement</h3>
+              <p className={styles.introDescription}>
+                Coming Soon <br />
+                <span> <br /></span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
