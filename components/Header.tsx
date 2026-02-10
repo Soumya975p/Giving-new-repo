@@ -40,12 +40,30 @@ export default function Header({
     <>
       {/* Global Sticky Header Right */}
       <div className={`${styles.headerRight} ${isMenuOpen ? styles.hiddenOnMobile : ''}`}>
-        <img
-          src={isMenuOpen ? '/assets/menu_open.svg' : '/assets/menu.svg'}
-          alt="Menu"
-          className={`${styles.menuSvg} ${isMenuOpen ? styles.menuOpen : ''}`}
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        />
+        <div className={styles.buttonWrapper}>
+          <button
+            className={isMenuOpen ? styles.navContainer : styles.glassBtn}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? (
+              <div className={styles.navTabs}>
+                <div className={styles.tab} onClick={(e) => { e.stopPropagation(); router.push('/'); }}>HOME</div>
+                <div className={`${styles.tab} ${styles.tabActive}`}>UDARTA:EG FIELD GUIDE</div>
+              </div>
+            ) : (
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <div className={styles.diamondIcon}></div>
+                <span className={styles.btnText}>Fundraising Field Guide</span>
+              </div>
+            )}
+            <div className={styles.btnIcon}>
+              <div className={styles.dot}></div>
+              <div className={styles.dot}></div>
+              <div className={styles.dot}></div>
+              <div className={styles.dot}></div>
+            </div>
+          </button>
+        </div>
       </div>
 
       {/* Hero Header */}

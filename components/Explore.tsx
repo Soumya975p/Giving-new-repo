@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import styles from './Explore.module.css';
+import pageStyles from '../app/page.module.css';
 
 export default function Explore() {
   const [isExplore1Hovered, setIsExplore1Hovered] = useState(false);
@@ -36,20 +37,21 @@ export default function Explore() {
         >
           {/* Custom Explore Cursor Button */}
           {showExploreCursor && (
-            <img
-              src="/assets/explore.svg"
-              alt=""
+            <div
+              className={pageStyles.glassButton}
               style={{
                 position: 'fixed',
                 top: 0,
                 left: 0,
-                transform: `translate(${exploreCursorPos.x - 91.4}px, ${exploreCursorPos.y - 28}px)`, // Centered based on 182.79 / 2
+                transform: `translate(${exploreCursorPos.x - 90}px, ${exploreCursorPos.y - 28}px)`,
                 pointerEvents: 'none',
                 zIndex: 9999,
-                width: '182.79px',
-                height: '56px',
               }}
-            />
+            >
+              <span className={`${pageStyles.diamond} ${pageStyles.left}`}></span>
+              <span className={pageStyles.btnText}>Explore</span>
+              <span className={`${pageStyles.diamond} ${pageStyles.right}`}></span>
+            </div>
           )}
 
           <div

@@ -238,13 +238,9 @@ export default function Home() {
             <button className={styles.startButton} onClick={() => {
               chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
             }}>
-              <div className={styles.buttonContentWrapper}>
-                <span className={styles.buttonDiamond}>◆</span>
-                <div className={styles.buttonTextContainer}>
-                  <span className={styles.buttonText}>Start journey</span>
-                </div>
-                <span className={styles.buttonDiamond}>◆</span>
-              </div>
+              <img src="/assets/start_diamond.svg" className={`${styles.startDiamond} ${styles.startDiamondLeft}`} alt="" />
+              <span className={styles.startLabel}>Start Journey</span>
+              <img src="/assets/start_diamond.svg" className={`${styles.startDiamond} ${styles.startDiamondRight}`} alt="" />
             </button>
           </div>
 
@@ -292,9 +288,8 @@ export default function Home() {
             >
               {/* Custom Cursor Element */}
               {showGridCursor && (
-                <img
-                  src="/assets/grid_hover.svg"
-                  alt=""
+                <div
+                  className={styles.glassButton}
                   style={{
                     position: 'fixed',
                     top: 0,
@@ -302,10 +297,12 @@ export default function Home() {
                     transform: `translate(${gridCursorPos.x - 90}px, ${gridCursorPos.y - 28}px)`, // Centered
                     pointerEvents: 'none',
                     zIndex: 9999,
-                    width: '181px',
-                    height: '57px',
                   }}
-                />
+                >
+                  <span className={`${styles.diamond} ${styles.left}`}></span>
+                  <span className={styles.btnText}>Explore Chapters</span>
+                  <span className={`${styles.diamond} ${styles.right}`}></span>
+                </div>
               )}
               {chapters.map((chapter) => (
                 <div

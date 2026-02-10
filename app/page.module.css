@@ -359,86 +359,58 @@
 
 
 .startButton {
-  display: inline-flex;
-  justify-content: space-between;
-  width: 177.79px;
+  position: relative;
+  width: 178px;
   height: 56px;
+  border-radius: 28px;
+  display: flex;
   align-items: center;
-  background: transparent;
-  border-radius: 60px;
-  /* padding: 0 20px; */
+  justify-content: center;
+  backdrop-filter: blur(22px);
+  background: rgba(0, 0, 0, 0.01);
+  border: none;
+  cursor: pointer;
   font-family: 'DM Sans', sans-serif;
+}
+
+/* Gradient border */
+.startButton::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 28px;
+  padding: 2px;
+  background: linear-gradient(90deg, #07595F, #0FB8C5);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* Text */
+.startLabel {
+  color: white;
   font-size: 14px;
   font-weight: 500;
-  color: white;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  opacity: 1;
-  position: relative;
-  overflow: hidden;
-  justify-content: center;
-  padding: 12px 28px;
-  border-radius: 50px;
-
-  border: 2px solid transparent;
-
-  background:
-    linear-gradient(#132E3F, #132E3F) padding-box,
-    linear-gradient(270deg, #0FB8C5 0%, #07595F 100%) border-box;
-
-  color: #fff;
-  border: 2px solid;
-
-  border-image-source: linear-gradient(270deg, #0FB8C5 0%, #07595F 100%);
-  background-clip: padding-box, border-box;
-
-}
- 
- 
- 
- 
- 
-
-
-.buttonContentWrapper {
-  display: flex;
- justify-content: space-between;
-  width: 170.79px;
-  height: 24px;
-  gap: 12px;
-  padding-left: 16px;
-  padding-right: 16px;
-  opacity: 1;
+  z-index: 2;
 }
 
-.buttonDiamond {
-  background: linear-gradient(90deg, #93CD4D, #0FB8C5);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 16px;
+/* Diamond SVGs */
+.startDiamond {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  z-index: 2;
 }
 
-.buttonTextContainer {
-  width: 170px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 1;
+.startDiamondLeft {
+  left: 26px;
 }
 
-.buttonText {
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 500;
-  font-style: medium;
-  font-size: 14.3px;
-  line-height: 150%;
-  letter-spacing: -2%;
-  text-align: center;
-  color: #fff;
+.startDiamondRight {
+  right: 26px;
 }
-
 
 .buttonArrow {
   background: #3dd9c4;
@@ -640,17 +612,13 @@
     /* Force left alignment */
   }
 
-  .buttonText {
-    font-size: 16px;
-  }
-
-  .buttonDiamond {
+  .startLabel {
     font-size: 14px;
   }
 
-  .startButtonImage {
-    height: 48px;
-    width: auto;
+  .startDiamond {
+    width: 7px;
+    height: 7px;
   }
 
 }
@@ -9041,4 +9009,58 @@ display: inline-block;
     position: relative;
     top: 8px;
     margin: 0px 12px;
+}
+
+/* Glass Button Cursor Styles */
+.glassButton {
+  position: relative;
+  width: 181px;
+  height: 57px;
+  border-radius: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+/* Gradient border trick */
+.glassButton::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 28px;
+  padding: 2px;
+  background: linear-gradient(90deg, #07595F, #0FB8C5);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* Button text */
+.btnText {
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  z-index: 2;
+}
+
+/* Decorative diamonds */
+.diamond {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  transform: rotate(45deg);
+  background: radial-gradient(circle, #0FB8C5 35%, #93CD4D 100%);
+  opacity: 0.9;
+}
+
+.left {
+  left: 16px;
+}
+
+.right {
+  right: 16px;
 }
