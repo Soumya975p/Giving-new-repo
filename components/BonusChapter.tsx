@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef, useState } from 'react';
+import { forwardRef, useState, useEffect } from 'react';
 import styles from './BonusChapter.module.css';
 import ToolkitCard from './ToolkitCard';
 
@@ -11,28 +11,53 @@ interface BonusChapterProps {
 
 const BonusChapter = forwardRef<HTMLDivElement, BonusChapterProps>(
     ({ className, onToolkitClick }, ref) => {
-        const [isCardHovered, setIsCardHovered] = useState(false);
         const [isMobileCardFlipped, setIsMobileCardFlipped] = useState(false);
+        const [isCardFlipped, setIsCardFlipped] = useState(false);
+        const [isCardHovered, setIsCardHovered] = useState(false);
 
         const handleMobileClick = () => {
             setIsMobileCardFlipped(!isMobileCardFlipped);
         };
 
         const handleToolkitViewClick = (url: string) => {
-            // Release hover state after clicking
-            setIsCardHovered(false);
             // Call the parent callback
             onToolkitClick?.(url);
         };
+
+        // Scroll listener for card flip animation
+        useEffect(() => {
+            const handleScroll = () => {
+                if (typeof ref === 'object' && ref?.current) {
+                    const section = ref.current;
+                    const rect = section.getBoundingClientRect();
+                    const sectionTop = rect.top;
+                    const windowHeight = window.innerHeight;
+
+                    // Calculate how much the section has been scrolled into view
+                    const scrolledIntoView = windowHeight - sectionTop;
+
+                    // Flip card when scrolled 20px into the section
+                    if (scrolledIntoView >= 20 && !isCardFlipped) {
+                        setIsCardFlipped(true);
+                    }
+                }
+            };
+
+            window.addEventListener('scroll', handleScroll);
+            handleScroll(); // Check initial state
+
+            return () => {
+                window.removeEventListener('scroll', handleScroll);
+            };
+        }, [ref, isCardFlipped]);
 
         return (
             <section
                 className={`${styles.bonusSection} ${className || ''}`}
                 ref={ref}
-                onMouseLeave={() => setIsCardHovered(false)}
             >
-                <div className={`${styles.bonusContent} ${isCardHovered ? styles.contentHovered : ''}`}>
-                    <div className={`${styles.bonusLeft} ${isCardHovered ? styles.leftHidden : ''}`}>
+                <div className={styles.bonusContent}>
+                    <div className={styles.bonusLeft}>
                         <img
                             src="/assets/bonus_chapter_flower.svg"
                             alt=""
@@ -74,12 +99,14 @@ const BonusChapter = forwardRef<HTMLDivElement, BonusChapterProps>(
                         </div>
                     </div>
                     <div className={styles.bonusRight}>
+                        {/* Desktop - Flip between stewardship card and toolkit */}
                         <div
-                            className={`${styles.bonusCardWrapper} ${styles.desktopOnly} ${isCardHovered ? styles.cardHovered : ''}`}
+                            className={`${styles.bonusCardWrapper} ${styles.desktopOnly} ${(isCardFlipped || isCardHovered) ? styles.cardHovered : ''}`}
                             onMouseEnter={() => setIsCardHovered(true)}
+                            onMouseLeave={() => setIsCardHovered(false)}
                         >
-                            {/* Original Card - Visible initially, hidden on hover */}
-                            <div className={`${styles.originalCard} ${isCardHovered ? styles.cardHidden : ''}`}>
+                            {/* Stewardship Card - Hidden when flipped or hovered */}
+                            <div className={`${styles.originalCard} ${(isCardFlipped || isCardHovered) ? styles.cardHidden : ''}`}>
                                 <img
                                     src="/assets/bonus_flp_simple.png"
                                     alt="Stewardship is a team effort"
@@ -97,8 +124,8 @@ const BonusChapter = forwardRef<HTMLDivElement, BonusChapterProps>(
                                 </div>
                             </div>
 
-                            {/* Toolkit Card - Hidden initially, visible on hover */}
-                            <div className={`${styles.toolkitCardContainer} ${isCardHovered ? styles.cardVisible : ''}`}>
+                            {/* Toolkit 8 - Visible when flipped or hovered */}
+                            <div className={`${styles.toolkitCardContainer} ${(isCardFlipped || isCardHovered) ? styles.cardVisible : ''}`}>
                                 <ToolkitCard
                                     toolkitNumber={8}
                                     title="Getting Your Team On Board"
@@ -113,6 +140,8 @@ const BonusChapter = forwardRef<HTMLDivElement, BonusChapterProps>(
                                 />
                             </div>
                         </div>
+
+                        {/* Mobile card with flip */}
                         <div
                             className={`${styles.bonusCardWrapper} ${styles.mobileOnly}`}
                             onClick={handleMobileClick}
@@ -151,18 +180,18 @@ const BonusChapter = forwardRef<HTMLDivElement, BonusChapterProps>(
                                 />
                             </div>
                         </div>
-                        <div className={styles.bonusDotsPattern}>
-                            <img
-                                src="/assets/bonus_background.png"
-                                alt=""
-                                className={`${styles.bonusDotsImage} ${styles.desktopOnly}`}
-                            />
-                            <img
-                                src="/assets/mobile_bonus_background.png"
-                                alt=""
-                                className={`${styles.bonusDotsImage} ${styles.mobileOnly}`}
-                            />
-                        </div>
+                    </div>
+                    <div className={styles.bonusDotsPattern}>
+                        <img
+                            src="/assets/bonus_background.png"
+                            alt=""
+                            className={`${styles.bonusDotsImage} ${styles.desktopOnly}`}
+                        />
+                        <img
+                            src="/assets/mobile_bonus_background.png"
+                            alt=""
+                            className={`${styles.bonusDotsImage} ${styles.mobileOnly}`}
+                        />
                     </div>
                 </div>
             </section>

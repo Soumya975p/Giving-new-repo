@@ -698,31 +698,35 @@
 /* Chapters Section - Transform-based stacking */
 .chaptersSection {
   width: 100%;
-  /* min-height: calc(100vh + 200px); Removed fixed height constraint */
-  height: auto;
+  height: 100vh;
   position: relative;
   overflow: visible;
-  /* padding-bottom: 300px; */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Sticky state - triggered when 10% visible */
+/* Sticky state - fixed at top (desktop only) */
 .chaptersSectionSticky {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
   height: 100vh !important;
-  z-index: 100;
-  overflow-y: auto;
-  scrollbar-width: none;
-  padding-bottom: 0 !important;
+  z-index: 100 !important;
+  overflow-y: auto !important;
 }
 
 .chaptersSectionSticky::-webkit-scrollbar {
   display: none;
+}
+
+/* Disable sticky behavior on mobile */
+@media (max-width: 767px) {
+  .chaptersSectionSticky {
+    position: relative !important;
+    overflow-y: visible !important;
+  }
 }
 
 @keyframes slideUpAndFix {
@@ -791,6 +795,79 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.chapterPanel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: transparent;
+  opacity: 0;
+  transition: opacity 0.6s ease, left 0.6s ease, right 0.6s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.chapterPanel.showGradientLeft::before {
+  opacity: 1;
+  left: 0;
+  right: auto;
+  background: radial-gradient(146.57% 86.51% at 100% 50%, #B0D313 0%, #0FB8C5 100%);
+}
+
+.chapterPanel.showGradientRight::before {
+  opacity: 1;
+  left: auto;
+  right: 0;
+  background: radial-gradient(146.57% 86.51% at 0% 50%, #0FB8C5 0%, #B0D313 100%);
+}
+
+/* Chapter 2 gradient backgrounds */
+.chapterPanel.showGradientLeftCh2::before {
+  opacity: 1;
+  left: 0;
+  right: auto;
+  background: linear-gradient(48.38deg, rgba(211, 73, 174, 0.39) -12.85%, rgba(15, 184, 197, 0.39) 85.21%, rgba(27, 213, 228, 0.39) 106.59%);
+}
+
+.chapterPanel.showGradientRightCh2::before {
+  opacity: 1;
+  left: auto;
+  right: 0;
+  background: linear-gradient(48.38deg, rgba(211, 73, 174, 0.39) -12.85%, rgba(15, 184, 197, 0.39) 85.21%, rgba(27, 213, 228, 0.39) 106.59%);
+}
+
+/* Chapter 3 gradient backgrounds */
+.chapterPanel.showGradientLeftCh3::before {
+  opacity: 1;
+  left: 0;
+  right: auto;
+  background: radial-gradient(108.63% 108.63% at 117.78% 116.39%, #FFCD86 15.38%, #13D9E8 100%);
+}
+
+.chapterPanel.showGradientRightCh3::before {
+  opacity: 1;
+  left: auto;
+  right: 0;
+  background: radial-gradient(108.63% 108.63% at 117.78% 116.39%, #FFCD86 15.38%, #13D9E8 100%);
+}
+
+/* Chapter 4 gradient backgrounds */
+.chapterPanel.showGradientLeftCh4::before {
+  opacity: 1;
+  left: 0;
+  right: auto;
+  background: radial-gradient(141.79% 156.75% at 119.39% 116.05%, #FFEF3D 0%, #DCD647 13.36%, #C9CD33 35.87%, #8DA806 56.51%, #86A401 75.24%, #315900 99.52%);
+}
+
+.chapterPanel.showGradientRightCh4::before {
+  opacity: 1;
+  left: auto;
+  right: 0;
+  background: radial-gradient(141.79% 156.75% at 119.39% 116.05%, #FFEF3D 0%, #DCD647 13.36%, #C9CD33 35.87%, #8DA806 56.51%, #86A401 75.24%, #315900 99.52%);
 }
 
 /* Content area inside panel */
@@ -992,9 +1069,11 @@
 .contentSection {
   flex: 1;
   width: 100%;
-  overflow-y: visible;
+  height: 100vh;
+  overflow-y: auto;
   overflow-x: hidden;
   position: relative;
+  z-index: 1;
   /* border: 3px solid rgba(0, 0, 0, 0.3); */
   box-sizing: border-box;
   scroll-behavior: smooth;
@@ -3617,7 +3696,7 @@
   margin: -500px auto 0;
   text-align: center;
   position: relative;
-  padding-top: 100px;
+  padding-top: 20px;
 }
 
 .cultivationLabel {
@@ -4204,6 +4283,13 @@
   .chaptersSection {
       min-height: 100vh;
   }
+  .chapter1Wrapper .scenarioContainer {
+    padding-top: 25rem !important;
+    padding-bottom: 10rem;
+  }
+  .selectChapter{
+    margin-bottom: 80px;
+  }
 }
 /* Chapter 1 Specific Layout */
 .chapter1Wrapper {
@@ -4244,6 +4330,7 @@
   /* Reduced from 50px */
   position: relative;
   z-index: 10;
+  margin-top: calc(50vh - 200px);
   /* padding: 60px 10px 58px 10px; */
   /* top: 8%; */
   /* Reduced side padding slightly */
@@ -4273,7 +4360,7 @@
   letter-spacing: -0.03em;
   color: #0A1731;
   text-align: center;
-  margin-bottom: 28px;
+  margin-bottom: 80px;
   /* Reduced from 20px */
   max-width: 1000px;
   margin-left: auto;
@@ -4315,6 +4402,7 @@
   /* Positive margin to prevent overlapping */
   position: relative;
   top: 10%;
+  transition: background 0.6s ease, width 0.6s ease;
 }
 
 /* Hover Decorations for Chapter 1 Option A */
@@ -5178,7 +5266,20 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
+  padding: 20px;
+  border-radius: 12px;
+  position: relative;
+  transition: background 0.6s ease;
+  z-index: 2;
 }
+
+/* .optionColumnLeft:hover {
+  background: radial-gradient(146.57% 86.51% at 100% 50%, #B0D313 0%, #0FB8C5 100%);
+}
+
+.optionColumnRight:hover {
+  background: radial-gradient(146.57% 86.51% at 0% 50%, #0FB8C5 0%, #B0D313 100%);
+} */
 
 .optionColumnRight {
   align-items: flex-start;
@@ -5217,6 +5318,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: 1;
   position: relative;
   /* Box shadow removed as it might be in SVG or we can re-add if needed */
   /* box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25); */
@@ -8146,6 +8249,7 @@
   align-items: flex-start;
   gap: 5px;
   position: relative;
+  z-index: 2;
 }
 
 .optionColumnRight {
@@ -8159,6 +8263,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: 1;
   position: relative;
   flex-shrink: 0;
   background: transparent;

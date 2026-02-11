@@ -1,6 +1,6 @@
 .optionContentWrapper {
     width: 100%;
-    height: 100vh;
+    height: 80vh;
     position: fixed;
     top: 0;
     left: 0;
@@ -14,8 +14,8 @@
 .optionContentWrapper.embedded {
     position: sticky;
     top: 0;
-    height: 100vh;
-    min-height: 500px;
+    height: 80vh;
+    min-height: 400px;
     z-index: 1;
 }
 
