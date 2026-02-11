@@ -24,12 +24,19 @@
     justify-content: space-between;
     gap: 80px;
     padding: 0 00px;
+    position: relative;
 }
 
 .bonusLeft {
     flex: 1;
     position: relative;
     left: 10%;
+    transition: opacity 0.6s ease;
+}
+
+.bonusLeft.leftHidden {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .bonusFlowerImage {
@@ -137,7 +144,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
+    min-height: 500px;
 }
 
 .bonusCard {
@@ -219,8 +226,8 @@
     width: 100%;
     height: 80%;
     top: 240px;
-    left: 22.5%;
-    right: 100px;
+    left: 0;
+    right: 0px;
     pointer-events: none;
     z-index: 0;
 }
@@ -234,16 +241,62 @@
 }
 
 .bonusDotsImage {
-    width: 100%;
     height: 100%;
     object-fit: contain;
     opacity: 0.8;
+    position: absolute;
+    right: 0;
 }
 
 .bonusCardWrapper {
     position: relative;
     display: inline-block;
     z-index: 10;
+    cursor: pointer;
+    transition: transform 0.6s ease;
+}
+
+.bonusCardWrapper.cardHovered {
+    transform: translateX(-300px);
+}
+
+/* Original Card Container */
+.originalCard {
+    position: relative;
+    transition: opacity 0.5s ease;
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.originalCard.cardHidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Toolkit Card Container */
+.toolkitCardContainer {
+    position: absolute;
+    top: 0;
+    left: -70%;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.5s ease;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toolkitCardContainer.cardVisible {
+    opacity: 1;
+}
+
+/* Match toolkit card size to original card */
+.toolkitCardContainer > div {
+    max-width: 100%;
+    max-height: 500px;
 }
 
 .bonusCardImage {
@@ -255,6 +308,39 @@
     filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.3));
     z-index: 10;
     transform: translateX(14%);
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Hide normal image on hover */
+.bonusCardImage.imageHidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Hover Card Image - Initially hidden */
+.bonusCardHoverImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.3));
+    z-index: 10;
+    transform: translateX(14%);
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Show hover image on hover */
+.bonusCardHoverImage.imageVisible {
+    opacity: 1;
+    visibility: visible;
 }
 
 .bonusCardTextOverlay {
@@ -270,6 +356,15 @@
     z-index: 20;
     pointer-events: none;
     transform-origin: center;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Hide text overlay on hover */
+.bonusCardTextOverlay.textHidden {
+    opacity: 0;
+    visibility: hidden;
 }
 
 .mobileOnly .bonusCardTextOverlay {
@@ -326,10 +421,58 @@
         display: block !important;
     }
 
+    /* Disable hover effects on mobile */
+    .bonusCardWrapper {
+        position: relative;
+        transform: none !important;
+        cursor: pointer;
+    }
+
+    .bonusLeft.leftHidden {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Enable smooth transitions for card flip on mobile */
+    .mobileOnly .originalCard,
+    .mobileOnly .toolkitCardContainer {
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .mobileOnly .bonusCardWrapper {
+        position: relative;
+        display: block;
+        min-height: 355px;
+    }
+
+    .mobileOnly .toolkitCardContainer {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    .designOverlay{
+        transform: translateX(-2%) !important;
+
+    }
+
+    .mobileOnly .originalCard {
+        position: relative;
+        min-height: 355px;
+        display: none !important;
+    }
+
     /* Bonus Section - Mobile Specifics */
     .bonusSection {
         padding: 12vh 24px;
         background: #12363B;
+        padding-bottom: 200px;
         /* Darker background based on reference */
     }
 
@@ -355,9 +498,10 @@
         display: flex;
         justify-content: center;
         position: relative;
-        right: 5%;
+        right: 0;
         top: 10vh;
         background: #12363B;
+        min-height: auto;
     }
 
     .bonusCardImage {
@@ -455,22 +599,27 @@
         position: absolute;
         top: auto;
         bottom: 0%;
-        left: 50%;
+        left: 0%;
         transform: translateX(-0%);
         width: 100%;
         height: 100%;
         z-index: 0;
-        opacity: 0.5;
+        opacity: 1;
         /* Optional: Adjust opacity if needed to match reference visual weight */
         pointer-events: none;
         background: #12363B;
     }
-
+  .contentContainer {
+    width: 310px !important;
+}
 
     .bonusDotsImage {
-        width: 60%;
-        height: 150%;
+        width: 100%;
+        height: auto;
+        position: relative;
+                bottom: -22vh;
         object-fit: contain;
+        transform: translateX(10%);
         /* or cover, depending on desired effect. Desktop uses something specific? */
     }
 

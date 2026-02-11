@@ -63,10 +63,10 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
                                 <img src="/assets/ch4_c2.png" alt="" className={styles.floatingDecor1} />
                                 <img src="/assets/ch4_C2.svg" alt="" className={styles.floatingDecor2} />
                                 <img src="/assets/ch4_c4.png" alt="" className={styles.floatingDecor3} />
-                                <img 
-                                    src="/assets/chapter4/hover_fly_ch4.svg" 
-                                    alt="Fly decoration" 
-                                    className={styles.flyDecoration} 
+                                <img
+                                    src="/assets/chapter4/hover_fly_ch4.svg"
+                                    alt="Fly decoration"
+                                    className={styles.flyDecoration}
                                 />
                             </div>
 
@@ -114,7 +114,7 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
                             <div className={styles.whySection}>
                                 <span className={styles.whyLabel}>WHY THIS WORKS</span>
                                 <p className={styles.whyText}>
-                                   Donors who feel valued don’t<br /> just give more - they<br />
+                                    Donors who feel valued don’t<br /> just give more - they<br />
                                     bring others with them.
                                 </p>
                             </div>

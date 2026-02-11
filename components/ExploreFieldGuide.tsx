@@ -1,10 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import styles from './Explore.module.css';
-import pageStyles from '../app/page.module.css';
+import styles from './ExploreFieldGuide.module.css';
 
-export default function Explore() {
+export default function ExploreFieldGuide() {
   const [isExplore1Hovered, setIsExplore1Hovered] = useState(false);
   const [isExplore2Hovered, setIsExplore2Hovered] = useState(false);
   const [exploreCursorPos, setExploreCursorPos] = useState({ x: 0, y: 0 });
@@ -12,10 +11,6 @@ export default function Explore() {
 
   const handleNavigateFieldGuide = () => {
     window.location.href = '/field-guide';
-  };
-
-  const handleNavigateHome = () => {
-    window.location.href = '/';
   };
 
   return (
@@ -37,26 +32,25 @@ export default function Explore() {
         >
           {/* Custom Explore Cursor Button */}
           {showExploreCursor && (
-            <div
-              className={pageStyles.glassButton}
+            <img
+              src="/assets/explore.svg"
+              alt=""
               style={{
                 position: 'fixed',
                 top: 0,
                 left: 0,
-                transform: `translate(${exploreCursorPos.x - 90}px, ${exploreCursorPos.y - 28}px)`,
+                transform: `translate(${exploreCursorPos.x - 91.4}px, ${exploreCursorPos.y - 28}px)`, // Centered based on 182.79 / 2
                 pointerEvents: 'none',
                 zIndex: 9999,
+                width: '182.79px',
+                height: '56px',
               }}
-            >
-              <span className={`${pageStyles.diamond} ${pageStyles.left}`}></span>
-              <span className={pageStyles.btnText}>Explore</span>
-              <span className={`${pageStyles.diamond} ${pageStyles.right}`}></span>
-            </div>
+            />
           )}
 
           <div
             className={`${styles.exploreCardBase} ${styles.exploreCard1}`}
-            onClick={handleNavigateFieldGuide}
+            onClick={() => window.location.href = '/'}
             style={{ cursor: 'pointer' }}
           >
             <div
@@ -87,23 +81,23 @@ export default function Explore() {
             </div>
             {/* Mobile Version - Static */}
             <img
-              src="/assets/intro-mobile.png"
+              src="/assets/mobile_explore_intro.png"
               alt="Introduction Mobile"
               className={`${styles.exploreCardImage} ${styles.mobileOnly}`}
             />
             {/* Text Overlay */}
             <div className={styles.introTextContainer} data-hovered={isExplore1Hovered}>
               <span className={styles.introLabel}>UDARTA-EG FIELD GUIDE</span>
-              <h3 className={styles.introTitle}>Introduction</h3>
+              <h3 className={styles.introTitle}>Fundraising</h3>
               <p className={styles.introDescription}>
-                Unlock the power of everyday giving using what's already working across India.
+                Build sustainable fundraising systems that diversify income and deepen donor relationships.
               </p>
             </div>
           </div>
 
           <div
             className={`${styles.exploreCardBase} ${styles.exploreCard2}`}
-            onClick={handleNavigateHome}
+            onClick={handleNavigateFieldGuide}
             style={{ cursor: 'pointer' }}
           >
             <div
@@ -138,12 +132,12 @@ export default function Explore() {
               alt="Volunteer Engagement Mobile"
               className={`${styles.exploreCardImage} ${styles.mobileOnly}`}
             />
+            {/* Text Overlay */}
             <div className={styles.introTextContainer} data-hovered={isExplore2Hovered}>
               <span className={styles.introLabel}>UDARTA-EG FIELD GUIDE</span>
               <h3 className={styles.introTitle}>Volunteer Engagement</h3>
               <p className={styles.introDescription}>
-                Coming Soon <br />
-                <span> <br /></span>
+                Create structured, meaningful volunteer journeys that lead to long-term involvement.
               </p>
             </div>
           </div>

@@ -35,7 +35,7 @@ export default function Footer() {
 
             {/* ROW 1: Get Involved Form */}
             <div className={styles.getInvolvedRow}>
-              <p className={styles.getInvolvedLabel}>SIGN UP HERE</p>
+              <p className={styles.getInvolvedLabel}>Get Involved</p>
 
               {/* DESKTOP VERSION (3 Lines) */}
               <div className={`${styles.getInvolvedForm} ${styles.footerFormDesktop}`}>
@@ -72,7 +72,7 @@ export default function Footer() {
               </div>
 
               <button className={styles.subscribeBtn}>
-                Sign up <span className={styles.btnArrow}>→</span>
+                Subscribe <span className={styles.btnArrow}>→</span>
               </button>
             </div>
 

@@ -112,9 +112,9 @@ export default function Chapter3OptionA({ onBack, onNext, embedded = false }: Ch
 
                     {/* Card 3 - Why This Works + Toolkit Intro */}
                     <div className={styles.contentCard}>
-                            <p className={styles.whyText}>
-                                Here is a toolkit to guide you and your team through a simple, effective and proven network mapping exercise.
-                            </p>
+                        <p className={styles.whyText}>
+                            Here is a toolkit to guide you and your team through a simple, effective and proven network mapping exercise.
+                        </p>
 
                         {/*  */}
                     </div>

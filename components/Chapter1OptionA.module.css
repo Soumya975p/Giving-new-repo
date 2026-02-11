@@ -629,5 +629,27 @@
         flex-shrink: 0;
         width: auto;
         min-width: 150px;
+@media(max-width:768px){
+    .floatingText{
+        font-size: 16px !important;
+    }
+    .statLabel{
+        font-size: 10px !important;
+    }
+    .statNumber{
+        font-size: 16px !important;
+        font-weight: 500;
+    }
+        .statDescription{
+        font-size: 14px !important;
+        font-weight: 400;
+    }
+    .backButton {
+        top: 60px;
+        left: 16px;
+    }
+    .horizontalScrollContainer{
+            align-items: flex-start;
+    margin-top: 60px;
     }
 }

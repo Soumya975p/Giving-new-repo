@@ -4,12 +4,13 @@ import styles from './TabsSection.module.css';
 interface TabsSectionProps {
     activeChapter: number;
     onTabClick: (chapterId: number) => void;
+    onAllChaptersClick?: () => void;
 }
 
-const TabsSection: React.FC<TabsSectionProps> = ({ activeChapter, onTabClick }) => {
+const TabsSection: React.FC<TabsSectionProps> = ({ activeChapter, onTabClick, onAllChaptersClick }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
-    const tabs = [
+    const tabs = [ 
         {
             id: 1,
             svg: '/assets/ch_1_tab.svg',
@@ -163,7 +164,10 @@ const TabsSection: React.FC<TabsSectionProps> = ({ activeChapter, onTabClick }) 
                                         </div>
                                     );
                                 })}
-                                <div className={styles.allChaptersItem} onClick={() => setIsMobileMenuOpen(false)}>
+                                <div className={styles.allChaptersItem} onClick={() => {
+                                    setIsMobileMenuOpen(false);
+                                    onAllChaptersClick?.();
+                                }}>
                                     All Chapters
                                 </div>
                             </div>

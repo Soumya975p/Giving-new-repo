@@ -21,7 +21,7 @@ export default function Chapter4OptionB({ onBack, onNext, embedded = false, onTo
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
             >
-                
+
             </div>
 
             {/* Sticky Header */}

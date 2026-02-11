@@ -238,8 +238,9 @@ export default function Home() {
             <button className={styles.startButton} onClick={() => {
               chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
             }}>
-              <img src="/assets/start_button.svg" alt="Start Journey" className={`${styles.startButtonImage} ${styles.desktopOnly}`} />
-              <img src="/assets/start_button_mobile.svg" alt="Start Journey" className={`${styles.startButtonImage} ${styles.mobileOnly}`} />
+              <img src="/assets/start_diamond.svg" className={`${styles.startDiamond} ${styles.startDiamondLeft}`} alt="" />
+              <span className={styles.startLabel}>Start Journey</span>
+              <img src="/assets/start_diamond.svg" className={`${styles.startDiamond} ${styles.startDiamondRight}`} alt="" />
             </button>
           </div>
 
@@ -287,9 +288,8 @@ export default function Home() {
             >
               {/* Custom Cursor Element */}
               {showGridCursor && (
-                <img
-                  src="/assets/grid_hover.svg"
-                  alt=""
+                <div
+                  className={styles.glassButton}
                   style={{
                     position: 'fixed',
                     top: 0,
@@ -297,10 +297,12 @@ export default function Home() {
                     transform: `translate(${gridCursorPos.x - 90}px, ${gridCursorPos.y - 28}px)`, // Centered
                     pointerEvents: 'none',
                     zIndex: 9999,
-                    width: '181px',
-                    height: '57px',
                   }}
-                />
+                >
+                  <span className={`${styles.diamond} ${styles.left}`}></span>
+                  <span className={styles.btnText}>Explore Chapters</span>
+                  <span className={`${styles.diamond} ${styles.right}`}></span>
+                </div>
               )}
               {chapters.map((chapter) => (
                 <div
@@ -406,7 +408,7 @@ export default function Home() {
                   >
                     <div className={styles.scrollContainer}>
 
-              
+
 
                       {/* Chapter 1 Specific Layout */}
                       {chapter.id === 1 ? (
@@ -476,7 +478,7 @@ export default function Home() {
                                     type: 'text',
                                     floatingText: (
                                       <>
-                                       Here is a toolkit to guide you <br/>  and your team through a simple, <br/>  effective and proven network <br/>  mapping exercise.
+                                        Here is a toolkit to guide you <br />  and your team through a simple, <br />  effective and proven network <br />  mapping exercise.
                                       </>
                                     ),
                                     decorationImage: '/assets/chapter_2_column3_1.svg',
@@ -522,10 +524,10 @@ export default function Home() {
                                         Yes!<br />
                                         Once you map your existing network,
                                         you will realise that you have
-                                         underestimated its size and power. 
-                                         Your network can support you in many 
-                                         forms beyond money - connections,
-                                           skills, time, influence, all matter, and everyone has something to give.
+                                        underestimated its size and power.
+                                        Your network can support you in many
+                                        forms beyond money - connections,
+                                        skills, time, influence, all matter, and everyone has something to give.
                                       </>
                                     ),
                                     decorationImages: ['/assets/chapter_1_column1_2.svg'],
@@ -542,9 +544,9 @@ export default function Home() {
                                     type: 'text',
                                     floatingText: (
                                       <>
-                                        Here is a toolkit to guide you<br /> and 
-your team through a simple,<br />
- effective and proven network<br /> mapping exercise.
+                                        Here is a toolkit to guide you<br /> and
+                                        your team through a simple,<br />
+                                        effective and proven network<br /> mapping exercise.
                                       </>
                                     ),
                                     decorationImages: [
@@ -916,7 +918,7 @@ your team through a simple,<br />
                                     statDescription: (
                                       <>
                                         Acknowledging donations leads toa 20.3 percentage point increase
-                                         in proportion of funds raised from everyday givers.
+                                        in proportion of funds raised from everyday givers.
                                       </>
                                     )
                                   },
@@ -993,7 +995,7 @@ your team through a simple,<br />
                                 style={{ cursor: 'pointer' }}
                               >
                                 <span className={styles.optionLabel} style={{ color: '#87F6FF' }}>OPTION A</span>
-                                <p className={styles.optionDesc} style={{color: '#fff',}}>
+                                <p className={styles.optionDesc} style={{ color: '#fff', }}>
                                   Record her details in<br />
                                   your database and<br />
                                   acknowledge her<br />
@@ -1055,7 +1057,7 @@ your team through a simple,<br />
                                 style={{ cursor: 'pointer' }}
                               >
                                 <span className={styles.optionLabel} style={{ color: '#87F6FF' }}>OPTION B</span>
-                                <p className={styles.optionDesc} style={{color: '#fff',}}>
+                                <p className={styles.optionDesc} style={{ color: '#fff', }}>
                                   No thank you or follow-<br />
                                   ups. Accept the<br />
                                   donation and move on.
@@ -1647,7 +1649,7 @@ your team through a simple,<br />
                               >
                                 <span className={styles.optionLabel} style={{ color: '#20315B' }}>OPTION B</span>
                                 <p className={styles.optionDesc} style={{ color: '#20315B' }}>
-                                 Invite her to give again,<br /> appeal for a higher amount<br /> and ask her to share the<br /> campaign with her network.
+                                  Invite her to give again,<br /> appeal for a higher amount<br /> and ask her to share the<br /> campaign with her network.
                                 </p>
 
                                 {/* Animated CTA */}
