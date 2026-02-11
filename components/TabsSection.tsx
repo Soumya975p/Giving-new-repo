@@ -14,6 +14,7 @@ const TabsSection: React.FC<TabsSectionProps> = ({ activeChapter, onTabClick, on
         {
             id: 1,
             svg: '/assets/ch_1_tab.svg',
+            // svg: '/assets/ch_11_tab.svg',
             label: 'I. Network Expansion',
             fullLabel: 'Chapter I : Tilling the Soil',
             gradient: 'var(--gradient-primary)'
@@ -21,6 +22,7 @@ const TabsSection: React.FC<TabsSectionProps> = ({ activeChapter, onTabClick, on
         {
             id: 2,
             svg: '/assets/ch_2_tab.svg',
+            // svg: '/assets/ch_22_tab.svg',
             label: 'II. First Donation',
             fullLabel: 'Chapter II : The Planting',
             gradient: 'linear-gradient(45deg, #D349AE 0%, #0FB8C5 50%, #1BD5E4 100%)'
@@ -28,6 +30,7 @@ const TabsSection: React.FC<TabsSectionProps> = ({ activeChapter, onTabClick, on
         {
             id: 3,
             svg: '/assets/ch_3_tab.svg',
+            // svg: '/assets/ch_33_tab.svg',
             label: 'III. Stewarding Donors',
             fullLabel: 'Chapter III : The Nurturing',
             gradient: 'radial-gradient(circle at bottom right, #FFCD86 10% , #13D9E8 )'

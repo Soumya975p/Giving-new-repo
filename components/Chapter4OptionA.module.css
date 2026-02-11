@@ -79,7 +79,7 @@
     opacity: 1;
 }
 
-.scrollImage{
+.scrollImage {
     position: absolute;
     top: 42px;
     right: 60px;
@@ -544,30 +544,48 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 200px;
-    height: 400px;
-    overflow: visible;
+    min-width: 150px;
     position: relative;
-    align-self: auto;
+    overflow: visible;
+    align-self: center;
+    margin-right: 25px;
+    z-index: 10001;
+}
+
+.endImageCard {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: -90px;
+    /* Overlap button */
+    overflow: visible;
+    z-index: 10000;
+    transform: translateY(45px);
+}
+
+.endImage {
+    width: 165px;
+    height: 200px;
+    object-fit: contain;
 }
 
 .nextChapterImage {
     width: auto;
     height: 60px;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    /* transition: transform 0.3s ease; */
+    transform: translateY(-15vh);
 }
 
-.nextChapterImage:hover {
-    transform: scale(1.05);
-}
+
 
 /* ========================================
    EMBEDDED MODE OVERRIDES
    ======================================== */
 
 .embedded .scrollContent {
-    padding: 20px 80px;
+    padding: 20px 0px;
     gap: 40px;
 }
 
@@ -595,7 +613,7 @@
 
 .embedded .nextChapterCard {
     margin-left: 0;
-    margin-right: 30px;
+    margin-right: -35px;
     z-index: 10001;
     top: 20vh;
 }
@@ -740,17 +758,21 @@
         right: -60px;
         opacity: 0;
     }
+
     25% {
         opacity: 1;
     }
+
     50% {
         top: 100px;
         right: 20px;
         opacity: 1;
     }
+
     75% {
         opacity: 1;
     }
+
     100% {
         top: 20px;
         right: -60px;
@@ -764,10 +786,12 @@
         left: 30px;
         opacity: 0.3;
     }
+
     50% {
         bottom: 60px;
         opacity: 1;
     }
+
     100% {
         bottom: 120px;
         left: 50px;
@@ -781,10 +805,12 @@
         right: 20px;
         opacity: 0;
     }
+
     50% {
         top: 30px;
         opacity: 1;
     }
+
     100% {
         top: 100px;
         right: 10px;
@@ -851,7 +877,7 @@
     display: flex;
     align-items: flex-start;
     margin-bottom: 30px; /* Independent vertical spacing */
-    /* width: 100%; */
+/* width: 100%; */
 
 
 .infoDiv1,
@@ -938,10 +964,11 @@
     z-index: 15;
 }
 
-@media(max-width:768px){
-        .floatingText{
+@media(max-width:768px) {
+    .floatingText {
         font-size: 16px !important;
     }
+
     .backButton {
         top: 60px;
         left: 16px;

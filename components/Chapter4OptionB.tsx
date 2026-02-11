@@ -8,9 +8,10 @@ interface Chapter4OptionBProps {
     onNext?: () => void;
     embedded?: boolean;
     onToolkitDownload?: () => void;
+    endImage?: string;
 }
 
-export default function Chapter4OptionB({ onBack, onNext, embedded = false, onToolkitDownload }: Chapter4OptionBProps) {
+export default function Chapter4OptionB({ onBack, onNext, embedded = false, onToolkitDownload, endImage }: Chapter4OptionBProps) {
     const [isHovered, setIsHovered] = React.useState(false);
 
     return (
@@ -176,6 +177,17 @@ export default function Chapter4OptionB({ onBack, onNext, embedded = false, onTo
                                         alt="Next chapter"
                                         className={styles.nextChapterImage}
                                         onClick={onNext}
+                                    />
+                                </div>
+                            )}
+
+                            {/* End Image */}
+                            {endImage && (
+                                <div className={styles.endImageCard}>
+                                    <img
+                                        src={endImage}
+                                        alt="Chapter end"
+                                        className={styles.endImage}
                                     />
                                 </div>
                             )}

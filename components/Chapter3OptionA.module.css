@@ -57,7 +57,7 @@
     width: 60px;
     height: auto;
     z-index: 51;
-    
+
 }
 
 .hoverFlowerDecor {
@@ -67,7 +67,7 @@
     width: 100px;
     height: auto;
     z-index: 49;
-    
+
 }
 
 /* Sticky Header */
@@ -126,7 +126,8 @@
     background: rgba(20, 52, 60, 0.15);
     opacity: 1;
 }
-.scrollImage{
+
+.scrollImage {
     position: absolute;
     top: 42px;
     right: 60px;
@@ -247,7 +248,7 @@
     flex-direction: row;
     align-items: flex-start;
     gap: 15px;
-    padding: 120px 100px 30px;
+    padding: 120px 0px 30px;
     gap: 80px;
     /* padding: 120px 100px 30px; */
     padding-left: 300px;
@@ -624,7 +625,7 @@
     line-height: 140%;
     letter-spacing: -0.02em;
     color: white;
-    
+
 }
 
 .studyText2 {
@@ -975,6 +976,26 @@
     height: 400px;
     overflow: visible;
     position: relative;
+    margin-right: -25px;
+    z-index: 10001;
+}
+
+.endImageCard {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: -86px;
+    /* Overlap button */
+    overflow: visible;
+    z-index: 10000;
+    transform: translateY(-110%);
+}
+
+.endImage {
+    width: 165px;
+    height: 200px;
+    object-fit: contain;
 }
 
 .nextChapterImage {
@@ -1067,14 +1088,14 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    margin-left: -55px;
+    margin-left: -185px;
     overflow: visible;
-    transform: translateY(50%);
+    transform: translateY(-110%);
 }
 
 .endImage {
-    width: auto;
-    height: 100px;
+    width: 165px;
+    height: 200px;
     object-fit: contain;
     margin-right: -25%;
     transform: translateY(100%);
@@ -1124,20 +1145,25 @@
     .flowerDecorMobile {
         display: block;
     }
-        .floatingText{
+
+    .floatingText {
         font-size: 16px !important;
     }
-        .statLabel{
+
+    .statLabel {
         font-size: 10px !important;
     }
-    .statNumber{
+
+    .statNumber {
         font-size: 16px !important;
         font-weight: 500;
     }
-        .statDescription{
+
+    .statDescription {
         font-size: 14px !important;
         font-weight: 400;
     }
+
     .backButton {
         top: 60px;
         left: 16px;
@@ -1146,17 +1172,19 @@
 
 
 @media (max-width: 768px) {
-  .scrollContent {
-    grid-auto-flow: column;
-    grid-auto-columns: 80%;   /* scroll card width */
-    grid-template-columns: unset; /* 🚨 THIS FIXES IT */
-    overflow-x: auto;
-    gap: 16px;
-    padding-bottom: 12px;
-  }
+    .scrollContent {
+        grid-auto-flow: column;
+        grid-auto-columns: 80%;
+        /* scroll card width */
+        grid-template-columns: unset;
+        /* 🚨 THIS FIXES IT */
+        overflow-x: auto;
+        gap: 16px;
+        padding-bottom: 12px;
+    }
 
-  /* First card full width */
-  .contentCard:first-child {
-    grid-column: span 2;
-  }
+    /* First card full width */
+    .contentCard:first-child {
+        grid-column: span 2;
+    }
 }

@@ -8,9 +8,10 @@ interface Chapter3OptionBProps {
     onNext?: () => void;
     embedded?: boolean;
     onToolkitDownload?: (url: string) => void;
+    endImage?: string;
 }
 
-export default function Chapter3OptionB({ onBack, onNext, embedded = false, onToolkitDownload }: Chapter3OptionBProps) {
+export default function Chapter3OptionB({ onBack, onNext, embedded = false, onToolkitDownload, endImage }: Chapter3OptionBProps) {
     return (
         <div className={styles.optionContentWrapper}>
             {/* Sticky Header */}
@@ -121,7 +122,7 @@ export default function Chapter3OptionB({ onBack, onNext, embedded = false, onTo
                         </div>
                     </div>
 
-  <div className={styles.toolkitCard}>
+                    <div className={styles.toolkitCard}>
                         <ToolkitCard
                             toolkitNumber={3}
                             title="Segmentation & Profiling"
@@ -141,7 +142,7 @@ export default function Chapter3OptionB({ onBack, onNext, embedded = false, onTo
                             title="The Storytelling Bank"
                             description="A collection of stories to share with donors."
                             toolkiturl='https://docs.google.com/spreadsheets/d/1ZTATFrOS2l36KOk8FWKtQOvOnWRPizl4rb956zgj7tA/edit?usp=sharing'
-                           backgroundImage="/assets/toolkit4_background.svg"
+                            backgroundImage="/assets/toolkit4_background.svg"
                             designImage="/assets/toolkit4_design.png"
                             designVariant="tk4"
                             onViewToolkit={() => onToolkitDownload?.('https://docs.google.com/spreadsheets/d/1ZTATFrOS2l36KOk8FWKtQOvOnWRPizl4rb956zgj7tA/edit?usp=sharing')}
@@ -149,7 +150,7 @@ export default function Chapter3OptionB({ onBack, onNext, embedded = false, onTo
                     </div>
 
                     {/* Toolkit Card 2 - Segmentation & Profiling */}
-                  
+
                     <div className={styles.lastCardWrapper}>
                         {/* Toolkit Card 3 - Communications Calendar */}
                         <div className={styles.toolkitCard}>
@@ -176,6 +177,17 @@ export default function Chapter3OptionB({ onBack, onNext, embedded = false, onTo
                                 />
                             )}
                         </div>
+
+                        {/* End Image */}
+                        {endImage && (
+                            <div className={styles.endImageCard}>
+                                <img
+                                    src={endImage}
+                                    alt="Chapter end"
+                                    className={styles.endImage}
+                                />
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

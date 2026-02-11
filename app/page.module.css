@@ -1438,7 +1438,7 @@
   text-align: center;
 }
 
-.scenarioCard {
+/* .scenarioCard {
   min-width: 380px;
   max-width: 380px;
   flex-shrink: 0;
@@ -1452,7 +1452,7 @@
   justify-content: center;
   position: relative;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-}
+} */
 
 .scenarioLabel {
   font-size: 11px;
@@ -3238,7 +3238,7 @@
   text-align: center;
 }
 
-.scenarioCard {
+/* .scenarioCard {
   min-width: 380px;
   max-width: 380px;
   flex-shrink: 0;
@@ -3252,7 +3252,7 @@
   justify-content: center;
   position: relative;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-}
+} */
 
 .scenarioLabel {
   font-size: 11px;
@@ -5277,6 +5277,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
+  margin-left: 30px;
   padding: 20px;
   border-radius: 12px;
   position: relative;
@@ -9193,4 +9194,87 @@
 
 .right {
   right: 16px;
+}
+
+/* Custom Scenario Card Styles */
+.scenarioCard {
+  width: 260px;
+  height: 350.22px;
+  background: #14343C;
+  border-radius: 20px;
+  border: 7.11px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 1.24px 26.06px #0A491473;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 0px;
+}
+
+.scenarioInner {
+  position: absolute;
+  top: 60px;
+  left: 30px;
+  width: 200px;
+  height: 136.44px;
+  display: flex;
+  flex-direction: column;
+  gap: 14.22px;
+}
+
+.scenarioLabel {
+  width: 100%;
+  height: 17px;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 140%;
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
+  color: #87FFD7;
+}
+
+.scenarioHeadline {
+  width: 100%;
+  height: 124px;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 110%;
+  letter-spacing: -0.04em;
+  text-align: center;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.scenarioCardIcon {
+  position: absolute;
+  bottom: -110px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  height: 95%;
+  object-fit: contain;
+}
+
+.scenarioHeadlineCh2 {
+  font-size: 14px !important;
+  line-height: 1.3 !important;
+  display: block !important;
+}
+
+.ch2CenterCardMini {
+  height: 350.22px !important;
+}
+.scenarioCardIconCh2{
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: auto;
+  object-fit: contain;
+}
 }
