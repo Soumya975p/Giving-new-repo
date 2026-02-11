@@ -81,7 +81,7 @@ const chapters: Chapter[] = [
     subtitle: 'Deepening involvement',
     tabImage: '/assets/Tab 4.png',
     contentImage: '/assets/4.png',
-    gradient: 'radial-gradient(circle, #FFEF3D 0%, #DCD647 16%, #C9CD33 32%, #8DA806 48%, #86A401 64%, #315900 100%)',
+    gradient: 'radial-gradient(131.15% 140.53% at 93.33% 139.19%, #FFEF3D 0%, #DCD647 22.85%, #C9CD33 46.96%, #8DA806 72.33%, #86A401 75.24%, #315900 99.52%)',
     tabGradient: 'linear-gradient(180deg, #315900 0%, #B0D313 100%)',
     gridImage: '/assets/ch4.png'
   }
