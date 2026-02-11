@@ -314,7 +314,7 @@
 
 .heroRight {
   max-width: 20vw;
-  padding-top: 20vh;
+  padding-top: 34vh;
   position: relative;
   z-index: 10;
   margin-top: -10%;
@@ -602,7 +602,7 @@
 
   /* Pill button style for start button on mobile */
   .startButton {
-    width: auto;
+    /* width: auto; */
     min-width: auto;
     padding: 12px 32px;
     gap: 10px;
@@ -2092,7 +2092,7 @@
   font-weight: 300;
   line-height: 1.1;
   color: #4dd4d4;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 .bonusTitleHighlight {
@@ -2536,11 +2536,15 @@
     opacity: 0.2;
     /* Fade substantially on mobile */
   }
+
+  .heroRight {
+    padding-top: 20vh !important;
+  }
 }
 
 .heroRight {
   max-width: 25vw;
-  padding-top: 20vh;
+  padding-top: 34vh;
   position: relative;
   z-index: 10;
 }
@@ -3416,9 +3420,10 @@
     padding: 20px 25px;
     gap: 25px;
   }
+
   .chaptersSection {
     min-height: 120vh !important;
-        align-items: flex-start;
+    align-items: flex-start;
   }
 }
 
@@ -4279,18 +4284,25 @@
   /* Extra padding to clear bottom tabs/nav */
 }
 
-@media(min-width:769px){
+@media(min-width:769px) {
   .chaptersSection {
-      min-height: 100vh;
+    min-height: 100vh;
   }
-  .chapter1Wrapper .scenarioContainer {
-    padding-top: 25rem !important;
-    padding-bottom: 10rem;
+
+  .chapter1Wrapper {
+    justify-content: center;
+    padding-bottom: 15vh;
   }
-  .selectChapter{
+
+  .chapter1Header {
+    padding: 30vh 0px 10vh 0px;
+  }
+
+  .selectChapter {
     margin-bottom: 80px;
   }
 }
+
 /* Chapter 1 Specific Layout */
 .chapter1Wrapper {
   width: 100%;
@@ -4326,11 +4338,10 @@
 .chapter1Header {
   width: 996px;
   text-align: center;
-  /* margin-bottom: 40px; */
+  margin-bottom: 40px;
   /* Reduced from 50px */
   position: relative;
   z-index: 10;
-  margin-top: calc(50vh - 200px);
   /* padding: 60px 10px 58px 10px; */
   /* top: 8%; */
   /* Reduced side padding slightly */
@@ -4761,7 +4772,7 @@
   text-transform: uppercase;
   line-height: 140%;
   margin: 0 0 4px 0;
-  
+
 }
 
 .ch2FloatingDesc {
@@ -5883,7 +5894,7 @@
     padding-bottom: 0;
     /* overflow: visible; */
     overflow: auto;
-        /* height: 80vh; */
+    /* height: 80vh; */
   }
 
   /* Chapter Header - Mobile */
@@ -5967,7 +5978,7 @@
     font-size: 14px !important;
     line-height: 164% !important;
     letter-spacing: -0.02em !important;
-    color: #00000099  !important;
+    color: #00000099 !important;
     background: transparent !important;
     text-align: center !important;
     margin: 12px 0 14px 0 !important;
@@ -7113,13 +7124,15 @@
     left: 50% !important;
     transform: translateX(-50%) !important;
   }
+
   .heroContent {
     padding: 40px 24px;
-}
+  }
+
   .heroContent {
     /* margin-left: 0px  !important;
     margin-right: 0px !important ; */
-}
+  }
 }
 
 @media (max-width: 640px) {
@@ -8303,15 +8316,17 @@
     margin-top: -40px;
     gap: 20px;
   }
+
   .chapter1Wrapper .scenarioContainer {
     flex-direction: column;
-    margin-top: 5px  !important;
+    margin-top: 5px !important;
     gap: 10px;
   }
 
   .scenarioContainer {
     margin-bottom: 0 !important;
   }
+
   .centerCard {
     width: 229.07px;
     max-width: 229.07px !important;
@@ -8532,22 +8547,22 @@
 }
 
 .ch2HoverImageLeft {
-    position: absolute;
-    bottom: -13vh;
-    left: -6vw;
-    width: 70px;
-    pointer-events: none;
-    z-index: 6;
+  position: absolute;
+  bottom: -13vh;
+  left: -6vw;
+  width: 70px;
+  pointer-events: none;
+  z-index: 6;
 }
 
 .ch2HoverImageRight {
-    position: absolute;
-    bottom: -17.3vh;
-    left: -3vw;
-    width: 60px;
-    height: auto;
-    pointer-events: none;
-    z-index: 5;
+  position: absolute;
+  bottom: -17.3vh;
+  left: -3vw;
+  width: 60px;
+  height: auto;
+  pointer-events: none;
+  z-index: 5;
 }
 
 .ch2HoverEmptyBubble2 {
@@ -9057,10 +9072,12 @@
   .chapterSubItem {
     font-size: 13px;
   }
-    .noScroll{
+
+  .noScroll {
     /* overflow: auto !important; */
   }
-  .floatingText{
+
+  .floatingText {
     font-size: 16px !important;
   }
 }
@@ -9074,22 +9091,28 @@
 /* Chapter Container Overflow with Hidden Scrollbar */
 .chapterContainer {
   overflow: auto;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE/Edge */
 }
 
 .chapterContainer::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
+  /* Chrome, Safari, Opera */
 }
 
 .chapterActive {
   overflow: auto;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE/Edge */
 }
 
 .chapterActive::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
+  /* Chrome, Safari, Opera */
 }
 
 /* Hide chapter1Header when it has no content */
@@ -9098,6 +9121,7 @@
   margin: 0;
   padding: 0;
 }
+
 .backToChaptersBtn {
   border: none !important;
   outline: none !important;
@@ -9110,11 +9134,11 @@
   box-shadow: none !important;
 }
 
-.chooseOptImg{
-display: inline-block;
-    position: relative;
-    top: 8px;
-    margin: 0px 12px;
+.chooseOptImg {
+  display: inline-block;
+  position: relative;
+  top: 8px;
+  margin: 0px 12px;
 }
 
 /* Glass Button Cursor Styles */
@@ -9137,7 +9161,7 @@ display: inline-block;
   border-radius: 28px;
   padding: 2px;
   background: linear-gradient(90deg, #07595F, #0FB8C5);
-  -webkit-mask: 
+  -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;

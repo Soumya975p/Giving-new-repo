@@ -59,10 +59,12 @@
 .footerDescription {
   font-family: 'DM Sans', sans-serif;
   font-size: 18px;
-  font-weight: 400;          /* Regular */
+  font-weight: 400;
+  /* Regular */
   font-style: normal;
   line-height: 150%;
-  letter-spacing: -0.02em;   /* -2% */
+  letter-spacing: -0.02em;
+  /* -2% */
   color: #ffffff;
 
   max-width: 405px;
@@ -86,10 +88,13 @@
 .footerLocationText {
   font-family: 'DM Sans', sans-serif;
   font-size: 18px;
-  font-weight: 400;          /* Regular */
-  font-style: normal;        /* Regular */
+  font-weight: 400;
+  /* Regular */
+  font-style: normal;
+  /* Regular */
   line-height: 150%;
-  letter-spacing: -0.02em;   /* -2% */
+  letter-spacing: -0.02em;
+  /* -2% */
   color: #ffffff;
 }
 
@@ -275,10 +280,12 @@
 .addressText {
   font-family: 'DM Sans', sans-serif;
   font-size: 16px;
-  font-weight: 400;          /* Regular */
+  font-weight: 400;
+  /* Regular */
   font-style: normal;
   line-height: 130%;
-  letter-spacing: -0.04em;   /* -4% */
+  letter-spacing: -0.04em;
+  /* -4% */
   color: #FFFFFF;
   text-decoration: none;
   transition: color 0.2s;
@@ -301,7 +308,7 @@
   font-style: normal;
   line-height: 130%;
   letter-spacing: -0.04em;
-  color: rgba(255, 255, 255, 0.8) !important;
+  /* color: rgba(255, 255, 255, 0.8) !important; */
   text-decoration: none;
   transition: color 0.2s;
 }
@@ -317,7 +324,7 @@
   font-style: normal;
   line-height: 130%;
   letter-spacing: -0.04em;
-  color: rgba(255, 255, 255, 0.8) !important;
+  /* color: rgba(255, 255, 255, 0.8) !important; */
   text-decoration: none;
   transition: color 0.2s;
 }
