@@ -3696,7 +3696,7 @@
   margin: -500px auto 0;
   text-align: center;
   position: relative;
-  padding-top: 100px;
+  padding-top: 20px;
 }
 
 .cultivationLabel {
@@ -4283,10 +4283,8 @@
   .chaptersSection {
       min-height: 100vh;
   }
-  .chapter1Wrapper {
+  .chapter1Wrapper .scenarioContainer {
     padding-top: 25rem !important;
-  }
-  .chapter1Wrapper {
     padding-bottom: 10rem;
   }
   .selectChapter{
@@ -4332,6 +4330,7 @@
   /* Reduced from 50px */
   position: relative;
   z-index: 10;
+  margin-top: calc(50vh - 200px);
   /* padding: 60px 10px 58px 10px; */
   /* top: 8%; */
   /* Reduced side padding slightly */

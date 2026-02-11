@@ -13,6 +13,7 @@ const BonusChapter = forwardRef<HTMLDivElement, BonusChapterProps>(
     ({ className, onToolkitClick }, ref) => {
         const [isMobileCardFlipped, setIsMobileCardFlipped] = useState(false);
         const [isCardFlipped, setIsCardFlipped] = useState(false);
+        const [isCardHovered, setIsCardHovered] = useState(false);
 
         const handleMobileClick = () => {
             setIsMobileCardFlipped(!isMobileCardFlipped);
@@ -99,9 +100,13 @@ const BonusChapter = forwardRef<HTMLDivElement, BonusChapterProps>(
                     </div>
                     <div className={styles.bonusRight}>
                         {/* Desktop - Flip between stewardship card and toolkit */}
-                        <div className={`${styles.bonusCardWrapper} ${styles.desktopOnly} ${isCardFlipped ? styles.cardHovered : ''}`}>
-                            {/* Stewardship Card - Hidden when flipped */}
-                            <div className={`${styles.originalCard} ${isCardFlipped ? styles.cardHidden : ''}`}>
+                        <div
+                            className={`${styles.bonusCardWrapper} ${styles.desktopOnly} ${(isCardFlipped || isCardHovered) ? styles.cardHovered : ''}`}
+                            onMouseEnter={() => setIsCardHovered(true)}
+                            onMouseLeave={() => setIsCardHovered(false)}
+                        >
+                            {/* Stewardship Card - Hidden when flipped or hovered */}
+                            <div className={`${styles.originalCard} ${(isCardFlipped || isCardHovered) ? styles.cardHidden : ''}`}>
                                 <img
                                     src="/assets/bonus_flp_simple.png"
                                     alt="Stewardship is a team effort"
@@ -119,8 +124,8 @@ const BonusChapter = forwardRef<HTMLDivElement, BonusChapterProps>(
                                 </div>
                             </div>
 
-                            {/* Toolkit 8 - Visible when flipped */}
-                            <div className={`${styles.toolkitCardContainer} ${isCardFlipped ? styles.cardVisible : ''}`}>
+                            {/* Toolkit 8 - Visible when flipped or hovered */}
+                            <div className={`${styles.toolkitCardContainer} ${(isCardFlipped || isCardHovered) ? styles.cardVisible : ''}`}>
                                 <ToolkitCard
                                     toolkitNumber={8}
                                     title="Getting Your Team On Board"

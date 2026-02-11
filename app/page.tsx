@@ -1879,15 +1879,15 @@ export default function Home() {
           activeChapter={activeChapter}
           onTabClick={(chapterId) => {
             if (chapterId === 5) {
-              // Restore body scroll first
-              setIsChaptersSectionSticky(false);
+              // Restore body scroll and navigate in one smooth motion
               document.body.style.overflow = '';
               document.documentElement.style.overflow = '';
+              setIsChaptersSectionSticky(false);
 
-              // Wait for DOM to settle before smooth scroll
-              setTimeout(() => {
+              // Immediate smooth scroll to bonus section
+              requestAnimationFrame(() => {
                 bonusSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }, 200);
+              });
             } else {
               setActiveChapter(chapterId);
             }
