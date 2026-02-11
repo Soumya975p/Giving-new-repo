@@ -47,7 +47,7 @@ export default function Footer() {
                   I’d love to be a part of Giving Together Foundation’s initiatives.
                 </div>
                 <div className={styles.formLine}>
-                  My email address is <input type="email" placeholder="your email address" size={18} className={styles.inlineInput} />  if you need to reach out to me for updates & details.
+                  I am available on <input type="email" placeholder="your email address" size={18} className={styles.inlineInput} />  if you need to reach out to me for updates & details.
                 </div>
               </div>
 
@@ -64,7 +64,7 @@ export default function Footer() {
                   I’d love to be a part of Giving Together Foundation’s
                 </div>
                 <div className={styles.formLine}>
-                  initiatives. My email address is <input type="email" placeholder="your email address" size={18} className={`${styles.inlineInput} ${styles.inputEmail}`} />
+                  initiatives. I am available on <input type="email" placeholder="your email address" size={18} className={`${styles.inlineInput} ${styles.inputEmail}`} />
                 </div>
                 <div className={styles.formLine}>
                   if you need to reach out to me for updates & details.

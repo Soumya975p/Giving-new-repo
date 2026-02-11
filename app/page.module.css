@@ -314,7 +314,7 @@
 
 .heroRight {
   max-width: 20vw;
-  padding-top: 20vh;
+  padding-top: 34vh;
   position: relative;
   z-index: 10;
   margin-top: -10%;
@@ -602,7 +602,7 @@
 
   /* Pill button style for start button on mobile */
   .startButton {
-    width: auto;
+    /* width: auto; */
     min-width: auto;
     padding: 12px 32px;
     gap: 10px;
@@ -698,31 +698,35 @@
 /* Chapters Section - Transform-based stacking */
 .chaptersSection {
   width: 100%;
-  /* min-height: calc(100vh + 200px); Removed fixed height constraint */
-  height: auto;
+  height: 100vh;
   position: relative;
   overflow: visible;
-  /* padding-bottom: 300px; */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Sticky state - triggered when 10% visible */
+/* Sticky state - fixed at top (desktop only) */
 .chaptersSectionSticky {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
   height: 100vh !important;
-  z-index: 100;
-  overflow-y: auto;
-  scrollbar-width: none;
-  padding-bottom: 0 !important;
+  z-index: 100 !important;
+  overflow-y: auto !important;
 }
 
 .chaptersSectionSticky::-webkit-scrollbar {
   display: none;
+}
+
+/* Disable sticky behavior on mobile */
+@media (max-width: 767px) {
+  .chaptersSectionSticky {
+    position: relative !important;
+    overflow-y: visible !important;
+  }
 }
 
 @keyframes slideUpAndFix {
@@ -791,6 +795,79 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.chapterPanel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: transparent;
+  opacity: 0;
+  transition: opacity 0.6s ease, left 0.6s ease, right 0.6s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.chapterPanel.showGradientLeft::before {
+  opacity: 1;
+  left: 0;
+  right: auto;
+  background: radial-gradient(146.57% 86.51% at 100% 50%, #B0D313 0%, #0FB8C5 100%);
+}
+
+.chapterPanel.showGradientRight::before {
+  opacity: 1;
+  left: auto;
+  right: 0;
+  background: radial-gradient(146.57% 86.51% at 0% 50%, #0FB8C5 0%, #B0D313 100%);
+}
+
+/* Chapter 2 gradient backgrounds */
+.chapterPanel.showGradientLeftCh2::before {
+  opacity: 1;
+  left: 0;
+  right: auto;
+  background: linear-gradient(48.38deg, rgba(211, 73, 174, 0.39) -12.85%, rgba(15, 184, 197, 0.39) 85.21%, rgba(27, 213, 228, 0.39) 106.59%);
+}
+
+.chapterPanel.showGradientRightCh2::before {
+  opacity: 1;
+  left: auto;
+  right: 0;
+  background: linear-gradient(48.38deg, rgba(211, 73, 174, 0.39) -12.85%, rgba(15, 184, 197, 0.39) 85.21%, rgba(27, 213, 228, 0.39) 106.59%);
+}
+
+/* Chapter 3 gradient backgrounds */
+.chapterPanel.showGradientLeftCh3::before {
+  opacity: 1;
+  left: 0;
+  right: auto;
+  background: radial-gradient(108.63% 108.63% at 117.78% 116.39%, #FFCD86 15.38%, #13D9E8 100%);
+}
+
+.chapterPanel.showGradientRightCh3::before {
+  opacity: 1;
+  left: auto;
+  right: 0;
+  background: radial-gradient(108.63% 108.63% at 117.78% 116.39%, #FFCD86 15.38%, #13D9E8 100%);
+}
+
+/* Chapter 4 gradient backgrounds */
+.chapterPanel.showGradientLeftCh4::before {
+  opacity: 1;
+  left: 0;
+  right: auto;
+  background: radial-gradient(141.79% 156.75% at 119.39% 116.05%, #FFEF3D 0%, #DCD647 13.36%, #C9CD33 35.87%, #8DA806 56.51%, #86A401 75.24%, #315900 99.52%);
+}
+
+.chapterPanel.showGradientRightCh4::before {
+  opacity: 1;
+  left: auto;
+  right: 0;
+  background: radial-gradient(141.79% 156.75% at 119.39% 116.05%, #FFEF3D 0%, #DCD647 13.36%, #C9CD33 35.87%, #8DA806 56.51%, #86A401 75.24%, #315900 99.52%);
 }
 
 /* Content area inside panel */
@@ -992,9 +1069,11 @@
 .contentSection {
   flex: 1;
   width: 100%;
-  overflow-y: visible;
+  height: 100vh;
+  overflow-y: auto;
   overflow-x: hidden;
   position: relative;
+  z-index: 1;
   /* border: 3px solid rgba(0, 0, 0, 0.3); */
   box-sizing: border-box;
   scroll-behavior: smooth;
@@ -2013,7 +2092,7 @@
   font-weight: 300;
   line-height: 1.1;
   color: #4dd4d4;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 .bonusTitleHighlight {
@@ -2457,11 +2536,15 @@
     opacity: 0.2;
     /* Fade substantially on mobile */
   }
+
+  .heroRight {
+    padding-top: 20vh !important;
+  }
 }
 
 .heroRight {
   max-width: 25vw;
-  padding-top: 20vh;
+  padding-top: 34vh;
   position: relative;
   z-index: 10;
 }
@@ -3337,9 +3420,10 @@
     padding: 20px 25px;
     gap: 25px;
   }
+
   .chaptersSection {
     min-height: 120vh !important;
-        align-items: flex-start;
+    align-items: flex-start;
   }
 }
 
@@ -3617,7 +3701,7 @@
   margin: -500px auto 0;
   text-align: center;
   position: relative;
-  padding-top: 100px;
+  padding-top: 20px;
 }
 
 .cultivationLabel {
@@ -4200,11 +4284,25 @@
   /* Extra padding to clear bottom tabs/nav */
 }
 
-@media(min-width:769px){
+@media(min-width:769px) {
   .chaptersSection {
-      min-height: 100vh;
+    min-height: 100vh;
+  }
+
+  .chapter1Wrapper {
+    justify-content: center;
+    padding-bottom: 15vh;
+  }
+
+  .chapter1Header {
+    padding: 30vh 0px 10vh 0px;
+  }
+
+  .selectChapter {
+    margin-bottom: 80px;
   }
 }
+
 /* Chapter 1 Specific Layout */
 .chapter1Wrapper {
   width: 100%;
@@ -4240,7 +4338,7 @@
 .chapter1Header {
   width: 996px;
   text-align: center;
-  /* margin-bottom: 40px; */
+  margin-bottom: 40px;
   /* Reduced from 50px */
   position: relative;
   z-index: 10;
@@ -4273,7 +4371,7 @@
   letter-spacing: -0.03em;
   color: #0A1731;
   text-align: center;
-  margin-bottom: 28px;
+  margin-bottom: 80px;
   /* Reduced from 20px */
   max-width: 1000px;
   margin-left: auto;
@@ -4315,6 +4413,7 @@
   /* Positive margin to prevent overlapping */
   position: relative;
   top: 10%;
+  transition: background 0.6s ease, width 0.6s ease;
 }
 
 /* Hover Decorations for Chapter 1 Option A */
@@ -4673,7 +4772,7 @@
   text-transform: uppercase;
   line-height: 140%;
   margin: 0 0 4px 0;
-  
+
 }
 
 .ch2FloatingDesc {
@@ -5179,7 +5278,20 @@
   align-items: flex-start;
   gap: 10px;
   margin-left: 30px;
+  padding: 20px;
+  border-radius: 12px;
+  position: relative;
+  transition: background 0.6s ease;
+  z-index: 2;
 }
+
+/* .optionColumnLeft:hover {
+  background: radial-gradient(146.57% 86.51% at 100% 50%, #B0D313 0%, #0FB8C5 100%);
+}
+
+.optionColumnRight:hover {
+  background: radial-gradient(146.57% 86.51% at 0% 50%, #0FB8C5 0%, #B0D313 100%);
+} */
 
 .optionColumnRight {
   align-items: flex-start;
@@ -5218,6 +5330,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: 1;
   position: relative;
   /* Box shadow removed as it might be in SVG or we can re-add if needed */
   /* box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25); */
@@ -5781,7 +5895,7 @@
     padding-bottom: 0;
     /* overflow: visible; */
     overflow: auto;
-        /* height: 80vh; */
+    /* height: 80vh; */
   }
 
   /* Chapter Header - Mobile */
@@ -5865,7 +5979,7 @@
     font-size: 14px !important;
     line-height: 164% !important;
     letter-spacing: -0.02em !important;
-    color: #00000099  !important;
+    color: #00000099 !important;
     background: transparent !important;
     text-align: center !important;
     margin: 12px 0 14px 0 !important;
@@ -7011,13 +7125,15 @@
     left: 50% !important;
     transform: translateX(-50%) !important;
   }
+
   .heroContent {
     padding: 40px 24px;
-}
+  }
+
   .heroContent {
     /* margin-left: 0px  !important;
     margin-right: 0px !important ; */
-}
+  }
 }
 
 @media (max-width: 640px) {
@@ -8147,6 +8263,7 @@
   align-items: flex-start;
   gap: 5px;
   position: relative;
+  z-index: 2;
 }
 
 .optionColumnRight {
@@ -8160,6 +8277,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: 1;
   position: relative;
   flex-shrink: 0;
   background: transparent;
@@ -8198,15 +8317,17 @@
     margin-top: -40px;
     gap: 20px;
   }
+
   .chapter1Wrapper .scenarioContainer {
     flex-direction: column;
-    margin-top: 5px  !important;
+    margin-top: 5px !important;
     gap: 10px;
   }
 
   .scenarioContainer {
     margin-bottom: 0 !important;
   }
+
   .centerCard {
     width: 229.07px;
     max-width: 229.07px !important;
@@ -8427,22 +8548,22 @@
 }
 
 .ch2HoverImageLeft {
-    position: absolute;
-    bottom: -13vh;
-    left: -6vw;
-    width: 70px;
-    pointer-events: none;
-    z-index: 6;
+  position: absolute;
+  bottom: -13vh;
+  left: -6vw;
+  width: 70px;
+  pointer-events: none;
+  z-index: 6;
 }
 
 .ch2HoverImageRight {
-    position: absolute;
-    bottom: -17.3vh;
-    left: -3vw;
-    width: 60px;
-    height: auto;
-    pointer-events: none;
-    z-index: 5;
+  position: absolute;
+  bottom: -17.3vh;
+  left: -3vw;
+  width: 60px;
+  height: auto;
+  pointer-events: none;
+  z-index: 5;
 }
 
 .ch2HoverEmptyBubble2 {
@@ -8952,10 +9073,12 @@
   .chapterSubItem {
     font-size: 13px;
   }
-    .noScroll{
+
+  .noScroll {
     /* overflow: auto !important; */
   }
-  .floatingText{
+
+  .floatingText {
     font-size: 16px !important;
   }
 }
@@ -8969,22 +9092,28 @@
 /* Chapter Container Overflow with Hidden Scrollbar */
 .chapterContainer {
   overflow: auto;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE/Edge */
 }
 
 .chapterContainer::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
+  /* Chrome, Safari, Opera */
 }
 
 .chapterActive {
   overflow: auto;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE/Edge */
 }
 
 .chapterActive::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
+  /* Chrome, Safari, Opera */
 }
 
 /* Hide chapter1Header when it has no content */
@@ -8993,6 +9122,7 @@
   margin: 0;
   padding: 0;
 }
+
 .backToChaptersBtn {
   border: none !important;
   outline: none !important;
@@ -9005,11 +9135,11 @@
   box-shadow: none !important;
 }
 
-.chooseOptImg{
-display: inline-block;
-    position: relative;
-    top: 8px;
-    margin: 0px 12px;
+.chooseOptImg {
+  display: inline-block;
+  position: relative;
+  top: 8px;
+  margin: 0px 12px;
 }
 
 /* Glass Button Cursor Styles */
@@ -9032,7 +9162,7 @@ display: inline-block;
   border-radius: 28px;
   padding: 2px;
   background: linear-gradient(90deg, #07595F, #0FB8C5);
-  -webkit-mask: 
+  -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -9146,4 +9276,5 @@ display: inline-block;
   width: 50%;
   height: auto;
   object-fit: contain;
+}
 }
