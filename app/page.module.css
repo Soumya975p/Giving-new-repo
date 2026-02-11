@@ -5324,8 +5324,8 @@
 /* Center Card - Dark */
 /* Center Card - Dark */
 .centerCard {
-  width: 320px;
-  height: 340px;
+  width: 360px;
+  height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8271,8 +8271,8 @@
 }
 
 .centerCard {
-  width: 320px;
-  height: 350px;
+  width: 360px;
+  height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;

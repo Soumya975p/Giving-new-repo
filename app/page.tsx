@@ -489,16 +489,15 @@ export default function Home() {
               }}
             >
               <div
-                className={`${styles.chapterPanel} ${
-                  !selectedOption && chapter.id === 1 && isOptionAHovered ? styles.showGradientLeft :
-                  !selectedOption && chapter.id === 1 && isOptionBHovered ? styles.showGradientRight :
-                  !selectedOption && chapter.id === 2 && isCh2OptionAHovered ? styles.showGradientLeftCh2 :
-                  !selectedOption && chapter.id === 2 && isCh2OptionBHovered ? styles.showGradientRightCh2 :
-                  !selectedOption && chapter.id === 3 && isCh3OptionAHovered ? styles.showGradientLeftCh3 :
-                  !selectedOption && chapter.id === 3 && isCh3OptionBHovered ? styles.showGradientRightCh3 :
-                  !selectedOption && chapter.id === 4 && isCh4OptionAHovered ? styles.showGradientLeftCh4 :
-                  !selectedOption && chapter.id === 4 && isCh4OptionBHovered ? styles.showGradientRightCh4 : ''
-                }`}
+                className={`${styles.chapterPanel} ${!selectedOption && chapter.id === 1 && isOptionAHovered ? styles.showGradientLeft :
+                    !selectedOption && chapter.id === 1 && isOptionBHovered ? styles.showGradientRight :
+                      !selectedOption && chapter.id === 2 && isCh2OptionAHovered ? styles.showGradientLeftCh2 :
+                        !selectedOption && chapter.id === 2 && isCh2OptionBHovered ? styles.showGradientRightCh2 :
+                          !selectedOption && chapter.id === 3 && isCh3OptionAHovered ? styles.showGradientLeftCh3 :
+                            !selectedOption && chapter.id === 3 && isCh3OptionBHovered ? styles.showGradientRightCh3 :
+                              !selectedOption && chapter.id === 4 && isCh4OptionAHovered ? styles.showGradientLeftCh4 :
+                                !selectedOption && chapter.id === 4 && isCh4OptionBHovered ? styles.showGradientRightCh4 : ''
+                  }`}
                 style={{
                   background: chapter.gradient
                 }}
@@ -695,7 +694,7 @@ export default function Home() {
                                   const card = centerCardRefs.current[0];
                                   if (card) {
                                     card.style.transformOrigin = 'bottom left';
-                                    card.style.transform = 'rotate(-15deg)';
+                                    card.style.transform = 'rotate(-6deg)';
                                   }
                                 }}
                                 onMouseLeave={() => {
@@ -722,7 +721,9 @@ export default function Home() {
                                     alignItems: 'center',
                                     gap: '6px',
                                     color: '#1a4d3a',
-                                    fontWeight: 500
+                                    fontWeight: 500,
+                                    width: '100%',
+                                    justifyContent: 'center',
                                   }}
                                 >
                                   <motion.div variants={arrowVariants}>
@@ -829,7 +830,7 @@ export default function Home() {
                                 <span className={styles.optionLabel}>OPTION B</span>
                                 <p className={styles.optionDesc}>
                                   Tap into your existing
-                                  network – Connections
+                                  network – connections
                                   of volunteers,
                                   champions & donors
                                 </p>
@@ -1086,7 +1087,7 @@ export default function Home() {
                                   const card = centerCardRefs.current[1];
                                   if (card) {
                                     card.style.transformOrigin = 'bottom left';
-                                    card.style.transform = 'rotate(-15deg)';
+                                    card.style.transform = 'rotate(-6deg)';
                                   }
                                 }}
                                 onMouseLeave={() => {
@@ -1427,7 +1428,7 @@ export default function Home() {
                                   const card = centerCardRefs.current[2];
                                   if (card) {
                                     card.style.transformOrigin = 'bottom left';
-                                    card.style.transform = 'rotate(-15deg)';
+                                    card.style.transform = 'rotate(-6deg)';
                                   }
                                 }}
                                 onMouseLeave={() => {
@@ -1660,7 +1661,7 @@ export default function Home() {
                                   const card = centerCardRefs.current[3];
                                   if (card) {
                                     card.style.transformOrigin = 'bottom left';
-                                    card.style.transform = 'rotate(-15deg)';
+                                    card.style.transform = 'rotate(-6deg)';
                                   }
                                 }}
                                 onMouseLeave={() => {
