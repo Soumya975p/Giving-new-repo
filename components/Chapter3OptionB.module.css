@@ -78,7 +78,8 @@
     position: absolute;
     left: 50vw;
 }
-.scrollImage{
+
+.scrollImage {
     position: absolute;
     top: 42px;
     right: 60px;
@@ -417,7 +418,7 @@
     color: #0A1731;
     margin: 0;
     max-width: 300px;
-    
+
 }
 
 .storyText {
@@ -871,11 +872,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 200px;
-    height: 400px;
-    overflow: visible;
+    min-width: 150px;
     position: relative;
-    /* Ensure it is relative */
+    overflow: visible;
+    align-self: center;
+    margin-right: 25px;
+    z-index: 10001;
+    top: 0vh;
+    transform: translateX(30px);
 }
 
 .nextChapterImage {
@@ -991,17 +995,17 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    margin-left: -55px;
+    margin-left: -195px;
+    /* Overlap button */
     overflow: visible;
-    transform: translateY(50%);
+    z-index: 10000;
+    transform: translateY(45px);
 }
 
 .endImage {
-    width: auto;
-    height: 100px;
+    width: 165px;
+    height: 200px;
     object-fit: contain;
-    margin-right: -25%;
-    transform: translateY(100%);
 }
 
 @media (max-width: 1024px) {
@@ -1011,20 +1015,25 @@
         gap: 30px;
         /* margin-top: 20px; */
     }
-        .floatingText{
+
+    .floatingText {
         font-size: 16px !important;
     }
-        .statLabel{
+
+    .statLabel {
         font-size: 10px !important;
     }
-    .statNumber{
+
+    .statNumber {
         font-size: 16px !important;
         font-weight: 500;
     }
-        .statDescription{
+
+    .statDescription {
         font-size: 14px !important;
         font-weight: 400;
     }
+
     .backButton {
         top: 60px;
         left: 16px;

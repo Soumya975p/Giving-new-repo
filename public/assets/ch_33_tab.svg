@@ -1,0 +1,34 @@
+<svg width="318" height="93" viewBox="0 0 318 93" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_dn_2635_34242)">
+<path d="M278.684 10C286.4 10.0001 293.017 15.5077 294.418 23.0957L304 75H14L23.9678 22.9883C25.4125 15.4503 32.0064 10 39.6816 10H278.684Z" fill="url(#paint0_radial_2635_34242)"/>
+</g>
+<defs>
+<filter id="filter0_dn_2635_34242" x="0" y="0" width="318" height="93" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="7"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_2635_34242"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feTurbulence type="fractalNoise" baseFrequency="5 5" stitchTiles="stitch" numOctaves="3" result="noise" seed="9621" />
+<feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise" />
+<feComponentTransfer in="alphaNoise" result="coloredNoise1">
+<feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "/>
+</feComponentTransfer>
+<feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
+<feFlood flood-color="rgba(84, 119, 193, 0.4)" result="color1Flood" />
+<feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1" />
+<feMerge result="effect2_noise_2635_34242">
+<feMergeNode in="shape" />
+<feMergeNode in="color1" />
+</feMerge>
+<feBlend mode="normal" in="effect2_noise_2635_34242" in2="effect1_dropShadow_2635_34242" result="effect2_noise_2635_34242"/>
+</filter>
+<radialGradient id="paint0_radial_2635_34242" cx="0" cy="0" r="1" gradientTransform="matrix(-242.271 -138.333 153.246 18.328 374.99 130.417)" gradientUnits="userSpaceOnUse">
+<stop offset="0.153846" stop-color="#FFCD86"/>
+<stop offset="1" stop-color="#13D9E8"/>
+</radialGradient>
+</defs>
+</svg>

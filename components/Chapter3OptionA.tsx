@@ -8,9 +8,10 @@ interface Chapter3OptionAProps {
     onNext?: () => void;
     embedded?: boolean;
     onToolkitDownload?: () => void;
+    endImage?: string;
 }
 
-export default function Chapter3OptionA({ onBack, onNext, embedded = false }: Chapter3OptionAProps) {
+export default function Chapter3OptionA({ onBack, onNext, embedded = false, endImage }: Chapter3OptionAProps) {
     return (
         <div className={styles.optionContentWrapper}>
             {/* Sticky Header */}
@@ -169,6 +170,17 @@ export default function Chapter3OptionA({ onBack, onNext, embedded = false }: Ch
                                 />
                             )}
                         </div>
+
+                        {/* End Image */}
+                        {endImage && (
+                            <div className={styles.endImageCard}>
+                                <img
+                                    src={endImage}
+                                    alt="Chapter end"
+                                    className={styles.endImage}
+                                />
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

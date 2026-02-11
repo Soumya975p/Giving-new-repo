@@ -438,6 +438,7 @@ export default function Home() {
                                 onBack={() => setSelectedOption(null)}
                                 onNext={handleNextChapter}
                                 optionId="ch1OptionA"
+                                endImage="/assets/chapter_1_endicon.png"
                                 contentCards={[
                                   {
                                     id: 1,
@@ -514,6 +515,7 @@ export default function Home() {
                                 onBack={() => setSelectedOption(null)}
                                 onNext={handleNextChapter}
                                 optionId="ch1OptionB"
+                                endImage="/assets/chapter_1_endicon.png"
                                 contentCards={[
                                   {
                                     id: 11,
@@ -634,12 +636,18 @@ export default function Home() {
                               </motion.div>
 
                               {/* Center Card - Dark */}
-                              <div className={styles.centerCard} ref={(el) => { centerCardRefs.current[0] = el }}>
-                                <img
-                                  src="/assets/chapter_1_card.png"
-                                  alt="Scenario 1 Card"
-                                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                                />
+                              <div className={`${styles.centerCard} ${styles.ch1CenterCard}`} ref={(el) => { centerCardRefs.current[0] = el }}>
+                                <div className={styles.scenarioCard}>
+                                  <div className={styles.scenarioInner}>
+                                    <div className={styles.scenarioLabel}>SCENARIO 1</div>
+                                    <div className={styles.scenarioHeadline}>
+                                      Imagine, you need
+                                      to raise funds to de-silt a lake.
+                                      How would do you begin?
+                                    </div>
+                                  </div>
+                                  <img src="/assets/ch_1_cardicon.png" alt="Card Icon" className={styles.scenarioCardIcon} />
+                                </div>
                               </div>
 
                               {/* Option A Decorations (Visible on Hover) */}
@@ -823,6 +831,7 @@ export default function Home() {
                                 onBack={() => setSelectedOption(null)}
                                 onNext={handleNextChapter}
                                 customStyles={chapter2StylesA}
+                                endImage="/assets/chapter_2_endicon.png"
                                 contentCards={[
                                   {
                                     id: 1,
@@ -893,6 +902,7 @@ export default function Home() {
                                 onBack={() => setSelectedOption(null)}
                                 onNext={handleNextChapter}
                                 customStyles={chapter2StylesB}
+                                endImage="/assets/chapter_2_endicon.png"
                                 flowerDecorImage="/assets/chapter_2_option_A.svg"
                                 contentCards={[
                                   {
@@ -1027,11 +1037,16 @@ export default function Home() {
 
                               {/* Center Card - Dark */}
                               <div className={styles.centerCard} ref={(el) => { centerCardRefs.current[1] = el }}>
-                                <img
-                                  src="/assets/chapter_2_card.png"
-                                  alt="Scenario 2 Card"
-                                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                                />
+                                <div className={`${styles.scenarioCard} ${styles.ch2CenterCardMini}`}>
+                                  <div className={styles.scenarioInner}>
+                                    <div className={styles.scenarioLabel}>SCENARIO 2</div>
+                                    <div className={`${styles.scenarioHeadline} ${styles.scenarioHeadlineCh2}`}>
+                                      You reach out to Nidhi, <br />
+                                      someone you identified through your existing network. She becomes a first-time donor by contributing ₹2,500 via your crowdfunding campaign. What do you do next?
+                                    </div>
+                                  </div>
+                                  <img src="/assets/ch_2_cardicon.png" alt="Card Icon" className={styles.scenarioCardIconCh2} />
+                                </div>
                               </div>
 
                               {/* Option B */}
@@ -1299,6 +1314,7 @@ export default function Home() {
                               onBack={() => setSelectedOption(null)}
                               onNext={handleNextChapter}
                               onToolkitDownload={() => setIsPopupOpen(true)}
+                              endImage="/assets/chapter_3_endicon.png"
                             />
                           ) : selectedOption === 'B' ? (
                             // Chapter 3 Option B Content
@@ -1306,6 +1322,7 @@ export default function Home() {
                               embedded={true}
                               onBack={() => setSelectedOption(null)}
                               onNext={handleNextChapter}
+                              endImage="/assets/chapter_3_endicon.png"
                             />
                           ) : (
                             // Chapter 3 Default View - just render scenario container, header is above
@@ -1529,6 +1546,7 @@ export default function Home() {
                               onBack={() => setSelectedOption(null)}
                               onNext={handleNextChapter}
                               onToolkitDownload={() => setIsPopupOpen(true)}
+                              endImage="/assets/chapter_4_endicon.png"
                             />
                           ) : selectedOption === 'B' ? (
                             <Chapter4OptionB
@@ -1536,6 +1554,7 @@ export default function Home() {
                               onBack={() => setSelectedOption(null)}
                               onNext={handleNextChapter}
                               onToolkitDownload={() => setIsPopupOpen(true)}
+                              endImage="/assets/chapter_4_endicon.png"
                             />
                           ) : (
                             // Chapter 4 Default View - Scenario Cards

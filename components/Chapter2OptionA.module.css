@@ -330,7 +330,7 @@
     padding: 30px;
     display: flex;
     flex-direction: column;
-    gap: 42px important; 
+    gap: 42px important;
     color: #1a4d3a;
     overflow: visible;
     margin-left: -40px;
@@ -672,7 +672,7 @@
 
 .embedded .nextChapterCard {
     margin-left: 0;
-    margin-right: 30px;
+    margin-right: -25px;
     z-index: 10001;
     align-self: center;
 }
@@ -682,17 +682,17 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    margin-left: -55px;
+    margin-left: -86px;
+    /* Overlap button */
     overflow: visible;
-    transform: translateY(50%);
+    z-index: 10000;
+    transform: translateY(114px);
 }
 
 .endImage {
-    width: auto;
-    height: 100px;
+    width: 165px;
+    height: 200px;
     object-fit: contain;
-    margin-right: -25%;
-    transform: translateY(100%);
 }
 
 @media (max-width: 1024px) {
@@ -702,15 +702,17 @@
         gap: 30px;
         margin-top: 20px;
     }
+
     .embedded .contentCard {
-    width: 399px;
-    margin-right: 120px;
-    margin-top: 87px;
+        width: 399px;
+        margin-right: 120px;
+        margin-top: 87px;
     }
+
     .embedded .contentCard:nth-child(3) {
-    margin-right: 40px;
-    margin-top: 93px !important;
-}
+        margin-right: 40px;
+        margin-top: 93px !important;
+    }
 }
 
 /* Mobile-specific styles for equal spacing between cards */
@@ -740,20 +742,25 @@
         width: auto;
         min-width: 150px;
     }
-    .floatingText{
+
+    .floatingText {
         font-size: 16px !important;
     }
-        .statLabel{
+
+    .statLabel {
         font-size: 10px !important;
     }
-    .statNumber{
+
+    .statNumber {
         font-size: 16px !important;
         font-weight: 500;
     }
-        .statDescription{
+
+    .statDescription {
         font-size: 14px !important;
         font-weight: 400;
     }
+
     .backButton {
         top: 60px;
         left: 16px;

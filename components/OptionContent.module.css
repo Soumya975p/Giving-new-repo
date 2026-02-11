@@ -78,7 +78,8 @@
     pointer-events: auto;
     position: absolute;
 }
-.scrollImage{
+
+.scrollImage {
     position: absolute;
     top: 42px;
     right: 60px;
@@ -343,7 +344,7 @@
     width: auto;
 }
 
-.ch1OptionA .contentCard:nth-child(3) .decorationImage{
+.ch1OptionA .contentCard:nth-child(3) .decorationImage {
     top: 22%;
 }
 
@@ -772,7 +773,7 @@
 
 .ch1OptionB .contentCard:nth-child(1) {
     margin-top: 49px;
-    
+
 }
 
 .ch1OptionB .contentCard:nth-child(2) {
@@ -798,7 +799,7 @@
 
 .embedded .contentCard {
     width: 399px;
-    
+
 }
 
 .embedded .toolkitCard {
@@ -859,7 +860,8 @@
         /* Reduce gap on mobile */
         padding-left: 40px !important;
     }
-    .decor-1-0{
+
+    .decor-1-0 {
         display: none;
     }
 
@@ -871,64 +873,115 @@
         display: block;
     }
 
-    .floatingText{
+    .floatingText {
         font-size: 16px !important;
     }
-        .statLabel{
+
+    .statLabel {
         font-size: 10px !important;
     }
-    .statNumber{
+
+    .statNumber {
         font-size: 16px !important;
         font-weight: 500;
     }
-    .statDescription{
+
+    .statDescription {
         font-size: 14px !important;
         font-weight: 400;
     }
+
     .decor-1-2 {
         width: 32px !important;
         left: -15% !important;
     }
-    .decor-1-3{
+
+    .decor-1-3 {
         display: none !important;
     }
-    .ch1OptionA .scrollContent {
-    padding: 20px 0 20px 80px;
-    gap: 200px;
-    /* transform: translateY(-20px); */
-}
-.embedded .contentCard {
-    width: 290px;
-}
-.embedded .contentCard p{
-    min-width: auto !important;
-}
-.statCard{
-    padding: 16px !important;
-    min-width: 290px !important;
-}
-.statNumber{
-    margin-top: 0 !important;
-}
 
-.embedded .toolkitCard {
-    width: 300px;
-    height: 400px;
-    /* Default offset removed, moving to specific IDs */
-}
-.backButton {
+    .ch1OptionA .scrollContent {
+        padding: 20px 0 20px 80px;
+        gap: 180px;
+        /* transform: translateY(-20px); */
+    }
+
+    .embedded .contentCard {
+        width: 290px;
+    }
+
+    .embedded .contentCard p {
+        min-width: auto !important;
+    }
+
+    .statCard {
+        padding: 16px !important;
+        min-width: 290px !important;
+    }
+
+    .statNumber {
+        margin-top: 0 !important;
+    }
+
+    .embedded .toolkitCard {
+        width: 300px;
+        height: 400px;
+        /* Default offset removed, moving to specific IDs */
+    }
+
+    .backButton {
         top: 60px;
         left: 16px;
     }
-    .floatingTextContainer{
+
+    .floatingTextContainer {
         margin-bottom: 0 !important;
     }
-    .horizontalScrollContainer{
+
+    .horizontalScrollContainer {
         align-items: flex-start !important;
         margin-top: 60px;
     }
-
-
-    
 }
 
+.endImageCard {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+}
+
+.endImage {
+    height: 100vh;
+    width: auto;
+    object-fit: contain;
+}
+
+.ch1OptionA .endImageCard,
+.ch1OptionB .endImageCard {
+    margin-left: 0;
+    padding-right: 0;
+}
+
+.ch1OptionA .endImage,
+.ch1OptionB .endImage {
+    height: 200px;
+    width: 165px;
+    display: block;
+    transform: translateY(135px);
+}
+
+.ch1OptionA .nextChapterCard,
+.ch1OptionB .nextChapterCard {
+    z-index: 2005;
+    margin-right: -40px;
+    transform: translateX(80px);
+}
+
+.ch1OptionA .scrollContent>.endImageCard,
+.ch1OptionB .scrollContent>.endImageCard {
+    margin-left: -200px;
+    /* Overlap the next chapter button till the right diamond */
+    z-index: 2000;
+}

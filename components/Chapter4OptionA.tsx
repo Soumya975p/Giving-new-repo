@@ -8,9 +8,10 @@ interface Chapter4OptionAProps {
     onNext?: () => void;
     embedded?: boolean;
     onToolkitDownload?: () => void;
+    endImage?: string;
 }
 
-export default function Chapter4OptionA({ onBack, onNext, embedded = false, onToolkitDownload }: Chapter4OptionAProps) {
+export default function Chapter4OptionA({ onBack, onNext, embedded = false, onToolkitDownload, endImage }: Chapter4OptionAProps) {
     return (
         <div className={`${styles.optionContentWrapper} ${embedded ? styles.embedded : ''}`}>
 
@@ -172,6 +173,17 @@ export default function Chapter4OptionA({ onBack, onNext, embedded = false, onTo
                                         alt="Next chapter"
                                         className={styles.nextChapterImage}
                                         onClick={onNext}
+                                    />
+                                </div>
+                            )}
+
+                            {/* End Image */}
+                            {endImage && (
+                                <div className={styles.endImageCard}>
+                                    <img
+                                        src={endImage}
+                                        alt="Chapter end"
+                                        className={styles.endImage}
                                     />
                                 </div>
                             )}
