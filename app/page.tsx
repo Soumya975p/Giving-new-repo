@@ -195,6 +195,74 @@ export default function Home() {
   // State for scroll-triggered sticky chapters section
   const [isChaptersSectionSticky, setIsChaptersSectionSticky] = useState(false);
 
+  // IntersectionObserver for pinning chapters section at 10% visibility (desktop only)
+  useEffect(() => {
+    if (!chaptersSectionRef.current) return;
+
+    // Only enable sticky behavior on desktop (width >= 768px)
+    const isDesktop = window.innerWidth >= 768;
+    if (!isDesktop) return;
+
+    const section = chaptersSectionRef.current;
+    let hasTriggered = false;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.1 && !hasTriggered) {
+          hasTriggered = true;
+          console.log('✓ 10% visible - Smooth scrolling to top');
+
+          // Smooth scroll to top
+          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+          // Check when scroll completes by monitoring scroll position
+          let lastScrollY = window.scrollY;
+          let scrollCheckCount = 0;
+
+          const checkScrollComplete = setInterval(() => {
+            const currentScrollY = window.scrollY;
+
+            // If scroll position hasn't changed for 2 checks, it's complete
+            if (Math.abs(currentScrollY - lastScrollY) < 1) {
+              scrollCheckCount++;
+
+              if (scrollCheckCount >= 2) {
+                clearInterval(checkScrollComplete);
+                console.log('🔒 Scroll complete - Locking section smoothly');
+
+                // Lock with a small delay for smooth transition
+                setTimeout(() => {
+                  document.body.style.overflow = 'hidden';
+                  document.documentElement.style.overflow = 'hidden';
+                  setIsChaptersSectionSticky(true);
+                  observer.disconnect();
+                }, 100);
+              }
+            } else {
+              scrollCheckCount = 0;
+            }
+
+            lastScrollY = currentScrollY;
+          }, 50);
+
+          // Safety timeout in case scroll check fails
+          setTimeout(() => {
+            clearInterval(checkScrollComplete);
+          }, 3000);
+        }
+      },
+      {
+        threshold: [0.05, 0.1, 0.15, 0.2]
+      }
+    );
+
+    observer.observe(section);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   useEffect(() => {
     activeChapterRef.current = activeChapter
 
@@ -213,6 +281,21 @@ export default function Home() {
 
     return () => clearTimeout(resetTimeout)
   }, [activeChapter])
+
+  // Reset all gradient hover states when going back to scenario view
+  useEffect(() => {
+    if (selectedOption === null) {
+      // Reset all hover states
+      setIsOptionAHovered(false)
+      setIsOptionBHovered(false)
+      setIsCh2OptionAHovered(false)
+      setIsCh2OptionBHovered(false)
+      setIsCh3OptionAHovered(false)
+      setIsCh3OptionBHovered(false)
+      setIsCh4OptionAHovered(false)
+      setIsCh4OptionBHovered(false)
+    }
+  }, [selectedOption])
 
   // Navigate to next chapter
   const handleNextChapter = () => {
@@ -367,9 +450,11 @@ export default function Home() {
             <button
               className={`${styles.navButton} ${styles.backToChaptersBtn}`}
               onClick={() => {
-                setIsChaptersSectionSticky(false);
+                // Restore body scroll
                 document.body.style.overflow = '';
                 document.documentElement.style.overflow = '';
+                setIsChaptersSectionSticky(false);
+
                 setTimeout(() => {
                   heroBottomRef.current?.scrollIntoView({ behavior: 'smooth' });
                 }, 100);
@@ -397,9 +482,16 @@ export default function Home() {
             <button
               className={styles.navButton}
               onClick={() => {
-                if (downloadSectionRef.current) {
-                  downloadSectionRef.current.scrollIntoView({ behavior: 'smooth' });
-                }
+                // Restore body scroll
+                document.body.style.overflow = '';
+                document.documentElement.style.overflow = '';
+                setIsChaptersSectionSticky(false);
+
+                setTimeout(() => {
+                  if (downloadSectionRef.current) {
+                    downloadSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }, 100);
               }}
             >
               <span className={styles.navText}>View All Toolkits</span>
@@ -424,7 +516,16 @@ export default function Home() {
               }}
             >
               <div
-                className={styles.chapterPanel}
+                className={`${styles.chapterPanel} ${
+                  !selectedOption && chapter.id === 1 && isOptionAHovered ? styles.showGradientLeft :
+                  !selectedOption && chapter.id === 1 && isOptionBHovered ? styles.showGradientRight :
+                  !selectedOption && chapter.id === 2 && isCh2OptionAHovered ? styles.showGradientLeftCh2 :
+                  !selectedOption && chapter.id === 2 && isCh2OptionBHovered ? styles.showGradientRightCh2 :
+                  !selectedOption && chapter.id === 3 && isCh3OptionAHovered ? styles.showGradientLeftCh3 :
+                  !selectedOption && chapter.id === 3 && isCh3OptionBHovered ? styles.showGradientRightCh3 :
+                  !selectedOption && chapter.id === 4 && isCh4OptionAHovered ? styles.showGradientLeftCh4 :
+                  !selectedOption && chapter.id === 4 && isCh4OptionBHovered ? styles.showGradientRightCh4 : ''
+                }`}
                 style={{
                   background: chapter.gradient
                 }}
@@ -1805,28 +1906,26 @@ your team through a simple,<br />
           activeChapter={activeChapter}
           onTabClick={(chapterId) => {
             if (chapterId === 5) {
-              // Release the sticky lock when bonus chapter is clicked
+              // Restore body scroll first
               setIsChaptersSectionSticky(false);
               document.body.style.overflow = '';
               document.documentElement.style.overflow = '';
+
+              // Wait for DOM to settle before smooth scroll
               setTimeout(() => {
-                bonusSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
-              }, 100);
+                bonusSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }, 200);
             } else {
               setActiveChapter(chapterId);
-              // Keep the section sticky while navigating chapters
-              chaptersSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
             }
           }}
           onAllChaptersClick={() => {
-            setIsChaptersSectionSticky(false);
+            // Restore body scroll
             document.body.style.overflow = '';
             document.documentElement.style.overflow = '';
-            if (heroImageRef.current) {
-              heroImageRef.current.style.scrollMarginTop = '-400px';
-            }
+            setIsChaptersSectionSticky(false);
             setTimeout(() => {
-              heroImageRef.current?.scrollIntoView({ behavior: 'smooth' });
+              heroBottomRef.current?.scrollIntoView({ behavior: 'smooth' });
             }, 100);
           }}
         />
