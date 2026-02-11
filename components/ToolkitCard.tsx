@@ -13,8 +13,8 @@ interface ToolkitCardProps {
     onDownload?: () => void;
     onViewToolkit?: () => void;
     disableRotation?: boolean;
-    designVariant?: 'ch2' | 'tk3' | 'tk4' | 'tk5' | 'tk6' | 'tk7';
-    backgroundVariant?: 'tk345' | 'tk6' | 'tk7';
+    designVariant?: 'ch2' | 'tk3' | 'tk4' | 'tk5' | 'tk6' | 'tk7' | 'tk8';
+    backgroundVariant?: 'tk345' | 'tk6' | 'tk7' | 'tk8';
 }
 
 export default function ToolkitCard({
