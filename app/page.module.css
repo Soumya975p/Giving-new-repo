@@ -9268,7 +9268,8 @@
 .ch2CenterCardMini {
   height: 350.22px !important;
 }
-.scenarioCardIconCh2{
+
+.scenarioCardIconCh2 {
   position: absolute;
   bottom: 0px;
   left: 50%;
@@ -9276,5 +9277,4 @@
   width: 50%;
   height: auto;
   object-fit: contain;
-}
 }

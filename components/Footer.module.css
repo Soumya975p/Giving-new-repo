@@ -250,6 +250,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  position: relative;
 }
 
 /* First two columns have inline styles for borderLeft in TSX, or we can add class modifier */
@@ -264,6 +265,36 @@
   text-transform: uppercase;
   margin-bottom: 15px;
   margin-top: 0;
+}
+
+.footerLinkList {
+  position: relative;
+}
+
+.homeList::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  bottom: 0;
+  top: 6px;
+  height: 44px;
+  width: 3px; 
+  background: #38F1FF 30%;
+  opacity: 0.6;
+  border-radius: 2px;
+  /* transform: translateY(25px); */
+}
+.subItemGroup::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6px;
+  height: 44px;
+  width: 3px;
+  background: #38F1FF 30%;
+  opacity: 0.6;
+  border-radius: 2px;
+  transform: translateY(25px);
 }
 
 .footerLinkList {
@@ -314,7 +345,7 @@
 }
 
 .homeLink:hover {
-  color: #38F1FF !important;
+  color: #38F1FF 30% !important;
 }
 
 .subItemLink {
