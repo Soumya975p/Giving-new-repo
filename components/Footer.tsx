@@ -80,29 +80,47 @@ export default function Footer() {
             <div className={styles.footerLinksGrid}>
               {/* Col 1: Home */}
               <div className={styles.footerGridCol}>
-                <p className={styles.footerColTitle}>HOME</p>
-                <ul className={styles.footerLinkList}>
+                <p className={styles.footerColTitle}
+                >HOME</p>
+                <ul className={`${styles.footerLinkList} ${styles.homeList}`}>
                   <li><a href="#" className={styles.homeLink}>Who is this for?</a></li>
-                  <li><a href="#" className={styles.homeLink}>Tools and toolkits</a></li>
-                </ul>
+                   <li><a href="#" className={styles.homeLink}>Tools and toolkits</a></li>
+</ul>
               </div>
 
               {/* Col 2: Reports */}
               <div className={styles.footerGridCol}>
-                <p className={styles.footerColTitle}>REPORTS & RESOURCES</p>
-                <ul className={styles.footerLinkList}>
-                  <li><a href="#">UDARTA:EG Field Guide</a></li>
-                  <li className={styles.indentedItem}><a href="http://localhost:3000/" className={styles.subItemLink}>Fundraising</a></li>
-                  <li className={styles.indentedItem}><a href="#" className={styles.subItemLink}>Volunteer Engagement</a></li>
-                  <li className={styles.arrowItem}>
-                    <a href="https://www.givingtuesday.org/india/udarta-eg/report/" target='_blank'>
-                      UDARTA:EG Report
-                      <img src="/assets/footer_arrow.svg" alt="" className={styles.externalArrowIcon} />
-                    </a>
-                  </li>
-                  <li><a href="#">Donor Motivation</a></li>
-                </ul>
-              </div>
+  <p className={styles.footerColTitle}>REPORTS & RESOURCES</p>
+
+  <ul className={styles.footerLinkList}>
+    <li><a href="#">UDARTA:EG Field Guide</a></li>
+
+    {/* grouped items with vertical indicator */}
+    <div className={styles.subItemGroup}>
+      <li className={styles.indentedItem}>
+        <a href="http://localhost:3000/" className={styles.subItemLink}>
+          Fundraising
+        </a>
+      </li>
+
+      <li className={styles.indentedItem}>
+        <a href="#" className={styles.subItemLink}>
+          Volunteer Engagement
+        </a>
+      </li>
+    </div>
+
+    <li className={styles.arrowItem}>
+      <a href="https://www.givingtuesday.org/india/udarta-eg/report/" target="_blank">
+        UDARTA:EG Report
+        <img src="/assets/footer_arrow.svg" alt="" className={styles.externalArrowIcon} />
+      </a>
+    </li>
+
+    <li><a href="#">Donor Motivation</a></li>
+  </ul>
+</div>
+              
 
               {/* Col 3: Email */}
               <div className={styles.footerGridCol}>

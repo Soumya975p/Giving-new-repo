@@ -489,16 +489,15 @@ export default function Home() {
               }}
             >
               <div
-                className={`${styles.chapterPanel} ${
-                  !selectedOption && chapter.id === 1 && isOptionAHovered ? styles.showGradientLeft :
-                  !selectedOption && chapter.id === 1 && isOptionBHovered ? styles.showGradientRight :
-                  !selectedOption && chapter.id === 2 && isCh2OptionAHovered ? styles.showGradientLeftCh2 :
-                  !selectedOption && chapter.id === 2 && isCh2OptionBHovered ? styles.showGradientRightCh2 :
-                  !selectedOption && chapter.id === 3 && isCh3OptionAHovered ? styles.showGradientLeftCh3 :
-                  !selectedOption && chapter.id === 3 && isCh3OptionBHovered ? styles.showGradientRightCh3 :
-                  !selectedOption && chapter.id === 4 && isCh4OptionAHovered ? styles.showGradientLeftCh4 :
-                  !selectedOption && chapter.id === 4 && isCh4OptionBHovered ? styles.showGradientRightCh4 : ''
-                }`}
+                className={`${styles.chapterPanel} ${!selectedOption && chapter.id === 1 && isOptionAHovered ? styles.showGradientLeft :
+                    !selectedOption && chapter.id === 1 && isOptionBHovered ? styles.showGradientRight :
+                      !selectedOption && chapter.id === 2 && isCh2OptionAHovered ? styles.showGradientLeftCh2 :
+                        !selectedOption && chapter.id === 2 && isCh2OptionBHovered ? styles.showGradientRightCh2 :
+                          !selectedOption && chapter.id === 3 && isCh3OptionAHovered ? styles.showGradientLeftCh3 :
+                            !selectedOption && chapter.id === 3 && isCh3OptionBHovered ? styles.showGradientRightCh3 :
+                              !selectedOption && chapter.id === 4 && isCh4OptionAHovered ? styles.showGradientLeftCh4 :
+                                !selectedOption && chapter.id === 4 && isCh4OptionBHovered ? styles.showGradientRightCh4 : ''
+                  }`}
                 style={{
                   background: chapter.gradient
                 }}
