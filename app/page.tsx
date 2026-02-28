@@ -727,13 +727,13 @@ export default function Home() {
                                   }}
                                 >
                                   <motion.div variants={arrowVariants}>
-                                    <ArrowRight style={{ width: '20px', height: '20px' }} />
+                                    {/* <ArrowRight style={{ width: '20px', height: '20px' }} /> */}
                                   </motion.div>
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>Choose Option</span>
+                                   }}> <img src="./assets/left-arrow-b.png" alt="" className={styles.chooseOptImg} /> Choose Option</span>
                                 </motion.div>
                               </motion.div>
 
@@ -849,13 +849,13 @@ export default function Home() {
                                   }}
                                 >
                                   <motion.div variants={arrowLeftVariants}>
-                                    <ArrowLeft style={{ width: '20px', height: '20px' }} />
+                                    {/* <ArrowLeft style={{ width: '20px', height: '20px' }} /> */}
                                   </motion.div>
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}> Choose Option</span>
+                                      }}> Choose Option <img src="/assets/right-arrow-b.png" alt=""  className={styles.chooseOptImg}/></span>
                                 </motion.div>
                               </motion.div>
 
@@ -1119,13 +1119,13 @@ export default function Home() {
                                   }}
                                 >
                                   <motion.div variants={arrowVariants}>
-                                    <ArrowRight style={{ width: '20px', height: '20px' }} />
+                                    {/* <ArrowRight style={{ width: '20px', height: '20px' }} /> */}
                                   </motion.div>
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>Choose Option</span>
+                                    }}>  <img src="./assets/left-arrow-w.png" alt="" className={styles.chooseOptImg} /> Choose Option</span>
                                 </motion.div>
                               </motion.div>
 
@@ -1181,13 +1181,13 @@ export default function Home() {
                                   }}
                                 >
                                   <motion.div variants={arrowLeftVariants}>
-                                    <ArrowLeft style={{ width: '20px', height: '20px' }} />
+                                    {/* <ArrowLeft style={{ width: '20px', height: '20px' }} /> */}
                                   </motion.div>
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>Choose Option</span>
+                                      }}>Choose Option  <img src="./assets/right-arrow-w.png" alt="" className={styles.chooseOptImg} /></span>
                                 </motion.div>
                               </motion.div>
 
@@ -1458,13 +1458,13 @@ export default function Home() {
                                   }}
                                 >
                                   <motion.div variants={arrowVariants}>
-                                    <ArrowRight style={{ width: '20px', height: '20px' }} />
+                                    {/* <ArrowRight style={{ width: '20px', height: '20px' }} /> */}
                                   </motion.div>
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>Choose Option</span>
+                                  }}> <img src="./assets/left-arrow-b.png" alt="" className={styles.chooseOptImg} /> Choose Option </span>
                                 </motion.div>
                               </motion.div>
 
@@ -1540,13 +1540,13 @@ export default function Home() {
                                   }}
                                 >
                                   <motion.div variants={arrowLeftVariants}>
-                                    <ArrowLeft style={{ width: '20px', height: '20px' }} />
+                                    {/* <ArrowLeft style={{ width: '20px', height: '20px' }} /> */}
                                   </motion.div>
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>Choose Option</span>
+                                  }}>Choose Option  <img src="./assets/right-arrow-b.png" alt="" className={styles.chooseOptImg} /></span>
                                 </motion.div>
                               </motion.div>
 
@@ -1692,14 +1692,13 @@ export default function Home() {
                                   }}
                                 >
                                   <motion.div variants={arrowVariants}>
-                                    <ArrowRight style={{ width: '20px', height: '20px' }} />
+                                    {/* <ArrowRight style={{ width: '20px', height: '20px' }} /> */}
                                   </motion.div>
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>Choose Option</span>
-                                </motion.div>
+                                  }}> <img src="./assets/left-arrow-b.png" alt="" className={styles.chooseOptImg} />Choose Option</span>                                </motion.div>
                               </motion.div>
 
                               {/* Center Card */}
@@ -1770,14 +1769,13 @@ export default function Home() {
                                   }}
                                 >
                                   <motion.div variants={arrowLeftVariants}>
-                                    <ArrowLeft style={{ width: '20px', height: '20px' }} />
+                                    {/* <ArrowLeft style={{ width: '20px', height: '20px' }} /> */}
                                   </motion.div>
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>Choose Option</span>
-                                </motion.div>
+                                  }}>Choose Option  <img src="./assets/right-arrow-b.png" alt="" className={styles.chooseOptImg} /></span>                                </motion.div>
                               </motion.div>
 
                               {/* Chapter 4 Option B Hover Decorations */}
