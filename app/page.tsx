@@ -696,7 +696,7 @@ export default function Home() {
                                   const card = centerCardRefs.current[0];
                                   if (card) {
                                     card.style.transformOrigin = 'bottom left';
-                                    card.style.transform = 'rotate(-15deg)';
+                                    card.style.transform = 'rotate(-6deg)';
                                   }
                                 }}
                                 onMouseLeave={() => {
@@ -723,17 +723,19 @@ export default function Home() {
                                     alignItems: 'center',
                                     gap: '6px',
                                     color: '#1a4d3a',
-                                    fontWeight: 500
+                                    fontWeight: 500,
+                                    width: '100%',
+                                    justifyContent: 'center',
                                   }}
                                 >
                                   <motion.div variants={arrowVariants}>
-                                    <ArrowRight style={{ width: '20px', height: '20px' }} />
+                                    {/* <ArrowRight style={{ width: '20px', height: '20px' }} /> */}
                                   </motion.div>
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>Choose Option</span>
+                                   }}> <img src="./assets/left-arrow-b.png" alt="" className={styles.chooseOptImg} /> Choose Option</span>
                                 </motion.div>
                               </motion.div>
 
@@ -836,7 +838,7 @@ export default function Home() {
                                 <span className={styles.optionLabel}>OPTION B</span>
                                 <p className={styles.optionDesc}>
                                   Tap into your existing
-                                  network – Connections
+                                  network – connections
                                   of volunteers,
                                   champions & donors
                                 </p>
@@ -855,13 +857,13 @@ export default function Home() {
                                   }}
                                 >
                                   <motion.div variants={arrowLeftVariants}>
-                                    <ArrowLeft style={{ width: '20px', height: '20px' }} />
+                                    {/* <ArrowLeft style={{ width: '20px', height: '20px' }} /> */}
                                   </motion.div>
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}> Choose Option</span>
+                                      }}> Choose Option <img src="/assets/right-arrow-b.png" alt=""  className={styles.chooseOptImg}/></span>
                                 </motion.div>
                               </motion.div>
 
@@ -1095,7 +1097,7 @@ export default function Home() {
                                   const card = centerCardRefs.current[1];
                                   if (card) {
                                     card.style.transformOrigin = 'bottom left';
-                                    card.style.transform = 'rotate(-15deg)';
+                                    card.style.transform = 'rotate(-6deg)';
                                   }
                                 }}
                                 onMouseLeave={() => {
@@ -1127,13 +1129,13 @@ export default function Home() {
                                   }}
                                 >
                                   <motion.div variants={arrowVariants}>
-                                    <ArrowRight style={{ width: '20px', height: '20px' }} />
+                                    {/* <ArrowRight style={{ width: '20px', height: '20px' }} /> */}
                                   </motion.div>
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>Choose Option</span>
+                                    }}>  <img src="./assets/left-arrow-w.png" alt="" className={styles.chooseOptImg} /> Choose Option</span>
                                 </motion.div>
                               </motion.div>
 
@@ -1194,13 +1196,13 @@ export default function Home() {
                                   }}
                                 >
                                   <motion.div variants={arrowLeftVariants}>
-                                    <ArrowLeft style={{ width: '20px', height: '20px' }} />
+                                    {/* <ArrowLeft style={{ width: '20px', height: '20px' }} /> */}
                                   </motion.div>
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>Choose Option</span>
+                                      }}>Choose Option  <img src="./assets/right-arrow-w.png" alt="" className={styles.chooseOptImg} /></span>
                                 </motion.div>
                               </motion.div>
 
@@ -1443,7 +1445,7 @@ export default function Home() {
                                   const card = centerCardRefs.current[2];
                                   if (card) {
                                     card.style.transformOrigin = 'bottom left';
-                                    card.style.transform = 'rotate(-15deg)';
+                                    card.style.transform = 'rotate(-6deg)';
                                   }
                                 }}
                                 onMouseLeave={() => {
@@ -1473,13 +1475,13 @@ export default function Home() {
                                   }}
                                 >
                                   <motion.div variants={arrowVariants}>
-                                    <ArrowRight style={{ width: '20px', height: '20px' }} />
+                                    {/* <ArrowRight style={{ width: '20px', height: '20px' }} /> */}
                                   </motion.div>
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>Choose Option</span>
+                                  }}> <img src="./assets/left-arrow-b.png" alt="" className={styles.chooseOptImg} /> Choose Option </span>
                                 </motion.div>
                               </motion.div>
 
@@ -1555,13 +1557,13 @@ export default function Home() {
                                   }}
                                 >
                                   <motion.div variants={arrowLeftVariants}>
-                                    <ArrowLeft style={{ width: '20px', height: '20px' }} />
+                                    {/* <ArrowLeft style={{ width: '20px', height: '20px' }} /> */}
                                   </motion.div>
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>Choose Option</span>
+                                  }}>Choose Option  <img src="./assets/right-arrow-b.png" alt="" className={styles.chooseOptImg} /></span>
                                 </motion.div>
                               </motion.div>
 
@@ -1678,7 +1680,7 @@ export default function Home() {
                                   const card = centerCardRefs.current[3];
                                   if (card) {
                                     card.style.transformOrigin = 'bottom left';
-                                    card.style.transform = 'rotate(-15deg)';
+                                    card.style.transform = 'rotate(-6deg)';
                                   }
                                 }}
                                 onMouseLeave={() => {
@@ -1709,14 +1711,13 @@ export default function Home() {
                                   }}
                                 >
                                   <motion.div variants={arrowVariants}>
-                                    <ArrowRight style={{ width: '20px', height: '20px' }} />
+                                    {/* <ArrowRight style={{ width: '20px', height: '20px' }} /> */}
                                   </motion.div>
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>Choose Option</span>
-                                </motion.div>
+                                  }}> <img src="./assets/left-arrow-b.png" alt="" className={styles.chooseOptImg} />Choose Option</span>                                </motion.div>
                               </motion.div>
 
                               {/* Center Card */}
@@ -1787,14 +1788,13 @@ export default function Home() {
                                   }}
                                 >
                                   <motion.div variants={arrowLeftVariants}>
-                                    <ArrowLeft style={{ width: '20px', height: '20px' }} />
+                                    {/* <ArrowLeft style={{ width: '20px', height: '20px' }} /> */}
                                   </motion.div>
                                   <span style={{
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em',
                                     fontSize: '12px'
-                                  }}>Choose Option</span>
-                                </motion.div>
+                                  }}>Choose Option  <img src="./assets/right-arrow-b.png" alt="" className={styles.chooseOptImg} /></span>                                </motion.div>
                               </motion.div>
 
                               {/* Chapter 4 Option B Hover Decorations */}
